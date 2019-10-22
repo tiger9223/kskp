@@ -1,0 +1,85 @@
+package com.hk.kskp.dtos;
+
+import java.util.Date;
+
+public class QaDto {
+
+	private int q_seq;
+	private int m_seq;
+	private String q_title;
+	private String q_conts;
+	private Date q_regdate;
+	private int q_flag;
+	
+	public QaDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getQ_seq() {
+		return q_seq;
+	}
+
+	public void setQ_seq(int q_seq) {
+		this.q_seq = q_seq;
+	}
+
+	public int getM_seq() {
+		return m_seq;
+	}
+
+	public void setM_seq(int m_seq) {
+		this.m_seq = m_seq;
+	}
+
+	public String getQ_title() {
+		return q_title;
+	}
+
+	public void setQ_title(String q_title) {
+		this.q_title = q_title;
+	}
+
+	public String getQ_conts() {
+		return q_conts;
+	}
+
+	public void setQ_conts(String q_conts) {
+		this.q_conts = q_conts;
+	}
+
+	public Date getQ_regdate() {
+		return q_regdate;
+	}
+
+	public void setQ_regdate(Date q_regdate) {
+		this.q_regdate = q_regdate;
+	}
+
+	public int getQ_flag() {
+		return q_flag;
+	}
+
+	public void setQ_flag(int q_flag) {
+		this.q_flag = q_flag;
+	}
+
+	public QaDto(int q_seq, int m_seq, String q_title, String q_conts, Date q_regdate, int q_flag) {
+		super();
+		this.q_seq = q_seq;
+		this.m_seq = m_seq;
+		this.q_title = q_title;
+		this.q_conts = q_conts;
+		this.q_regdate = q_regdate;
+		this.q_flag = q_flag;
+	}
+
+	@Override
+	public String toString() {
+		return "QaDto [q_seq=" + q_seq + ", m_seq=" + m_seq + ", q_title=" + q_title + ", q_conts=" + q_conts
+				+ ", q_regdate=" + q_regdate + ", q_flag=" + q_flag + "]";
+	}
+	
+	
+	
+}
