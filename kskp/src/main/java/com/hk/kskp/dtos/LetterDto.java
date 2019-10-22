@@ -3,7 +3,7 @@ package com.hk.kskp.dtos;
 import java.util.Date;
 
 public class LetterDto {
-
+  
 	private int l_seq;
 	private int m_seq;
 	private int gu_seq;
