@@ -1,6 +1,6 @@
 package com.hk.kskp.dtos;
 
-public class Pay {
+public class PayDto {
 	
 	private int p_seq;
 	private int g_seq;
@@ -14,11 +14,11 @@ public class Pay {
 	private String p_meet;
 	private String p_flag;
 	
-	public Pay() {
+	public PayDto() {
 		super();
 	}
 
-	public Pay(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
+	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
 			String p_img, String p_meet, String p_flag) {
 		super();
 		this.p_seq = p_seq;

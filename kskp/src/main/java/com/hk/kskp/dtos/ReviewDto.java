@@ -2,7 +2,7 @@ package com.hk.kskp.dtos;
 
 import java.sql.Date;
 
-public class Review {
+public class ReviewDto {
 
 	
 	private int r_seq;
@@ -16,11 +16,11 @@ public class Review {
 	private int r_guflag;
 	private int r_falg;
 	
-	public Review() {
+	public ReviewDto() {
 		super();
 	}
 
-	public Review(int r_seq, int m_seq, int g_seq, String r_conts, Date r_regdate, String r_img, int r_star,
+	public ReviewDto(int r_seq, int m_seq, int g_seq, String r_conts, Date r_regdate, String r_img, int r_star,
 			String r_ans, int r_guflag, int r_falg) {
 		super();
 		this.r_seq = r_seq;

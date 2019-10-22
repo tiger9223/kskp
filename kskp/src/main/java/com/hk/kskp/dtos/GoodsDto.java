@@ -31,7 +31,6 @@ public class GoodsDto {
 	
 	public GoodsDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public GoodsDto(int g_seq, int gu_seq, String g_area, String g_lan, String g_name, String g_conts, int g_flag,
@@ -267,6 +266,5 @@ public class GoodsDto {
 				+ ", g_time=" + g_time + ", g_cconts=" + g_cconts + ", g_date=" + g_date + ", g_regdate=" + g_regdate
 				+ "]";
 	}
-	
 	
 }
