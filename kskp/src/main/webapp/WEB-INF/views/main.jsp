@@ -1,4 +1,3 @@
-<%@page import="com.hk.kangpark.dtos.BoardDto"%>
 <%@page import="java.util.List"%>
 <%
 response.setHeader("pragma", "no-cache"); //HTTP 1.0
@@ -6,8 +5,6 @@ response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
 response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
 response.setDateHeader("Expires", 0L); //Do not cache in proxy server
 %>
-<%@page import="com.hk.kangpark.dtos.LoginDto"%>
-<%@include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
