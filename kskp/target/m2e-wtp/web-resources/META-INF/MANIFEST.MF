@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: hk_edu
+=======
+Built-By: ujin
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 Build-Jdk: 1.8.0_211
 Created-By: Maven Integration for Eclipse
 
