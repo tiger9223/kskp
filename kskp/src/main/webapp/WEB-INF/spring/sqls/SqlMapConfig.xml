@@ -5,9 +5,25 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.hk.kskp.dtos.HkDto" alias="HkDto"/>
+		<typeAlias type="com.hk.kskp.dtos.GoodsDto" alias="GoodsDto"/>
+		<typeAlias type="com.hk.kskp.dtos.GuideDto" alias="GuideDto"/>
+		<typeAlias type="com.hk.kskp.dtos.LetterDto" alias="LetterDto"/>
+		<typeAlias type="com.hk.kskp.dtos.MembersDto" alias="MembersDto"/>
+		<typeAlias type="com.hk.kskp.dtos.NoticeDto" alias="NoticeDto"/>
+		<typeAlias type="com.hk.kskp.dtos.PayDto" alias="PayDto"/>
+		<typeAlias type="com.hk.kskp.dtos.QaDto" alias="QaDto"/>
+		<typeAlias type="com.hk.kskp.dtos.ReviewDto" alias="ReviewDto"/>
+		<typeAlias type="com.hk.kskp.dtos.SalaryDto" alias="SalaryDto"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="/sqls/mapper.xml"/>
+		<mapper resource="/sqls/GoodsMapper.xml"/>
+		<mapper resource="/sqls/GuideMapper.xml"/>
+		<mapper resource="/sqls/LetterMapper.xml"/>
+		<mapper resource="/sqls/MembersMapper.xml"/>
+		<mapper resource="/sqls/NoticeMapper.xml"/>
+		<mapper resource="/sqls/PayMapper.xml"/>
+		<mapper resource="/sqls/QaMapper.xml"/>
+		<mapper resource="/sqls/ReviewMapper.xml"/>
+		<mapper resource="/sqls/SalaryMapper.xml"/>
 	</mappers>
 </configuration>
