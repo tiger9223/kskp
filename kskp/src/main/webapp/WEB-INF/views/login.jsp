@@ -82,13 +82,25 @@
 		display: block;
 		width: 400px;
 		height: 50px;
+		border:1px solid #ddd;
+		background-color: #fff;
+		margin: 0 auto;
+		position: relative;
+	}
+	.button02 span{
+		padding-left: 20px;
+		position: absolute;
+		left: 50px;
+		top: 17px;
+	}
+	.logo_box{
+		width: 50px;
+		height: 50px;
 		background-color: #FFE800;
 		background-image: url('img/back_img.jpg');
 		background-size: cover;
-		border:0;
-		margin: 0 auto;
-		padding-left: 45px;
 		cursor: pointer;
+		border-right: 1px solid #ddd;
 	}
 	.log_wrap ul{
 		width: 400px;
@@ -159,17 +171,14 @@
 		<input type="submit" value="로그인" class="button">
 		</form>
 		<div class="inner_box">
-			<p>
-			<input type="checkbox" class="check" id="cb">
-			<label for="cb"></label> 로그인상태 유지
-			</p>
+
 		</div>
 		<!-- 네이버 로그인 창으로 이동 -->
-		<div id="naver_id_login" style="text-align:center"><a href="${url}">
-		<img width="400" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
-		<br>
+			<a href="${url}" class="button02">
+			<div class="logo_box"></div>
+			<span>네이버 아이디로 로그인하기</span>
+		</a>
 		<ul>
-			<li><a href="">아이디 찾기</a></li>
 			<li><a href="">비밀번호 찾기</a></li>
 			<li><a href="">회원가입</a></li>
 		</ul>
