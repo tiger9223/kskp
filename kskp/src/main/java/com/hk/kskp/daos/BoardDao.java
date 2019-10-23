@@ -12,14 +12,14 @@ import com.hk.kskp.dtos.QaDto;
 @Repository
 public class BoardDao implements IBoardDao	{
 	
-	private String nameSpace = "com.hk.kskp.";
+	private String nameSpace = "com.hk.Notice.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	@Override
 	public List<NoticeDto> NgetAllList() {
-		return sqlSession.selectList(nameSpace+"NgetAlllist");
+		return sqlSession.selectList(nameSpace+"Nboardlist");
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class BoardDao implements IBoardDao	{
 
 	@Override
 	public boolean QdelBoard(int seq) {
-		int count = sqlSession.delete(nameSpace+"delQboard", seq);
+		int count = sqlSession.delete(nameSpace+"Qdelboard", seq);
 		return false;
 	}
 

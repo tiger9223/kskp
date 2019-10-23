@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE SEQ=#{seq}
 	</update>
 	
-	<delete id="QdelBoard" parameterType="int">
+	<delete id="Qdelboard" parameterType="int">
 		DELETE FROM QA WHERE SEQ=#{seq}
 	</delete>
 	

@@ -50,7 +50,6 @@ public class boardController {
 	
 	@RequestMapping(value="/Nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String Nboardlist(Model model) {
-		logger.info("공지게시판 전체글 보기");
 		List<NoticeDto>list = boardService.NgetAllList();
 		model.addAttribute("list",list);
 		return "Nboardlist";
@@ -59,7 +58,7 @@ public class boardController {
 	@RequestMapping(value="/insertform.do",method = RequestMethod.GET)
 	public String insertForm() {
 		logger.info("글쓰기폼으로 이동");
-		return "insertNboard";
+		return "Ninsertboard";
 	}
 	
 	@RequestMapping(value="Ninsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
