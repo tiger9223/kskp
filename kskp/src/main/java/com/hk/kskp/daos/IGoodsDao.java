@@ -45,4 +45,6 @@ public interface IGoodsDao {
 	//일정 관리
 	public List<GoodsDto> getCal(int seq);
 	
+	//
+	
 }
