@@ -19,51 +19,51 @@ public class BoardDao implements IBoardDao	{
 
 	@Override
 	public List<NoticeDto> NgetAllList() {
-		return sqlSession.selectList(nameSpace+"getAllNlist");
+		return sqlSession.selectList(nameSpace+"NgetAlllist");
 	}
 
 	@Override
 	public boolean NinsertBoard(NoticeDto dto) {
-		int count = sqlSession.insert(nameSpace+"insertNboard", dto);
+		int count = sqlSession.insert(nameSpace+"Ninsertboard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
 	public NoticeDto NgetBoard(int seq) {
-		return sqlSession.selectOne(nameSpace+"getNboard", seq);
+		return sqlSession.selectOne(nameSpace+"Ngetboard", seq);
 	}
 
 	@Override
 	public boolean NupdateBoard(NoticeDto dto) {
-		int count = sqlSession.update(nameSpace+"updateNboard", dto);
+		int count = sqlSession.update(nameSpace+"Nupdateboard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
 	public boolean NdelBoard(int seq) {
-		int count = sqlSession.delete(nameSpace+"delNboard", seq);
+		int count = sqlSession.delete(nameSpace+"Ndelboard", seq);
 		return count>0?true:false;
 	}
 
 	@Override
 	public List<QaDto> QgetAllList() {
-		return sqlSession.selectList(nameSpace+"getAllQlist");
+		return sqlSession.selectList(nameSpace+"QgetAlllist");
 	}
 
 	@Override
 	public boolean QinsertBoard(QaDto dto) {
-		int count = sqlSession.insert(nameSpace+"insertQboard", dto);
+		int count = sqlSession.insert(nameSpace+"Qinsertboard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
 	public QaDto QgetBoard(int seq) {
-		return sqlSession.selectOne(nameSpace+"getQboard", seq);
+		return sqlSession.selectOne(nameSpace+"Qgetboard", seq);
 	}
 
 	@Override
 	public boolean QupdateBoard(QaDto dto) {
-		int count = sqlSession.update(nameSpace+"updateQboard", dto);
+		int count = sqlSession.update(nameSpace+"Qupdateboard", dto);
 		return false;
 	}
 
