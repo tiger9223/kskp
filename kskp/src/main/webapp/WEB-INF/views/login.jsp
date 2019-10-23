@@ -12,13 +12,12 @@
 <h4>네이버로그인</h4>
 <form action="">
 <p>아이디*</p>
-<input type="text" style="width:280px;" placeholder="아이디"><br/>
+<input type="text" name="" style="width:280px;" placeholder="아이디"><br/>
 <p>비밀번호*</p>
-<input type="text" style="width:280px;" placeholder="비밀번호"><br/>
+<input type="text" name="" style="width:280px;" placeholder="비밀번호"><br/>
 
-<a href="">아이디 찾기</a>   
-<a href="">비밀번호 찾기</a>
-<br/>
+<p><a href="">아이디 찾기</a>   
+<a href="">비밀번호 찾기</a></p>
 <input type="submit" name="sub1" value="로그인" />
 </form>
 </body>

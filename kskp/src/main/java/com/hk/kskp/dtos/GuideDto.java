@@ -5,7 +5,6 @@ import java.util.Date;
 public class GuideDto {
 	
 	private int gu_seq;
-	private String gu_id;
 	private String gu_pw;
 	private String gu_name;
 	private String gu_phone;
@@ -22,12 +21,11 @@ public class GuideDto {
 		super();
 	}
 
-	public GuideDto(int gu_seq, String gu_id, String gu_pw, String gu_name, String gu_phone, String gu_email,
+	public GuideDto(int gu_seq, String gu_pw, String gu_name, String gu_phone, String gu_email,
 			Date gu_regdate, int gu_appflag, String gu_img, String gu_intro, String gu_career, String gu_bank,
 			String gu_acc) {
 		super();
 		this.gu_seq = gu_seq;
-		this.gu_id = gu_id;
 		this.gu_pw = gu_pw;
 		this.gu_name = gu_name;
 		this.gu_phone = gu_phone;
@@ -49,13 +47,6 @@ public class GuideDto {
 		this.gu_seq = gu_seq;
 	}
 
-	public String getGu_id() {
-		return gu_id;
-	}
-
-	public void setGu_id(String gu_id) {
-		this.gu_id = gu_id;
-	}
 
 	public String getGu_pw() {
 		return gu_pw;
@@ -147,11 +138,13 @@ public class GuideDto {
 
 	@Override
 	public String toString() {
-		return "GuideDto [gu_seq=" + gu_seq + ", gu_id=" + gu_id + ", gu_pw=" + gu_pw + ", gu_name=" + gu_name
+		return "GuideDto [gu_seq=" + gu_seq + ", gu_pw=" + gu_pw + ", gu_name=" + gu_name
 				+ ", gu_phone=" + gu_phone + ", gu_email=" + gu_email + ", gu_regdate=" + gu_regdate + ", gu_appflag="
 				+ gu_appflag + ", gu_img=" + gu_img + ", gu_intro=" + gu_intro + ", gu_career=" + gu_career
 				+ ", gu_bank=" + gu_bank + ", gu_acc=" + gu_acc + "]";
 	}
+	
+	
 	
 	
 }

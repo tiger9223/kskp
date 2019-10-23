@@ -12,13 +12,13 @@
 <form action="">
 <h2>네이버 회원가입</h2>
 <p>이름</p>
-<input type="text" placeholder="id" /><br/>
+<input type="text" name="" placeholder="id" /><br/>
 <p>이메일</p>
-<input type="text" placeholder="email" /><br/>
+<input type="text" name="" placeholder="email" /><br/>
 <p>비밀번호</p>
-<input type="text" placeholder="pw" /><br/>
+<input type="text" name="" placeholder="pw" /><br/>
 <p>비밀번호 확인</p>
-<input type="text" placeholder="pwck" /><br/>
+<input type="text" name="" placeholder="pwck" /><br/>
 <input type="submit" value="회원가입">
 </form>
 </body>
