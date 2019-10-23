@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class MembersDto {
 	private int m_seq;
+	private String m_email;
 	private String m_pw;
 	private String m_status;
 	private String m_name;
-	private String m_email;
 	private Date m_regdate;
 	private String m_acc;
 	
@@ -86,12 +86,11 @@ public class MembersDto {
 		this.m_acc = m_acc;
 	}
 
-	
 
-	public MembersDto(String m_pw, String m_email) {
+	public MembersDto(String m_email, String m_pw) {
 		super();
-		this.m_pw = m_pw;
 		this.m_email = m_email;
+		this.m_pw = m_pw;
 	}
 
 	@Override

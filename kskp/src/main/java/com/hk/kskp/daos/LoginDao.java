@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
-import com.hk.login.dtos.LoginDto;
+
 
 
 @Repository
@@ -32,9 +32,9 @@ public class LoginDao implements ILoginDao {
 
 	@Override
 	public MembersDto mLogin(String m_email, String m_pw) {
-		MembersDto dto = new MembersDto();
-		MembersDto mdto = new MembersDto(m_email, m_pw);
-		return sqlSession.selectOne(nameSpace+"mLogin", mdto);
+		MembersDto ldto = new MembersDto(m_pw, m_email);
+		System.out.println("mdto="+ldto);
+		return sqlSession.selectOne(nameSpace+"mLogin", ldto);
 	}
 
 	@Override
@@ -44,5 +44,17 @@ public class LoginDao implements ILoginDao {
 		return sqlSession.selectOne(nameSpace+"gLogin", gdto);
 	}
 
+	@Override
+	public MembersDto mUserInfo(String m_email) {
+		return sqlSession.selectOne(nameSpace+"muserinfo", m_email);
+	}
 
-}
+	@Override
+	public boolean userUpdate(MembersDto dto) {
+		int count = sqlSession.update(nameSpace+"userUpdate", dto);
+		return count > 0 ? true:false;
+	}
+	}
+
+
+

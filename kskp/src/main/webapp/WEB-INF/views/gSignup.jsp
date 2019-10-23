@@ -14,7 +14,7 @@
 <p>이메일 : <input type="text" name="gu_email" placeholder="email" /></p>
 <p>비밀번호 : <input type="text" name="gu_pw" placeholder="pw" /></p>
 <p>비밀번호 확인 : <input type="text" name="gu_pw1" placeholder="pwck" /></p>
-<p>휴대폰 : <input type="text" name="gu_phone" placeholder="telephone" /></p>
+<p>휴대폰 : <input type="text" name="gu_phone" placeholder="telephone" /><input type="button" value="인증하기"></p>
 <p>은행 : <input type="text" name="gu_bank" placeholder="bank" /></p>
 <p>계좌번호 : <input type="text" name="gu_acc" placeholder="account" /></p>
 <p>신분증 <input type="button" name="gu_acc" value="첨부하기"></p>

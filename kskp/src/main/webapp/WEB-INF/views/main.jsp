@@ -1,3 +1,4 @@
+<%@page import="com.hk.kskp.dtos.MembersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
@@ -46,6 +47,8 @@
 </style>
 </head>
 <body>
-	
+
+	<a href="muserinfo.do">내 정보보기</a>
+
 </body>
 </html>

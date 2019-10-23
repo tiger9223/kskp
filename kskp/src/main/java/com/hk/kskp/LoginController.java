@@ -19,7 +19,8 @@ import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
-import com.hk.login.dtos.LoginDto;
+
+
 
 
 @Controller
@@ -67,32 +68,52 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value = "/mlogin.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getLogin(HttpServletRequest request, Locale locale, Model model, String rid, String rpassword) {
-		logger.info("로그인", locale);
-		HttpSession session = request.getSession();
-		LoginDto ldto = LoginService.getLogin(rid,rpassword);
-		if(ldto == null || ldto.getRid()==null){
-			
-			return "redirect:error.do?msg=아이디나 패스워드를 확인해";
-		}else{
-			if(ldto.getRenabled().equals("N")){
-				return "redirect:error.do?msg=탈퇴한 회원입니다";
-			}else{
-				session.setAttribute("ldto", ldto); //세션삽입
-				session.setMaxInactiveInterval(10*60);//10분간 요청이 없으면 세션을 삭제
-				if(ldto.getRrole().toUpperCase().equals("ADMIN")){
-					return"admin_main";
-				}else if(ldto.getRrole().toUpperCase().equals("USER")){
-					return"user_main";
-				}else if(ldto.getRrole().toUpperCase().equals("MANAGER")){
-					return"user_main";
-				}
-			}
-		}
-		return rpassword;
+	@RequestMapping(value = "/loginform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String loginform() {
+		logger.info("로그인 폼으로 이동");
+		return "login";
 	}
 	
+	@RequestMapping(value = "/mlogin.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getLogin(HttpServletRequest request,Locale locale, Model model, String m_email, String m_pw) {
+		logger.info("로그인", locale);
+	
+
+		HttpSession session = request.getSession();
+		MembersDto ldto = LoginService.mLogin(m_email,m_pw);
+		GuideDto ldto1 = LoginService.gLogin(m_email, m_pw);
+		
+		System.out.println("ldto="+ldto);
+		if(ldto == null && ldto1 ==null){
+			return "login";
+		}else if(ldto !=null) {
+			session.setAttribute("ldto", ldto);
+			return "main";
+		}else if(ldto1 !=null) {
+			return "signerror";
+		}
+		return null;
+	}
+	
+
+	
+	@RequestMapping(value = "/muserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String userInfo(Model model, MembersDto dto) {
+		logger.info("일반회원 정보보기");
+		return"mUserInfo";
+	}
+	
+	
+	@RequestMapping(value = "/update.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String authChange(Model model, MembersDto dto) {
+		logger.info("정보수정 ");
+		boolean isS = LoginService.userUpdate(dto);
+		if(isS){
+			return"redirect:muserinfo.do?m_email="+dto.getM_email();
+		}else {
+			return"error";
+		}
+	}
 	
 	
 }//end

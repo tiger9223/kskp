@@ -5,10 +5,11 @@ import java.util.Date;
 public class GuideDto {
 	
 	private int gu_seq;
+	private String gu_email;
 	private String gu_pw;
 	private String gu_name;
 	private String gu_phone;
-	private String gu_email;
+	
 	private Date gu_regdate;
 	private int gu_appflag;
 	private String gu_img;
@@ -40,10 +41,11 @@ public class GuideDto {
 	}
 
 	
-	public GuideDto(String gu_pw, String gu_email) {
+	public GuideDto(String gu_email,String gu_pw) {
 		super();
-		this.gu_pw = gu_pw;
 		this.gu_email = gu_email;
+		this.gu_pw = gu_pw;
+		
 	}
 
 	public int getGu_seq() {
