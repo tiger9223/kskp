@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
@@ -13,7 +12,6 @@
 
 </body>
 </html>
-=======
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -28,4 +26,3 @@
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
