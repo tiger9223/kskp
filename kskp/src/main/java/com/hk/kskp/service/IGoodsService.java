@@ -1,13 +1,11 @@
-package com.hk.kskp.daos;
+package com.hk.kskp.service;
 
 import java.util.List;
 
 import com.hk.kskp.dtos.GoodsDto;
-import com.hk.kskp.dtos.PayDto;
 import com.hk.kskp.dtos.ReviewDto;
-import com.hk.kskp.dtos.SalaryDto;
 
-public interface IGoodsDao {
+public interface IGoodsService {
 
 	//상품 등록날짜 순으로 전체 조회
 	public List<GoodsDto> getAllGoods(int g_seq);
@@ -19,10 +17,7 @@ public interface IGoodsDao {
 	public List<GoodsDto> getAreaGoods(String g_area);
 	
 	//상품 상세조회
-	public GoodsDto getGoods(int g_seq);
-	
-	//예약 인원 수 올리기
-	public boolean upPeople(int g_seq);
+	public GoodsDto getGoods(int seq);
 	
 	//상품 등록
 	public boolean insertGoods(GoodsDto dto);
@@ -58,7 +53,5 @@ public interface IGoodsDao {
 	public List<ReviewDto> getYesReview(int r_seq);
 
 	//일정 관리
-	public List<GoodsDto> getCal(int gu_seq);
-	
-	
+	public List<GoodsDto> getCal(int seq);
 }

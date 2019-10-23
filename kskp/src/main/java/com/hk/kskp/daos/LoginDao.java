@@ -21,7 +21,7 @@ public class LoginDao implements ILoginDao {
 	public boolean mInsertUser(MembersDto dto) {
 		int count = sqlSession.insert(nameSpace+"minsertUser", dto);
 		return count > 0 ? true:false;
-	}
+	}          
 
 	@Override
 	public boolean gInsertUser(GuideDto dto) {

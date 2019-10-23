@@ -1,11 +1,11 @@
-package com.hk.kskp.daos;
+package com.hk.kskp.service;
 
 import java.util.List;
 
 import com.hk.kskp.dtos.PayDto;
 import com.hk.kskp.dtos.SalaryDto;
 
-public interface ICashDao {
+public interface ICashService {
 
 	//결제하기
 	public boolean pay(PayDto dto);
@@ -36,7 +36,4 @@ public interface ICashDao {
 	
 	//결제 인원 수
 	public PayDto getPeople(int p_seq);
-	
-	
-	
 }
