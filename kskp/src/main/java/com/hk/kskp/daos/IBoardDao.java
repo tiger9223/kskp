@@ -5,37 +5,37 @@ import java.util.List;
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
 
-public interface IboardDao {
+public interface IBoardDao {
 	
 	//공지게시판글 전체보기
-	public List<NoticeDto> getAllNList();
+	public List<NoticeDto> NgetAllList(); 
 	
 	//공지게시판 글 추가하기
-	public boolean insertNBoard(NoticeDto dto);
+	public boolean NinsertBoard(NoticeDto dto);
 	
 	//공지게시판 글 상세보기
-	public NoticeDto getNBoard(int seq);
+	public NoticeDto NgetBoard(int seq);
 	
 	//공지게시판 글 수정하기
-	public boolean updateNBoard(NoticeDto dto);
+	public boolean NupdateBoard(NoticeDto dto);
 	
 	//공지게시판 글 삭제하기
-	public boolean delNBoard(int seq);
+	public boolean NdelBoard(int seq);
 	
 	//Q&A 글 전체보기
-	public List<QaDto> getAllQList();
+	public List<QaDto> QgetAllList();
 	
 	//Q&A 글 추가하기
-	public boolean insertQBoard(QaDto dto);
+	public boolean QinsertBoard(QaDto dto);
 	
 	//Q&A 글 상세보기
-	public QaDto getQBoard(int seq);
+	public QaDto QgetBoard(int seq);
 	
 	//Q&A 글 수정하기
-	public boolean updateQBoard(QaDto dto);
+	public boolean QupdateBoard(QaDto dto);
 	
 	//Q&A 글 삭제하기
-	public boolean delQBoard(int seq);
+	public boolean QdelBoard(int seq);
 	
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
 
-public interface IboardService {
+public interface IBoardService {
 	
 	//공지게시판글 전체보기
 	public List<NoticeDto> NgetAllList();

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.kskp.dtos.NoticeDto;
-import com.hk.kskp.service.IboardService;
+import com.hk.kskp.service.IBoardService;
 
 
 @Controller
@@ -26,7 +26,7 @@ public class boardController {
 	//@Qualifier("boardDao"):스프링 컨테이너가 xml에 선언된 객체 이름으로 찾아서 넣어준다.
 	
 	@Autowired
-	private IboardService boardService;
+	private IBoardService boardService;
 	
 	//클라이언트에서 home.do라고 get방식으로 요청하면 home()메서드 실행
 	//@RequestMapping @(어노테이션)

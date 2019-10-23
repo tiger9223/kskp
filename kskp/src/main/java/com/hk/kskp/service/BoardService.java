@@ -6,16 +6,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hk.kskp.daos.IboardDao;
+import com.hk.kskp.daos.IBoardDao;
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
 
 @Service
-public class boardService implements IboardService{
+public class BoardService implements IBoardService{
 	//service객체에서는 Dao객체를 가져다 쓴다.
 	
 	@Autowired
-	private IboardDao boardDao;
+	private IBoardDao boardDao;
 
 	@Override
 	public List<NoticeDto> NgetAllList() {
