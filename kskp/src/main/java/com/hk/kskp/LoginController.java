@@ -78,7 +78,6 @@ public class LoginController {
 	public String getLogin(HttpServletRequest request,Locale locale, Model model, String m_email, String m_pw) {
 		logger.info("로그인", locale);
 	
-
 		HttpSession session = request.getSession();
 		MembersDto ldto = LoginService.mLogin(m_email,m_pw);
 		GuideDto ldto1 = LoginService.gLogin(m_email, m_pw);

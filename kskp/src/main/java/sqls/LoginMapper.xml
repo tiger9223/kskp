@@ -15,7 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO GUIDE(GU_SEQ,GU_PW,GU_NAME,GU_PHONE,GU_EMAIL,GU_REGDATE,GU_APPFLAG,GU_IMG,GU_INTRO,GU_CAREER,GU_BANK,GU_ACC) VALUES 
 		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',NULL,NULL,NULL,NULL,NULL)
 	</insert>
-
 	<!-- 로그인 -->
 	<select id="mLogin" parameterType="MembersDto" resultType="MembersDto">
  		select m_email,m_pw from MEMBERS Where M_EMAIL=#{m_email} AND M_PW=#{m_pw}
