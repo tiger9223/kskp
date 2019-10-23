@@ -25,6 +25,16 @@ public class LoginService implements ILoginService{
 	public boolean gInsertUser(GuideDto dto) {
 		return loginDao.gInsertUser(dto);
 	}
+
+	@Override
+	public MembersDto mLogin(String m_email, String m_pw) {
+		return loginDao.mLogin(m_email, m_pw);
+	}
+
+	@Override
+	public GuideDto gLogin(String gu_email, String gu_pw) {
+		return loginDao.gLogin(gu_email, gu_pw);
+	}
 	
 
 

@@ -9,8 +9,11 @@ public interface ILoginDao {
 	public boolean mInsertUser(MembersDto dto);
 	//가이드 회원가입
 	public boolean gInsertUser(GuideDto dto);
-//	//로그인
-//	public LoginDto getLogin(String rid, String rpassword);
+	//로그인
+	public MembersDto mLogin(String m_email, String m_pw);
+	//로그인
+	public GuideDto gLogin(String gu_email, String gu_pw);
+	
 //	//내 정보조회
 //	public LoginDto userinfo(String rid);
 //	//정보 수정

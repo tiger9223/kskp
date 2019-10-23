@@ -39,6 +39,13 @@ public class GuideDto {
 		this.gu_acc = gu_acc;
 	}
 
+	
+	public GuideDto(String gu_pw, String gu_email) {
+		super();
+		this.gu_pw = gu_pw;
+		this.gu_email = gu_email;
+	}
+
 	public int getGu_seq() {
 		return gu_seq;
 	}

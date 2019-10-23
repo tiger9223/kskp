@@ -13,17 +13,7 @@ public class MembersDto {
 	
 	public MembersDto() {
 		super();
-	}
-
-	public MembersDto(int m_seq,  String m_pw, String m_status, String m_name,
-			String m_email, Date m_regdate, String m_acc) {
-		super();
-		this.m_seq = m_seq;
-		this.m_pw = m_pw;
-		this.m_status = m_status;
-		this.m_email = m_email;
-		this.m_regdate = m_regdate;
-		this.m_acc = m_acc;
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getM_seq() {
@@ -81,14 +71,39 @@ public class MembersDto {
 	public void setM_acc(String m_acc) {
 		this.m_acc = m_acc;
 	}
+	
+	
+
+	public MembersDto(int m_seq, String m_pw, String m_status, String m_name, String m_email, Date m_regdate,
+			String m_acc) {
+		super();
+		this.m_seq = m_seq;
+		this.m_pw = m_pw;
+		this.m_status = m_status;
+		this.m_name = m_name;
+		this.m_email = m_email;
+		this.m_regdate = m_regdate;
+		this.m_acc = m_acc;
+	}
+
+	
+
+	public MembersDto(String m_pw, String m_email) {
+		super();
+		this.m_pw = m_pw;
+		this.m_email = m_email;
+	}
 
 	@Override
 	public String toString() {
 		return "MembersDto [m_seq=" + m_seq + ", m_pw=" + m_pw + ", m_status=" + m_status + ", m_name=" + m_name
 				+ ", m_email=" + m_email + ", m_regdate=" + m_regdate + ", m_acc=" + m_acc + "]";
 	}
-
-
+	
+	
+	
+	
+	
 	
 
 }
