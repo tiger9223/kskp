@@ -1,14 +1,4 @@
-<%@page import="java.util.List"%>
-<%
-response.setHeader("pragma", "no-cache"); //HTTP 1.0
-response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
-response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
-response.setDateHeader("Expires", 0L); //Do not cache in proxy server
-%>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
+<%@page import="com.hk.kskp.dtos.MembersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
@@ -57,6 +47,8 @@ response.setDateHeader("Expires", 0L); //Do not cache in proxy server
 </style>
 </head>
 <body>
-	
+
+	<a href="muserinfo.do">내 정보보기</a>
+
 </body>
 </html>

@@ -4,4 +4,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.goods">
 
+	<select id="getallgoods" parameterType="int" resultType="GoodsDto">
+		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE
+		FROM GOODS WHERE G_FLAG=1 ORDER BY SYSDATE DESC
+	</select>
+
+	<select id="getbestgoods" resultType="GoodsDto">
+		SELECT g.G_AREA, g.G_NAME, g.G_IMG1, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE
+		FROM GOODS g, REVIEW r WHERE g.G_SEQ=r.G_SEQ AND (SELECT)
+	</select>
+	
+	<select id="getareagoods" parameterType="GoodsDto" resultType="GoodsDto">
+		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE, 
+		FROM GOODS WHERE G_AREA=#{g_area} AND G_FLAG=1 ORDER BY SYSDATE DESC
+	</select>
+	
+	<insert id="insertgoods" parameterType="GoodsDto">
+		INSERT INTO GOODS 
+		(G_SEQ, GU_SEQ, G_AREA,
+		G_LAN, G_NAME, G_CONTS,
+		G_FLAG, G_IMG1, G_IMG2,
+		G_IMG3, G_IMG4, G_PRICE,
+		G_PEOPLE, G_RES, G_ONELINE,
+		G_INTRO, G_COS,G_MEET,
+		G_ADDRESS,G_CNAME,G_TIME,
+		G_CCONTS,G_DATE,G_REGDATE) 
+		VALUES
+		(GOODS_SEQ.NEXTVAL ,#{gu_seq}, #{g_area},
+		#{g_lan},#{g_name},#{g_conts},
+		0,#{g_img1},#{g_img2},
+		#{g_img3},#{g_img4},#{g_price},
+		#{g_people},#{g_res},#{g_oneline},
+		#{g_intro},#{g_cos},#{g_meet},
+		#{g_address},#{g_cname},#{g_time},
+		#{g_cconts},#{g_date},SYSDATE)
+	</insert>
+	
+	<update id="appgoods" parameterType="GoodsDto">
+		UPDATE GOODS SET G_FLAG=1,G_REGDATE=SYSDATE WHERE G_SEQ=#{g_seq}
+	</update>
+	
+	<update id="updategoods" parameterType="GoodsDto">
+		UPDATE GOODS SET G_NAME=#{g_name}, G_CONTS=#{g_conts}, G_DATE=#{g_date},
+		G_MEET=#{g_meet}, G_IMG1=#{g_img1}, G_ADDRESS=#{g_address}, 
+		G_REGDATE=SYSDATE 
+		WHERE G_SEQ=#{g_seq}
+	</update>
+	
+	<insert id="insertreview" parameterType="ReviewDto">
+		INSERT INTO REVIEW
+		(R_SEQ, M_SEQ, G_SEQ,
+		R_CONTS, R_REGDATE, R_IMG,
+		R_STAR, R_ANS, R_GUFLAG,
+		R_FALG) 
+		VALUES
+		(REVIEW_SEQ.NEXTVAL ,#{m_seq}, #{g_seq},
+		#{r_conts},SYSDATE,#{r_img},
+		#{r_star},NULL,0
+		1)
+	</insert>
 </mapper>

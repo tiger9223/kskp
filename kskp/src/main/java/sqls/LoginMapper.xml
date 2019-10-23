@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hk.login">
+
+	<!-- 일반회원 회원가입 -->
+	<insert id="minsertUser" parameterType="MembersDto">
+		INSERT INTO MEMBERS(M_SEQ,M_PW,M_STATUS,M_NAME,M_EMAIL,M_REGDATE,M_ACC) VALUES 
+		(MEMBERS_SEQ.NEXTVAL,#{m_pw},'M',#{m_name},#{m_email},SYSDATE,NULL)
+	</insert>
+	
+	<!-- 가이드 회원가입 -->
+	<insert id="ginsertUser" parameterType="GuideDto">
+		INSERT INTO GUIDE(GU_SEQ,GU_PW,GU_NAME,GU_PHONE,GU_EMAIL,GU_REGDATE,GU_APPFLAG,GU_IMG,GU_INTRO,GU_CAREER,GU_BANK,GU_ACC) VALUES 
+		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',NULL,NULL,NULL,NULL,NULL)
+	</insert>
+	<!-- 로그인 -->
+	<select id="mLogin" parameterType="MembersDto" resultType="MembersDto">
+ 		select m_email,m_pw from MEMBERS Where M_EMAIL=#{m_email} AND M_PW=#{m_pw}
+	</select>
+	
+	<select id="gLogin" parameterType="GuideDto" resultType="GuideDto">
+ 		select gu_email,gu_pw from GUIDE Where GU_EMAIL=#{gu_email} AND GU_PW=#{gu_pw}
+	</select>
+
+	<!-- 	내 정보 조회 -->
+	<select id="muserinfo" parameterType="MembersDto" resultType="MembersDto">
+		select m_email,m_pw,m_name from MEMBERS
+		WHERE M_EMAIL=#{m_email}
+	</select>
+
+	<!-- 	정보 수정 -->
+	<update id="userUpdate" parameterType="MembersDto">
+		UPDATE MEMBERS SET M_PW=#{m_pw} WHERE M_EMAIL=#{m_email}
+	</update>
+
+</mapper>
