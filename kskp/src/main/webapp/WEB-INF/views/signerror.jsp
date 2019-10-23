@@ -6,10 +6,10 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title></title>
-</head>  
+</head>
 <body>
-<a href="minsertuserform.do">일반회원가입</a>
-<a href="ginsertuserform.do">가이드회원가입</a>
-<a href="loginform.do">로그인하기</a>
+<h1>회원가입 오류입니다.</h1>
+<h2>관리자에게 문의하세요(02-1234-5678)</h2>
+<h3><a href="index.do">메인으로 돌아가기</a></h3>
 </body>
 </html>
