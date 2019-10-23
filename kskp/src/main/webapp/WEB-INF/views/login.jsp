@@ -10,16 +10,15 @@
 <body>
 <h1>로그인</h1>
 <h4>네이버로그인</h4>
-<form action="">
+<form action="mlogin.do" method="post">
 <p>아이디*</p>
-<input type="text" style="width:280px;" placeholder="아이디"><br/>
+<input type="text" name="m_email" style="width:280px;" placeholder="아이디"><br/>
 <p>비밀번호*</p>
-<input type="text" style="width:280px;" placeholder="비밀번호"><br/>
+<input type="text" name="m_pw" style="width:280px;" placeholder="비밀번호"><br/>
 
-<a href="">아이디 찾기</a>   
-<a href="">비밀번호 찾기</a>
-<br/>
-<input type="submit" name="sub1" value="로그인" />
+<p><a href="">아이디 찾기</a>   
+<a href="">비밀번호 찾기</a></p>
+<input type="submit"  value="로그인" />
 </form>
 </body>
 </html>
