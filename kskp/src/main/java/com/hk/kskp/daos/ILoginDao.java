@@ -7,6 +7,8 @@ public interface ILoginDao {
 
 	//일반회원 회원가입
 	public boolean mInsertUser(MembersDto dto);
+	//네이버 로그인 데이터
+	public boolean naverUser(String m_email,String m_name);
 	//가이드 회원가입
 	public boolean gInsertUser(GuideDto dto);
 	//로그인
