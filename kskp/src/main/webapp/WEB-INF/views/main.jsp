@@ -50,7 +50,7 @@
 <body>
 <c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
-		<a href="muserinfo.do">내 정보보기</a>
+		<a href="muserinfo.do?m_email=${ldto.m_email}">내 정보보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
@@ -58,8 +58,12 @@
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:otherwise>
+<<<<<<< HEAD
 		<a href="guserinfo.do">내 정보보기</a>
 		<a href="mypage.do">마이페이지</a>
+=======
+		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">내 정보보기</a>
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>
