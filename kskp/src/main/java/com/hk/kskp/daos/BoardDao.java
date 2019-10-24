@@ -26,58 +26,58 @@ public class BoardDao implements IBoardDao	{
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<NoticeDto> NgetAllList() {
-		return sqlSession.selectList(nameSpace+"NgetAlllist");
+	public List<NoticeDto> ngetAllList() {
+		return sqlSession.selectList(nameSpace+"ngetAlllist");
 	}
 
 	@Override
-	public boolean NinsertBoard(NoticeDto dto) {
-		int count = sqlSession.insert(nameSpace+"Ninsertboard", dto);
+	public boolean ninsertBoard(NoticeDto dto) {
+		int count = sqlSession.insert(nameSpace+"ninsertboard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
-	public NoticeDto NgetBoard(int seq) {
-		return sqlSession.selectOne(nameSpace+"Ngetboard", seq);
+	public NoticeDto ngetBoard(int seq) {
+		return sqlSession.selectOne(nameSpace+"ngetboard", seq);
 	}
 
 	@Override
-	public boolean NupdateBoard(NoticeDto dto) {
-		int count = sqlSession.update(nameSpace+"Nupdateboard", dto);
+	public boolean nupdateBoard(NoticeDto dto) {
+		int count = sqlSession.update(nameSpace+"nupdateboard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
-	public boolean NdelBoard(int seq) {
-		int count = sqlSession.delete(nameSpace+"Ndelboard", seq);
+	public boolean ndelBoard(int seq) {
+		int count = sqlSession.delete(nameSpace+"ndelboard", seq);
 		return count>0?true:false;
 	}
 
 	@Override
-	public List<QaDto> QgetAllList() {
-		return sqlSession.selectList(nameSpace+"QgetAlllist");
+	public List<QaDto> qgetAllList() {
+		return sqlSession.selectList(nameSpace+"qgetAlllist");
 	}
 
 	@Override
-	public boolean QinsertBoard(QaDto dto) {
-		int count = sqlSession.insert(nameSpace+"Qinsertboard", dto);
+	public boolean qinsertBoard(QaDto dto) {
+		int count = sqlSession.insert(nameSpace+"qinsertboard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
-	public QaDto QgetBoard(int seq) {
-		return sqlSession.selectOne(nameSpace+"Qgetboard", seq);
+	public QaDto qgetBoard(int seq) {
+		return sqlSession.selectOne(nameSpace+"qgetboard", seq);
 	}
 
 	@Override
-	public boolean QupdateBoard(QaDto dto) {
-		int count = sqlSession.update(nameSpace+"Qupdateboard", dto);
+	public boolean qupdateBoard(QaDto dto) {
+		int count = sqlSession.update(nameSpace+"qupdateboard", dto);
 		return false;
 	}
 
 	@Override
-	public boolean QdelBoard(int seq) {
-		int count = sqlSession.delete(nameSpace+"QdelQboard", seq);
+	public boolean qdelBoard(int seq) {
+		int count = sqlSession.delete(nameSpace+"qdelQboard", seq);
 		return false;
 	}
 

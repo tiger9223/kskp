@@ -50,36 +50,36 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/Nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String Nboardlist(Model model) {
-		List<NoticeDto>list = BoardService.NgetAllList();
+	@RequestMapping(value="/nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String nboardlist(Model model) {
+		List<NoticeDto>list = BoardService.ngetAllList();
 		model.addAttribute("list",list);
-		return "Nboardlist";
+		return "nboardlist";
 	}
 	
-	@RequestMapping(value="/insertform.do",method = RequestMethod.GET)
+	@RequestMapping(value="/ninsertform.do",method = RequestMethod.GET)
 	public String insertForm() {
 		logger.info("글쓰기폼으로 이동");
-		return "Ninsertboard";
+		return "ninsertboard";
 	}
 	
-	@RequestMapping(value="Ninsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String NinsertBoard(Model model,NoticeDto dto) {
+	@RequestMapping(value="ninsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String ninsertBoard(Model model,NoticeDto dto) {
 		
 		logger.info("공지게시판 글 추가하기");
-		boolean isS=BoardService.NinsertBoard(dto);
+		boolean isS = BoardService.ninsertBoard(dto);
 		if(isS) {
-			return "redirect:Nboardlist.do";
+			return "redirect:nboardlist.do";
 		}
-			return "Ninsertboard";
+			return "ninsertboard";
 	}
 	
-//	@RequestMapping(value="getNboard",method = {RequestMethod.POST,RequestMethod.GET})
+//	@RequestMapping(value="Ngetboard",method = {RequestMethod.POST,RequestMethod.GET})
 //	 public String getNboard(Model model,NoticeDto dto) {
 //		logger.info("공지게시글 상세보기");
-//		NoticeDto dto=boardService.getBoard(nDto.getSeq());
+//		NoticeDto dto = BoardService.getBoard(nDto.getSeq());
 //		model.addAttribute("dto",dto);
-//		return "boarddetail";
+//		return "Nboarddetail";
 //	}
 //	@RequestMapping(value="/insertform.do",method = RequestMethod.GET)
 //	public String insertForm() {
@@ -92,13 +92,32 @@ public class BoardController {
 //		logger.info("공지글 수정하기");
 //		boolean isS=boardService.updateNBoard()
 	
-	@RequestMapping(value="Qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String Qboardlist(Model model) {
-		List<QaDto>list = BoardService.QgetAllList();
+	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String qboardList(Model model) {
+		logger.info("질답 목록보기");
+		System.out.println("---------333--여기--------------");
+		List<QaDto> list = BoardService.qgetAllList();
+		System.out.println(list);
 		model.addAttribute("list",list);
-		return "Qboardlist";
+		
+		return "qboardlist";
 	}
 		
+	@RequestMapping(value="/qinsertform.do",method = RequestMethod.GET)
+	public String qinsertForm() {
+		logger.info("질답폼으로 이동");
+		return "qinsertboard";
+	}
+	@RequestMapping(value="/qinsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String qinsertBoard(Model model,QaDto dto) {
+		
+		logger.info("질답 글 추가하기");
+		boolean isS = BoardService.qinsertBoard(dto);
+		if(isS) {
+			return "redirect:qboardlist.do";
+		}
+			return "qinsertboard";
+	}
 	
 	
 	

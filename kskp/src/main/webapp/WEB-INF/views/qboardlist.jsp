@@ -60,7 +60,7 @@
 		<th>번호</th>
 		<th>작성자</th>
 		<th>제 목</th>
-		<th>작성일</th>
+		<th>작성날짜</th>
 		<th>답변여부</th>
 	</tr>
 	<% 
@@ -78,7 +78,7 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getN_seq()%>"/></td>
 					<td><%=dto.getN_seq()%></td>
-					<td><a href="Qinsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
+					<td><a href="qinsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
 					<td><%=getToDate(dto.getN_regdate())%></td>
 				</tr>
 				<%		
@@ -87,7 +87,7 @@
 	%>
 	<tr>
 		<td colspan="6">
-			<a href="insertform.do">글추가</a>
+			<a href="qinsertform.do">글추가</a>
 			<input type="submit" value="삭제"/>
 		</td>
 	</tr>

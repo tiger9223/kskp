@@ -25,53 +25,53 @@ public class BoardService implements IBoardService{
 	private IBoardDao boardDao;
 
 	@Override
-	public List<NoticeDto> NgetAllList() {
-		return boardDao.NgetAllList();
+	public List<NoticeDto> ngetAllList() {
+		return boardDao.ngetAllList();
 	}
 
 	@Override
-	public boolean NinsertBoard(NoticeDto dto) {
-		return boardDao.NinsertBoard(dto);
+	public boolean ninsertBoard(NoticeDto dto) {
+		return boardDao.ninsertBoard(dto);
 	}
 
 	@Override
-	public NoticeDto NgetBoard(int seq) {
-		return boardDao.NgetBoard(seq);
+	public NoticeDto ngetBoard(int seq) {
+		return boardDao.ngetBoard(seq);
 	}
 
 	@Override
-	public boolean NupdateBoard(NoticeDto dto) {
-		return boardDao.NupdateBoard(dto);
+	public boolean nupdateBoard(NoticeDto dto) {
+		return boardDao.nupdateBoard(dto);
 	}
 
 	@Override
-	public boolean NdelBoard(int seq) {
-		return boardDao.NdelBoard(seq);
+	public boolean ndelBoard(int seq) {
+		return boardDao.ndelBoard(seq);
 	}
 
 	@Override
-	public List<QaDto> QgetAllList() {
-		return boardDao.QgetAllList();
+	public List<QaDto> qgetAllList() {
+		return boardDao.qgetAllList();
 	}
 
 	@Override
-	public boolean QinsertBoard(QaDto dto) {
-		return boardDao.QinsertBoard(dto);
+	public boolean qinsertBoard(QaDto dto) {
+		return boardDao.qinsertBoard(dto);
 	}
 
 	@Override
-	public QaDto QgetBoard(int seq) {
-		return boardDao.QgetBoard(seq);
+	public QaDto qgetBoard(int seq) {
+		return boardDao.qgetBoard(seq);
 	}
 
 	@Override
-	public boolean QupdateBoard(QaDto dto) {
-		return boardDao.QupdateBoard(dto);
+	public boolean qupdateBoard(QaDto dto) {
+		return boardDao.qupdateBoard(dto);
 	}
 
 	@Override
-	public boolean QdelBoard(int seq) {
-		return boardDao.QdelBoard(seq);
+	public boolean qdelBoard(int seq) {
+		return boardDao.qdelBoard(seq);
 	}
 
 }
