@@ -66,11 +66,6 @@ public class GoodsService implements IGoodsService{
 	}
 
 	@Override
-	public List<ReviewDto> getreview(int g_seq) {
-		return GoodsDao.getreview(g_seq);
-	}
-
-	@Override
 	public boolean insertAnswer(ReviewDto dto) {
 		return GoodsDao.insertAnswer(dto);
 	}
@@ -93,6 +88,11 @@ public class GoodsService implements IGoodsService{
 	@Override
 	public List<GoodsDto> getCal(int seq) {
 		return GoodsDao.getCal(seq);
+	}
+
+	@Override
+	public boolean upPeople(int g_seq) {
+		return GoodsDao.upPeople(g_seq);
 	}
 
 	
