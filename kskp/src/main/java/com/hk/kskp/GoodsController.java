@@ -1,7 +1,5 @@
 package com.hk.kskp;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,31 +15,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
-import com.hk.kskp.service.LoginService;
-
-
-
 
 @Controller
 public class GoodsController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(GoodsController.class);
+		
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	private ILoginService LoginService;
 	
-	@RequestMapping(value = "/minsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUserForm() {
-		logger.info("일반회원가입 폼으로 이동");
-		return "mSignup";
+	@Autowired
+	private IGoodsService GoodsService;
+	
+	@RequestMapping(value = "/mypage.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String mInsertUserForm(Locale locale, int gu_seq, Model model) {
+		logger.info("마이페이지로 이동", locale);
+		//GuideDto dto = LoginService.gUserInfo(gu_seq);
+		//model.addAttribute("dto", dto);
+		return "mypage";
 	}
 	
-	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String gInsertUserForm() {
-		logger.info("가이드회원가입 폼으로 이동");
-		return "gSignup";
-	}
 	
 	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String mInsertUser(Locale locale,MembersDto dto) {
@@ -106,16 +101,18 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value = "/muserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String userInfo(Model model, MembersDto dto) {
+	public String userInfo(Model model, int seq) {
 		logger.info("일반회원 정보보기");
-		MembersDto dto1=LoginService.mUserInfo(dto.getM_email());
+		MembersDto dto1=LoginService.mUserInfo(seq);
 		model.addAttribute("dto1",dto1);
 		return"mUserInfo";
 	}
 	
 	@RequestMapping(value = "/guserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String guserInfo(Model model, GuideDto dto) {
+	public String guserInfo(Model model, int seq) {
 		logger.info("가이드 정보보기");
+		GuideDto dto2=LoginService.gUserInfo(seq);
+		model.addAttribute("dto2",dto2);
 		return"mUserInfo";
 	}
 	
@@ -137,9 +134,8 @@ public class GoodsController {
 	public String authChange(Model model, MembersDto dto) {
 		logger.info("일반회원 정보수정 ");
 		boolean isS = LoginService.userUpdate(dto);
-		
 		if(isS){
-			return"redirect:muserinfo.do?m_email="+dto.getM_email();
+			return"redirect:muserinfo.do?seq="+dto.getM_seq();
 		}else {
 			return"error";
 		}
@@ -149,9 +145,8 @@ public class GoodsController {
 	public String authChange(Model model, GuideDto dto) {
 		logger.info("가이드 정보수정 ");
 		boolean isS = LoginService.guserUpdate(dto);
-		System.out.println(dto);
 		if(isS){
-			return"redirect:guserinfo.do";
+			return"redirect:guserinfo.do?seq="+dto.getGu_seq();
 		}else {
 			return"error";
 		}
