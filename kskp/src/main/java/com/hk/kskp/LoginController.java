@@ -26,6 +26,7 @@ import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
+import com.hk.kskp.utils.FindUtil;
 
 
 
@@ -60,15 +61,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUser(Locale locale,MembersDto dto) {
+	public String mInsertUser(Locale locale,MembersDto dto,Model model) {
 		logger.info("일반회원 회원가입", locale);
-		boolean isS=LoginService.mInsertUser(dto);
-		if(isS) {
-			return "login";
-		}else {
-			System.out.println("실패");
-			return "login";
-		}
+		model.addAttribute("dto", dto);
+		return "emailcert";
 	}
 	
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -179,8 +175,14 @@ public class LoginController {
 		}
 	}
 
-	
-	
+	@RequestMapping(value = "/sendphone.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String sendphone(Model model, String phone,HttpSession session) {
+		logger.info("핸드폰 인증번호 보내기");
+		String keyCode = FindUtil.createKey();
+		session.setAttribute("keyCode",keyCode);
+		
+		String subJect = "[SWAG] 핸드폰 인증 "
+	}
 	
 	
 	
