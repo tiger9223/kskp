@@ -116,6 +116,8 @@ public class LoginController {
 	@RequestMapping(value = "/guserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guserInfo(Model model, GuideDto dto) {
 		logger.info("가이드 정보보기");
+		GuideDto dto2=LoginService.gUserInfo(dto.getGu_email());
+		model.addAttribute("dto2",dto2);
 		return"mUserInfo";
 	}
 	
@@ -137,7 +139,6 @@ public class LoginController {
 	public String authChange(Model model, MembersDto dto) {
 		logger.info("일반회원 정보수정 ");
 		boolean isS = LoginService.userUpdate(dto);
-		
 		if(isS){
 			return"redirect:muserinfo.do?m_email="+dto.getM_email();
 		}else {
@@ -149,7 +150,6 @@ public class LoginController {
 	public String authChange(Model model, GuideDto dto) {
 		logger.info("가이드 정보수정 ");
 		boolean isS = LoginService.guserUpdate(dto);
-		System.out.println(dto);
 		if(isS){
 			return"redirect:guserinfo.do";
 		}else {
