@@ -92,9 +92,11 @@ public class BoardController {
 //		logger.info("공지글 수정하기");
 //		boolean isS=boardService.updateNBoard()
 	
-	@RequestMapping(value="Qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value="/Qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String Qboardlist(Model model) {
-		List<QaDto>list = BoardService.QgetAllList();
+		logger.info("질답게시판 목록보기");
+		List<QaDto> list = BoardService.QgetAllList();
+		System.out.println(list);
 		model.addAttribute("list",list);
 		return "Qboardlist";
 	}

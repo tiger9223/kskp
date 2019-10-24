@@ -3,10 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hk.Notice">
+<mapper namespace="com.hk.notice">
 
-	<select id="Nboardlist" resultType="NoticeDto">
-	 	SELECT N_SEQ, N_TITLE, N_REGDATE,
+	<select id="NgetAlllist" resultType="NoticeDto">
+	 	SELECT N_SEQ, N_TITLE, N_REGDATE
 	 	FROM NOTICE ORDER BY SYSDATE DESC
 	</select>
 	
@@ -27,11 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="Ndelboard" parameterType="int">
-		DELETE FORM NOTICE WHERE SEQ=#{seq}
+		DELETE FROM NOTICE WHERE SEQ=#{seq}
 	</delete>
 	
 	<select id="QgetAlllist" resultType="QaDto">
-		SELECT Q_SEQ, M_SEQ, Q_TITLE, Q_CONTS, Q_REGDATE,Q_FLAG
+		SELECT *
 		FROM QA ORDER BY SYSDATE DESC
 	</select>
 	
