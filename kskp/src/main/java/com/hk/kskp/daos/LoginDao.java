@@ -1,6 +1,9 @@
 package com.hk.kskp.daos;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,7 +25,15 @@ public class LoginDao implements ILoginDao {
 	public boolean mInsertUser(MembersDto dto) {
 		int count = sqlSession.insert(nameSpace+"minsertUser", dto);
 		return count > 0 ? true:false;
-	}          
+	}  
+	@Override
+	public boolean naverUser(String m_email,String m_name ) {
+		Map<String, String> map = new HashMap<>();
+		map.put("m_email",m_email);
+		map.put("m_name",m_name);
+		int count = sqlSession.insert(nameSpace+"naverUser", map);
+		return count > 0 ? true:false;
+	}
 
 	@Override
 	public boolean gInsertUser(GuideDto dto) {
