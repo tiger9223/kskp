@@ -45,22 +45,23 @@
 	List<NoticeDto> list =(List<NoticeDto>)request.getAttribute("list"); 
 %>
 <body>
-<h1>공지사항</h1>
+<h1>질문과 답변</h1>
 <form action="HkController.do" method="post">
 <input type="hidden" name="command" value="muldel"/>
 <table border="1">
 	<col width="50px">
 	<col width="50px">
-
+	<col width="100px">
 	<col width="300px">
 	<col width="100px">
-	<col width="100px">
+	<col width="120px">
 	<tr>
 		<th><input type="checkbox" onclick="allSel(this.checked)" /></th>
-		<th>번호</th>	
+		<th>번호</th>
+		<th>작성자</th>
 		<th>제 목</th>
-		<th>작성날짜</th>
-		<th>조회수</th>
+		<th>작성일</th>
+		<th>답변여부</th>
 	</tr>
 	<% 
 		if(list==null||list.size()==0){
@@ -77,7 +78,7 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getN_seq()%>"/></td>
 					<td><%=dto.getN_seq()%></td>
-					<td><a href="Ninsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
+					<td><a href="Qinsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
 					<td><%=getToDate(dto.getN_regdate())%></td>
 				</tr>
 				<%		

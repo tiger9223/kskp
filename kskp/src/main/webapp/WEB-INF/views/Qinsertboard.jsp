@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글추가하기폼</title>
+<title>질문과 답변 폼</title>
 </head>
 <body>
-<h1>글추가하기</h1>
+<h1>질문하기</h1>
 <form action="Ninsertboard.do" method="post">
 <input type = "hidden" name="" value="">
 <input type = "hidden" name="" value="">
