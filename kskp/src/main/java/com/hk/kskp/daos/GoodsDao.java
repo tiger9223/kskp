@@ -73,11 +73,6 @@ public class GoodsDao implements IGoodsDao{
 		return count>0?true:false;
 	}
 
-	@Override//후기 작성란
-	public List<ReviewDto> getreview(int g_seq) {
-		return sqlSession.selectList(nameSpace+"getallreview", g_seq);
-	}
-
 	@Override//답변 등록
 	public boolean insertAnswer(ReviewDto dto) {
 		int count = sqlSession.update(nameSpace+"insertanswer",dto);

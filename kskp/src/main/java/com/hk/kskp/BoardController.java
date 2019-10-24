@@ -57,7 +57,7 @@ public class BoardController {
 		return "nboardlist";
 	}
 	
-	@RequestMapping(value="/insertform.do",method = RequestMethod.GET)
+	@RequestMapping(value="/ninsertform.do",method = RequestMethod.GET)
 	public String insertForm() {
 		logger.info("글쓰기폼으로 이동");
 		return "ninsertboard";
@@ -93,14 +93,31 @@ public class BoardController {
 //		boolean isS=boardService.updateNBoard()
 	
 	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String qboardlist(Model model) {
-		logger.info("질답게시판 목록보기");
+	 public String qboardList(Model model) {
+		logger.info("질답 목록보기");
+		System.out.println("---------333--여기--------------");
 		List<QaDto> list = BoardService.qgetAllList();
 		System.out.println(list);
 		model.addAttribute("list",list);
+		
 		return "qboardlist";
 	}
 		
+	@RequestMapping(value="/qinsertform.do",method = RequestMethod.GET)
+	public String qinsertForm() {
+		logger.info("질답폼으로 이동");
+		return "qinsertboard";
+	}
+	@RequestMapping(value="/qinsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String qinsertBoard(Model model,QaDto dto) {
+		
+		logger.info("질답 글 추가하기");
+		boolean isS = BoardService.qinsertBoard(dto);
+		if(isS) {
+			return "redirect:qboardlist.do";
+		}
+			return "qinsertboard";
+	}
 	
 	
 	

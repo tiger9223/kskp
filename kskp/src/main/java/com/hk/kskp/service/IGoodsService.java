@@ -17,7 +17,10 @@ public interface IGoodsService {
 	public List<GoodsDto> getAreaGoods(String g_area);
 	
 	//상품 상세조회
-	public GoodsDto getGoods(int seq);
+	public GoodsDto getGoods(int g_seq);
+	
+	//예약 인원 수 올리기
+	public boolean upPeople(int g_seq);
 	
 	//상품 등록
 	public boolean insertGoods(GoodsDto dto);
@@ -37,9 +40,6 @@ public interface IGoodsService {
 	//후기 수정
 	public boolean updateReview(ReviewDto dto);
 	
-	//후기 작성란
-	public List<ReviewDto> getreview(int g_seq);
-	
 	//답변 등록
 	public boolean insertAnswer(ReviewDto dto);
 	
@@ -53,5 +53,8 @@ public interface IGoodsService {
 	public List<ReviewDto> getYesReview(int r_seq);
 
 	//일정 관리
-	public List<GoodsDto> getCal(int seq);
+	public List<GoodsDto> getCal(int gu_seq);
+	
+		
 }
+

@@ -15,6 +15,7 @@
 <c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
 		<form action="mupdate.do" method="post">
+		<input type="hidden" name="m_seq" value="${ldto.m_seq}">
 			<p>이메일 : <input type="text" name="m_email" readonly="readonly" value="${ldto.m_email}"></p>
 			<p>이름 : ${ldto.m_name}</p>
 			<p>비밀번호 변경 : <input type="password" name="m_pw" /></p>
@@ -26,11 +27,12 @@
 	</c:when>
 	<c:otherwise>
 			<form action="gupdate.do" method="post">
+				<input type="hidden" name="gu_seq" value="${ldto1.gu_seq}">
 			<p>이메일 : <input type="text" name="gu_email" readonly="readonly" value="${ldto1.gu_email}"></p>
 			<p>이름 : ${ldto1.gu_name}</p>
 			<p>비밀번호 변경 : <input type="password" name="gu_pw" /></p>
-			<p>은행 : <input type="text" name="gu_bank" value="${ldto1.gu_bank}"></p>
-			<p>계좌번호 : <input type="text" name="gu_acc" value="${ldto1.gu_acc}"></p>
+			<p>은행 : <input type="text" name="gu_bank" ></p>
+			<p>계좌번호 : <input type="text" name="gu_acc" ></p>
 			<input type="submit" value="정보수정"/>
 		</form>
 	</c:otherwise>

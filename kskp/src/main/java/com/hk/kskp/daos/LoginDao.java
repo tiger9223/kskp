@@ -1,6 +1,10 @@
 package com.hk.kskp.daos;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,7 +26,15 @@ public class LoginDao implements ILoginDao {
 	public boolean mInsertUser(MembersDto dto) {
 		int count = sqlSession.insert(nameSpace+"minsertUser", dto);
 		return count > 0 ? true:false;
-	}          
+	}  
+	@Override
+	public boolean naverUser(String m_email,String m_name ) {
+		Map<String, String> map = new HashMap<>();
+		map.put("m_email",m_email);
+		map.put("m_name",m_name);
+		int count = sqlSession.insert(nameSpace+"naverUser", map);
+		return count > 0 ? true:false;
+	}
 
 	@Override
 	public boolean gInsertUser(GuideDto dto) {
@@ -44,13 +56,13 @@ public class LoginDao implements ILoginDao {
 	}
 
 	@Override
-	public MembersDto mUserInfo(String m_email) {
-		return sqlSession.selectOne(nameSpace+"muserinfo", m_email);
+	public MembersDto mUserInfo(int seq) {
+		return sqlSession.selectOne(nameSpace+"muserinfo", seq);
 	}
 	
 	@Override
-	public GuideDto gUserInfo(String gu_email) {
-		return sqlSession.selectOne(nameSpace+"guserinfo", gu_email);
+	public GuideDto gUserInfo(int seq) {
+		return sqlSession.selectOne(nameSpace+"guserinfo", seq);
 	}
 
 	@Override
@@ -63,6 +75,16 @@ public class LoginDao implements ILoginDao {
 	public boolean guserUpdate(GuideDto dto) {
 		int count = sqlSession.update(nameSpace+"guserUpdate", dto);
 		return count > 0 ? true:false;
+	}
+	@Override
+	public List<MembersDto> getMuserlist() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<GuideDto> getguserlist() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	}
 

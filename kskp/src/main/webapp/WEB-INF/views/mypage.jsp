@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>마이페이지</title>
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -50,22 +50,20 @@
 <body>
 <c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
-		<a href="muserinfo.do?seq=${ldto.m_seq}">내 정보보기</a>
+		<a href="muserinfo.do?m_email=${ldto.m_email}">내 정보보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
 		<a href="auserinfo.do">내 정보보기</a>
-		<a href="">전체회원보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:otherwise>
-
-		<a href="guserinfo.do?seq=${ldto1.gu_seq}">내 정보보기</a>
-		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
-		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">내 정보보기</a>
-
-
-		<a href="logout.do">로그아웃</a>
+		<a href="guserinfo.do">상품관리</a>
+		<a href="mypage.do?seq=${ldto1.gu_seq}">일정관리</a>
+		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">후기관리</a>
+		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">정산관리</a>
+		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">메세지</a>
+		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">계정관리</a>
 	</c:otherwise>
 </c:choose>
 

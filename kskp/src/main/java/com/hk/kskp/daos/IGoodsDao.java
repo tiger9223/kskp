@@ -42,9 +42,6 @@ public interface IGoodsDao {
 	//후기 수정
 	public boolean updateReview(ReviewDto dto);
 	
-	//후기 작성란
-	public List<ReviewDto> getreview(int g_seq);
-	
 	//답변 등록
 	public boolean insertAnswer(ReviewDto dto);
 	
