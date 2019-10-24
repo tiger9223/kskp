@@ -20,9 +20,9 @@ public interface ILoginService {
 	//로그인
 		public GuideDto gLogin(String gu_email, String gu_pw);
 	//일반회원 정보조회
-		public MembersDto mUserInfo(String m_email);
+		public MembersDto mUserInfo(int seq);
 	//가이드 정보조회
-		public GuideDto gUserInfo(String gu_email);
+		public GuideDto gUserInfo(int seq);
 	//일반회원 정보 수정
 		public boolean userUpdate(MembersDto dto);
 	//가이드 정보 수정

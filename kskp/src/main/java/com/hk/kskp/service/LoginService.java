@@ -41,13 +41,13 @@ public class LoginService implements ILoginService{
 	}
 
 	@Override
-	public MembersDto mUserInfo(String m_email) {
-		return loginDao.mUserInfo(m_email);
+	public MembersDto mUserInfo(int seq) {
+		return loginDao.mUserInfo(seq);
 	}
 	
 	@Override
-	public GuideDto gUserInfo(String gu_email) {
-		return loginDao.gUserInfo(gu_email);
+	public GuideDto gUserInfo(int seq) {
+		return loginDao.gUserInfo(seq);
 	}
 	
 	@Override
