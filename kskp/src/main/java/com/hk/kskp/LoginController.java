@@ -181,7 +181,7 @@ public class LoginController {
 		String keyCode = FindUtil.createKey();
 		session.setAttribute("keyCode",keyCode);
 		
-		String subJect = "[SWAG] 핸드폰 인증 "
+		return null;
 	}
 	
 	
