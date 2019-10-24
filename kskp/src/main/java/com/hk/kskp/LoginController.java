@@ -1,8 +1,6 @@
 package com.hk.kskp;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +22,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILoginService;
-import com.hk.kskp.service.LoginService;
 
 
 
@@ -180,6 +177,8 @@ public class LoginController {
 	}
 
 	//네이버 로그인 성공시 callback호출 메소드
+
+	
 	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
 	System.out.println("여기는 callback");
@@ -211,16 +210,14 @@ public class LoginController {
 		MembersDto ldto1 = LoginService.mLogin(m_email,pw);
 		session.setAttribute("ldto1", ldto1);
 		return "main";
-	}else if(ldto!=null) {
+	}else{
 		session.setAttribute("ldto", ldto);
 		return "main";
-	}else {
-		return "login";
 	}
+
 	
-
-
-
+	
+	}
 
 
 	
