@@ -19,6 +19,9 @@ public interface IBoardDao {
 	//공지게시판 글 수정하기
 	public boolean nupdateBoard(NoticeDto dto);
 	
+	//공지게시판 조회수 올리기
+	public boolean readCount(int seq);
+	
 	//공지게시판 글 삭제하기
 	public boolean ndelBoard(int seq);
 	

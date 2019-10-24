@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.hk.notice">
 
 	<select id="ngetAlllist" resultType="NoticeDto">
-	 	SELECT N_SEQ, N_TITLE, N_REGDATE
-	 	FROM NOTICE ORDER BY SYSDATE DESC
+	 	SELECT N_SEQ, N_TITLE, N_REGDATE,N_COUNT
+	 	FROM NOTICE ORDER BY N_SEQ DESC
 	</select>
 	
 	<insert id="ninsertboard" parameterType="NoticeDto">
@@ -18,8 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="ngetboard" parameterType="int" resultType="NoticeDto" >
 		SELECT N_SEQ, M_SEQ, N_TITLE, N_CONTS, N_REGDATE, N_COUNT
-		FROM NOTICE WHERE SEQ=#{n_seq}
+		FROM NOTICE WHERE N_SEQ=#{n_seq}
 	</select>
+	
+	<update id="readcount" parameterType="int" >
+		UPDATE NOTICE SET N_COUNT=N_COUNT+1
+		WHERE N_SEQ=#{n_seq}
+	</update>
 	
 	<update id="nupdateboard" parameterType="int" >
 		UPDATE NOTICE SET TITLE=#{title}, N_CONTS=#{conts}, REGDATE=SYSDATE

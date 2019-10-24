@@ -10,8 +10,7 @@
 <body>
 <h1>글추가하기</h1>
 <form action="ninsertboard.do" method="post">
-<input type = "hidden" name="" value="">
-<input type = "hidden" name="" value="">
+<input type = "hidden" name="m_seq" value="${ldto.m_seq}">
 	<table border="1">
 		<col width="100px"><col width="300px">
 		<tr>

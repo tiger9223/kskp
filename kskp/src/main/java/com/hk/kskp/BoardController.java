@@ -49,9 +49,9 @@ public class BoardController {
 		return "home";
 	}
 	
-	
 	@RequestMapping(value="/nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String nboardlist(Model model) {
+		logger.info("공지글목록으로 이동");
 		List<NoticeDto>list = BoardService.ngetAllList();
 		model.addAttribute("list",list);
 		return "nboardlist";
@@ -74,13 +74,19 @@ public class BoardController {
 			return "ninsertboard";
 	}
 	
-//	@RequestMapping(value="Ngetboard",method = {RequestMethod.POST,RequestMethod.GET})
-//	 public String getNboard(Model model,NoticeDto dto) {
-//		logger.info("공지게시글 상세보기");
-//		NoticeDto dto = BoardService.getBoard(nDto.getSeq());
-//		model.addAttribute("dto",dto);
-//		return "Nboarddetail";
-//	}
+	@RequestMapping(value="Ngetboard.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String getNboard(Model model,NoticeDto dto) {
+		logger.info("공지게시글 상세보기");
+		NoticeDto dto1 = BoardService.ngetBoard(dto.getN_seq());
+		boolean isS =  BoardService.readCount(dto.getN_seq());
+		
+		if(isS) {
+			model.addAttribute("dto1",dto1);
+			return "nboarddetail";
+		}else {
+			return "nboarddetail";
+		}
+	}
 //	@RequestMapping(value="/insertform.do",method = RequestMethod.GET)
 //	public String insertForm() {
 //		logger.info("글쓰기 폼으로 이동");

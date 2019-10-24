@@ -18,6 +18,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
 	function allSel(ele){// ele는 전체 선택 체크박스의 체크여부(true/false)
 // 		alert(ele);
@@ -31,19 +33,6 @@
 	}
 </script>
 </head>
-<%!   //메서드 선언부
-	public String getToDate(Date regDate){
-		String r="";
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		r=sdf.format(regDate);
-		return r;
-	}
-%>
-
-<%
-// 	Object obj=request.getAttribute("list");
-	List<NoticeDto> list =(List<NoticeDto>)request.getAttribute("list"); 
-%>
 <body>
 <h1>공지사항</h1>
 <form action="HkController.do" method="post">
@@ -51,10 +40,10 @@
 <table border="1">
 	<col width="50px">
 	<col width="50px">
-
 	<col width="300px">
 	<col width="100px">
 	<col width="100px">
+	
 	<tr>
 		<th><input type="checkbox" onclick="allSel(this.checked)" /></th>
 		<th>번호</th>	
@@ -62,34 +51,34 @@
 		<th>작성날짜</th>
 		<th>조회수</th>
 	</tr>
-	<% 
-		if(list==null||list.size()==0){
-			%>
-			<tr>
-				<td colspan="6" style="text-align: center;">---작성된 글이 없습니다.---</td>
-			</tr>
-			<%
-		}else{
-			//list의 길이만큼 반복시킨다
-			for(int i=0;i<list.size();i++){
-				NoticeDto dto=list.get(i); //list[dto,dto,dto,dto]
-				%>
+		<c:choose>
+			<c:when test="${empty list}">
 				<tr>
-					<td><input type="checkbox" name="chk" value="<%=dto.getN_seq()%>"/></td>
-					<td><%=dto.getN_seq()%></td>
-					<td><a href="ninsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
-					<td><%=getToDate(dto.getN_regdate())%></td>
-				</tr>
-				<%		
-			}
-		}
-	%>
-	<tr>
-		<td colspan="6">
-			<a href="insertform.do">글추가</a>
-			<input type="submit" value="삭제"/>
-		</td>
-	</tr>
+					<td colspan="6" style="text-align: center;">---작성된 글이 없습니다.---</td>
+				</tr>	
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${list}" var="dto">
+				<tr>
+					<td><input type="checkbox" name="chk" value="${dto.n_seq}"/></td>
+					<td>${dto.n_seq}</td>
+					<td><a href="Ngetboard.do?n_seq=${dto.n_seq}">${dto.n_title}</a></td>
+					<td><fmt:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 
+					<td>${dto.n_count}</td>
+				</tr>	
+				</c:forEach>
+				<c:choose>
+						<c:when test="${ldto.m_status eq 'A'}">
+						<tr>
+							<td colspan="6">
+								<a href="ninsertform.do">글추가</a>
+							<input type="submit" value="삭제"/>
+							</td>
+						</tr>
+						</c:when>
+					</c:choose>	
+			</c:otherwise>
+		</c:choose>
 </table>
 </form>
 </body>
