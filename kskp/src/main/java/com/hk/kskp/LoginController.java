@@ -106,17 +106,17 @@ public class LoginController {
 	
 	
 	@RequestMapping(value = "/muserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String userInfo(Model model, MembersDto dto) {
+	public String userInfo(Model model, int seq) {
 		logger.info("일반회원 정보보기");
-		MembersDto dto1=LoginService.mUserInfo(dto.getM_email());
+		MembersDto dto1=LoginService.mUserInfo(seq);
 		model.addAttribute("dto1",dto1);
 		return"mUserInfo";
 	}
 	
 	@RequestMapping(value = "/guserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String guserInfo(Model model, GuideDto dto) {
+	public String guserInfo(Model model, int seq) {
 		logger.info("가이드 정보보기");
-		GuideDto dto2=LoginService.gUserInfo(dto.getGu_email());
+		GuideDto dto2=LoginService.gUserInfo(seq);
 		model.addAttribute("dto2",dto2);
 		return"mUserInfo";
 	}
@@ -140,7 +140,7 @@ public class LoginController {
 		logger.info("일반회원 정보수정 ");
 		boolean isS = LoginService.userUpdate(dto);
 		if(isS){
-			return"redirect:muserinfo.do?m_email="+dto.getM_email();
+			return"redirect:muserinfo.do?seq="+dto.getM_seq();
 		}else {
 			return"error";
 		}
@@ -151,7 +151,7 @@ public class LoginController {
 		logger.info("가이드 정보수정 ");
 		boolean isS = LoginService.guserUpdate(dto);
 		if(isS){
-			return"redirect:guserinfo.do";
+			return"redirect:guserinfo.do?seq="+dto.getGu_seq();
 		}else {
 			return"error";
 		}

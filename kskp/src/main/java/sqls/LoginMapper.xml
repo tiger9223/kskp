@@ -27,22 +27,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 일반회원 정보 조회 -->
 	<select id="muserinfo" parameterType="MembersDto" resultType="MembersDto">
 		select * from MEMBERS
-		WHERE M_EMAIL=#{m_email}
+		WHERE M_SEQ=#{m_seq}
 	</select>
 
 	<!-- 가이드 정보 조회 -->
 	<select id="guserinfo" parameterType="GuideDto" resultType="GuideDto">
 		select * from GUIDE
-		WHERE GU_EMAIL=#{gu_email}
+		WHERE GU_SEQ=#{gu_seq}
 	</select>
 	
 	<!-- 일반회원	정보 수정 -->
 	<update id="userUpdate" parameterType="MembersDto">
-		UPDATE MEMBERS SET M_PW=#{m_pw} WHERE M_EMAIL=#{m_email}
+		UPDATE MEMBERS SET M_PW=#{m_pw} WHERE M_SEQ=#{m_seq}
 	</update>
 	<!-- 가이드	정보 수정 -->
 	<update id="guserUpdate" parameterType="GuideDto">
-		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_EMAIL=#{gu_email}
+		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_SEQ=#{gu_seq}
 	</update>
 
 </mapper>

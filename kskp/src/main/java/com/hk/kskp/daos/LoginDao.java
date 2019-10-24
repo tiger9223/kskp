@@ -44,13 +44,13 @@ public class LoginDao implements ILoginDao {
 	}
 
 	@Override
-	public MembersDto mUserInfo(String m_email) {
-		return sqlSession.selectOne(nameSpace+"muserinfo", m_email);
+	public MembersDto mUserInfo(int seq) {
+		return sqlSession.selectOne(nameSpace+"muserinfo", seq);
 	}
 	
 	@Override
-	public GuideDto gUserInfo(String gu_email) {
-		return sqlSession.selectOne(nameSpace+"guserinfo", gu_email);
+	public GuideDto gUserInfo(int seq) {
+		return sqlSession.selectOne(nameSpace+"guserinfo", seq);
 	}
 
 	@Override
