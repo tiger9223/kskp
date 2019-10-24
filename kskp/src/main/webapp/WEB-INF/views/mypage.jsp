@@ -58,12 +58,12 @@
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:otherwise>
-		<a href="guserinfo.do">상품관리</a>
-		<a href="mypage.do?seq=${ldto1.gu_seq}">일정관리</a>
-		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">후기관리</a>
-		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">정산관리</a>
-		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">메세지</a>
-		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">계정관리</a>
+		<a href="gooodspage.do?gu_seq=${ldto1.gu_seq}">상품관리</a>
+		<a href="calendarpage.do?gu_seq=${ldto1.gu_seq}">일정관리</a>
+		<a href="reviewpage.do?gu_seq=${ldto1.gu_seq}">후기관리</a>
+		<a href="paypage.do?gu_seq=${ldto1.gu_seq}">정산관리</a>
+		<a href="letterpage.do?gu_seq=${ldto1.gu_seq}">메세지</a>
+		<a href="accountpage.do?gu_seq=${ldto1.gu_seq}">계정관리</a>
 	</c:otherwise>
 </c:choose>
 

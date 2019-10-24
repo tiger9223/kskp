@@ -18,8 +18,8 @@ public class GoodsDao implements IGoodsDao{
 	private SqlSessionTemplate sqlSession;
 
 	@Override//상품 등록날짜 순으로 전체 조회
-	public List<GoodsDto> getAllGoods(int g_seq) {
-		return sqlSession.selectList(nameSpace+"getallgoods",g_seq);
+	public List<GoodsDto> getAllGoods() {
+		return sqlSession.selectList(nameSpace+"getallgoods" );
 	}
 
 	@Override//인기 상품 순으로 조회
@@ -32,6 +32,11 @@ public class GoodsDao implements IGoodsDao{
 		return sqlSession.selectList(nameSpace+"getareagoods",g_area);
 	}
 
+	@Override//가이드 상품관리 조회
+	public List<GoodsDto> guideGoods(int g_seq) {
+		return sqlSession.selectList(nameSpace+"guidegoods",g_seq);
+	}
+	
 	@Override//상품 상세조회
 	public GoodsDto getGoods(int seq) {
 		return sqlSession.selectOne(nameSpace+"getgoods",seq);
