@@ -16,13 +16,18 @@ public class GoodsService implements IGoodsService{
 	private IGoodsDao GoodsDao;
 	
 	@Override
-	public List<GoodsDto> getAllGoods(int g_seq) {
-		return GoodsDao.getAllGoods(g_seq);
+	public List<GoodsDto> getAllGoods() {
+		return GoodsDao.getAllGoods();
 	}
 
 	@Override
 	public List<GoodsDto> getBestGoods() {
 		return GoodsDao.getBestGoods();
+	}
+	
+	@Override
+	public List<GoodsDto> guideGoods(int g_seq) {
+		return GoodsDao.guideGoods(g_seq);
 	}
 
 	@Override
@@ -94,6 +99,8 @@ public class GoodsService implements IGoodsService{
 	public boolean upPeople(int g_seq) {
 		return GoodsDao.upPeople(g_seq);
 	}
+
+	
 
 	
 
