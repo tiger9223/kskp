@@ -106,9 +106,9 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value = "/muserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String userInfo(Model model, MembersDto dto) {
+	public String userInfo(Model model, int seq) {
 		logger.info("일반회원 정보보기");
-		MembersDto dto1=LoginService.mUserInfo(dto.getM_email());
+		MembersDto dto1=LoginService.mUserInfo(seq);
 		model.addAttribute("dto1",dto1);
 		return"mUserInfo";
 	}

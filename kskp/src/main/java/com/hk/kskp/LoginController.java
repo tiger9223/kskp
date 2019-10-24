@@ -2,6 +2,7 @@ package com.hk.kskp;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
+import com.hk.login.dtos.LoginDto;
 
 
 
@@ -156,4 +158,20 @@ public class LoginController {
 			return"error";
 		}
 	}
+	
+	
+	
+	@RequestMapping(value = "/alluserstatus.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getAllUserStatus(Locale locale, Model model) {
+		logger.info("아이디중복체크", locale);
+		List<MembersDto> list = LoginService.getAllUserStatus();
+		model.addAttribute("list", list);
+		return "userlist_status";
+	}
+	
+	
+	
+	
+	
+	
 }//end
