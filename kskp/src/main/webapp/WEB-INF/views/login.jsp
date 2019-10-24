@@ -63,20 +63,12 @@
 		display: block;
 		cursor: pointer;
 	}
-	.inner_box{
+	.line{
 		width: 400px;
-		height: 40px;
+		height: 1px;
 		margin: 0 auto;
-		margin-top: 15px;
-	}
-	.check{
-		width: 16px;
-		height: 16px;
-		border:1px solid #777;
-		line-height: 40px;
-	}
-	.inner_box span{
-		line-height: 40px;
+		background-color: #ddd;
+		margin-top: 25px;
 	}
 	.button02{
 		display: block;
@@ -86,6 +78,7 @@
 		background-color: #fff;
 		margin: 0 auto;
 		position: relative;
+		margin-top: 25px;
 	}
 	.button02 span{
 		padding-left: 20px;
@@ -106,24 +99,16 @@
 		width: 400px;
 		height: 30px;
 		margin: 0 auto;
-		margin-top: 20px;
+		margin-top: 30px;
 	}
 	.log_wrap li{
+		width: 50%;
 		float: left;
 		text-align: center;
 	}
 	.log_wrap li:first-child{
-		padding-left: 27px;
-	}
-	.log_wrap li::after{
-		content: '|';
-		padding-left: 25px;
-		padding-right: 25px;
-		color: #666;
-	}
-	.log_wrap li:last-child::after{
-		content: '';
-		padding-right: 0px;
+		border-right: 1px solid #777;
+		box-sizing: border-box;
 	}
 	footer ul{
 		width: 600px;
@@ -170,9 +155,7 @@
 		<input type="password" name="pw" placeholder="비밀번호" class="text">
 		<input type="submit" value="로그인" class="button">
 		</form>
-		<div class="inner_box">
-
-		</div>
+		<div class="line"></div>
 		<!-- 네이버 로그인 창으로 이동 -->
 			<a href="${url}" class="button02">
 			<div class="logo_box"></div>

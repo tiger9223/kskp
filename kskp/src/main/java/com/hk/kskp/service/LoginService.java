@@ -1,6 +1,6 @@
 package com.hk.kskp.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +19,10 @@ public class LoginService implements ILoginService{
 	@Override
 	public boolean mInsertUser(MembersDto dto) {
 		return loginDao.mInsertUser(dto);
+	}
+	@Override
+	public boolean naverUser(String m_email, String m_name) {
+		return loginDao.naverUser(m_email, m_name);
 	}
 
 	@Override
