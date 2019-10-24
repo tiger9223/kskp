@@ -166,8 +166,8 @@
 			</a>
 		</h1>
 		<form action="mlogin.do" method="post">
-		<input type="text" name="m_email" placeholder="아이디" class="text">
-		<input type="password" name="m_pw" placeholder="비밀번호" class="text">
+		<input type="text" name="email" placeholder="아이디" class="text">
+		<input type="password" name="pw" placeholder="비밀번호" class="text">
 		<input type="submit" value="로그인" class="button">
 		</form>
 		<div class="inner_box">

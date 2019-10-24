@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,8 +48,20 @@
 </style>
 </head>
 <body>
-
-	<a href="muserinfo.do">내 정보보기</a>
+<c:choose>
+	<c:when test="${ldto.m_status eq 'M'}">
+		<a href="muserinfo.do">내 정보보기</a>
+		<a href="logout.do">로그아웃</a>
+	</c:when>
+	<c:when test="${ldto.m_status eq 'A'}">
+		<a href="auserinfo.do">내 정보보기</a>
+		<a href="logout.do">로그아웃</a>
+	</c:when>
+	<c:otherwise>
+		<a href="guserinfo.do">내 정보보기</a>
+		<a href="logout.do">로그아웃</a>
+	</c:otherwise>
+</c:choose>
 
 </body>
 </html>

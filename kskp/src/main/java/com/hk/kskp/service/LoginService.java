@@ -40,10 +40,20 @@ public class LoginService implements ILoginService{
 	public MembersDto mUserInfo(String m_email) {
 		return loginDao.mUserInfo(m_email);
 	}
-
+	
+	@Override
+	public GuideDto gUserInfo(String gu_email) {
+		return loginDao.gUserInfo(gu_email);
+	}
+	
 	@Override
 	public boolean userUpdate(MembersDto dto) {
 		return loginDao.userUpdate(dto);
+	}
+
+	@Override
+	public boolean guserUpdate(GuideDto dto) {
+		return loginDao.guserUpdate(dto);
 	}
 	
 

@@ -17,22 +17,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 로그인 -->
 	<select id="mLogin" parameterType="MembersDto" resultType="MembersDto">
- 		select m_email,m_pw from MEMBERS Where M_EMAIL=#{m_email} AND M_PW=#{m_pw}
+ 		select * from MEMBERS Where M_EMAIL=#{m_email} AND M_PW=#{m_pw}
 	</select>
 	
 	<select id="gLogin" parameterType="GuideDto" resultType="GuideDto">
- 		select gu_email,gu_pw from GUIDE Where GU_EMAIL=#{gu_email} AND GU_PW=#{gu_pw}
+ 		select * from GUIDE Where GU_EMAIL=#{gu_email} AND GU_PW=#{gu_pw}
 	</select>
 
-	<!-- 	내 정보 조회 -->
+	<!-- 일반회원 정보 조회 -->
 	<select id="muserinfo" parameterType="MembersDto" resultType="MembersDto">
-		select m_email,m_pw,m_name from MEMBERS
+		select * from MEMBERS
 		WHERE M_EMAIL=#{m_email}
 	</select>
 
-	<!-- 	정보 수정 -->
+	<!-- 가이드 정보 조회 -->
+	<select id="guserinfo" parameterType="GuideDto" resultType="GuideDto">
+		select * from GUIDE
+		WHERE GU_EMAIL=#{gu_email}
+	</select>
+	
+	<!-- 일반회원	정보 수정 -->
 	<update id="userUpdate" parameterType="MembersDto">
 		UPDATE MEMBERS SET M_PW=#{m_pw} WHERE M_EMAIL=#{m_email}
+	</update>
+	<!-- 가이드	정보 수정 -->
+	<update id="guserUpdate" parameterType="GuideDto">
+		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_EMAIL=#{gu_email}
 	</update>
 
 </mapper>

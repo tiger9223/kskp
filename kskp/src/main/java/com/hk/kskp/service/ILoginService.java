@@ -19,8 +19,12 @@ public interface ILoginService {
 		public GuideDto gLogin(String gu_email, String gu_pw);
 	//일반회원 정보조회
 		public MembersDto mUserInfo(String m_email);
-	//정보 수정
+	//가이드 정보조회
+		public GuideDto gUserInfo(String gu_email);
+	//일반회원 정보 수정
 		public boolean userUpdate(MembersDto dto);
+	//가이드 정보 수정
+		public boolean guserUpdate(GuideDto dto);
 //				//회원 탈퇴
 //				public boolean withdraw(String rid);
 //				//아이디 중복체크
