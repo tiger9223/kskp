@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getbestgoods" resultType="GoodsDto">
 		SELECT g.G_AREA, g.G_NAME, g.G_IMG1, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE
 		FROM GOODS g, REVIEW r WHERE g.G_SEQ=r.G_SEQ AND (SELECT)
-	</select>
+	</select>    
 	
 	<select id="getareagoods" parameterType="GoodsDto" resultType="GoodsDto">
 		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE, 
