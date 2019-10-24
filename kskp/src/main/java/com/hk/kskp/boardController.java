@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.kskp.dtos.NoticeDto;
+import com.hk.kskp.dtos.QaDto;
 import com.hk.kskp.service.IBoardService;
 
 
@@ -89,6 +90,13 @@ public class boardController {
 //	 public String updateNboard(Model model,NoticeDto dto) {
 //		logger.info("공지글 수정하기");
 //		boolean isS=boardService.updateNBoard()
+	
+	@RequestMapping(value="Qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String Qboardlist(Model model) {
+		List<QaDto>list = boardService.QgetAllList();
+		model.addAttribute("list",list);
+		return "Qboardlist";
+	}
 		
 	
 	
