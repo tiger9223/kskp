@@ -2,24 +2,32 @@ package com.hk.kskp.daos;
 
 import java.util.List;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.kskp.BoardController;
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Repository
 public class BoardDao implements IBoardDao	{
 	
-	private String nameSpace = "com.hk.Notice.";
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	
+	
+	private String nameSpace = "com.hk.notice.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	@Override
 	public List<NoticeDto> NgetAllList() {
-		return sqlSession.selectList(nameSpace+"Nboardlist");
+		return sqlSession.selectList(nameSpace+"NgetAlllist");
 	}
 
 	@Override
@@ -69,7 +77,7 @@ public class BoardDao implements IBoardDao	{
 
 	@Override
 	public boolean QdelBoard(int seq) {
-		int count = sqlSession.delete(nameSpace+"Qdelboard", seq);
+		int count = sqlSession.delete(nameSpace+"QdelQboard", seq);
 		return false;
 	}
 

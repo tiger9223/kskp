@@ -2,17 +2,24 @@ package com.hk.kskp.service;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.kskp.BoardController;
 import com.hk.kskp.daos.IBoardDao;
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @Service
 public class BoardService implements IBoardService{
 	//service객체에서는 Dao객체를 가져다 쓴다.
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	
 	
 	@Autowired
 	private IBoardDao boardDao;

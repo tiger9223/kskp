@@ -18,16 +18,17 @@ import com.hk.kskp.dtos.QaDto;
 import com.hk.kskp.service.IBoardService;
 
 
+
 @Controller
-public class boardController {
+public class BoardController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(boardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	//@Autowired:스프링 컨테이너가 xml에 선언된 객체의 타입으로 찾아서 넣어줌
 	//@Qualifier("boardDao"):스프링 컨테이너가 xml에 선언된 객체 이름으로 찾아서 넣어준다.
 	
 	@Autowired
-	private IBoardService boardService;
+	private IBoardService BoardService;
 	
 	//클라이언트에서 home.do라고 get방식으로 요청하면 home()메서드 실행
 	//@RequestMapping @(어노테이션)
@@ -51,7 +52,7 @@ public class boardController {
 	
 	@RequestMapping(value="/Nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String Nboardlist(Model model) {
-		List<NoticeDto>list = boardService.NgetAllList();
+		List<NoticeDto>list = BoardService.NgetAllList();
 		model.addAttribute("list",list);
 		return "Nboardlist";
 	}
@@ -66,7 +67,7 @@ public class boardController {
 	 public String NinsertBoard(Model model,NoticeDto dto) {
 		
 		logger.info("공지게시판 글 추가하기");
-		boolean isS=boardService.NinsertBoard(dto);
+		boolean isS=BoardService.NinsertBoard(dto);
 		if(isS) {
 			return "redirect:Nboardlist.do";
 		}
@@ -93,7 +94,7 @@ public class boardController {
 	
 	@RequestMapping(value="Qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String Qboardlist(Model model) {
-		List<QaDto>list = boardService.QgetAllList();
+		List<QaDto>list = BoardService.QgetAllList();
 		model.addAttribute("list",list);
 		return "Qboardlist";
 	}
