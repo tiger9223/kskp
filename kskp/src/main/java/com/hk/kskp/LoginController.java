@@ -215,13 +215,14 @@ public class LoginController {
 	String pw="1111";
 	System.out.println(m_email);
 	System.out.println(m_name);
-	MembersDto ldto = LoginService.mLogin(m_email,pw);
-	if(ldto==null) {
+	MembersDto ldto1 = LoginService.mLogin(m_email,pw);
+	if(ldto1==null) {
 		boolean isS = LoginService.naverUser(m_email, m_name);
-		MembersDto ldto1 = LoginService.mLogin(m_email,pw);
-		session.setAttribute("ldto1", ldto1);
+		MembersDto ldto = LoginService.mLogin(m_email,pw);
+		session.setAttribute("ldto", ldto);
 		return "main";
 	}else{
+		MembersDto ldto = LoginService.mLogin(m_email,pw);
 		session.setAttribute("ldto", ldto);
 		return "main";
 	}
