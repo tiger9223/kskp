@@ -59,6 +59,7 @@
 	</c:when>
 	<c:otherwise>
 		<a href="guserinfo.do">내 정보보기</a>
+		<a href="mypage.do">마이페이지</a>
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>
