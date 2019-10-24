@@ -2,6 +2,7 @@ package com.hk.kskp.daos;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -74,6 +75,16 @@ public class LoginDao implements ILoginDao {
 	public boolean guserUpdate(GuideDto dto) {
 		int count = sqlSession.update(nameSpace+"guserUpdate", dto);
 		return count > 0 ? true:false;
+	}
+	@Override
+	public List<MembersDto> getMuserlist() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<GuideDto> getguserlist() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	}
 
