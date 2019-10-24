@@ -1,6 +1,12 @@
 package com.hk.kskp;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +28,11 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILoginService;
+<<<<<<< HEAD
+=======
+import com.hk.kskp.service.LoginService;
+import com.hk.login.dtos.LoginDto;
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 
 
 
@@ -175,6 +186,23 @@ public class LoginController {
 			return"error";
 		}
 	}
+<<<<<<< HEAD
+	
+	
+	
+	@RequestMapping(value = "/alluserstatus.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getAllUserStatus(Locale locale, Model model) {
+		logger.info("아이디중복체크", locale);
+		List<MembersDto> list = LoginService.getAllUserStatus();
+		model.addAttribute("list", list);
+		return "userlist_status";
+	}
+	
+	
+	
+	
+	
+=======
 
 	//네이버 로그인 성공시 callback호출 메소드
 
@@ -220,5 +248,6 @@ public class LoginController {
 	}
 
 
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 	
 }//end

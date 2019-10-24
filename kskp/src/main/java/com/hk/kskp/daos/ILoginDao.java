@@ -1,5 +1,7 @@
 package com.hk.kskp.daos;
 
+import java.util.List;
+
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 
@@ -25,8 +27,11 @@ public interface ILoginDao {
 	public boolean guserUpdate(GuideDto dto);
 //	//회원 탈퇴
 //	public boolean withdraw(String rid);
-//	//전체 회원 조회
-//	public List<LoginDto> getAllUserStatus();
+	//일반 회원 조회
+	public List<MembersDto> getMuserlist();
+	//가이드 회원 조회
+	public List<GuideDto> getguserlist();
+	
 //	//사용자 상세조회
 //	public LoginDto getUser(String rid);
 
