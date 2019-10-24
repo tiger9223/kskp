@@ -59,14 +59,12 @@
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:otherwise>
-<<<<<<< HEAD
+
 		<a href="guserinfo.do?seq=${ldto1.gu_seq}">내 정보보기</a>
 		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
 		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">내 정보보기</a>
-=======
-		<a href="guserinfo.do?gu_seq=${ldto1.gu_seq}">내 정보보기</a>
-		<a href="mypage.do?gu_seq=${ldto1.gu_seq}">마이페이지</a>
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
+
+
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>
