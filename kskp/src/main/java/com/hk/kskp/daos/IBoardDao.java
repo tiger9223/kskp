@@ -8,34 +8,34 @@ import com.hk.kskp.dtos.QaDto;
 public interface IBoardDao {
 	
 	//공지게시판글 전체보기
-	public List<NoticeDto> NgetAllList(); 
+	public List<NoticeDto> ngetAllList(); 
 	
 	//공지게시판 글 추가하기
-	public boolean NinsertBoard(NoticeDto dto);
+	public boolean ninsertBoard(NoticeDto dto);
 	
 	//공지게시판 글 상세보기
-	public NoticeDto NgetBoard(int seq);
+	public NoticeDto ngetBoard(int seq);
 	
 	//공지게시판 글 수정하기
-	public boolean NupdateBoard(NoticeDto dto);
+	public boolean nupdateBoard(NoticeDto dto);
 	
 	//공지게시판 글 삭제하기
-	public boolean NdelBoard(int seq);
+	public boolean ndelBoard(int seq);
 	
 	//Q&A 글 전체보기
-	public List<QaDto> QgetAllList();
+	public List<QaDto> qgetAllList();
 	
 	//Q&A 글 추가하기
-	public boolean QinsertBoard(QaDto dto);
+	public boolean qinsertBoard(QaDto dto);
 	
 	//Q&A 글 상세보기
-	public QaDto QgetBoard(int seq);
+	public QaDto qgetBoard(int seq);
 	
 	//Q&A 글 수정하기
-	public boolean QupdateBoard(QaDto dto);
+	public boolean qupdateBoard(QaDto dto);
 	
 	//Q&A 글 삭제하기
-	public boolean QdelBoard(int seq);
+	public boolean qdelBoard(int seq);
 	
 	
 	

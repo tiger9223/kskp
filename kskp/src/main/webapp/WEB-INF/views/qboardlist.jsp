@@ -78,7 +78,7 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getN_seq()%>"/></td>
 					<td><%=dto.getN_seq()%></td>
-					<td><a href="Qinsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
+					<td><a href="qinsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
 					<td><%=getToDate(dto.getN_regdate())%></td>
 				</tr>
 				<%		

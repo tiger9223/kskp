@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>질문하기</h1>
-<form action="Ninsertboard.do" method="post">
+<form action="ninsertboard.do" method="post">
 <input type = "hidden" name="" value="">
 <input type = "hidden" name="" value="">
 	<table border="1">
