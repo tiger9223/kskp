@@ -30,7 +30,7 @@ public interface ILoginDao {
 	//일반 회원 조회
 	public List<MembersDto> getMuserlist();
 	//가이드 회원 조회
-	public List<GuideDto> getguserlist();
+	public List<GuideDto> getGuserlist();
 	
 //	//사용자 상세조회
 //	public LoginDto getUser(String rid);
