@@ -11,6 +11,8 @@ public interface ILoginService {
 
 	//일반회원 회원가입
 		public boolean mInsertUser(MembersDto dto);
+	//일반회원 회원가입
+		public boolean minsertUser1(MembersDto dto);
 	//네이버 로그인
 		public boolean naverUser(String m_email, String m_name);
 	//가이드 회원가입	

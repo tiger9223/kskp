@@ -21,6 +21,11 @@ public class LoginService implements ILoginService{
 		return loginDao.mInsertUser(dto);
 	}
 	@Override
+	public boolean minsertUser1(MembersDto dto) {
+		return loginDao.minsertUser1(dto);
+	}
+	
+	@Override
 	public boolean naverUser(String m_email, String m_name) {
 		return loginDao.naverUser(m_email, m_name);
 	}

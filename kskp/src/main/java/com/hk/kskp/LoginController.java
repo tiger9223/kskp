@@ -56,6 +56,7 @@ public class LoginController {
 		logger.info("이메일,핸드폰 인증 폼으로 이동");
 		HttpSession session = request.getSession();
 		session.removeAttribute("keyCode");
+		session.removeAttribute("key");
 		return "emailcert";
 	}
 	@RequestMapping(value = "/emailcerform.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -69,21 +70,46 @@ public class LoginController {
 		logger.info("일반회원가입 폼으로 이동");
 		return "mSignup";
 	}
+	@RequestMapping(value = "/sendphone.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String sendphone(HttpSession session,Model model, String phone) {
+		logger.info("핸드폰 인증으로 이동");
+		String key = ExampleSend.sendMessege(phone);
+		session.setAttribute("key", key);
+		model.addAttribute("phone", phone);
+		return "emailcert";
+	}
 	
-
+	@RequestMapping(value = "/minsertuser1.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuser1(HttpSession session,Locale locale,Model model, String phone, String pcer) throws IOException {
+		logger.info("일반회원 회원가입", locale);
+		String a = (String)session.getAttribute("key");
+		MembersDto dto=(MembersDto)session.getAttribute("dto");
+		dto.setM_phone(phone);
+		if(pcer.equals(a)) {
+			session.removeAttribute("key");
+			boolean isS=LoginService.minsertUser1(dto);
+			if(isS) {
+			session.removeAttribute("dto");
+			}
+			return "main";
+			
+		}else {
+			model.addAttribute("phone", phone);
+			return "emailcert";
+			}
+	}
 	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String minsertuser(HttpSession session,Locale locale,Model model, String email, String ecer) throws IOException {
 		logger.info("일반회원 회원가입", locale);
 		String a = (String)session.getAttribute("keyCode");
 		MembersDto dto=(MembersDto)session.getAttribute("dto");
 		if(ecer.equals(a)) {
-			model.addAttribute("email", email);
 			session.removeAttribute("keyCode");
 			boolean isS=LoginService.mInsertUser(dto);
 			if(isS) {
 			session.removeAttribute("dto");
 			}
-			return "mSignup";
+			return "main";
 			
 		}else {
 			model.addAttribute("email", email);
