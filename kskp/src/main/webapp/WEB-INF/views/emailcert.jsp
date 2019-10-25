@@ -69,10 +69,14 @@ ul.tabs li.active {
 </style>
 <script type="text/javascript">
 $(function () {
-
-    $(".tab_content").hide();
-    $(".tab_content:first").show();
-
+	if($('#pp').val()==null){
+		  $(".tab_content").hide();
+		  $(".tab_content:first").show();
+	}else{
+		 $(".tab_content").hide();
+		  $(".tab_content:nth-child(2)").show();
+	}
+  
     $("ul.tabs li").click(function () {
         $("ul.tabs li").removeClass("active").css("color", "#333");
         //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
@@ -87,7 +91,7 @@ $(function () {
     	location.href = "sendemail.do?email="+email;
     });
     $("#phBtn").click(function(){
-  	  var email = document.getElementById('ph').value;
+  	  var phone = document.getElementById('ph').value;
   	location.href = "sendphone.do?phone="+phone;
   });
   
@@ -104,7 +108,7 @@ $(function () {
     </ul>
     <div class="tab_container">
         <div id="tab1" class="tab_content">
-       	<form action="minsertuserform.do" method="post">
+       	<form action="minsertuser.do" method="post">
        	<input type="hidden" name="email" value="${dto.m_email}">
        		<c:choose>
        			<c:when test="${email == null}">
@@ -123,10 +127,10 @@ $(function () {
         </div>
         <!-- #tab1 -->
         <div id="tab2" class="tab_content">
-        <form action="minsertuserform.do" method="post">
-               	<input type="hidden" name="phone" value="${dto.phone}">
+        <form action="minsertuser1.do" method="post">
+               	<input type="hidden" id="pp" name="phone" value="${phone}">
         		<c:choose>
-       			<c:when test="${dto.phone == null}">
+       			<c:when test="${phone ==  null}">
        				<input type="email" name="phone" id="ph" placeholder="-없이 작성하세요."  />
        				<input type="button" id="phBtn" value="인증번호 보내기" ><br/>
           			

@@ -4,10 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.login">
 
-	<!-- 일반회원 회원가입 -->
+	<!-- 일반회원 이메일인증 회원가입 -->
 	<insert id="minsertUser" parameterType="MembersDto">
 		INSERT INTO MEMBERS(M_SEQ,M_PW,M_STATUS,M_NAME,M_PHONE,M_EMAIL,M_REGDATE,M_ACC,M_PHONE) VALUES 
 		(MEMBERS_SEQ.NEXTVAL,#{m_pw},'M',#{m_name},NULL,#{m_email},SYSDATE,NULL,null)
+	</insert>
+		<!-- 일반회원 핸드폰인증 회원가입 -->
+	<insert id="minsertUser1" parameterType="MembersDto">
+		INSERT INTO MEMBERS(M_SEQ,M_PW,M_STATUS,M_NAME,M_PHONE,M_EMAIL,M_REGDATE,M_ACC) VALUES 
+		(MEMBERS_SEQ.NEXTVAL,#{m_pw},'M',#{m_name},#{m_phone},#{m_email},SYSDATE,NULL)
 	</insert>
 		<!-- 네이버로그인 데이터 -->
 	<insert id="naverUser" parameterType="MembersDto">

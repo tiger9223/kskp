@@ -26,7 +26,6 @@ public class LetterController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LetterController.class);
 
-	
 	@Autowired
 	private ILetterService LetterService;
 
