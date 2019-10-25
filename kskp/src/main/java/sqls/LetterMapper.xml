@@ -3,20 +3,21 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.letter">
+
 	<insert id="sendLetter">
 		INSERT INTO LETTER(L_SEQ,M_SEQ,GU_SEQ,L_REGDATE,L_SENDER,L_RECEIVER,L_TITLE,L_CONTS)
 		VALUES(LETTER_SEQ.NEXTVAL,NULL,NULL,SYSDATE,#{L_TITLE},#{L_CONTS})
-		
 	</insert>
 
-	<select id="LETTERLIST">
+	<select id="letterlist">
 SELETE L_SEQ,L_SENDER,L_TITLE,L_REGDATE FROM LETTER WHERE L_RECEIVER='KKK@NAVER.COM
 	</select>
 	
-	<select id="LETTERDETAIL">
+	<select id="letterdetail">
 		select L_SENDER,L_REGDATE,L_TITLE,L_CONTS FROM LETTER L_SEQ={L_SEQ}	
 	</select>
 	
+
 	<delete id="delLetter">
 		DELETE LETTER WHRER L_SEQ={L_SEQ}
 	</delete>
