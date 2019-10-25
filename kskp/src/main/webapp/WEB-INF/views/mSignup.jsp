@@ -28,12 +28,12 @@
 </head>
 <body>
 <h1>일반회원가입</h1>
-<form action="minsertuser.do" method="post">
+<form action="emailcerform.do" method="post">
 <h2>네이버 회원가입</h2>
 <p>이름</p>
 <input type="text" name="m_name" placeholder="id" /><br/>
 <p>이메일</p>
-<input type="text" name="m_email" value="${email}" readonly="readonly" /><br/>
+<input type="email" name="m_email"  placeholder="email@email.com" /><br/>
 <p>비밀번호</p>
 <input type="password" name="m_pw" placeholder="pw" /><br/>
 <p>비밀번호 확인</p>

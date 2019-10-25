@@ -3,8 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.letter">
+<<<<<<< HEAD
 	<insert id="LETTERSEND">
+=======
+
+	<insert id="sendLetter" parameterType="LetterDto">
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 		INSERT INTO LETTER(L_SEQ,M_SEQ,GU_SEQ,L_REGDATE,L_SENDER,L_RECEIVER,L_TITLE,L_CONTS)
+<<<<<<< HEAD
 		VALUES(LETTER_SEQ.NEXTVAL,NULL,NULL,SYSDATE,#{L_TITLE},#{L_CONTS})
 		
 		
@@ -12,17 +18,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   					M_SEQ=#{M_SEQ}	
   				</if>
   			
+=======
+		VALUES(LETTER_SEQ.NEXTVAL,NULL,NULL,SYSDATE,#{l_sender},#{l_receiver},#{l_title},#{l_conts})
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 	</insert>
 
-	<select id="LETTERLIST">
-SELETE L_SEQ,L_SENDER,L_TITLE,L_REGDATE FROM LETTER WHERE L_RECEIVER='KKK@NAVER.COM
+	<select id="letterlist" resultType="LetterDto">
+		SELECT L_SEQ,L_SENDER,L_TITLE,L_REGDATE FROM LETTER
 	</select>
 	
-	<select id="LETTERDETAIL">
+	<select id="letterdetail">
 		select L_SENDER,L_REGDATE,L_TITLE,L_CONTS FROM LETTER L_SEQ={L_SEQ}	
 	</select>
+<<<<<<< HEAD
 	
 	<delete id="LETTERDEL">
+=======
+
+	<delete id="delLetter">
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 		DELETE LETTER WHRER L_SEQ={L_SEQ}
 	</delete>
 </mapper>

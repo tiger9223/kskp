@@ -69,10 +69,14 @@ ul.tabs li.active {
 </style>
 <script type="text/javascript">
 $(function () {
-
-    $(".tab_content").hide();
-    $(".tab_content:first").show();
-
+	if($('#pp').val()==null){
+		  $(".tab_content").hide();
+		  $(".tab_content:first").show();
+	}else{
+		 $(".tab_content").hide();
+		  $(".tab_content:nth-child(2)").show();
+	}
+  
     $("ul.tabs li").click(function () {
         $("ul.tabs li").removeClass("active").css("color", "#333");
         //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
@@ -86,7 +90,11 @@ $(function () {
     	  var email = document.getElementById('em').value;
     	location.href = "sendemail.do?email="+email;
     });
-    
+    $("#phBtn").click(function(){
+  	  var phone = document.getElementById('ph').value;
+  	location.href = "sendphone.do?phone="+phone;
+  });
+  
 
 
 });
@@ -100,17 +108,17 @@ $(function () {
     </ul>
     <div class="tab_container">
         <div id="tab1" class="tab_content">
-       	<form action="minsertuserform.do" method="post">
-       	<input type="hidden" name="email" value="${email}">
+       	<form action="minsertuser.do" method="post">
+       	<input type="hidden" name="email" value="${dto.m_email}">
        		<c:choose>
        			<c:when test="${email == null}">
-       				<input type="email" name="email" id="em" placeholder="xxx@xxx.xxx형식"  />
+       				<input type="email" name="email" id="em" value="${dto.m_email}" readonly="readonly" placeholder="xxx@xxx.xxx형식"  />
        				<input type="button" id="emBtn" value="인증번호 보내기" ><br/>
           			
        			</c:when>
        			
        			<c:otherwise>
-       				<input type="text" name="cer" id="send" placeholder="인증번호를 입력해주세요"  >
+       				<input type="text" name="ecer" id="send" placeholder="인증번호를 입력해주세요"  >
           			<input type="submit" id="sub" value="인증하기" >
        			</c:otherwise>
        		</c:choose>
@@ -119,6 +127,21 @@ $(function () {
         </div>
         <!-- #tab1 -->
         <div id="tab2" class="tab_content">
+        <form action="minsertuser1.do" method="post">
+               	<input type="hidden" id="pp" name="phone" value="${phone}">
+        		<c:choose>
+       			<c:when test="${phone ==  null}">
+       				<input type="email" name="phone" id="ph" placeholder="-없이 작성하세요."  />
+       				<input type="button" id="phBtn" value="인증번호 보내기" ><br/>
+          			
+       			</c:when>
+       			
+       			<c:otherwise>
+       				<input type="text" name="pcer" id="send" placeholder="인증번호를 입력해주세요"  >
+          			<input type="submit" id="sub" value="인증하기" >
+       			</c:otherwise>
+       		</c:choose>
+       		</form>
         <!-- #tab3 -->
     </div>
     <!-- .tab_container -->

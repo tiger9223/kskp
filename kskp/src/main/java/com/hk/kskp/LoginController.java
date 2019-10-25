@@ -51,46 +51,78 @@ public class LoginController {
 	@Autowired
 	private ILoginService LoginService;
 	
-	@RequestMapping(value = "/emailcerform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String emailcerform(HttpServletRequest request) {
-		logger.info("일반회원가입 폼으로 이동");
+	@RequestMapping(value = "/emailce11rform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String emailc11erform(HttpServletRequest request) {
+		logger.info("이메일,핸드폰 인증 폼으로 이동");
 		HttpSession session = request.getSession();
 		session.removeAttribute("keyCode");
+		session.removeAttribute("key");
+		return "emailcert";
+	}
+	@RequestMapping(value = "/emailcerform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String emailcerform(HttpSession session, MembersDto dto,Model model) {
+		logger.info("이메일,핸드폰 인증 폼으로 이동");
+		session.setAttribute("dto", dto);
+		return "emailcert";
+	}
+	@RequestMapping(value = "/minsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuserform(HttpServletRequest request) {
+		logger.info("일반회원가입 폼으로 이동");
+		return "mSignup";
+	}
+	@RequestMapping(value = "/sendphone.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String sendphone(HttpSession session,Model model, String phone) {
+		logger.info("핸드폰 인증으로 이동");
+		String key = ExampleSend.sendMessege(phone);
+		session.setAttribute("key", key);
+		model.addAttribute("phone", phone);
 		return "emailcert";
 	}
 	
-	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String gInsertUserForm() {
-		logger.info("가이드회원가입 폼으로 이동");
-		return "gSignup";
-	}
-	
-	@RequestMapping(value = "/minsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String minsertuserform( HttpServletResponse response,HttpServletRequest request,Locale locale,MembersDto dto,Model model, String email, String cer) throws IOException {
+	@RequestMapping(value = "/minsertuser1.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuser1(HttpSession session,Locale locale,Model model, String phone, String pcer) throws IOException {
 		logger.info("일반회원 회원가입", locale);
-		HttpSession session = request.getSession();
+		String a = (String)session.getAttribute("key");
+		MembersDto dto=(MembersDto)session.getAttribute("dto");
+		dto.setM_phone(phone);
+		if(pcer.equals(a)) {
+			session.removeAttribute("key");
+			boolean isS=LoginService.minsertUser1(dto);
+			if(isS) {
+			session.removeAttribute("dto");
+			}
+			return "main";
+			
+		}else {
+			model.addAttribute("phone", phone);
+			return "emailcert";
+			}
+	}
+	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuser(HttpSession session,Locale locale,Model model, String email, String ecer) throws IOException {
+		logger.info("일반회원 회원가입", locale);
 		String a = (String)session.getAttribute("keyCode");
-		if(cer.equals(a)) {
-			model.addAttribute("email", email);
+		MembersDto dto=(MembersDto)session.getAttribute("dto");
+		if(ecer.equals(a)) {
 			session.removeAttribute("keyCode");
-			return "mSignup";
+			boolean isS=LoginService.mInsertUser(dto);
+			if(isS) {
+			session.removeAttribute("dto");
+			}
+			return "main";
+			
 		}else {
 			model.addAttribute("email", email);
 			return "emailcert";
 			}
 	
 	}
-	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUser(Locale locale,MembersDto dto,Model model) {
-		logger.info("일반회원 회원가입", locale);
-		boolean isS=LoginService.mInsertUser(dto);
-		if(isS) {
-			return "login";
-		}else {
-			System.out.println("실패");
-			return "login";
-		}
+	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String gInsertUserForm() {
+		logger.info("가이드회원가입 폼으로 이동");
+		return "gSignup";
 	}
+	
 	
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUser(Locale locale,GuideDto dto) {
@@ -201,7 +233,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/sendemail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String sendphone(Model model, String phone,HttpSession session, String email, MembersDto dto) throws Exception {
+	public String sendphone(Model model, String phone,HttpSession session, String email) throws Exception {
 		logger.info("이메일 인증번호 보내기");
 		String keyCode = FindUtil.createKey();
 		session.setAttribute("keyCode",keyCode);
@@ -215,7 +247,6 @@ public class LoginController {
 		
 		MailUtil.sendMail(email, subject, msg);
 		model.addAttribute("email", email);
-		model.addAttribute("dto", dto);
 		return "emailcert";
 	}
 

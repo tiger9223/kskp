@@ -10,23 +10,26 @@
 </head>
 <body>
 
-<form action="sendletter" method="post">
+<form action="sendletter.do" method="post">
 <p>보내는 사람 : 
 	<c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
-		${ldto.m_name}
+		<input type="hidden" name="l_sender" value="${ldto.m_email}">
+		${ldto.m_email}
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
-		${ldto.m_name}
+		<input type="hidden" name="l_sender" value="${ldto.m_email}">
+		${ldto.m_email}
 	</c:when>
 	<c:otherwise>
-		${ldto.gu_name}
+		<input type="hidden" name="l_sender" value="${ldto1.gu_email}">
+		${ldto1.gu_email}
 	</c:otherwise>
 	</c:choose></p>
-<p>받는 사람 : <input type="text" name="m_reciver" value="받는 사람">
-<p>제목 : <input type="text" name="l_title" value="제목"></p>
-<p>내용 : <textarea col="30" row="3" name="l_conts"></textarea></p>
-<input type="submit" value="보내기"><input tpye="button" value="취소">
+<p>받는 사람 : <input type="text" name="l_receiver" placeholder="상대방이메일을 입력하세요">
+<p>제목 : <input type="text" name="l_title" placeholder="제목을 입력하세요"></p>
+<p>내용 : <textarea col="30" row="3" name="l_conts" placeholder="내용을 입력하세요"></textarea></p>
+<input type="submit" value="보내기"><button value="취소">취소</button> 
 </form>
 </body>
 </html>
