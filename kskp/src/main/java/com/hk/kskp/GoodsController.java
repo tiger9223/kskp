@@ -30,11 +30,15 @@ public class GoodsController {
 	@Autowired
 	private IGoodsService GoodsService;
 	
+	@RequestMapping(value = "/mypageform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String mInsertUserForm() {
+		logger.info("마이페이지 폼으로 이동");
+		return "mypage";
+	}
+	
 	@RequestMapping(value = "/mypage.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUserForm(Locale locale, int gu_seq, Model model) {
+	public String mInsertUserForm(Locale locale, Model model) {
 		logger.info("마이페이지로 이동", locale);
-		//GuideDto dto = LoginService.gUserInfo(gu_seq);
-		//model.addAttribute("dto", dto);
 		return "mypage";
 	}
 	
@@ -43,8 +47,15 @@ public class GoodsController {
 		logger.info("상품관리로 이동", locale);
 		List<GoodsDto> list = GoodsService.guideGoods(dto.getGu_seq());
 		model.addAttribute("list", list);
+		System.out.println(list);
 		return "goodspage";
 	}
 
+	@RequestMapping(value = "/insertgoodsform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertGoodsForm(Locale locale) {
+		logger.info("상품관리로 이동", locale);
+		return "insertgoodsform";
+	}
+	
 }//end
 
