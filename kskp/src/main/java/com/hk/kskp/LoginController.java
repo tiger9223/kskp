@@ -91,7 +91,7 @@ public class LoginController {
 			if(isS) {
 			session.removeAttribute("dto");
 			}
-			return "main";
+			return "login";
 			
 		}else {
 			model.addAttribute("phone", phone);
@@ -109,7 +109,7 @@ public class LoginController {
 			if(isS) {
 			session.removeAttribute("dto");
 			}
-			return "main";
+			return "login";
 			
 		}else {
 			model.addAttribute("email", email);
