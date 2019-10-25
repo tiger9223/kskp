@@ -51,6 +51,8 @@
 <c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
 		<a href="muserinfo.do?seq=${ldto.m_seq}">내 정보보기</a>
+		<a href="sendLetterform.do">쪽지보내기</a>
+			<a href="letterlist.do">쪽지보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
@@ -63,7 +65,7 @@
 		<a href="guserinfo.do?seq=${ldto1.gu_seq}">내 정보보기</a>
 		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
 		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">내 정보보기</a>
-
+		<a href="sendLetterform.do">쪽지보내기</a>
 
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
