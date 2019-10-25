@@ -103,7 +103,7 @@ $(function () {
 <body>
 <div id="container">
     <ul class="tabs">
-        <li class="active" rel="tab1">이메일 인증</li>
+        <li class="active" rel="tab1">이메일 인증1</li>
         <li rel="tab2">핸드폰 인증</li>
     </ul>
     <div class="tab_container">

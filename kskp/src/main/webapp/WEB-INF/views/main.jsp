@@ -46,6 +46,9 @@
 	margin-right: auto;
 }
 </style>
+<script type="text/javascript">
+alert(${ldto});
+</script>
 </head>
 <body>
 <c:choose>
