@@ -26,8 +26,8 @@ public class GoodsService implements IGoodsService{
 	}
 	
 	@Override
-	public List<GoodsDto> guideGoods(int g_seq) {
-		return GoodsDao.guideGoods(g_seq);
+	public List<GoodsDto> guideGoods(int gu_seq) {
+		return GoodsDao.guideGoods(gu_seq);
 	}
 
 	@Override

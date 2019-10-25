@@ -8,7 +8,7 @@ import com.hk.kskp.dtos.LetterDto;
 public interface ILetterDao {
 
 	//쪽지보내기
-	public boolean sendLetter(LetterDto dto);
+	public boolean sendLetter(String l_sender,String l_reciver,String l_title,String l_conts);
 	
 	//전체쪽지보기
 	public List<LetterDto> letterList(); 

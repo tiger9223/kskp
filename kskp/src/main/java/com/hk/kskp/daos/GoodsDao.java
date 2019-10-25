@@ -33,8 +33,8 @@ public class GoodsDao implements IGoodsDao{
 	}
 
 	@Override//가이드 상품관리 조회
-	public List<GoodsDto> guideGoods(int g_seq) {
-		return sqlSession.selectList(nameSpace+"guidegoods",g_seq);
+	public List<GoodsDto> guideGoods(int gu_seq) {
+		return sqlSession.selectList(nameSpace+"guidegoods",gu_seq);
 	}
 	
 	@Override//상품 상세조회
