@@ -33,7 +33,7 @@
 <p>이름</p>
 <input type="text" name="m_name" placeholder="id" /><br/>
 <p>이메일</p>
-<input type="text" name="m_email" placeholder="email" /><br/>
+<input type="text" name="m_email" value="${email}" readonly="readonly" /><br/>
 <p>비밀번호</p>
 <input type="password" name="m_pw" placeholder="pw" /><br/>
 <p>비밀번호 확인</p>
