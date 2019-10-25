@@ -114,7 +114,7 @@ $(function () {
        			</c:when>
        			
        			<c:otherwise>
-       				<input type="text" name="cer" id="send" placeholder="인증번호를 입력해주세요"  >
+       				<input type="text" name="ecer" id="send" placeholder="인증번호를 입력해주세요"  >
           			<input type="submit" id="sub" value="인증하기" >
        			</c:otherwise>
        		</c:choose>
@@ -133,7 +133,7 @@ $(function () {
        			</c:when>
        			
        			<c:otherwise>
-       				<input type="text" name="cer" id="send" placeholder="인증번호를 입력해주세요"  >
+       				<input type="text" name="pcer" id="send" placeholder="인증번호를 입력해주세요"  >
           			<input type="submit" id="sub" value="인증하기" >
        			</c:otherwise>
        		</c:choose>

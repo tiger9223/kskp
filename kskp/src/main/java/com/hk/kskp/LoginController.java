@@ -72,17 +72,19 @@ public class LoginController {
 	
 
 	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String minsertuser( HttpServletResponse response,HttpServletRequest request,Locale locale,Model model, String email, String cer) throws IOException {
+	public String minsertuser(HttpSession session,Locale locale,Model model, String email, String ecer) throws IOException {
 		logger.info("일반회원 회원가입", locale);
-		HttpSession session = request.getSession();
 		String a = (String)session.getAttribute("keyCode");
 		MembersDto dto=(MembersDto)session.getAttribute("dto");
-		if(cer.equals(a)) {
+		if(ecer.equals(a)) {
 			model.addAttribute("email", email);
 			session.removeAttribute("keyCode");
 			boolean isS=LoginService.mInsertUser(dto);
+			if(isS) {
 			session.removeAttribute("dto");
+			}
 			return "mSignup";
+			
 		}else {
 			model.addAttribute("email", email);
 			return "emailcert";
@@ -95,17 +97,6 @@ public class LoginController {
 		return "gSignup";
 	}
 	
-	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUser(Locale locale,MembersDto dto,Model model) {
-		logger.info("일반회원 회원가입", locale);
-		boolean isS=LoginService.mInsertUser(dto);
-		if(isS) {
-			return "login";
-		}else {
-			System.out.println("실패");
-			return "login";
-		}
-	}
 	
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUser(Locale locale,GuideDto dto) {
