@@ -1,12 +1,14 @@
 package com.hk.kskp;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -27,6 +29,7 @@ import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
 import com.hk.kskp.utils.FindUtil;
+import com.hk.kskp.utils.MailUtil;
 
 
 
@@ -48,12 +51,44 @@ public class LoginController {
 	@Autowired
 	private ILoginService LoginService;
 	
+	@RequestMapping(value = "/emailce11rform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String emailc11erform(HttpServletRequest request) {
+		logger.info("이메일,핸드폰 인증 폼으로 이동");
+		HttpSession session = request.getSession();
+		session.removeAttribute("keyCode");
+		return "emailcert";
+	}
+	@RequestMapping(value = "/emailcerform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String emailcerform(HttpSession session, MembersDto dto,Model model) {
+		logger.info("이메일,핸드폰 인증 폼으로 이동");
+		session.setAttribute("dto", dto);
+		return "emailcert";
+	}
 	@RequestMapping(value = "/minsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUserForm() {
+	public String minsertuserform(HttpServletRequest request) {
 		logger.info("일반회원가입 폼으로 이동");
 		return "mSignup";
 	}
 	
+
+	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuser( HttpServletResponse response,HttpServletRequest request,Locale locale,Model model, String email, String cer) throws IOException {
+		logger.info("일반회원 회원가입", locale);
+		HttpSession session = request.getSession();
+		String a = (String)session.getAttribute("keyCode");
+		MembersDto dto=(MembersDto)session.getAttribute("dto");
+		if(cer.equals(a)) {
+			model.addAttribute("email", email);
+			session.removeAttribute("keyCode");
+			boolean isS=LoginService.mInsertUser(dto);
+			session.removeAttribute("dto");
+			return "mSignup";
+		}else {
+			model.addAttribute("email", email);
+			return "emailcert";
+			}
+	
+	}
 	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUserForm() {
 		logger.info("가이드회원가입 폼으로 이동");
@@ -63,8 +98,13 @@ public class LoginController {
 	@RequestMapping(value = "/minsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String mInsertUser(Locale locale,MembersDto dto,Model model) {
 		logger.info("일반회원 회원가입", locale);
-		model.addAttribute("dto", dto);
-		return "emailcert";
+		boolean isS=LoginService.mInsertUser(dto);
+		if(isS) {
+			return "login";
+		}else {
+			System.out.println("실패");
+			return "login";
+		}
 	}
 	
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -175,16 +215,24 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping(value = "/sendphone.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String sendphone(Model model, String phone,HttpSession session) {
-		logger.info("핸드폰 인증번호 보내기");
+	@RequestMapping(value = "/sendemail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String sendphone(Model model, String phone,HttpSession session, String email) throws Exception {
+		logger.info("이메일 인증번호 보내기");
 		String keyCode = FindUtil.createKey();
 		session.setAttribute("keyCode",keyCode);
+	
+		String subject = "SWAG 이메일 인증번호 입니다";
+		String msg="";
+		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+		msg += "<h3 style='color: blue;'>이메일 인증코드입니다.</h3>";
+		msg += "<div style='font-size: 130%'>";
+		msg += keyCode + "</strong> 를 입력해주세요.</div><br/>";
 		
-		return null;
+		MailUtil.sendMail(email, subject, msg);
+		model.addAttribute("email", email);
+		return "emailcert";
 	}
-	
-	
+
 	
 	
 
@@ -233,5 +281,4 @@ public class LoginController {
 	
 	}
 
-	
 }//end
