@@ -78,14 +78,18 @@ public class LoginDao implements ILoginDao {
 	}
 	@Override
 	public List<MembersDto> getMuserlist() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(nameSpace+"getMUserStatus");
 	}
+	
 	@Override
-	public List<GuideDto> getguserlist() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<GuideDto> getGuserlist() {
+		return sqlSession.selectList(nameSpace+"getGUserStatus");
 	}
+
+
+	
+	
+	
 	}
 
 
