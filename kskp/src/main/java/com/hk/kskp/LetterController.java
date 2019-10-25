@@ -24,13 +24,10 @@ import com.hk.kskp.service.LetterService;
 public class LetterController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LetterController.class);
-<<<<<<< HEAD
 
-=======
-	
 	@Autowired
 	private ILetterService LetterService;
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
+
 	
 	@RequestMapping(value="/sendLetterform.do",method = RequestMethod.GET)
 	public String sendLetterform() {
