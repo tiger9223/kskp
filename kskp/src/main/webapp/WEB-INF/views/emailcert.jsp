@@ -95,8 +95,8 @@ $(function () {
 <body>
 <div id="container">
     <ul class="tabs">
-        <li class="active" rel="tab1">이메일인증</li>
-        <li rel="tab2">핸드폰인증</li>
+        <li class="active" rel="tab1">이메일 인증</li>
+        <li rel="tab2">핸드폰 인증</li>
     </ul>
     <div class="tab_container">
         <div id="tab1" class="tab_content">
