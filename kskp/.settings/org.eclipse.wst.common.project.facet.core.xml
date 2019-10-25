@@ -3,6 +3,12 @@
   <runtime name="Apache Tomcat v8.5"/>
   <fixed facet="jst.web"/>
   <fixed facet="jst.java"/>
-  <installed facet="jst.web" version="2.5"/>
   <installed facet="jst.java" version="1.8"/>
+<<<<<<< HEAD
+  <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="jst.web" version="3.1"/>
+=======
+  <installed facet="jst.web" version="3.1"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+>>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 </faceted-project>

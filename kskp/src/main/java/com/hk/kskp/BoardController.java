@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
 import com.hk.kskp.service.IBoardService;
@@ -32,22 +33,7 @@ public class BoardController {
 	
 	//클라이언트에서 home.do라고 get방식으로 요청하면 home()메서드 실행
 	//@RequestMapping @(어노테이션)
-	
 
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		//Model객체:requestScope와 같은 역할을 함
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
-	}
 	
 	@RequestMapping(value="/nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String nboardlist(Model model) {
@@ -101,7 +87,6 @@ public class BoardController {
 	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String qboardList(Model model) {
 		logger.info("질답 목록보기");
-		System.out.println("---------333--여기--------------");
 		List<QaDto> list = BoardService.qgetAllList();
 		System.out.println(list);
 		model.addAttribute("list",list);
@@ -109,15 +94,15 @@ public class BoardController {
 		return "qboardlist";
 	}
 		
-	@RequestMapping(value="/qinsertform.do",method = RequestMethod.GET)
+	@RequestMapping(value="/qinsertform.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String qinsertForm() {
 		logger.info("질답폼으로 이동");
 		return "qinsertboard";
 	}
 	@RequestMapping(value="/qinsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public String qinsertBoard(Model model,QaDto dto) {
-		
+	public String qinsertBoard(Model model,QaDto dto) {		
 		logger.info("질답 글 추가하기");
+		System.out.println(dto);
 		boolean isS = BoardService.qinsertBoard(dto);
 		if(isS) {
 			return "redirect:qboardlist.do";
@@ -125,10 +110,35 @@ public class BoardController {
 			return "qinsertboard";
 	}
 	
+	@RequestMapping(value="/qboarddetail.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String qboardDetail(Model model,QaDto dto) {		
+		logger.info("게시글 상세보기");
+		System.out.println(dto);
+		QaDto qdto = BoardService.qgetBoard(dto.getQ_seq());
+		model.addAttribute("qdto",qdto);
+		return "qboarddetail";
+	}
 	
 	
+	@RequestMapping(value="/qboardupdateform.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String qboardupdateForm(Model model, int seq) {
+		logger.info("게시글 수정하기폼으로 이동");
+		QaDto qdto=BoardService.qgetBoard(seq);
+		model.addAttribute("qdto",qdto);
+		return "qboardupdate";
+	}
 	
-	
+	@RequestMapping(value="qboardupdate.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String qboardupDate(Model model,QaDto dto) {
+		logger.info("게시글 수정하기");
+		boolean isS=BoardService.qupdateBoard(dto);
+		if(isS) {
+			return "redirect:qboarddetail.do?QaDto dto";
+		}else {
+			return "redirect:qboardlist.do?QaDto dto";
+		}
+	}
+			
 	
 	
 }//class

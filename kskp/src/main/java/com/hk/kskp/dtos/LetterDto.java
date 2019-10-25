@@ -30,6 +30,15 @@ public class LetterDto {
 		this.l_conts = l_conts;
 	}
 
+	
+	public LetterDto(String l_sender, String l_receiver, String l_title, String l_conts) {
+		super();
+		this.l_sender = l_sender;
+		this.l_receiver = l_receiver;
+		this.l_title = l_title;
+		this.l_conts = l_conts;
+	}
+
 	public int getL_seq() {
 		return l_seq;
 	}

@@ -1,5 +1,5 @@
-
-<%@page import="com.hk.kskp.dtos.NoticeDto"%>
+<%@page import="com.hk.kskp.dtos.QaDto"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.sql.DriverManager"%>
@@ -7,12 +7,16 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
-
 <%@page import="java.util.List"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%request.setCharacterEncoding("utf-8"); %>
-<%response.setContentType("text/html; charset=UTF-8"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<%
+	response.setContentType("text/html; charset=UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,68 +35,45 @@
 	}
 </script>
 </head>
-<%!   //메서드 선언부
-	public String getToDate(Date regDate){
-		String r="";
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		r=sdf.format(regDate);
-		return r;
-	}
-%>
-
-<%
-// 	Object obj=request.getAttribute("list");
-	List<NoticeDto> list =(List<NoticeDto>)request.getAttribute("list"); 
-%>
 <body>
-<h1>질문과 답변</h1>
-<form action="HkController.do" method="post">
-<input type="hidden" name="command" value="muldel"/>
-<table border="1">
-	<col width="50px">
-	<col width="50px">
-	<col width="100px">
-	<col width="300px">
-	<col width="100px">
-	<col width="120px">
-	<tr>
-		<th><input type="checkbox" onclick="allSel(this.checked)" /></th>
-		<th>번호</th>
-		<th>작성자</th>
-		<th>제 목</th>
-		<th>작성날짜</th>
-		<th>답변여부</th>
-	</tr>
-	<% 
-		if(list==null||list.size()==0){
-			%>
+	<h1>질문과 답변</h1>
+	<form action="HkController.do" method="post">
+		<input type="hidden" name="command" value="muldel" />
+		<table border="1">
+			<col width="50px">
+			<col width="50px">
+			<col width="300px">
+			<col width="100px">
 			<tr>
-				<td colspan="6" style="text-align: center;">---작성된 글이 없습니다.---</td>
+				<th>번호</th>
+				<th>작성자</th>
+				<th>제 목</th>
+				<th>작성일</th>
 			</tr>
-			<%
-		}else{
-			//list의 길이만큼 반복시킨다
-			for(int i=0;i<list.size();i++){
-				NoticeDto dto=list.get(i); //list[dto,dto,dto,dto]
-				%>
-				<tr>
-					<td><input type="checkbox" name="chk" value="<%=dto.getN_seq()%>"/></td>
-					<td><%=dto.getN_seq()%></td>
-					<td><a href="qinsertboard.do=<%=dto.getN_seq()%>"><%=dto.getN_title()%></a></td>
-					<td><%=getToDate(dto.getN_regdate())%></td>
-				</tr>
-				<%		
-			}
-		}
-	%>
-	<tr>
-		<td colspan="6">
-			<a href="qinsertform.do">글추가</a>
-			<input type="submit" value="삭제"/>
-		</td>
-	</tr>
-</table>
-</form>
+			<c:choose>
+					<c:when test="${empty list}">
+					<tr>
+						<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.q_seq}</td>
+							<td>${dto.m_name}</td>
+							<td><a href="qboarddetail.do?q_seq=${dto.q_seq}">${dto.q_title}</a></td>
+							<td><f:formatDate value="${dto.q_regdate}" pattern="yyyy-MM-dd"/></td>
+						</tr>
+						</c:forEach>
+					</c:otherwise>
+			</c:choose>		
+						<tr>
+							<td colspan="4"><a href="qinsertform.do">글추가</a>
+						 	<input type="submit" value="삭제" /></td>
+						</tr>
+						
+		</table>
+	</form>
 </body>
 </html>
 

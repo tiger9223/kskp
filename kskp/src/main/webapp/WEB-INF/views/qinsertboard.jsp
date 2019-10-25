@@ -5,21 +5,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>질문과 답변 폼</title>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<title>글추가하기폼</title>
 </head>
 <body>
-<h1>질문하기</h1>
+<h1>글추가하기</h1>
 <form action="qinsertboard.do" method="post">
-<input type = "hidden" name="m_seq" value="M_SEQ">
-<input type = "hidden" name="" value="">
+<input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
 	<table border="1">
 		<col width="100px"><col width="300px">
+		<tr>
+			<th>아이디</th>
+         <td>${ldto.m_email}</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td>${ldto.m_name}</td>
+		</tr>
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="q_title" required="required"/></td>
 		</tr>
 		<tr>
-			<th>글내용</th>
+			<th>내용</th>
 			<td><textarea rows="10" cols="60" name="q_conts" required="required"></textarea></td>
 		</tr>
 		<tr>
