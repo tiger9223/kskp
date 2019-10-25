@@ -7,8 +7,10 @@ import com.hk.kskp.dtos.MembersDto;
 
 public interface ILoginDao {
 
-	//일반회원 회원가입
+	//이메일인증 일반회원 회원가입
 	public boolean mInsertUser(MembersDto dto);
+	//핸드폰인증 일반회원 가입
+	public boolean minsertUser1(MembersDto dto);
 	//네이버 로그인 데이터
 	public boolean naverUser(String m_email,String m_name);
 	//가이드 회원가입
@@ -30,7 +32,7 @@ public interface ILoginDao {
 	//일반 회원 조회
 	public List<MembersDto> getMuserlist();
 	//가이드 회원 조회
-	public List<GuideDto> getguserlist();
+	public List<GuideDto> getGuserlist();
 	
 //	//사용자 상세조회
 //	public LoginDto getUser(String rid);

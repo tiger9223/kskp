@@ -28,6 +28,11 @@ public class LoginDao implements ILoginDao {
 		return count > 0 ? true:false;
 	}  
 	@Override
+	public boolean minsertUser1(MembersDto dto) {
+		int count = sqlSession.insert(nameSpace+"minsertUser1", dto);
+		return count > 0 ? true:false;
+	}  
+	@Override
 	public boolean naverUser(String m_email,String m_name ) {
 		Map<String, String> map = new HashMap<>();
 		map.put("m_email",m_email);
@@ -78,14 +83,18 @@ public class LoginDao implements ILoginDao {
 	}
 	@Override
 	public List<MembersDto> getMuserlist() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(nameSpace+"getMUserStatus");
 	}
+	
 	@Override
-	public List<GuideDto> getguserlist() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<GuideDto> getGuserlist() {
+		return sqlSession.selectList(nameSpace+"getGUserStatus");
 	}
+
+
+	
+	
+	
 	}
 
 

@@ -49,15 +49,13 @@
 </style>
 </head>
 <body>
-<h1>공지사항</h1>
+<h1>상품관리</h1>
 <table border="1">
    <col width="50px">
-   <col width="50px">
+   <col width="100px">
    <col width="300px">
    <col width="100px">
-   <col width="100px">
    <tr>
-      <th><input type="checkbox" onclick="allSel(this.checked)" /></th>
       <th>지역</th>   
       <th>등록일</th>
       <th>상품명</th>
@@ -72,22 +70,17 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <tr>
-               <td>${dto.g_area}"</td>
+               <td>${dto.g_area}</td>
                <td>${dto.g_date}</td>
                <td>${dto.g_name}</td>
-               <td>${dto.g_res}"</td> 
+               <td>${dto.g_res}</td> 
             </tr>   
             </c:forEach>
-            <c:choose>
-                  <c:when test="${ldto.m_status eq 'A'}">
                   <tr>
                      <td colspan="6">
-                        <a href="ninsertform.do">글추가</a>
-                     <input type="submit" value="삭제"/>
+                        <a href="insertgoodsform.do">상품등록</a>
                      </td>
                   </tr>
-                  </c:when>
-               </c:choose>   
          </c:otherwise>
       </c:choose>
 </table>

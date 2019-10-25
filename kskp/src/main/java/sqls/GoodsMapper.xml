@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!--  -->
 	<select id="guidegoods" parameterType="GoodsDto" resultType="GoodsDto">
-		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE
-		FROM GOODS WHERE G_SEQ=#{g_seq} ORDER BY SYSDATE DESC
+		SELECT *
+		FROM GOODS WHERE GU_SEQ=#{gu_seq} ORDER BY SYSDATE DESC
 	</select>
 	<!-- 상품등록 -->
 	<insert id="insertgoods" parameterType="GoodsDto">
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		G_CCONTS,G_DATE,G_REGDATE) 
 		VALUES
 		(GOODS_SEQ.NEXTVAL ,#{gu_seq}, #{g_area},
-		#{g_lan},#{g_name},#{g_conts},
+		'한국어',#{g_name},#{g_conts},
 		0,#{g_img1},#{g_img2},
 		#{g_img3},#{g_img4},#{g_price},
 		#{g_people},0,#{g_oneline},
