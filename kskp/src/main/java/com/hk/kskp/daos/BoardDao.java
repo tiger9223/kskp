@@ -48,6 +48,12 @@ public class BoardDao implements IBoardDao	{
 	}
 
 	@Override
+	public boolean readCount(int seq) {
+		int count = sqlSession.update(nameSpace+"readcount", seq);
+		return count>0?true:false;
+	}
+	
+	@Override
 	public boolean ndelBoard(int seq) {
 		int count = sqlSession.delete(nameSpace+"ndelboard", seq);
 		return count>0?true:false;
@@ -80,5 +86,7 @@ public class BoardDao implements IBoardDao	{
 		int count = sqlSession.delete(nameSpace+"qdelQboard", seq);
 		return false;
 	}
+
+	
 
 }

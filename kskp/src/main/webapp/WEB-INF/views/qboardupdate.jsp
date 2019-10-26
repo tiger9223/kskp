@@ -51,7 +51,7 @@
 <script type="text/javascript">
 //글삭제하기
 function delBoard(seq){
-	location.href="qdelBoard.do?seq="+q_seq;
+	location.href="qdelBoard.do?seq="+q_seq;  
 }
 //글수정하기
 function updateBoard(q_seq){

@@ -43,6 +43,11 @@ public class BoardService implements IBoardService{
 	public boolean nupdateBoard(NoticeDto dto) {
 		return boardDao.nupdateBoard(dto);
 	}
+	
+	@Override
+	public boolean readCount(int seq) {
+		return boardDao.readCount(seq);
+	}
 
 	@Override
 	public boolean ndelBoard(int seq) {
@@ -73,5 +78,7 @@ public class BoardService implements IBoardService{
 	public boolean qdelBoard(int seq) {
 		return boardDao.qdelBoard(seq);
 	}
+
+	
 
 }

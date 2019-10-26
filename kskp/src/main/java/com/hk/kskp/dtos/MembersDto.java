@@ -8,6 +8,7 @@ public class MembersDto {
 	private String m_pw;
 	private String m_status;
 	private String m_name;
+	private String m_phone;
 	private Date m_regdate;
 	private String m_acc;
 	
@@ -97,6 +98,14 @@ public class MembersDto {
 	public String toString() {
 		return "MembersDto [m_seq=" + m_seq + ", m_pw=" + m_pw + ", m_status=" + m_status + ", m_name=" + m_name
 				+ ", m_email=" + m_email + ", m_regdate=" + m_regdate + ", m_acc=" + m_acc + "]";
+	}
+
+	public String getM_phone() {
+		return m_phone;
+	}
+
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
 	}
 	
 	

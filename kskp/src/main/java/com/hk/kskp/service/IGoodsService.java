@@ -17,7 +17,7 @@ public interface IGoodsService {
 	public List<GoodsDto> getAreaGoods(String g_area);
 	
 	//가이드 상품관리 조회
-	public List<GoodsDto> guideGoods(int g_seq);
+	public List<GoodsDto> guideGoods(int gu_seq);
 	
 	//상품 상세조회
 	public GoodsDto getGoods(int g_seq);

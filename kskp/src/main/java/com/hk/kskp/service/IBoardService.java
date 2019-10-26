@@ -19,6 +19,9 @@ public interface IBoardService {
 	//공지게시판 글 수정하기
 	public boolean nupdateBoard(NoticeDto dto);
 	
+	//공지게시판 조회수 올리기
+	public boolean readCount(int seq);
+	
 	//공지게시판 글 지우기
 	public boolean ndelBoard(int seq);
 	
