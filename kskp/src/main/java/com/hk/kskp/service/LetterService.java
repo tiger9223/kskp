@@ -16,13 +16,13 @@ public class LetterService implements ILetterService {
 	private ILetterDao LetterDao;
 	
 	@Override
-	public boolean sendLetter(String l_sender,String l_receiver,String l_title,String l_conts) {
-		return LetterDao.sendLetter(l_sender, l_receiver, l_title, l_conts);
+	public boolean sendLetter(LetterDto dto) {
+		return LetterDao.sendLetter(dto);
 	}
 
 	@Override
-	public List<LetterDto> letterList() {
-		return LetterDao.letterList();
+	public List<LetterDto> letterList(String l_receiver) {
+		return LetterDao.letterList(l_receiver);
 	}
 
 	@Override
@@ -33,6 +33,11 @@ public class LetterService implements ILetterService {
 	@Override
 	public boolean delLetter(int seq) {
 		return LetterDao.delLetter(seq);
+	}
+
+	@Override
+	public boolean muldel(String[] seqs) {
+		return LetterDao.muldel(seqs);
 	}
 
 }

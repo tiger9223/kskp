@@ -7,9 +7,18 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title></title>
+<script type="text/javascript">
+	function allSel(ele){
+		var chks=document.getElementsByName("chk");
+		for(var i=0;i<chks.length;i++){
+			chks[i].checked=ele; 
+		}
+	}
+</script>
 </head>
 <body>
 <form action="muldel.do" method="post">
+<input type="hidden" name="l_receiver" value="${dto.l_receiver}">
 	<table border="1">
 		<col width="50px">
 		<col width="50px">
@@ -33,9 +42,9 @@
 				<c:forEach items="${list}" var="dto">
 		<tr>
 			<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
+			<td>${dto.l_seq}</td>
 			<td>${dto.l_sender}</td>
-			<td>${dto.l_title}</td>
-			<td><a href="letterdetail.do?seq=${dto.l_seq}">${dto.l_title}</a></td>
+			<td><a href="letterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
 			<td>${dto.l_regdate}</td>
 		</tr>
 	</c:forEach>
