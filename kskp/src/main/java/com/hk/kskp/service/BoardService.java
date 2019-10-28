@@ -53,6 +53,11 @@ public class BoardService implements IBoardService{
 	public boolean ndelBoard(int seq) {
 		return boardDao.ndelBoard(seq);
 	}
+	
+	@Override
+	public boolean nmuldel(String[] seqs) {
+		return boardDao.muldel(seqs);
+	}
 
 	@Override
 	public List<QaDto> qgetAllList() {
@@ -77,6 +82,12 @@ public class BoardService implements IBoardService{
 	@Override
 	public boolean qdelBoard(int seq) {
 		return boardDao.qdelBoard(seq);
+	}
+
+	@Override
+	public boolean muldel(String[] chk) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

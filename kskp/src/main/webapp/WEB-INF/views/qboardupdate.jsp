@@ -12,10 +12,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 상세보기</title>
+<title>게시글 수정하기</title>
 </head>
 <body>
-<h1>게시글 상세보기</h1>
+<h1>게시글 수정하기</h1>
+<form action="qboardupdate.do" method="post">
+<input type="hidden" name="q_seq" value="${qdto.q_seq}">
 <table border="1">
 	<tr>
 		<th>번호</th>
@@ -43,21 +45,11 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<button onclick="updateBoard(${qdto.q_seq})">수정하기</button>
-			<button onclick="delBoard()">삭제</button>
+			<input type="submit" value="수정완료"/>
 		</td>
 	</tr>
 </table>
-<script type="text/javascript">
-//글삭제하기
-function delBoard(seq){
-	location.href="qdelBoard.do?seq="+q_seq;  
-}
-//글수정하기
-function updateBoard(q_seq){
-	location.href="qboardupdateform.do?seq="+q_seq;//get방식으로 파라미터 전송
-}
-</script>
+</form>
 </body>
 </html>
 

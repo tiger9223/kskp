@@ -69,7 +69,6 @@
 			</c:choose>		
 						<tr>
 							<td colspan="4"><a href="qinsertform.do">글추가</a>
-						 	<input type="submit" value="삭제" /></td>
 						</tr>
 						
 		</table>

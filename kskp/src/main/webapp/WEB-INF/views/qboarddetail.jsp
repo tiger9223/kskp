@@ -43,18 +43,18 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<button onclick="updateBoard(${qdto.q_seq})">수정</button>
-			<button onclick="delBoard()">삭제</button>
+			<button onclick="qupdateBoard(${qdto.q_seq})">수정</button>
+			<button onclick="qdelboard(${qdto.q_seq})">삭제</button>
 		</td>
 	</tr>
 </table>
 <script type="text/javascript">
 //글삭제하기
-function delBoard(seq){
-	location.href="qdelBoard.do?seq="+q_seq;
+function qdelboard(q_seq){
+	location.href="qdelboard.do?seq="+q_seq;
 }
 //글수정하기
-function updateBoard(q_seq){
+function qupdateBoard(q_seq){
 	location.href="qboardupdateform.do?seq="+q_seq;//get방식으로 파라미터 전송
 }
 </script>

@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="qupdateboard" parameterType="QaDto">
-		UPDATE QA SET TITLE=#{q_title}, Q_CONTS=#{q_conts}, REGDATE=SYSDATE
+		UPDATE QA SET Q_TITLE=#{q_title}, Q_CONTS=#{q_conts}, Q_REGDATE=SYSDATE
 		WHERE Q_SEQ=#{q_seq}
 	</update>
 	

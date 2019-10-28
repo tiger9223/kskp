@@ -40,6 +40,7 @@ public class BoardController {
 		logger.info("공지글목록으로 이동");
 		List<NoticeDto>list = BoardService.ngetAllList();
 		model.addAttribute("list",list);
+		
 		return "nboardlist";
 	}
 	
@@ -60,37 +61,58 @@ public class BoardController {
 			return "ninsertboard";
 	}
 	
-	@RequestMapping(value="Ngetboard.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String getNboard(Model model,NoticeDto dto) {
+	@RequestMapping(value="ngetboard.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String ngetBoard(Model model,NoticeDto dto) {
 		logger.info("공지게시글 상세보기");
 		NoticeDto dto1 = BoardService.ngetBoard(dto.getN_seq());
 		boolean isS =  BoardService.readCount(dto.getN_seq());
-		
 		if(isS) {
 			model.addAttribute("dto1",dto1);
 			return "nboarddetail";
 		}else {
 			return "nboarddetail";
 		}
+
 	}
-//	@RequestMapping(value="/insertform.do",method = RequestMethod.GET)
-//	public String insertForm() {
-//		logger.info("글쓰기 폼으로 이동");
-//		
-//		return "insertNboard";
-//	}
-//	@RequestMapping(value="updateNboard",method = {RequestMethod.POST,RequestMethod.GET})
-//	 public String updateNboard(Model model,NoticeDto dto) {
-//		logger.info("공지글 수정하기");
-//		boolean isS=boardService.updateNBoard()
+	@RequestMapping(value="nupdateboardform.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String nupdateBoardFrom(Model model,int seq) {
+		logger.info("공지게시글 수정하기폼으로 이동");
+		NoticeDto dto1 = BoardService.ngetBoard(seq);
+		model.addAttribute("dto",dto1);
+		return "nupdateboard";						
+	}
 	
+	@RequestMapping(value="nupdateboard.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String nupdateBoard(Model model,NoticeDto dto) {
+		logger.info("공지게시글 수정하기");
+		boolean isS = BoardService.nupdateBoard(dto);
+		if(isS){
+			return "nboardlist";			
+		}else {
+			return "nupdateboard";					
+	   }
+	}
+	@RequestMapping(value="nmeldel.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String nmulDel(Model model,String[] chk) {
+		logger.info("여러글 삭제");
+		boolean isS = BoardService.nmuldel(chk);
+		
+		if(isS) {
+			return "redirect:nboardlist.do";
+		}else {
+			return "redirect:nboardlist.do";
+	
+		}
+	}	
+				
+	// Q&A 게시판 
+				
 	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String qboardList(Model model) {
 		logger.info("질답 목록보기");
 		List<QaDto> list = BoardService.qgetAllList();
 		System.out.println(list);
 		model.addAttribute("list",list);
-		
 		return "qboardlist";
 	}
 		
@@ -116,6 +138,7 @@ public class BoardController {
 		System.out.println(dto);
 		QaDto qdto = BoardService.qgetBoard(dto.getQ_seq());
 		model.addAttribute("qdto",qdto);
+		System.out.println(qdto);
 		return "qboarddetail";
 	}
 	
@@ -133,9 +156,21 @@ public class BoardController {
 		logger.info("게시글 수정하기");
 		boolean isS=BoardService.qupdateBoard(dto);
 		if(isS) {
-			return "redirect:qboarddetail.do?QaDto dto";
+			return "redirect:qboardlist.do";
 		}else {
-			return "redirect:qboardlist.do?QaDto dto";
+			return "redirect:qboarddetail.do?q_seq="+dto.getQ_seq();
+		}
+	}
+	
+	
+	@RequestMapping(value="qdelboard.do",method= {RequestMethod.POST,RequestMethod.GET})
+	public String qdelBoard(Model model, int seq) {
+		logger.info("게시글 삭제하기");
+		boolean isS=BoardService.qdelBoard(seq);
+		if(isS) {
+			return "redirect:qboardlist.do";
+		}else {
+			return "redirect:qboardlist.do?seq=seq";
 		}
 	}
 			

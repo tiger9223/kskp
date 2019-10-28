@@ -1,7 +1,8 @@
 package com.hk.kskp.daos;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,14 @@ public class BoardDao implements IBoardDao	{
 		int count = sqlSession.delete(nameSpace+"ndelboard", seq);
 		return count>0?true:false;
 	}
+	
+	@Override
+	public boolean muldel(String[] seqs) {
+		Map<String, String[]>map=new HashMap<>();
+		map.put("seqs", seqs);
+		int count=sqlSession.delete(nameSpace+"muldel", map);
+		return count>0?true:false;
+	}
 
 	@Override
 	public List<QaDto> qgetAllList() {
@@ -78,13 +87,13 @@ public class BoardDao implements IBoardDao	{
 	@Override
 	public boolean qupdateBoard(QaDto dto) {
 		int count = sqlSession.update(nameSpace+"qupdateboard", dto);
-		return false;
+		return count>0?true:false;
 	}
 
 	@Override
 	public boolean qdelBoard(int seq) {
-		int count = sqlSession.delete(nameSpace+"qdelQboard", seq);
-		return false;
+		int count = sqlSession.delete(nameSpace+"qdelboard", seq);
+		return count>0?true:false;
 	}
 
 	

@@ -25,6 +25,9 @@ public interface IBoardService {
 	//공지게시판 글 지우기
 	public boolean ndelBoard(int seq);
 	
+	//글여러개 삭제하기: delete문 실행 --> 여러개가 실행
+	public boolean nmuldel(String[] seqs);
+	
 	//Q&A 글 전체보기
 	public List<QaDto> qgetAllList();
 	
@@ -39,6 +42,8 @@ public interface IBoardService {
 	
 	//Q&A 글 삭제하기
 	public boolean qdelBoard(int seq);
+
+	public boolean muldel(String[] chk);
 	
 	
 
