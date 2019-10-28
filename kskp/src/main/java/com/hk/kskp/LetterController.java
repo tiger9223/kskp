@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.kskp.dtos.LetterDto;
-import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.service.ILetterService;
 import com.hk.kskp.service.LetterService;
 
@@ -37,26 +36,59 @@ public class LetterController {
 		return "sendLetter";
 	}
 	
+	
 	@RequestMapping(value="sendletter.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String sendLetter(Model model,String l_sender,String l_receiver,String l_title,String l_conts) {
+	 public String sendLetter(Model model,LetterDto dto) {
 		logger.info("쪽지쓰기");
-		System.out.println(l_sender);
-		boolean isS = LetterService.sendLetter(l_sender, l_receiver, l_title, l_conts);
+		boolean isS = LetterService.sendLetter(dto);
 		if(isS) {
-			return "redirect:letterlist.do";
+			return "main";
 		}
 			return "letterlist";
 		}
 	
 	
 	@RequestMapping(value="/letterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String nboardlist(Model model) {
+	 public String nboardlist(Model model,LetterDto dto) {
 		logger.info("쪽지보기");
-		List<LetterDto>list = LetterService.letterList();
+		System.out.println(dto);
+		List<LetterDto>list = LetterService.letterList(dto.getL_receiver());
 		model.addAttribute("list",list);
 		return "letterlist";
 	}
 	
+	@RequestMapping(value="/letterdetail.do",method= {RequestMethod.POST,RequestMethod.GET})
+	public String letterDetail(Model model,int l_seq) {
+		logger.info("쪽지상세보기");
+		LetterDto dto=LetterService.letterDetail(l_seq);
+		model.addAttribute("dto", dto);
+		return "letterdetail"; 
+	}
+	
+	@RequestMapping(value="/delletter.do",method= {RequestMethod.POST,RequestMethod.GET})
+	public String delBoard(Model model,LetterDto dto) { 
+		logger.info("글삭제하기");
+		boolean isS=LetterService.delLetter(dto.getL_seq());
+		if(isS) {
+			return "redirect:letterlist.do?l_receiver="+dto.getL_receiver();
+		}else {
+			return "redirect:boarddetail.do?seq"+dto.getL_seq();
+		}
+	}
+	
+	@RequestMapping(value="/muldel.do",method= {RequestMethod.POST,RequestMethod.GET})
+	public String mulDel(Model model,String[] chk) { 
+		logger.info("여러글삭제하기");
+		String seq = chk[0];
+		int l_seq = Integer.parseInt(seq);
+		LetterDto dto=LetterService.letterDetail(l_seq);
+		boolean isS=LetterService.muldel(chk);
+		if(isS) {
+			return "redirect:letterlist.do?l_receiver="+dto.getL_receiver();
+		}else {
+			return "redirect:letterlist.do";
+		}
+	}
 	
 	
 	

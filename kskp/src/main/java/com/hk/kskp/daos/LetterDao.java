@@ -1,6 +1,8 @@
 package com.hk.kskp.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +19,20 @@ public class LetterDao implements ILetterDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public boolean sendLetter(String l_sender,String l_receiver,String l_title,String l_conts) {
-		LetterDto dto = new LetterDto(l_sender, l_receiver, l_title, l_conts);
+	public boolean sendLetter(LetterDto dto) {
 		int count = sqlSession.insert(nameSpace+"sendLetter", dto);
 		return count>0?true:false;
 	}
 
 	@Override
-	public List<LetterDto> letterList(){
-		return sqlSession.selectList(nameSpace+"letterlist");
+	public List<LetterDto> letterList(String l_reciver){
+		LetterDto dto = new LetterDto(l_reciver);
+		return sqlSession.selectList(nameSpace+"letterlist",dto);
 	}
 
 	@Override
 	public LetterDto letterDetail(int seq) {
-		return sqlSession.selectOne(nameSpace+"letterDetail", seq);
+		return sqlSession.selectOne(nameSpace+"letterdetail", seq);
 	}
 
 	@Override
@@ -39,4 +41,12 @@ public class LetterDao implements ILetterDao {
 		return count>0?true:false;
 	}
 
+	@Override
+	public boolean muldel(String[] seqs) {
+		Map<String, String[]>map=new HashMap<>();
+		map.put("seqs",seqs);
+		int count=sqlSession.delete(nameSpace+"muldel", map);
+		return count>0?true:false;
+	}
+	
 }

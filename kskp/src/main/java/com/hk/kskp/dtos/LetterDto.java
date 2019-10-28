@@ -31,6 +31,11 @@ public class LetterDto {
 	}
 
 	
+	public LetterDto(String l_receiver) {
+		super();
+		this.l_receiver = l_receiver;
+	}
+
 	public LetterDto(String l_sender, String l_receiver, String l_title, String l_conts) {
 		super();
 		this.l_sender = l_sender;
