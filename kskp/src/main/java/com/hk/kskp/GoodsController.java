@@ -30,12 +30,6 @@ public class GoodsController {
 	@Autowired
 	private IGoodsService GoodsService;
 	
-	@RequestMapping(value = "/mypageform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUserForm() {
-		logger.info("마이페이지 폼으로 이동");
-		return "mypage";
-	}
-	
 	@RequestMapping(value = "/mypage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String mInsertUserForm(Locale locale, Model model) {
 		logger.info("마이페이지로 이동", locale);

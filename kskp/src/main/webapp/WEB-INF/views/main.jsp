@@ -47,58 +47,31 @@
 }
 </style>
 <script type="text/javascript">
-alert(${ldto});
 </script>
 </head>
 <body>
 <c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
 		<a href="muserinfo.do?seq=${ldto.m_seq}">내 정보보기</a>
-<<<<<<< HEAD
 		<a href="qboardlist.do">질문과 답변 목록보기</a>
 		<a href="nboardlist.do">공지사항 목록보기</a>
-=======
 		<a href="sendLetterform.do">쪽지보내기</a>
-			<a href="letterlist.do">쪽지보기</a>
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
+		<a href="letterlist.do">쪽지보기</a>
 		<a href="logout.do">로그아웃</a>
-		<a href="qboardlist.do">질문과 답변 목록보기</a>
-		<a href="nboardlist.do">공지사항 목록보기</a>
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
 		<a href="auserinfo.do">내 정보보기</a>
 		<a href="qboardlist.do">질문과 답변 목록보기</a>
 		<a href="nboardlist.do">공지사항 목록보기</a>
 		<a href="">전체회원보기</a>
-		<a href="qboardlist.do">질문과 답변 목록보기</a>
-		<a href="nboardlist.do">공지사항 목록보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:otherwise>
 		<a href="guserinfo.do?seq=${ldto1.gu_seq}">내 정보보기</a>
-<<<<<<< HEAD
-		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
 		<a href="qboardlist.do">질문과 답변 목록보기</a>
 		<a href="nboardlist.do">공지사항 목록보기</a>
-=======
-<<<<<<< HEAD
-		<a href="mypageform.do?seq=${ldto1.gu_seq}">마이페이지</a>
-=======
 		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
-		<a href="guserinfo.do?gu_email=${ldto1.gu_email}">내 정보보기</a>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-		<a href="qboardlist.do">질문과 답변 목록보기</a>
-		<a href="nboardlist.do">공지사항 목록보기</a>
-
-=======
 		<a href="sendLetterform.do">쪽지보내기</a>
-
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
->>>>>>> branch 'master' of https://github.com/tiger9223/kskp.git
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>
