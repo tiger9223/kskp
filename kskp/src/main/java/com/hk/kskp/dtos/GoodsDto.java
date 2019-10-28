@@ -28,6 +28,7 @@ public class GoodsDto {
 	private String g_cconts;
 	private String g_date;
 	private Date g_regdate;
+	private String gdsThumbImg;
 	
 	public GoodsDto() {
 		super();
@@ -254,6 +255,15 @@ public class GoodsDto {
 
 	public void setG_regdate(Date g_regdate) {
 		this.g_regdate = g_regdate;
+	}
+
+	
+	public String getGdsThumbImg() {
+		return gdsThumbImg;
+	}
+
+	public void setGdsThumbImg(String gdsThumbImg) {
+		this.gdsThumbImg = gdsThumbImg;
 	}
 
 	@Override

@@ -30,11 +30,6 @@ public class GoodsController {
 	@Autowired
 	private IGoodsService GoodsService;
 	
-	@RequestMapping(value = "/mypage.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String mInsertUserForm(Locale locale, Model model) {
-		logger.info("마이페이지로 이동", locale);
-		return "mypage";
-	}
 	
 	@RequestMapping(value = "/gooodspage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gooodsManagement(Locale locale, Model model, GuideDto dto) {
@@ -51,5 +46,18 @@ public class GoodsController {
 		return "insertgoodsform";
 	}
 	
+	
+	@RequestMapping(value = "/insertgoods.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertGoods(Locale locale, GoodsDto dto) {
+		logger.info("상품등록", locale);
+		System.out.println(dto);
+		boolean isS = GoodsService.insertGoods(dto);
+		if(isS) {
+			return "goodspage";
+		}else {
+		    return "insertgoodsform";
+		}
+		
+	}
 }//end
 

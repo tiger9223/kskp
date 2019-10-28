@@ -37,8 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 		(GOODS_SEQ.NEXTVAL ,#{gu_seq}, #{g_area},
 		'한국어',#{g_name},#{g_conts},
-		0,#{g_img1},#{g_img2},
-		#{g_img3},#{g_img4},#{g_price},
+		0,#{g_img1},NULL,
+		NULL,NULL,#{g_price},
 		#{g_people},0,#{g_oneline},
 		#{g_intro},#{g_cos},#{g_meet},
 		#{g_address},#{g_cname},#{g_time},
