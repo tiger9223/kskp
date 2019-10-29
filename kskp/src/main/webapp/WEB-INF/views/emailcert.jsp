@@ -71,10 +71,11 @@ ul.tabs li.active {
 $(function () {
 	if($('#pp').val()==null){
 		  $(".tab_content").hide();
-		  $(".tab_content:first").show();
+		
+		  $(".tab_content:nth-child(2)").show();
 	}else{
 		 $(".tab_content").hide();
-		  $(".tab_content:nth-child(2)").show();
+		  $(".tab_content:first").show();
 	}
   
     $("ul.tabs li").click(function () {
