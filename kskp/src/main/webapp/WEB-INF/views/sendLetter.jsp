@@ -29,7 +29,7 @@
 <p>받는 사람 : <input type="text" name="l_receiver" placeholder="상대방이메일을 입력하세요">
 <p>제목 : <input type="text" name="l_title" placeholder="제목을 입력하세요"></p>
 <p>내용 : <textarea cols="30" rows="3" name="l_conts" placeholder="내용을 입력하세요"></textarea></p>
-<input type="submit" value="보내기"><button value="취소">취소</button> 
+<input type="submit" value="보내기"><button onclick="location.href='main.jsp'" value="취소">취소</button> 
 </form>
 </body>
 </html>

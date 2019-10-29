@@ -26,27 +26,65 @@ public class LetterDao implements ILetterDao {
 
 	@Override
 	public List<LetterDto> letterList(String l_reciver){
-		LetterDto dto = new LetterDto(l_reciver);
-		return sqlSession.selectList(nameSpace+"letterlist",dto);
+		return sqlSession.selectList(nameSpace+"letterlist",l_reciver);
 	}
-
+	
+	@Override
+	public int getPcount() {
+		int pcount =  sqlSession.selectOne(nameSpace+"pcount");
+		return pcount;
+	}
+	
+	
+	@Override
+	public List<LetterDto> sendletterList(String l_sender,String pum){
+		Map<String, String> map=new HashMap<>();
+		map.put("l_sender",l_sender);
+		map.put("pum",pum);
+		return sqlSession.selectList(nameSpace+"sendletterlist",map);
+	}
+	
 	@Override
 	public LetterDto letterDetail(int seq) {
 		return sqlSession.selectOne(nameSpace+"letterdetail", seq);
 	}
 
 	@Override
-	public boolean delLetter(int seq) {
-		int count = sqlSession.delete(nameSpace+"delLetter", seq);
+	public LetterDto sendletterDetail(int seq) {
+		return sqlSession.selectOne(nameSpace+"sendletterdetail", seq);
+	}
+
+	@Override
+	public boolean senddelflag(int seq) {
+		int count=sqlSession.update(nameSpace+"senddelflag",seq);
 		return count>0?true:false;
 	}
 
 	@Override
-	public boolean muldel(String[] seqs) {
-		Map<String, String[]>map=new HashMap<>();
-		map.put("seqs",seqs);
-		int count=sqlSession.delete(nameSpace+"muldel", map);
+	public boolean recdelflag(int seq) {
+		int count=sqlSession.update(nameSpace+"recdelflag",seq);
 		return count>0?true:false;
+	}
+
+	@Override
+	public boolean sendmuldel(String[] seqs) {
+		Map<String,String[]>map=new HashMap<>();
+		map.put("seqs",seqs);
+		int count=sqlSession.update(nameSpace+"sendmuldel", map);
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean recmuldel(String[] seqs) {
+		Map<String,String[]>map=new HashMap<>();
+		map.put("seqs",seqs);
+		int count=sqlSession.update(nameSpace+"recmuldel", map);
+		return count>0?true:false;
+	}
+	
+	@Override
+	public void delletter(LetterDto dto) {
+		sqlSession.delete(nameSpace+"delletter",dto);
 	}
 	
 }

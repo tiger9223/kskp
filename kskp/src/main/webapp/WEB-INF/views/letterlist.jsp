@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title></title>
 <script type="text/javascript">
 	function allSel(ele){
@@ -17,7 +18,7 @@
 </script>
 </head>
 <body>
-<form action="muldel.do" method="post">
+<form action="recmuldel.do" method="post">
 <input type="hidden" name="l_receiver" value="${dto.l_receiver}">
 	<table border="1">
 		<col width="50px">
@@ -34,22 +35,28 @@
 		</tr>
 		<c:choose>
 				<c:when test="${empty list}">
-		<tr>
-			<td colspan="5" style="text-align : center;">---쪽지가 없습니다.---</td>
-		</tr>
-			</c:when>
+					<tr>
+						<td colspan="5" style="text-align : center;">---쪽지가 없습니다.---</td>
+					</tr>
+				</c:when>
 				<c:otherwise>
-				<c:forEach items="${list}" var="dto">
-		<tr>
-			<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
-			<td>${dto.l_seq}</td>
-			<td>${dto.l_sender}</td>
-			<td><a href="letterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
-			<td>${dto.l_regdate}</td>
-		</tr>
-	</c:forEach>
-	</c:otherwise>
-	</c:choose>
+					<c:forEach items="${list}" var="dto">
+						<c:choose>
+							<c:when test="${dto.l_recdelflag=='1'}">
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
+									<td>${dto.l_seq}</td>
+									<td>${dto.l_sender}</td>
+									<td><a href="letterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
+									<td><f:formatDate value="${dto.l_regdate}" pattern="yyyy-MM-dd"/></td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</c:otherwise>	
+		</c:choose>
 	<tr>
 		<td colspan="5">
 			<input type="submit" value="삭제"/>
@@ -58,8 +65,7 @@
 	</tr>
 </table>
 </form>
-
-
-
 </body>
-</html>
+</html>		
+
+

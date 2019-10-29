@@ -10,13 +10,13 @@
 </head>
 <body>
 <h1>게시글 상세보기</h1>
-<form action="recdel.do" method="post">
+<form action="senddel.do" method="post">
 	<input type="hidden" name="l_seq" value="${dto.l_seq}">
-	<input type="hidden" name="l_receiver" value="${dto.l_receiver}">
+	<input type="hidden" name="l_sender" value="${dto.l_sender}">
 <table border="1">
 	<tr>
-		<th>보낸 사람</th>
-		<td>${dto.l_sender}</td>
+		<th>받은 사람</th>
+		<td>${dto.l_receiver}</td>
 	</tr>
 	<tr>
 		<th>보낸날짜</th>

@@ -5,28 +5,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.hk.letter">
 
 	<insert id="sendLetter" parameterType="LetterDto">
-		INSERT INTO LETTER(L_SEQ,M_SEQ,GU_SEQ,L_REGDATE,L_SENDER,L_RECEIVER,L_TITLE,L_CONTS)
-		VALUES(LETTER_SEQ.NEXTVAL,NULL,NULL,SYSDATE,#{l_sender},#{l_receiver},#{l_title},#{l_conts})
+		INSERT INTO LETTER(L_SEQ,M_SEQ,GU_SEQ,L_REGDATE,L_SENDER,L_RECEIVER,L_TITLE,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG)
+		VALUES(LETTER_SEQ.NEXTVAL,NULL,NULL,SYSDATE,#{l_sender},#{l_receiver},#{l_title},#{l_conts},'0','0')
 	</insert>
 
-	<select id="letterlist" resultType="LetterDto">
+	<select id="letterlist" parameterType="String" resultType="LetterDto">
 		SELECT * FROM LETTER WHERE L_RECEIVER=#{l_receiver}
+	</select>
+	
+	<select id="sendletterlist" parameterType="String" resultType="LetterDto">
+		SELECT * FROM LETTER WHERE L_SENDER=#{l_sender}
 	</select>
 	
 	<select id="letterdetail" parameterType="int" resultType="LetterDto">
 		SELECT * FROM LETTER WHERE L_SEQ=#{l_seq}	
 	</select>
 	
-	
-	<delete id="delLetter" parameterType="int">
-		DELETE FROM LETTER WHERE L_SEQ=#{l_seq}
+	<select id="sendletterdetail" parameterType="int" resultType="LetterDto">
+		SELECT * FROM LETTER WHERE L_SEQ=#{l_seq}	
+	</select>
+	<delete id="senddelflag" parameterType="int">
+		UPDATE LETTER SET L_SENDDELFLAG='1' WHERE L_SEQ=#{l_seq} 
 	</delete>
 	
-	<delete id="muldel" parameterType="Map">
-	DELETE FROM LETTER WHERE L_SEQ IN
+	<delete id="recdelflag" parameterType="int">
+		UPDATE LETTER SET L_RECDELFLAG='1' WHERE L_SEQ=#{l_seq} 
+	</delete>
+	
+	<update id="sendmuldel" parameterType="Map">
+	UPDATE LETTER SET L_SENDDELFLAG='1' WHERE L_SEQ IN
 	<foreach collection="seqs" item="l_seq" open="(" close=")" separator="," >
 		#{l_seq}
 	</foreach>
-	</delete>
+	</update>
 	
+	<update id="recmuldel" parameterType="Map">
+	UPDATE LETTER SET L_RECDELFLAG='1' WHERE L_SEQ IN
+	<foreach collection="seqs" item="l_seq" open="(" close=")" separator="," >
+		#{l_seq}
+	</foreach>
+	</update>
+	
+	<delete id="delletter" parameterType="LetterDto">
+	DELETE LETTER WHERE L_SENDDELFLAG=1 AND L_RECDELFLAG=1
+	</delete>
+
+		<select id="sendlistpagin" resultType="LetterDto" parameterType="String">
+		SELECT RN, L_SEQ, M_SEQ, GU_SEQ, L_REGDATE, L_SENDER, L_RECEIVER,L_TITLE,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG
+		FROM(
+		     SELECT ROW_NUMBER() OVER (ORDER BY L_SEQ DESC) AS RN,
+		     L_SEQ, M_SEQ, GU_SEQ, L_REGDATE, L_SENDER, L_RECEIVER,L_TITLE,,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG FROM LETTER
+			)
+		WHERE CEIL(RN/5) = #{pnum}
+	</select>
+		
+	<select id="pcount" resultType="int">
+		SELECT CEIL(COUNT(*)/5) FROM LETTER
+	</select>
+
+
 </mapper>

@@ -26,18 +26,48 @@ public class LetterService implements ILetterService {
 	}
 
 	@Override
+	public List<LetterDto> sendletterList(String l_sender,String pnum) {
+		return LetterDao.sendletterList(l_sender, pnum);
+	}
+
+	@Override
+	public LetterDto sendletterDetail(int seq) {
+		return LetterDao.sendletterDetail(seq);
+	}
+	
+	@Override
 	public LetterDto letterDetail(int seq) {
 		return LetterDao.letterDetail(seq);
 	}
 
 	@Override
-	public boolean delLetter(int seq) {
-		return LetterDao.delLetter(seq);
+	public boolean senddelflag(int seq) {
+		return LetterDao.senddelflag(seq);
 	}
 
 	@Override
-	public boolean muldel(String[] seqs) {
-		return LetterDao.muldel(seqs);
+	public boolean recdelflag(int seq) {
+		return LetterDao.recdelflag(seq);
+	}
+
+	@Override
+	public boolean sendmuldel(String[] seqs) {
+		return LetterDao.sendmuldel(seqs);
+	}
+
+	@Override
+	public boolean recmuldel(String[] seqs) {
+		return LetterDao.recmuldel(seqs);
+	}
+
+	@Override
+	public void delletter(LetterDto dto) {
+		LetterDao.delletter(dto);
+	}
+
+	@Override
+	public int getPcount() {
+		return LetterDao.getPcount();
 	}
 
 }
