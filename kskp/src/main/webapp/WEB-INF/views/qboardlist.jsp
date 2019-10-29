@@ -41,7 +41,7 @@
 		<input type="hidden" name="command" value="muldel" />
 		<table border="1">
 			<col width="50px">
-			<col width="50px">
+			<col width="100px">
 			<col width="300px">
 			<col width="100px">
 			<tr>
@@ -61,7 +61,16 @@
 						<tr>
 							<td>${dto.q_seq}</td>
 							<td>${dto.m_name}</td>
-							<td><a href="qboarddetail.do?q_seq=${dto.q_seq}">${dto.q_title}</a></td>
+							<td><a href="qboarddetail.do?q_seq=${dto.q_seq}">${dto.q_title}</a>&nbsp;
+					<c:choose>
+							<c:when test="${dto.q_flag eq '0'}">
+							답변대기
+							</c:when>
+							<c:otherwise>
+							답변완료
+							</c:otherwise>
+					</c:choose>	
+							</td>
 							<td><f:formatDate value="${dto.q_regdate}" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						</c:forEach>

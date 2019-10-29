@@ -61,10 +61,10 @@ public class BoardDao implements IBoardDao	{
 	}
 	
 	@Override
-	public boolean muldel(String[] seqs) {
+	public boolean nmuldel(String[] seqs) {
 		Map<String, String[]>map=new HashMap<>();
 		map.put("seqs", seqs);
-		int count=sqlSession.delete(nameSpace+"muldel", map);
+		int count=sqlSession.delete(nameSpace+"nmuldel", map);
 		return count>0?true:false;
 	}
 
@@ -93,6 +93,12 @@ public class BoardDao implements IBoardDao	{
 	@Override
 	public boolean qdelBoard(int seq) {
 		int count = sqlSession.delete(nameSpace+"qdelboard", seq);
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean qinsertAns(QaDto dto) {
+		int count = sqlSession.update(nameSpace+"insertans", dto);
 		return count>0?true:false;
 	}
 

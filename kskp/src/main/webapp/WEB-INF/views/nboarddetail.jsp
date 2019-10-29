@@ -35,11 +35,15 @@
 		<th>내용</th>
 		<td><textarea rows="10" cols="60" readonly="readonly">${dto1.n_conts}</textarea> </td>
 	</tr>
-	<tr>
-		<td colspan="2">
-			<button onclick="nupdateBoard(${dto1.n_seq})">수정</button>
-		</td>
-	</tr>
+		<c:choose>
+			<c:when test="${ldto.m_status eq 'A'}">
+			<tr>
+				<td colspan="2">
+					<button onclick="nupdateBoard(${dto1.n_seq})">수정</button>
+				</td>
+			</tr>
+			</c:when>
+		</c:choose>
 </table>
 <script type="text/javascript">
 //글수정하기
@@ -49,6 +53,7 @@ function nupdateBoard(n_seq){
 </script>
 </body>
 </html>
+
 
 
 

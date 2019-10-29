@@ -31,7 +31,7 @@
 </head>
 <body>
 <h1>공지사항</h1>
-<form action="muldel.do" method="post">
+<form action="nmuldel.do" method="post">
 <table border="1">
 	<col width="50px">
 	<col width="50px">

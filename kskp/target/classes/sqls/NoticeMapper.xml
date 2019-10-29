@@ -26,13 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE N_SEQ=#{n_seq}
 	</update>
 	
-	<update id="nupdateboard" parameterType="int" >
-		UPDATE NOTICE SET TITLE=#{title}, N_CONTS=#{conts}, REGDATE=SYSDATE
-		WHERE Q_SEQ=#{seq}
+	<update id="nupdateboard" parameterType="NoticeDto" >
+		UPDATE NOTICE SET N_TITLE=#{n_title}, N_CONTS=#{n_conts}, N_REGDATE=SYSDATE
+		WHERE N_SEQ=#{n_seq}
 	</update>
 	
 	<delete id="ndelboard" parameterType="int">
 		DELETE FROM NOTICE WHERE Q_SEQ=#{q_seq}
+	</delete>
+	
+	<delete id="nmuldel" parameterType="Map">
+		DELETE FROM NOTICE WHERE N_SEQ IN
+		<foreach collection="seqs" item="n_seq" open="(" close=")" separator=",">
+			#{n_seq}
+		</foreach>
 	</delete>
 	
 	<select id="qgetAlllist" resultType="QaDto">
@@ -41,18 +48,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="qinsertboard" parameterType="QaDto">
-		INSERT INTO QA (Q_SEQ, M_SEQ, Q_TITLE, Q_CONTS, Q_REGDATE, Q_FLAG)
+		INSERT INTO QA (Q_SEQ, M_SEQ, Q_TITLE, Q_CONTS, Q_REGDATE, Q_FLAG, Q_ANS)
 		VALUES
-		(QA_SEQ.NEXTVAL,#{m_seq},#{q_title},#{q_conts},SYSDATE,0)		
+		(QA_SEQ.NEXTVAL,#{m_seq},#{q_title},#{q_conts},SYSDATE,0,NULL)		
 	</insert>
 	
 	<select id="qgetboard" parameterType="int" resultType="QaDto">
-		SELECT q.q_seq , m.m_name, q.q_title , q.q_regdate,q.q_conts
+		SELECT q.q_seq , m.m_name, q.q_title , q.q_regdate,q.q_conts, q.q_ans, q.q_flag
 		FROM QA q, MEMBERS m WHERE Q_SEQ=#{q_seq} AND q.m_seq=m.m_seq
 	</select>
 	
 	<update id="qupdateboard" parameterType="QaDto">
 		UPDATE QA SET Q_TITLE=#{q_title}, Q_CONTS=#{q_conts}, Q_REGDATE=SYSDATE
+		WHERE Q_SEQ=#{q_seq}
+	</update>
+	
+	<update id="insertans" parameterType="QaDto">
+		UPDATE QA SET Q_ANS=#{q_ans}, Q_FLAG='1'
 		WHERE Q_SEQ=#{q_seq}
 	</update>
 	

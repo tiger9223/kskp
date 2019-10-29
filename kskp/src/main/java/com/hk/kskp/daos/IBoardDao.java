@@ -26,7 +26,7 @@ public interface IBoardDao {
 	public boolean ndelBoard(int seq);
 	
 	//공지게시판 전체 삭제하기
-	boolean muldel(String[] seqs);
+	boolean nmuldel(String[] seqs);
 	
 	//Q&A 글 전체보기
 	public List<QaDto> qgetAllList();
@@ -43,6 +43,8 @@ public interface IBoardDao {
 	//Q&A 글 삭제하기
 	public boolean qdelBoard(int seq);
 
+	//Q&A 글 답변달기
+	public boolean qinsertAns(QaDto dto);
 	
 	
 	

@@ -45,6 +45,8 @@ public interface IBoardService {
 
 	public boolean muldel(String[] chk);
 	
+	//Q&A 글 답변달기
+	public boolean qinsertAns(QaDto dto);
 	
 
 }

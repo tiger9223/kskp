@@ -56,7 +56,7 @@ public class BoardService implements IBoardService{
 	
 	@Override
 	public boolean nmuldel(String[] seqs) {
-		return boardDao.muldel(seqs);
+		return boardDao.nmuldel(seqs);
 	}
 
 	@Override
@@ -86,8 +86,12 @@ public class BoardService implements IBoardService{
 
 	@Override
 	public boolean muldel(String[] chk) {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean qinsertAns(QaDto dto) {
+		return boardDao.qinsertAns(dto);
 	}
 
 	
