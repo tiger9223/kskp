@@ -87,7 +87,7 @@ function previewImage(targetObj, View_area) {
 </head>
 <body>
 <h1>상품등록</h1>
-<form action="insertgoods.do" method="post">
+<form action="insertgoods.do" method="post" enctype="multipart/form-data">
 <input type="hidden" name="gu_seq" value="${ldto1.gu_seq}" />
 <p>*도시
 	<select name="g_area">
@@ -121,7 +121,7 @@ function previewImage(targetObj, View_area) {
 경복궁을 마지막으로 둘러봅시다 (1시간 반 소요)
 구체적 코스 작성
 " ></textarea></p>
-<p>*여행 대표 사진  <input type="file" name="g_img1" id="profile_pt" onchange="previewImage(this,'View_area')">
+<p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
 <div id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '>
 <%=request.getRealPath("/") %></div></p>
 <p>1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" /></p>

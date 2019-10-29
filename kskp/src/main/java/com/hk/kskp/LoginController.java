@@ -178,6 +178,12 @@ public class LoginController {
 		return "redirect:loginform.do";
 	}
 	
+
+	@RequestMapping(value = "/mypage.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String myPage(Model model) {
+		logger.info("마이페이지로 이동");
+		return"mypage";
+	}
 	
 	
 	@RequestMapping(value = "/muserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -187,6 +193,7 @@ public class LoginController {
 		model.addAttribute("dto1",dto1);
 		return"mUserInfo";
 	}
+	
 	
 	@RequestMapping(value = "/guserinfo.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guserInfo(Model model, int seq) {

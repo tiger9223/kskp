@@ -70,6 +70,9 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <tr>
+            	<img src="${dto.g_img1}"/>
+            	<img src="${dto.g_thumbimg}"/>
+           	   <td>${dto.g_area}</td>
                <td>${dto.g_area}</td>
                <td>${dto.g_date}</td>
                <td>${dto.g_name}</td>
