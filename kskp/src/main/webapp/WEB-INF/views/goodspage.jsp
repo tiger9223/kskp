@@ -70,19 +70,22 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <tr>
+            	<img src="${dto.g_img1}"/>
+            	<img src="${dto.g_thumbimg}"/>
+           	   <td>${dto.g_area}</td>
                <td>${dto.g_area}</td>
                <td>${dto.g_date}</td>
                <td>${dto.g_name}</td>
                <td>${dto.g_res}</td> 
             </tr>   
             </c:forEach>
-                  <tr>
-                     <td colspan="6">
-                        <a href="insertgoodsform.do">상품등록</a>
-                     </td>
-                  </tr>
          </c:otherwise>
       </c:choose>
+               <tr>
+                  <td colspan="6">
+                     <a href="insertgoodsform.do">상품등록</a>
+                  </td>
+              </tr>
 </table>
 </body>
 </html>

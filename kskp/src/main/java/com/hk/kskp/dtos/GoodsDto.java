@@ -28,7 +28,7 @@ public class GoodsDto {
 	private String g_cconts;
 	private String g_date;
 	private Date g_regdate;
-	private String gdsThumbImg;
+	private String g_thumbimg;
 	
 	public GoodsDto() {
 		super();
@@ -37,7 +37,7 @@ public class GoodsDto {
 	public GoodsDto(int g_seq, int gu_seq, String g_area, String g_lan, String g_name, String g_conts, int g_flag,
 			String g_img1, String g_img2, String g_img3, String g_img4, int g_price, int g_people, int g_res,
 			String g_oneline, String g_intro, String g_cos, String g_meet, String g_address, String g_cname,
-			String g_time, String g_cconts, String g_date, Date g_regdate) {
+			String g_time, String g_cconts, String g_date, Date g_regdate, String g_thumbimg) {
 		super();
 		this.g_seq = g_seq;
 		this.gu_seq = gu_seq;
@@ -63,6 +63,7 @@ public class GoodsDto {
 		this.g_cconts = g_cconts;
 		this.g_date = g_date;
 		this.g_regdate = g_regdate;
+		this.g_thumbimg = g_thumbimg;
 	}
 
 	public int getG_seq() {
@@ -257,13 +258,12 @@ public class GoodsDto {
 		this.g_regdate = g_regdate;
 	}
 
-	
-	public String getGdsThumbImg() {
-		return gdsThumbImg;
+	public String getG_thumbimg() {
+		return g_thumbimg;
 	}
 
-	public void setGdsThumbImg(String gdsThumbImg) {
-		this.gdsThumbImg = gdsThumbImg;
+	public void setG_thumbimg(String g_thumbimg) {
+		this.g_thumbimg = g_thumbimg;
 	}
 
 	@Override
@@ -274,7 +274,8 @@ public class GoodsDto {
 				+ ", g_people=" + g_people + ", g_res=" + g_res + ", g_oneline=" + g_oneline + ", g_intro=" + g_intro
 				+ ", g_cos=" + g_cos + ", g_meet=" + g_meet + ", g_address=" + g_address + ", g_cname=" + g_cname
 				+ ", g_time=" + g_time + ", g_cconts=" + g_cconts + ", g_date=" + g_date + ", g_regdate=" + g_regdate
-				+ "]";
+				+ ", g_thumbimg=" + g_thumbimg + "]";
 	}
+
 	
 }

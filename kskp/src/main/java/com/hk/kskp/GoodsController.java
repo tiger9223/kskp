@@ -2,9 +2,12 @@
 
 package com.hk.kskp;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
+import com.hk.kskp.utils.UploadFileUtil;
 
 @Controller
 public class GoodsController {
@@ -30,6 +35,8 @@ public class GoodsController {
 	@Autowired
 	private IGoodsService GoodsService;
 	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	@RequestMapping(value = "/gooodspage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gooodsManagement(Locale locale, Model model, GuideDto dto) {
@@ -48,8 +55,21 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value = "/insertgoods.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertGoods(Locale locale, GoodsDto dto) {
+	public String insertGoods(Locale locale, GoodsDto dto, MultipartFile file) throws IOException, Exception {
 		logger.info("상품등록", locale);
+		System.out.println(dto);
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file != null) {
+		 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		} else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+
+		dto.setG_img1(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		dto.setG_thumbimg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		System.out.println(dto);
 		boolean isS = GoodsService.insertGoods(dto);
 		if(isS) {
