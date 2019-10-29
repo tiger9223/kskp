@@ -21,8 +21,8 @@ public class LetterService implements ILetterService {
 	}
 
 	@Override
-	public List<LetterDto> letterList(String l_receiver) {
-		return LetterDao.letterList(l_receiver);
+	public List<LetterDto> letterList(String l_receiver,String pnum) {
+		return LetterDao.letterList(l_receiver, pnum);
 	}
 
 	@Override

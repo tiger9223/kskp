@@ -10,7 +10,7 @@ public interface ILetterService {
 		public boolean sendLetter(LetterDto dto);
 		
 		//받은쪽지보기
-		public List<LetterDto> letterList(String l_reciver); 
+		public List<LetterDto> letterList(String l_receiver,String pnum); 
 		
 		//보낸쪽지보기
 		public List<LetterDto> sendletterList(String l_sender,String pnum); 

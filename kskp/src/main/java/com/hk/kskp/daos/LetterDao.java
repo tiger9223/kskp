@@ -25,8 +25,11 @@ public class LetterDao implements ILetterDao {
 	}
 
 	@Override
-	public List<LetterDto> letterList(String l_reciver){
-		return sqlSession.selectList(nameSpace+"letterlist",l_reciver);
+	public List<LetterDto> letterList(String l_receiver,String pnum){
+		Map<String, String> map=new HashMap<>();
+		map.put("l_receiver",l_receiver);
+		map.put("pnum",pnum);
+		return sqlSession.selectList(nameSpace+"letterlist",map);
 	}
 	
 	@Override
@@ -37,10 +40,10 @@ public class LetterDao implements ILetterDao {
 	
 	
 	@Override
-	public List<LetterDto> sendletterList(String l_sender,String pum){
+	public List<LetterDto> sendletterList(String l_sender,String pnum){
 		Map<String, String> map=new HashMap<>();
 		map.put("l_sender",l_sender);
-		map.put("pum",pum);
+		map.put("pnum",pnum);
 		return sqlSession.selectList(nameSpace+"sendletterlist",map);
 	}
 	

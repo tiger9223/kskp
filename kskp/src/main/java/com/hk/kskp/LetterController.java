@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hk.kskp.dtos.LetterDto;
 import com.hk.kskp.service.ILetterService;
 import com.hk.kskp.service.LetterService;
+import com.hk.kskp.utils.Paging;
 
 /**
  * Handles requests for the application home page.
@@ -52,11 +53,21 @@ public class LetterController {
 	
 	
 	@RequestMapping(value="/letterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String letterlist(Model model,LetterDto dto) {
+	 public String letterlist(HttpServletRequest request ,Model model,LetterDto dto, String pnum) {
 		logger.info("받은쪽지보기");
-		System.out.println(dto);
-		List<LetterDto>list = LetterService.letterList(dto.getL_receiver());
+		
+		if(pnum == null) {
+			pnum = (String)request.getSession().getAttribute("pnum");
+		}else {
+			request.getSession().setAttribute("pnum", pnum);
+		}		
+		
+		List<LetterDto>list = LetterService.letterList(dto.getL_receiver(),pnum);
 		model.addAttribute("list",list);
+		int pcount=LetterService.getPcount();
+		
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+		model.addAttribute("pmap", map);
 		return "letterlist";
 	}
 	
@@ -74,7 +85,7 @@ public class LetterController {
 		model.addAttribute("list",list);
 		int pcount=LetterService.getPcount();
 		
-		Map<String, Integer> map=com.hk.kskp.utils.Paging.pagingValue(pcount, pnum, 5);
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
 		model.addAttribute("pmap", map);
 		return "sendLetterlist";
 	

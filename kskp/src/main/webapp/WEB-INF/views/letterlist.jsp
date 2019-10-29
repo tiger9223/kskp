@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
@@ -17,6 +18,9 @@
 	}
 </script>
 </head>
+<%
+Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
+%>
 <body>
 <form action="recmuldel.do" method="post">
 <input type="hidden" name="l_receiver" value="${dto.l_receiver}">
@@ -57,6 +61,39 @@
 					</c:forEach>
 				</c:otherwise>	
 		</c:choose>
+		<tr>
+                     <td colspan="7" align="center">
+                        <a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=${map.prePageNum}">◀</a>
+                        <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
+                           <c:choose>
+                              <c:when test="${pnum eq i}">
+                                 ${i}
+                              </c:when>
+                              <c:otherwise>
+                                 <a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=${i}">${i}</a>
+                              </c:otherwise>
+                           </c:choose>   
+                        </c:forEach>
+                        <a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=${map.nextPageNum}">▶</a>
+                     </td>
+                  </tr>
+		<tr>
+			<td colspan="6" style="text-align: center;">
+				<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=<%=map.get("prePageNum")%>">◀</a>
+				<%
+					int pcount=(Integer)request.getAttribute("pcount");
+					for(int i=map.get("startPage");i<=map.get("endPage");i++){
+						%>
+						<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=<%=i%>" style="text-decoration: none;"><%=i%></a>				
+						<%
+						}					
+				%>
+				<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=<%=map.get("nextPageNum")%>">▶</a>
+			</td>
+		</tr>	
+	<tr>
+		
+		
 	<tr>
 		<td colspan="5">
 			<input type="submit" value="삭제"/>
