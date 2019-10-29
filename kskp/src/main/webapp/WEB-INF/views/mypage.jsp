@@ -56,10 +56,75 @@
 	</header>
 <c:choose>
 	<c:when test="${ldto.m_status eq 'M'}">
-		<a href="muserinfo.do?m_email=${ldto.m_email}">내 정보보기</a>
+			<nav class="left_menu">
+		<ul>
+			<li>
+				<h2>후기관리</h2>
+				<ul>
+					<li><a href="">내가 쓴 후기</a></li>
+					<li><a href="">후기 글 남기기</a></li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href=""><h2>장바구니</h2></a>
+				</ul>
+			</li>
+			<li>
+				<h2>메세지</h2>
+				<ul>
+					<a href=""><h2>결제내역</h2></a>
+				</ul>
+			</li>
+			<li>
+				<h2>메세지</h2>
+				<ul>
+					<li><a href="">받은 메세지</a></li>
+					<li><a href="">보낸 메세지</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="muserinfo.do?m_email=${ldto.m_email}"><h2>계정관리</h2></a>
+			</li>
+		</ul>
+	</nav>
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
-		<a href="auserinfo.do">내 정보보기</a>
+				<nav class="left_menu">
+			<ul>
+			<li>
+				<ul>
+				<a href=""><h2>전체 회원 조회</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href=""><h2>Q&A 글</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href=""><h2>가이드 가입승인</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href=""><h2>여행상품 승인</h2></a>
+				</ul>
+			</li>
+			<li>
+				<h2>메세지</h2>
+				<ul>
+					<li><a href="">받은 메세지</a></li>
+					<li><a href="">보낸 메세지</a></li>
+				</ul>
+			</li>
+			<li>
+			<li>
+				<a href="auserinfo.do"><h2>계정관리</h2></a>
+			</li>
+		</ul>
+	</nav>
 	</c:when>
 	<c:otherwise>
 <!-- 		상품관리</a> -->
