@@ -23,10 +23,11 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.hk.kskp" />
+	<context:component-scan base-package="com.hk.kskp.utils" />
 	
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="uploadPath">
-	 <beans:constructor-arg value="D:\java_lec_2class\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\kskp\resources" />
+	 <beans:constructor-arg value="C:\Users\hk_edu\git\kskp\kskp\src\main\webapp\resources" />
 	</beans:bean>
 	
 	<!-- 일반 파일 업로드 경로 -->

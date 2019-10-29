@@ -123,7 +123,7 @@ function previewImage(targetObj, View_area) {
 " ></textarea></p>
 <p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
 <div id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '>
-<%=request.getRealPath("/") %></div></p>
+<%=request.getRealPath("/")%></div></p>
 <p>1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" /></p>
 <p>예약 인원수 <select name="g_people">
 	  <option value="1" selected="selected">1</option>

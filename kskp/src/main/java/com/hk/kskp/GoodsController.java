@@ -67,9 +67,9 @@ public class GoodsController {
 		} else {
 		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
-
-		dto.setG_img1(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		dto.setG_thumbimg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		System.out.println(uploadPath);
+		dto.setG_img1("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+		dto.setG_thumbimg("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		System.out.println(dto);
 		boolean isS = GoodsService.insertGoods(dto);
 		if(isS) {
