@@ -55,7 +55,7 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value = "/insertgoods.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertGoods(Locale locale, GoodsDto dto, MultipartFile file) throws IOException, Exception {
+	public String insertGoods(Locale locale,Model model, GoodsDto dto, MultipartFile file) throws IOException, Exception {
 		logger.info("상품등록", locale);
 		System.out.println(dto);
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -73,7 +73,7 @@ public class GoodsController {
 		System.out.println(dto);
 		boolean isS = GoodsService.insertGoods(dto);
 		if(isS) {
-			return "redirect:goodspage.do";
+			return "redirect:goodspage.do?gu_seq="+dto.getGu_seq();
 		}else {
 		    return "insertgoodsform";
 		}
