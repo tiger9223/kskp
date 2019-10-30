@@ -13,6 +13,7 @@
 <form action="recdel.do" method="post">
 	<input type="hidden" name="l_seq" value="${dto.l_seq}">
 	<input type="hidden" name="l_receiver" value="${dto.l_receiver}">
+	<input type="hidden" name="pnum" value="${pnum}">
 <table border="1">
 	<tr>
 		<th>보낸 사람</th>
@@ -32,7 +33,8 @@
 	</tr>
 		<tr>
 		<td colspan="3">
-			<input type="submit" value="삭제"/>
+			<input type="submit" value="삭제" />
+			<input type="button" value="목록" onClick="location.href='letterlist.do?l_receiver=${dto.l_receiver}&pnum=${pnum}'" />
 		</td>
 	</tr>
 </table>

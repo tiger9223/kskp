@@ -9,7 +9,11 @@
 <title></title>
 </head>
 <body>
-
+<c:if test="${msg != null}">
+	<script type="text/javascript">
+		alert("${msg}"); 
+	</script>
+</c:if>
 <form action="sendletter.do" method="post">
 <p>보내는 사람 : 
 	<c:choose>

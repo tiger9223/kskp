@@ -13,6 +13,7 @@
 <form action="senddel.do" method="post">
 	<input type="hidden" name="l_seq" value="${dto.l_seq}">
 	<input type="hidden" name="l_sender" value="${dto.l_sender}">
+	<input type="hidden" name="pnum" value="${pnum}">
 <table border="1">
 	<tr>
 		<th>받은 사람</th>
@@ -33,6 +34,7 @@
 		<tr>
 		<td colspan="3">
 			<input type="submit" value="삭제"/>
+			<input type="button" value="목록" onClick="location.href='sendletterlist.do?l_sender=${dto.l_sender}&pnum=${pnum}'">
 		</td>
 	</tr>
 </table>

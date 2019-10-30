@@ -36,6 +36,10 @@ public interface ILetterService {
 		//메세지 완전 삭제
 		public void delletter(LetterDto dto);
 		
-		//페이지 개수 구하기
-		public int getPcount();
+		//받은 메세지 페이지 개수 구하기
+		public int getPcount(LetterDto dto);
+		
+		//보낸 메세지 페이지 개수 구하기
+		public int getPcount1(LetterDto dto);
+		
 }

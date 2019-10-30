@@ -25,6 +25,7 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 <form action="sendmuldel.do" method="post">
 <input type="hidden" name="l_sender" value="${dto.l_sender}">
 <input type="hidden" name="l_receiver" value="${dto.l_receiver}">
+<input type="hidden" name="pnum" value="${pnum}">
 	<table border="1">
 		<col width="50px">
 		<col width="50px">
@@ -46,34 +47,28 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 			</c:when>
 				<c:otherwise>
 				<c:forEach items="${list}" var="dto">
-				<c:choose>
-					<c:when test="${dto.l_senddelflag=='1'}">
-					</c:when>
-				<c:otherwise>
-		<tr>
-			<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
-			<td>${dto.l_seq}</td>
-			<td>${dto.l_receiver}</td>
-			<td><a href="sendletterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
-			<td><f:formatDate value="${dto.l_regdate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
+						<tr>
+							<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
+							<td>${dto.l_seq}</td>
+							<td>${dto.l_receiver}</td>
+							<td><a href="sendletterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
+							<td><f:formatDate value="${dto.l_regdate}" pattern="yyyy-MM-dd"/></td>
+						</tr>
+				</c:forEach>
 			</c:otherwise>
-						</c:choose>
-	</c:forEach>
-	</c:otherwise>
 	</c:choose>
 	<tr>
 			<td colspan="6" style="text-align: center;">
-				<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=<%=map.get("prePageNum")%>">◀</a>
+				<a href="sendletterlist.do?l_sender=${dto.l_sender}&pnum=<%=map.get("prePageNum")%>">◀</a>
 				<%
 					int pcount=(Integer)request.getAttribute("pcount");
 					for(int i=map.get("startPage");i<=map.get("endPage");i++){
 						%>
-						<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=<%=i%>" style="text-decoration: none;"><%=i%></a>				
+						<a href="sendletterlist.do?l_sender=${dto.l_sender}&pnum=<%=i%>" style="text-decoration: none;"><%=i%></a>				
 						<%
 						}					
 				%>
-				<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=<%=map.get("nextPageNum")%>">▶</a>
+				<a href="sendletterlist.do?l_sender=${dto.l_sender}&pnum=<%=map.get("nextPageNum")%>">▶</a>
 			</td>
 		</tr>	
 	<tr>

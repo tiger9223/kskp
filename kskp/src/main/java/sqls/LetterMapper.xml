@@ -12,17 +12,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="letterlist" parameterType="String" resultType="LetterDto">
 		SELECT * FROM(
 		     SELECT ROW_NUMBER() OVER (ORDER BY L_SEQ DESC) AS RN,
-		     L_SEQ, M_SEQ, GU_SEQ, L_REGDATE, L_SENDER, L_RECEIVER,L_TITLE,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG FROM LETTER
+		     L_SEQ, M_SEQ, GU_SEQ, L_REGDATE, L_SENDER, L_RECEIVER,L_TITLE,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG 
+		      FROM LETTER 
+		     WHERE L_RECEIVER=#{l_receiver}
+		       AND L_RECDELFLAG=0
 			)
-		WHERE CEIL(RN/5) = #{pnum} and L_RECEIVER=#{l_receiver}  
+		WHERE CEIL(RN/5) = #{pnum}  
 	</select>
 	
 	<select id="sendletterlist" parameterType="String" resultType="LetterDto">
 		SELECT * FROM(
 		     SELECT ROW_NUMBER() OVER (ORDER BY L_SEQ DESC) AS RN,
-		     L_SEQ, M_SEQ, GU_SEQ, L_REGDATE, L_SENDER, L_RECEIVER,L_TITLE,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG FROM LETTER
+		     L_SEQ, M_SEQ, GU_SEQ, L_REGDATE, L_SENDER, L_RECEIVER,L_TITLE,L_CONTS,L_SENDDELFLAG,L_RECDELFLAG FROM LETTER WHERE L_SENDER=#{l_sender} AND L_SENDDELFLAG=0 
 			)
-		WHERE CEIL(RN/5) = #{pnum} and L_SENDER=#{l_sender} 
+		WHERE CEIL(RN/5) = #{pnum}
 	</select>
 	
 	<select id="letterdetail" parameterType="int" resultType="LetterDto">
@@ -58,9 +61,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	DELETE LETTER WHERE L_SENDDELFLAG=1 AND L_RECDELFLAG=1
 	</delete>
 
-	<select id="pcount" resultType="int">
-		SELECT CEIL(COUNT(*)/5) FROM LETTER
+	<select id="pcount" resultType="int" parameterType="LetterDto">
+		SELECT CEIL(COUNT(CASE WHEN L_RECDELFLAG=0 THEN 1 END)/5) FROM LETTER WHERE L_RECEIVER=#{l_receiver}
 	</select>
-
+	
+	<select id="spcount" resultType="int">
+		SELECT CEIL(COUNT(CASE WHEN L_SENDDELFLAG=0 THEN 1 END)/5) FROM LETTER WHERE L_SENDER=#{l_sender}
+	</select>
 
 </mapper>
