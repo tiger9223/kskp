@@ -33,8 +33,13 @@ body { height: 400px; }
   <script type="text/javascript">//<![CDATA[
 
     window.onload=function(){
-      
+    	var date = new Date();
 $('#mdp-demo').multiDatesPicker({
+	beforeShowDay: function noBefore(date){ 
+		   if (date < new Date()) 
+		       return [false]; 
+		   return [true]; 
+		},
 	altField: '#altField'
 });
 
