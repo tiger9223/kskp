@@ -24,10 +24,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function allSel(ele){// ele는 전체 선택 체크박스의 체크여부(true/false)
-// 		alert(ele);
-		//어떻게 하면 다른 체크박스의 체크여부를 전달해줄수 있을까???
-		//DOM탐색 메서드의 종류: getElementById(), getElementsByName(), getElementsByTagName()
-		//                 getElementsByClass(), querySelector() , querySelectorAll()
 		var chks=document.getElementsByName("chk");//chks[chk,chk,chk,chk]	
 		for(var i=0;i<chks.length;i++){
 			chks[i].checked=ele;//각각의 체크박스에 전달받은 체크여부(true/false)를 적용
@@ -35,9 +31,12 @@
 	}
 </script>
 </head>
+<%
+Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
+%>
 <body>
 	<h1>질문과 답변</h1>
-	<form action="HkController.do" method="post">
+	<form action="boardController.do" method="post">
 		<input type="hidden" name="command" value="muldel" />
 		<table border="1">
 			<col width="50px">
@@ -60,8 +59,8 @@
 					<c:forEach items="${list}" var="dto">
 						<tr>
 							<td>${dto.q_seq}</td>
-							<td>${dto.m_name}</td>
-							<td><a href="qboarddetail.do?q_seq=${dto.q_seq}">${dto.q_title}</a>&nbsp;
+							<td>${ldto.m_name}</td>
+							<td><a href="qboarddetail.do?q_seq=${dto.q_seq}">${dto.q_title}</a>&nbsp;						
 					<c:choose>
 							<c:when test="${dto.q_flag eq '0'}">
 							답변대기
@@ -76,6 +75,21 @@
 						</c:forEach>
 					</c:otherwise>
 			</c:choose>		
+			
+				<tr>
+			<td colspan="6" style="text-align: center;">
+				<a href="qboardlist.do?pnum=<%=map.get("prePageNum")%>">◀</a>
+				<%
+					int pcount=(Integer)request.getAttribute("pcount");
+					for(int i=map.get("startPage");i<=map.get("endPage");i++){
+						%>
+						<a href="qboardlist.do?pnum=<%=i%>" style="text-decoration: none;"><%=i%></a>				
+						<%
+						}					
+				%>
+				<a href="qboardlist.do?pnum=<%=map.get("nextPageNum")%>">▶</a>
+			</td>
+		</tr>	  
 						<tr>
 							<td colspan="4"><a href="qinsertform.do">글추가</a>
 						</tr>

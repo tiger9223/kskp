@@ -13,7 +13,6 @@ public class NoticeDto {
 	
 	public NoticeDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getN_seq() {

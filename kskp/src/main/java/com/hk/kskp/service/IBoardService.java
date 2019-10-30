@@ -8,7 +8,10 @@ import com.hk.kskp.dtos.QaDto;
 public interface IBoardService {
 	
 	//공지게시판글 전체보기
-	public List<NoticeDto> ngetAllList();
+	public List<NoticeDto> ngetAllList(String pnum);
+		
+	//페이지 개수 구하기
+	public int getPcount();
 	
 	//공지게시판 글 추가하기
 	public boolean ninsertBoard(NoticeDto dto);
@@ -29,7 +32,10 @@ public interface IBoardService {
 	public boolean nmuldel(String[] seqs);
 	
 	//Q&A 글 전체보기
-	public List<QaDto> qgetAllList();
+	public List<QaDto> qgetAllList(String pnum);
+	
+	//페이지 개수 구하기
+	public int qgetPcount();
 	
 	//Q&A 글 추가하기
 	public boolean qinsertBoard(QaDto dto);
@@ -42,11 +48,13 @@ public interface IBoardService {
 	
 	//Q&A 글 삭제하기
 	public boolean qdelBoard(int seq);
-
-	public boolean muldel(String[] chk);
 	
 	//Q&A 글 답변달기
 	public boolean qinsertAns(QaDto dto);
+
+	
+
+	
 	
 
 }
