@@ -6,6 +6,42 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title></title>
+ <script
+    type="text/javascript"
+    src="//code.jquery.com/jquery-2.2.4.js"
+    
+  ></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+      <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+
+  <style id="compiled-css" type="text/css">
+      /* 
+Just fixing jsfiddle embedded autosizing problem, 
+this style is not needed for MDP use.
+*/
+body { height: 400px; }
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+    window.onload=function(){
+      
+$('#mdp-demo').multiDatesPicker({
+	altField: '#altField'
+});
+
+    }
+
+  //]]></script>
+
 <style>
 .goods{
  width : 400px;
@@ -157,8 +193,22 @@ function previewImage(targetObj, View_area) {
 	</select></p>
 <p>만나는 장소 <input type="text" name="g_meet" placeholder="만나는 장소"/></p>
 <p>주소 <input type="text" name="g_address" placeholder="주소를 적어주세요"/></p>
-<p>투어 날짜 <input type="text" name="g_date" placeholder="투어 날짜"/></p>
+<p>투어 날짜 </p>
+ <div id="mdp-demo"></div>
+<input type="text"  name="g_date" id="altField" >
 <input type="submit" value="상품등록">
 </form>
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "jm3cpdfc"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"    
+  </script>
 </body>
 </html>

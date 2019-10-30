@@ -85,6 +85,7 @@ public class GoodsController {
 		logger.info("상품 상세보기", locale);
 		GoodsDto gdto = GoodsService.getGoods(dto.getG_seq());
 		System.out.println(dto.getG_seq());
+		System.out.println("디티오"+gdto);
 		model.addAttribute("gdto",gdto);
 		return "goodsdetail";
 	}
