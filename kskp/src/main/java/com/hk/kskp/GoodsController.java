@@ -38,7 +38,7 @@ public class GoodsController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
-	@RequestMapping(value = "/gooodspage.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/goodspage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gooodsManagement(Locale locale, Model model, GuideDto dto) {
 		logger.info("상품관리로 이동", locale);
 		List<GoodsDto> list = GoodsService.guideGoods(dto.getGu_seq());
@@ -55,7 +55,7 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value = "/insertgoods.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertGoods(Locale locale, GoodsDto dto, MultipartFile file) throws IOException, Exception {
+	public String insertGoods(Locale locale,Model model, GoodsDto dto, MultipartFile file) throws IOException, Exception {
 		logger.info("상품등록", locale);
 		System.out.println(dto);
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -73,11 +73,23 @@ public class GoodsController {
 		System.out.println(dto);
 		boolean isS = GoodsService.insertGoods(dto);
 		if(isS) {
-			return "goodspage";
+			return "redirect:goodspage.do?gu_seq="+dto.getGu_seq();
 		}else {
 		    return "insertgoodsform";
 		}
 		
 	}
+	
+	@RequestMapping(value = "/goodsdetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String goodsDetail(Locale locale, Model model, GoodsDto dto) {
+		logger.info("상품 상세보기", locale);
+		GoodsDto gdto = GoodsService.getGoods(dto.getG_seq());
+		System.out.println(dto.getG_seq());
+		System.out.println("디티오"+gdto);
+		model.addAttribute("gdto",gdto);
+		return "goodsdetail";
+	}
+	
+	
 }//end
 
