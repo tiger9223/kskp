@@ -81,10 +81,12 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value = "/goodsdetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String goodsDetail(Locale locale, GoodsDto dto) {
+	public String goodsDetail(Locale locale, Model model, GoodsDto dto) {
 		logger.info("상품 상세보기", locale);
-		
-		return "insertgoodsform";
+		GoodsDto gdto = GoodsService.getGoods(dto.getG_seq());
+		System.out.println(dto.getG_seq());
+		model.addAttribute("gdto",gdto);
+		return "goodsdetail";
 	}
 	
 	

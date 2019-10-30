@@ -9,7 +9,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>상품관리페이지</title>
+<title>상품상세페이지</title>
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -50,7 +50,7 @@
 </style>
 </head>
 <body>
-<h1>상품관리</h1>
+<h1>상품 상세보기</h1>
 <table border="1">
    <col width="188px">
    <col width="50px">
@@ -60,38 +60,17 @@
    <tr>
    	  <th>여행 대표사진</th>  
       <th>지역</th>   
-      <th>등록일</th>
+      <th>투어날짜</th>
       <th>상품명</th>
       <th>총판매 수</th>
-   </tr>
-      <c:choose>
-         <c:when test="${empty list}">
+   </tr> 
             <tr>
-               <td colspan="6" style="text-align: center;">---등록된 상품이 없습니다.---</td>
+               <td><img id="img" src="${gdto.g_thumbimg}"/></td>
+               <td>${gdto.g_area}</td>
+               <td>${gdto.g_date}</td>
+               <td>${gdto.g_name}</td>
+               <td>${gdto.g_res}</td> 
             </tr>   
-         </c:when>
-         <c:otherwise>
-            <c:forEach items="${list}" var="dto">
-            <tr>
-               <td><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></td>
-               <td>${dto.g_area}</td>
-               <td>${dto.g_date}</td>
-               <td>${dto.g_name}</td>
-               <td>${dto.g_res}</td> 
-            </tr>   
-            </c:forEach>
-         </c:otherwise>
-      </c:choose>
-               <tr>
-                  <td colspan="6">
-                     <a href="insertgoodsform.do">상품등록</a>
-                  </td>
-              </tr>
 </table>
-<script type="text/javascript">
-function goods(g_seq){
-	location.href="goodsdetail.do?g_seq="+g_seq;
-}
-</script>
 </body>
 </html>

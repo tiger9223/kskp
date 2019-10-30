@@ -19,10 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM GOODS WHERE G_AREA=#{g_area} AND G_FLAG=1 ORDER BY SYSDATE DESC
 	</select>
 	
-	<!-- 상품 상세조회 -->
+	<!-- 상품 상세조회  WHERE절에 AND G_FLAG='1' 넣어줘야함-->
 	<select id="getgoods" parameterType="GoodsDto" resultType="GoodsDto">
-		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE
-		FROM GOODS WHERE G_SEQ=#{g_seq} AND G_FLAG=1 ORDER BY SYSDATE DESC
+		SELECT *
+		FROM GOODS WHERE G_SEQ=#{g_seq} ORDER BY SYSDATE DESC
 	</select>
 	
 	<!--  -->
