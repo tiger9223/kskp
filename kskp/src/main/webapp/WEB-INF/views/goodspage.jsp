@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#img').click(function(g_seq){
+		location.href = 'goodsdetail.do?g_seq='+g_seq;
+	});
+});
+</script>
 <meta charset="UTF-8">
 <title>상품관리페이지</title>
 <link rel="stylesheet"
@@ -51,11 +59,13 @@
 <body>
 <h1>상품관리</h1>
 <table border="1">
+   <col width="188px">
    <col width="50px">
    <col width="100px">
    <col width="300px">
-   <col width="100px">
+   <col width="80px">
    <tr>
+   	  <th>여행 대표사진</th>  
       <th>지역</th>   
       <th>등록일</th>
       <th>상품명</th>
@@ -70,9 +80,7 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <tr>
-            	<img src="${dto.g_img1}"/>
-            	<img src="${dto.g_thumbimg}"/>
-           	   <td>${dto.g_area}</td>
+               <td><img id="img" src="${dto.g_thumbimg}"/></td>
                <td>${dto.g_area}</td>
                <td>${dto.g_date}</td>
                <td>${dto.g_name}</td>

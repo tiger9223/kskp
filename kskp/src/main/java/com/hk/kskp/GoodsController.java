@@ -38,7 +38,7 @@ public class GoodsController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
-	@RequestMapping(value = "/gooodspage.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/goodspage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gooodsManagement(Locale locale, Model model, GuideDto dto) {
 		logger.info("상품관리로 이동", locale);
 		List<GoodsDto> list = GoodsService.guideGoods(dto.getGu_seq());
@@ -73,11 +73,20 @@ public class GoodsController {
 		System.out.println(dto);
 		boolean isS = GoodsService.insertGoods(dto);
 		if(isS) {
-			return "goodspage";
+			return "redirect:goodspage.do";
 		}else {
 		    return "insertgoodsform";
 		}
 		
 	}
+	
+	@RequestMapping(value = "/goodsdetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String goodsDetail(Locale locale, GoodsDto dto) {
+		logger.info("상품 상세보기", locale);
+		
+		return "insertgoodsform";
+	}
+	
+	
 }//end
 

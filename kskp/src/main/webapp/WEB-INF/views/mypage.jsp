@@ -138,7 +138,7 @@
 		<nav class="left_menu">
 	`	<ul>
 			<li>
-				<a href="gooodspage.do?gu_seq=${ldto1.gu_seq}"><h2>상품관리</h2></a>
+				<a href="goodspage.do?gu_seq=${ldto1.gu_seq}"><h2>상품관리</h2></a>
 			</li>
 			<li>
 				<a href="calendarpage.do?gu_seq=${ldto1.gu_seq}"><h2>일정관리</h2></a>
