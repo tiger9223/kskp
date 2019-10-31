@@ -123,7 +123,7 @@ height: 500px;
 <h1>${gdto.g_name}</h1>
 <p>${gdto.g_area}</p>
 <p><img id="img1" src="${gdto.g_img1}"></p>
-<form action="insertgoods.do" method="post">
+<form action="insertpay.do" method="post">
 <input type="hidden" name="p_name" value="${gdto.g_name}"/>
 <input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
 <h3>원하는 날짜와 인원을 선택하세요.</h3>
@@ -143,6 +143,9 @@ height: 500px;
 	  <option value="10" >10</option>
 </select>
 </p>
+<input type="button"  id="price"  value="금액 조회">
+<script>
+</script>
 <p>결제 금액</p>
 <c:if test="">
 
