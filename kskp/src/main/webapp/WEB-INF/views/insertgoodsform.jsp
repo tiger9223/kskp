@@ -122,8 +122,8 @@ function previewImage(targetObj, View_area) {
 			img.id = "prev_" + View_area;
 			img.classList.add("obj");
 			img.file = file;
-			img.style.width = '100px'; 
-			img.style.height = '100px';
+			img.style.width = '700px';
+			img.style.height = '500px';
 			preview.appendChild(img);
 			if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 				var reader = new FileReader();
@@ -187,7 +187,7 @@ function previewImage(targetObj, View_area) {
 구체적 코스 작성
 " ></textarea></p>
 <p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
-<div id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '>
+<div id='View_area' style='position:relative; width: 700px; height: 500px; color: black; border: 0px solid black; dispaly: inline; '>
 </div></p>
 <p>1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" /></p>
 <p>예약 인원수 <select name="g_people">
