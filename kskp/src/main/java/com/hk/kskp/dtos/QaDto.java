@@ -7,6 +7,7 @@ public class QaDto {
 	private int q_seq;
 	private int m_seq;
 	private String m_name;
+	private String m_email;
 	private String q_title;
 	private String q_conts;
 	private Date q_regdate;
@@ -17,12 +18,13 @@ public class QaDto {
 		super();
 	}
 
-	public QaDto(int q_seq, int m_seq, String m_name, String q_title, String q_conts, Date q_regdate, int q_flag,
-			String q_ans) {
+	public QaDto(int q_seq, int m_seq, String m_name, String m_email, String q_title, String q_conts, Date q_regdate,
+			int q_flag, String q_ans) {
 		super();
 		this.q_seq = q_seq;
 		this.m_seq = m_seq;
 		this.m_name = m_name;
+		this.m_email = m_email;
 		this.q_title = q_title;
 		this.q_conts = q_conts;
 		this.q_regdate = q_regdate;
@@ -52,6 +54,14 @@ public class QaDto {
 
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
+	}
+
+	public String getM_email() {
+		return m_email;
+	}
+
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
 	public String getQ_title() {
@@ -96,8 +106,9 @@ public class QaDto {
 
 	@Override
 	public String toString() {
-		return "QaDto [q_seq=" + q_seq + ", m_seq=" + m_seq + ", m_name=" + m_name + ", q_title=" + q_title
-				+ ", q_conts=" + q_conts + ", q_regdate=" + q_regdate + ", q_flag=" + q_flag + ", q_ans=" + q_ans + "]";
+		return "QaDto [q_seq=" + q_seq + ", m_seq=" + m_seq + ", m_name=" + m_name + ", m_email=" + m_email
+				+ ", q_title=" + q_title + ", q_conts=" + q_conts + ", q_regdate=" + q_regdate + ", q_flag=" + q_flag
+				+ ", q_ans=" + q_ans + "]";
 	}
 
 	

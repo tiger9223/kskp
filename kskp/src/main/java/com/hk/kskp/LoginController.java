@@ -257,6 +257,16 @@ public class LoginController {
 		return "emailcert";
 	}
 
+	@RequestMapping(value = "/memberalllist.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String memberAllList(Model model) {
+		logger.info("전체회원 정보보기");
+		List<MembersDto> mlist=LoginService.getMuserlist();
+		List<GuideDto> glist = LoginService.getGuserlist();
+		//MembersDto glist=LoginService.gUserInfo(seq);
+		model.addAttribute("mlist",mlist);
+		model.addAttribute("glist",glist);
+		return"memberalllist";
+	}
 	
 	
 

@@ -64,6 +64,15 @@ public class LoginService implements ILoginService{
 	public boolean guserUpdate(GuideDto dto) {
 		return loginDao.guserUpdate(dto);
 	}
+	@Override
+	public List<MembersDto> getMuserlist() {
+		return loginDao.getMuserlist();
+	}
+	@Override
+	public List<GuideDto> getGuserlist() {
+		// TODO Auto-generated method stub
+		return loginDao.getGuserlist();
+	}
 	
 
 

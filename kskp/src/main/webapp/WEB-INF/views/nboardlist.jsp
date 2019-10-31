@@ -38,18 +38,32 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 <form action="nmuldel.do" method="post">
 <table border="1">
 	<col width="50px">
-	<col width="50px">
+	<col width="100px">
 	<col width="300px">
 	<col width="100px">
 	<col width="80px">
-	
-	<tr>
+
+
+	<c:choose>
+	<c:when test="${ldto.m_status eq 'A'}">
+		<tr>
 		<th><input type="checkbox" onclick="allSel(this.checked)" /></th>
 		<th>번호</th>	
 		<th>제 목</th>
 		<th>작성날짜</th>
 		<th>조회수</th>
-	</tr>		
+	</tr>
+	</c:when>
+	<c:otherwise>
+		<tr>
+		<th>번호</th>	
+		<th>제 목</th>
+		<th>작성날짜</th>
+		<th>조회수</th>
+		</tr>
+	</c:otherwise>
+	</c:choose>	
+					
 		<c:choose>
 			<c:when test="${empty list}">
 				<tr>
@@ -58,12 +72,21 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list}" var="dto">
-				<tr>
+				<tr><c:choose>
+					<c:when test="${ldto.m_status eq 'A'}">
 					<td><input type="checkbox" name="chk" value="${dto.n_seq}"/></td>
 					<td>${dto.n_seq}</td>
 					<td><a href="ngetboard.do?n_seq=${dto.n_seq}">${dto.n_title}</a></td>
 					<td><fmt:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 
 					<td>${dto.n_count}</td>
+					</c:when>
+					<c:otherwise>
+					<td>${dto.n_seq}</td>
+					<td><a href="ngetboard.do?n_seq=${dto.n_seq}">${dto.n_title}</a></td>
+					<td><fmt:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 
+					<td>${dto.n_count}</td>
+					</c:otherwise>
+					</c:choose>
 				</tr>	
 				</c:forEach>
 			</c:otherwise>
