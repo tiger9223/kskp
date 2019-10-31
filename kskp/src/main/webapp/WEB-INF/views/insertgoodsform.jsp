@@ -256,6 +256,8 @@ function previewImage(targetObj, View_area) {
 	<i aria-hidden='true' class='icon wb-search'></i>
 	</button>
 	<input class='form-control' name="g_address" id='inputSearchMap' value="" placeholder='만나는 장소의 주소 혹은 랜드마크 검색' type='text'>
+	<input name='offer[lat]' type='hidden' value='0.0'>
+	<input name='offer[lng]' type='hidden' value='0.0'>
 			</div>
 		</div>
 	</div>
