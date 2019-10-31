@@ -18,22 +18,22 @@
     type="text/javascript"
     src="//code.jquery.com/jquery-2.2.4.js"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-  </script>
+</script>
 
-    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+<link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
-      <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-      <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
 
-  <style id="compiled-css" type="text/css">
+<style id="compiled-css" type="text/css">
       /* 
 Just fixing jsfiddle embedded autosizing problem, 
 this style is not needed for MDP use.
 */
 body { height: 400px; }
-  </style>
+</style>
 
 
   <!-- TODO: Missing CoffeeScript 2 -->
@@ -79,8 +79,6 @@ $('#mdp-demo').multiDatesPicker({
 });
     
 });
-    	
-
 
   //]]></script>
 <style type="text/css">
@@ -116,32 +114,44 @@ $('#mdp-demo').multiDatesPicker({
 	margin-left: auto;
 	margin-right: auto;
 }
+#img1{
+width: 700px;
+height: 500px;
+}
 </style>
 </head>
 <body>
-<h1>상품 상세보기</h1>
-<table border="1">
-   <col width="188px">
-   <col width="50px">
-   <col width="100px">
-   <col width="300px">
-   <col width="80px">
-   <tr>
-   	  <th>여행 대표사진</th>  
-      <th>지역</th>   
-      <th>투어날짜</th>
-      <th>상품명</th>
-      <th>총판매 수</th>
-   </tr> 
-            <tr>
-               <td><img id="img" src="${gdto.g_thumbimg}"/></td>
-               <td>${gdto.g_area}</td>
-               <td> <div id="mdp-demo"></div>
-				<input type="text"  name="g_date" id="altField" ></td>
-               <td>${gdto.g_name}</td>
-               <td>${gdto.g_res}</td> 
-            </tr>   
-</table>
+<h1>${gdto.g_name}</h1>
+<p>${gdto.g_area}</p>
+<p><img id="img1" src="${gdto.g_img1}"></p>
+<form action="insertgoods.do" method="post">
+<input type="hidden" name="p_name" value="${gdto.g_name}"/>
+<input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
+<h3>원하는 날짜와 인원을 선택하세요.</h3>
+<div id="mdp-demo"></div>
+<input type="hidden"  name="p_date" id="altField" >
+<p>인원 선택
+<select name="p_num">
+	  <option value="1" selected="selected">1</option>
+	  <option value="2">2</option>
+	  <option value="3" >3</option>
+	  <option value="4" >4</option>
+	  <option value="5" >5</option>
+	  <option value="6" >6</option>
+	  <option value="7" >7</option>
+	  <option value="8" >8</option>
+	  <option value="9" >9</option>
+	  <option value="10" >10</option>
+</select>
+</p>
+<p>결제 금액</p>
+<c:if test="">
+
+</c:if>
+<input type="text" name="p_cost" value="">
+</form>
+<h2>${gdto.g_oneline}</h2> 
+<p>${gdto.g_conts}</p>      
 </body>
   <script>
     // tell the embed parent frame the height of the content

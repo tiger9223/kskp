@@ -55,6 +55,9 @@ $('#mdp-demo').multiDatesPicker({
  width : 400px;
  height : 300px;
 }
+#sub{
+margin: 5px 2px 100px 4px
+}
 </style>
 <script type="text/javascript">
 function previewImage(targetObj, View_area) {
@@ -200,8 +203,8 @@ function previewImage(targetObj, View_area) {
 <p>주소 <input type="text" name="g_address" placeholder="주소를 적어주세요"/></p>
 <p>투어 날짜 </p>
  <div id="mdp-demo"></div>
-<input type="text"  name="g_date" id="altField" >
-<input type="submit" value="상품등록">
+<input type="hidden"  name="g_date" id="altField" >
+<input id="sub" type="submit" value="상품등록">
 </form>
   <script>
     // tell the embed parent frame the height of the content
