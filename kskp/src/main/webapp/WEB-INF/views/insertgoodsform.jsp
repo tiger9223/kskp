@@ -74,6 +74,9 @@ $('#mdp-demo').multiDatesPicker({
  width : 400px;
  height : 300px;
 }
+#sub{
+margin: 5px 2px 100px 4px
+}
 </style>
 <script type="text/javascript">
 function previewImage(targetObj, View_area) {
@@ -185,7 +188,7 @@ function previewImage(targetObj, View_area) {
 " ></textarea></p>
 <p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
 <div id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '>
-<%=request.getRealPath("/")%></div></p>
+</div></p>
 <p>1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" /></p>
 <p>예약 인원수 <select name="g_people">
 	  <option value="1" selected="selected">1</option>
@@ -272,8 +275,8 @@ function previewImage(targetObj, View_area) {
 
 <p>투어 날짜 </p>
  <div id="mdp-demo"></div>
-<input type="text"  name="g_date" id="altField" >
-<input type="submit" value="상품등록">
+<input type="hidden"  name="g_date" id="altField" >
+<input id="sub" type="submit" value="상품등록">
 </form>
   <script>
     // tell the embed parent frame the height of the content
