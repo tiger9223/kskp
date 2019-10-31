@@ -259,8 +259,8 @@ function previewImage(targetObj, View_area) {
 	<i aria-hidden='true' class='icon wb-search'></i>
 	</button>
 	<input class='form-control' name="g_address" id='inputSearchMap' value="" placeholder='만나는 장소의 주소 혹은 랜드마크 검색' type='text'>
-	<input name='offer[lat]' type='hidden' value='0.0'>
-	<input name='offer[lng]' type='hidden' value='0.0'>
+	<input name='g_lat' id="lat" type='hidden' value='0.0'>
+	<input name='g_lng' id="lng" type='hidden' value='0.0'>
 			</div>
 		</div>
 	</div>
@@ -368,8 +368,10 @@ function previewImage(targetObj, View_area) {
  
                         // 위도
                         console.log('위도(latitude) : ' + marker.position.lat());
+                        document.getElementById('lat').value = marker.position.lat();
                         // 경도
                         console.log('경도(longitude) : ' + marker.position.lng());
+                        document.getElementById('lng').value = marker.position.lng();
                     } else {
                         alert('지오코드가 다음의 이유로 성공하지 못했습니다 : ' + status);
                     }
