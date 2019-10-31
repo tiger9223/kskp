@@ -24,76 +24,82 @@ public class BoardService implements IBoardService{
 	@Autowired
 	private IBoardDao boardDao;
 
+	//공지게시판글 전체보기
 	@Override
-	public List<NoticeDto> ngetAllList() {
-		return boardDao.ngetAllList();
+	public List<NoticeDto> ngetAllList(String pnum) {
+		return boardDao.ngetAllList(pnum);
 	}
-
+	//페이지 개수 구하기
+	@Override
+	public int getPcount() {
+		return boardDao.getPcount();
+	}
+	//공지게시판 글 추가하기
 	@Override
 	public boolean ninsertBoard(NoticeDto dto) {
 		return boardDao.ninsertBoard(dto);
 	}
-
+	//공지게시판 글 상세보기
 	@Override
 	public NoticeDto ngetBoard(int seq) {
 		return boardDao.ngetBoard(seq);
 	}
-
+	//공지게시판 글 수정하기
 	@Override
 	public boolean nupdateBoard(NoticeDto dto) {
 		return boardDao.nupdateBoard(dto);
 	}
-	
+	//공지게시판 조회수 올리기
 	@Override
 	public boolean readCount(int seq) {
 		return boardDao.readCount(seq);
 	}
-
+	//공지게시판 글 삭제하기
 	@Override
 	public boolean ndelBoard(int seq) {
 		return boardDao.ndelBoard(seq);
 	}
-	
+	//공지게시판 전체 삭제하기
 	@Override
 	public boolean nmuldel(String[] seqs) {
 		return boardDao.nmuldel(seqs);
 	}
-
+	
+	
+	//Q&A 글 전체보기
 	@Override
-	public List<QaDto> qgetAllList() {
-		return boardDao.qgetAllList();
+	public List<QaDto> qgetAllList(String pnum) {
+		return boardDao.qgetAllList(pnum);
 	}
-
+	//페이지 개수 구하기
+	@Override
+	public int qgetPcount() {
+		return boardDao.qgetPcount();
+	}
+	//Q&A 글 추가하기
 	@Override
 	public boolean qinsertBoard(QaDto dto) {
 		return boardDao.qinsertBoard(dto);
 	}
-
+	//Q&A 글 상세보기
 	@Override
 	public QaDto qgetBoard(int seq) {
 		return boardDao.qgetBoard(seq);
 	}
-
+	//Q&A 글 수정하기
 	@Override
 	public boolean qupdateBoard(QaDto dto) {
 		return boardDao.qupdateBoard(dto);
 	}
-
+	//Q&A 글 삭제하기
 	@Override
 	public boolean qdelBoard(int seq) {
 		return boardDao.qdelBoard(seq);
 	}
-
-	@Override
-	public boolean muldel(String[] chk) {
-		return false;
-	}
-
+	//Q&A 글 답변달기
 	@Override
 	public boolean qinsertAns(QaDto dto) {
 		return boardDao.qinsertAns(dto);
 	}
-
 	
-
 }

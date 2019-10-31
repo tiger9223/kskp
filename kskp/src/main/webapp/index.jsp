@@ -11,7 +11,7 @@
 <a href="minsertuserform.do">일반회원가입</a>
 <a href="ginsertuserform.do">가이드회원가입</a>
 <a href="loginform.do">로그인하기</a>
-<a href="qboardlist.do">질문과 답변 목록보기</a>
-<a href="nboardlist.do">공지사항 목록보기</a>
+<a href="qboardlist.do">질문과 답변</a>
+<a href="nboardlist.do">공지사항</a>
 </body>
 </html>

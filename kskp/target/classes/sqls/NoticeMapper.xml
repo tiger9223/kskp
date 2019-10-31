@@ -5,20 +5,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.hk.notice">
 
+
 	<select id="ngetAlllist" resultType="NoticeDto">
-	 	SELECT N_SEQ, N_TITLE, N_REGDATE,N_COUNT
-	 	FROM NOTICE ORDER BY N_SEQ DESC
+	 	SELECT N_SEQ
+	 	     , N_TITLE
+	 	     , N_REGDATE
+	 	     , N_COUNT
+	 	FROM (
+	 	     SELECT ROW_NUMBER() OVER (ORDER BY N_SEQ DESC) AS RN
+	 	          , N_SEQ
+	 	          , N_TITLE
+	 	          , N_REGDATE
+	 	          , N_COUNT 
+	 	        FROM NOTICE
+	 	        )
+	 	        
+	 	WHERE CEIL(RN/5) = #{pnum}
+	</select>
+	
+	<select id="pcount" resultType="int">
+		SELECT CEIL(COUNT(*)/5) 
+		FROM NOTICE
 	</select>
 	
 	<insert id="ninsertboard" parameterType="NoticeDto">
-		INSERT INTO NOTICE (N_SEQ, M_SEQ, N_TITLE, N_CONTS, N_REGDATE, N_COUNT)
+		INSERT INTO NOTICE 
+		       (N_SEQ
+		       , M_SEQ
+		       , N_TITLE
+		       , N_CONTS
+		       , N_REGDATE
+		       , N_COUNT)
 		VALUES
 		(NOTICE_SEQ.NEXTVAL,#{m_seq},#{n_title},#{n_conts},SYSDATE,0)
 	</insert>
 	
 	<select id="ngetboard" parameterType="int" resultType="NoticeDto" >
-		SELECT N_SEQ, M_SEQ, N_TITLE, N_CONTS, N_REGDATE, N_COUNT
-		FROM NOTICE WHERE N_SEQ=#{n_seq}
+		SELECT N_SEQ
+		     , M_SEQ
+		     , N_TITLE
+		     , N_CONTS
+		     , N_REGDATE
+		     , N_COUNT
+		  FROM NOTICE WHERE N_SEQ=#{n_seq}
 	</select>
 	
 	<update id="readcount" parameterType="int" >
@@ -27,40 +56,79 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="nupdateboard" parameterType="NoticeDto" >
-		UPDATE NOTICE SET N_TITLE=#{n_title}, N_CONTS=#{n_conts}, N_REGDATE=SYSDATE
+		UPDATE NOTICE SET 
+		         N_TITLE=#{n_title}
+		       , N_CONTS=#{n_conts}
+		       , N_REGDATE=SYSDATE
 		WHERE N_SEQ=#{n_seq}
 	</update>
 	
 	<delete id="ndelboard" parameterType="int">
-		DELETE FROM NOTICE WHERE Q_SEQ=#{q_seq}
+		DELETE FROM NOTICE 
+		   WHERE Q_SEQ=#{q_seq}
 	</delete>
 	
 	<delete id="nmuldel" parameterType="Map">
-		DELETE FROM NOTICE WHERE N_SEQ IN
+		DELETE FROM NOTICE 
+		    WHERE N_SEQ IN
 		<foreach collection="seqs" item="n_seq" open="(" close=")" separator=",">
 			#{n_seq}
 		</foreach>
 	</delete>
 	
-	<select id="qgetAlllist" resultType="QaDto">
-		SELECT q.q_seq , m.m_name, q.q_title , q.q_regdate
-		FROM QA q, MEMBERS m WHERE q.m_seq=m.m_seq ORDER BY SYSDATE DESC
+	<select id="qgetAlllist" resultType="QaDto" parameterType="String">
+		SELECT Q_SEQ 
+	 		, M_SEQ
+	 		, Q_TITLE
+	 		, Q_REGDATE 
+	 		, Q_FLAG
+  	   FROM (
+       		SELECT ROW_NUMBER() OVER (ORDER BY Q_SEQ DESC) AS RM
+		  		 , Q_SEQ
+		 		 , M_SEQ
+		 		 , Q_TITLE
+		 		 , Q_REGDATE 
+		 		 , Q_FLAG 
+	   		  FROM QA
+	  		)
+ 	  WHERE CEIL(RM/5) = #{pnum}	      		      
+	</select>
+		
+	<select id="qpcount" resultType="int">
+		SELECT CEIL(COUNT(*)/5) 
+		  FROM QA		
 	</select>
 	
 	<insert id="qinsertboard" parameterType="QaDto">
-		INSERT INTO QA (Q_SEQ, M_SEQ, Q_TITLE, Q_CONTS, Q_REGDATE, Q_FLAG, Q_ANS)
-		VALUES
+		INSERT INTO QA (
+		           Q_SEQ
+		         , M_SEQ
+		         , Q_TITLE
+		         , Q_CONTS
+		         , Q_REGDATE
+		         , Q_FLAG
+		         , Q_ANS)
+		    VALUES
 		(QA_SEQ.NEXTVAL,#{m_seq},#{q_title},#{q_conts},SYSDATE,0,NULL)		
 	</insert>
 	
 	<select id="qgetboard" parameterType="int" resultType="QaDto">
-		SELECT q.q_seq , m.m_name, q.q_title , q.q_regdate,q.q_conts, q.q_ans, q.q_flag
-		FROM QA q, MEMBERS m WHERE Q_SEQ=#{q_seq} AND q.m_seq=m.m_seq
+		SELECT q.q_seq 
+		     , m.m_name
+		     , q.q_title 
+		     , q.q_regdate
+		     , q.q_conts
+		     , q.q_ans
+		     , q.q_flag
+		  FROM QA q, MEMBERS m WHERE Q_SEQ=#{q_seq} AND q.m_seq=m.m_seq
 	</select>
 	
 	<update id="qupdateboard" parameterType="QaDto">
-		UPDATE QA SET Q_TITLE=#{q_title}, Q_CONTS=#{q_conts}, Q_REGDATE=SYSDATE
-		WHERE Q_SEQ=#{q_seq}
+		UPDATE QA SET 
+		      Q_TITLE=#{q_title}
+		    , Q_CONTS=#{q_conts}
+		    , Q_REGDATE=SYSDATE
+		   WHERE Q_SEQ=#{q_seq}
 	</update>
 	
 	<update id="insertans" parameterType="QaDto">

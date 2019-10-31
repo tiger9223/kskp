@@ -66,8 +66,14 @@ public class LetterService implements ILetterService {
 	}
 
 	@Override
-	public int getPcount() {
-		return LetterDao.getPcount();
+	public int getPcount(LetterDto dto) {
+		return LetterDao.getPcount(dto);
 	}
 
+	@Override
+	public int getPcount1(LetterDto dto) {
+		return LetterDao.getPcount1(dto);
+	}
+
+	
 }

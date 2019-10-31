@@ -33,11 +33,16 @@ public class LetterDao implements ILetterDao {
 	}
 	
 	@Override
-	public int getPcount() {
-		int pcount =  sqlSession.selectOne(nameSpace+"pcount");
+	public int getPcount(LetterDto dto) {
+		int pcount =  sqlSession.selectOne(nameSpace+"pcount",dto);
 		return pcount;
 	}
 	
+	@Override
+	public int getPcount1(LetterDto dto) {
+		int pcount =  sqlSession.selectOne(nameSpace+"spcount",dto);
+		return pcount;
+	}
 	
 	@Override
 	public List<LetterDto> sendletterList(String l_sender,String pnum){

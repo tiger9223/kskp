@@ -1,4 +1,5 @@
 
+<%@page import="java.util.Map"%>
 <%@page import="com.hk.kskp.dtos.NoticeDto"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -29,6 +30,9 @@
 	}
 </script>
 </head>
+<%
+Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
+%>
 <body>
 <h1>공지사항</h1>
 <form action="nmuldel.do" method="post">
@@ -45,7 +49,7 @@
 		<th>제 목</th>
 		<th>작성날짜</th>
 		<th>조회수</th>
-	</tr>
+	</tr>		
 		<c:choose>
 			<c:when test="${empty list}">
 				<tr>
@@ -63,7 +67,22 @@
 				</tr>	
 				</c:forEach>
 			</c:otherwise>
-		</c:choose>
+		</c:choose>     
+      <tr>
+			<td colspan="6" style="text-align: center;">
+				<a href="nboardlist.do?pnum=<%=map.get("prePageNum")%>">◀</a>
+				<%
+					int pcount=(Integer)request.getAttribute("pcount");
+					for(int i=map.get("startPage");i<=map.get("endPage");i++){
+						%>
+						<a href="nboardlist.do?pnum=<%=i%>" style="text-decoration: none;"><%=i%></a>				
+						<%
+						}					
+				%>
+				<a href="nboardlist.do?pnum=<%=map.get("nextPageNum")%>">▶</a>
+			</td>
+		</tr>	  
+		 
 		<c:choose>
 				<c:when test="${ldto.m_status eq 'A'}">
 					<tr>
@@ -74,6 +93,8 @@
 					</tr>
 				</c:when>
 		</c:choose>
+	
+		
 </table>
 </form>
 </body>

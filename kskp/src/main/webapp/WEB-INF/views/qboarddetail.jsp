@@ -23,11 +23,7 @@
 		<td>${qdto.q_seq}</td>
 	</tr>
 	<tr>
-		<th>아이디</th>
-		<td>${qdto.q_seq}</td>
-	</tr>
-	<tr>
-		<th>이름</th>
+		<th>작성자</th>
 		<td>${qdto.m_name}</td>
 	</tr>
 	<tr>
@@ -57,10 +53,14 @@
 			<button onclick="qupdateBoard(${qdto.q_seq})">수정</button>
 			<button onclick="qdelboard(${qdto.q_seq})">삭제</button>
 			<button onclick="qansBoard(${qdto.q_seq})">답글</button>
+			<button onclick="qListBoard()">목록</button>
 		</td>
 	</tr>
 </table>
 <script type="text/javascript">
+function qListBoard(){
+	location.href="qboardlist.do";
+}
 //글삭제하기
 function qdelboard(q_seq){
 	location.href="qdelboard.do?seq="+q_seq;

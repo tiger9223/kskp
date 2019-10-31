@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hk.kskp.dtos.NoticeDto;
 import com.hk.kskp.dtos.QaDto;
 import com.hk.kskp.service.IBoardService;
-
-
+import com.hk.kskp.utils.Paging;
 
 @Controller
 public class BoardController {
@@ -30,20 +32,26 @@ public class BoardController {
 	
 	@Autowired
 	private IBoardService BoardService;
-	
-	//클라이언트에서 home.do라고 get방식으로 요청하면 home()메서드 실행
-	//@RequestMapping @(어노테이션)
-
-	
+			
 	@RequestMapping(value="/nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String nboardlist(Model model) {
-		logger.info("공지글목록으로 이동");
-		List<NoticeDto>list = BoardService.ngetAllList();
+	 public String nboardlist(HttpServletRequest request, Model model, String pnum) {
+		logger.info("공지사항으로 이동");
+		
+		if(pnum == null) {
+			pnum = (String) request.getSession().getAttribute("pnum");			
+		}else {
+			request.getSession().setAttribute("pnum", pnum);
+		}
+		List<NoticeDto>list = BoardService.ngetAllList(pnum);
 		model.addAttribute("list",list);
 		
+		int pcount=BoardService.getPcount();
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+		model.addAttribute("pmap", map);
+		
 		return "nboardlist";
-	}
-	
+	}	
+		
 	@RequestMapping(value="/ninsertform.do",method = RequestMethod.GET)
 	public String insertForm() {
 		logger.info("글쓰기폼으로 이동");
@@ -108,23 +116,34 @@ public class BoardController {
 	// Q&A 게시판 
 				
 	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
-	 public String qboardList(Model model) {
+	 public String qboardList(HttpServletRequest request, Model model, String pnum) {
 		logger.info("질답 목록보기");
-		List<QaDto> list = BoardService.qgetAllList();
-		System.out.println(list);
+		
+		if(pnum==null) {
+			pnum=(String)request.getSession().getAttribute("pnum");
+		}else {			
+			request.getSession().setAttribute("pnum", pnum);			
+		}
+		
+		List<QaDto> list = BoardService.qgetAllList(pnum);
 		model.addAttribute("list",list);
+		
+		int pcount=BoardService.qgetPcount();
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+		model.addAttribute("pmap", map);
 		return "qboardlist";
 	}
 		
 	@RequestMapping(value="/qinsertform.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String qinsertForm() {
-		logger.info("질답폼으로 이동");
+		logger.info("질문답변폼으로 이동");
 		return "qinsertboard";
 	}
 	@RequestMapping(value="/qinsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String qinsertBoard(Model model,QaDto dto) {		
-		logger.info("질답 글 추가하기");
+		logger.info("질문답변 글 추가하기");
 		System.out.println(dto);
+		
 		boolean isS = BoardService.qinsertBoard(dto);
 		if(isS) {
 			return "redirect:qboardlist.do";
@@ -189,7 +208,7 @@ public class BoardController {
 		System.out.println(dto);
 		boolean isS = BoardService.qinsertAns(dto);
 		if(isS) {
-			return "redirect:qboarddetail.do?q_seq="+dto.getQ_seq();
+			return "redirect:qboardlist.do?q_seq="+dto.getQ_seq();
 		}
 			return "qinsertboard";
 	}
