@@ -220,7 +220,32 @@ function previewImage(targetObj, View_area) {
 	  <option value="11" >11시간</option>
 	  <option value="12" >12시간</option>
 	</select></p>
-	
+	<p>만나는 시간 <select name="g_mtime">  
+	  <option value="1"  selected="selected" >1시</option>
+	  <option value="2" >2시</option>
+	  <option value="3" >3시</option>
+	  <option value="4" >4시</option>
+	  <option value="5" >5시</option>
+	  <option value="6" >6시</option>
+	  <option value="7" >7시</option>
+	  <option value="8" >8시</option>
+	  <option value="9" >9시</option>
+	  <option value="10" >10시</option>
+	  <option value="11" >11시</option>
+	  <option value="12" >12시</option>
+	  <option value="13" >13시</option>
+	  <option value="14" >14시</option>
+	  <option value="15" >15시</option>
+	  <option value="16" >16시</option>
+	  <option value="17" >17시</option>
+	  <option value="18" >18시</option>
+	  <option value="19" >19시</option>
+	  <option value="20" >20시</option>
+	  <option value="21" >21시</option>
+	  <option value="22" >22시</option>
+	  <option value="23" >23시</option>
+	  <option value="24">0시</option>
+	</select></p>
 	
 	<hr class='divider'>
 	<div class='form-group clearfix' data-desc='• 넓은 범위의 장소를 설정하면 만남에 많은 시간이 소요됩니다.<br/>• 나쁜 예) 그린파크역, 시청역<br/>• 좋은 예) 그린파크역 1번 출구 앞 벤치, 시청역 2번 출구 오른쪽 스타벅스 입구 앞<br/>'>
@@ -235,7 +260,7 @@ function previewImage(targetObj, View_area) {
 	<span>*</span>
 	</label>
 	<div class='col-xs-12'>
-	<input class='form-control' id='offerMeetingPoint' name='offer[meeting_point]' type='text'>
+	<input class='form-control' id='offerMeetingPoint'  type='text'>
 	</div>
 	</div>
 	<div class='form-group clearfix'>

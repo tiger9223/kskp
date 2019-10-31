@@ -130,7 +130,7 @@ height: 500px;
 <div id="mdp-demo"></div>
 <input type="hidden"  name="p_date" id="altField" >
 <p>인원 선택
-<select name="p_num">
+<select id="pnum" name="p_num">
 	  <option value="1" selected="selected">1</option>
 	  <option value="2">2</option>
 	  <option value="3" >3</option>
@@ -145,12 +145,19 @@ height: 500px;
 </p>
 <input type="button"  id="price"  value="금액 조회">
 <script>
+$(function(){
+	$("#price").click(function(){
+		var num = $("#pnum").val();
+		var price = ${gdto.g_price};
+		$("#p_cost").val(num*price);
+	})
+})
 </script>
 <p>결제 금액</p>
 <c:if test="">
 
 </c:if>
-<input type="text" name="p_cost" value="">
+<input type="text" id="p_cost" name="p_cost" value="">
 </form>
 <h2>${gdto.g_oneline}</h2> 
 <p>${gdto.g_conts}</p>      
