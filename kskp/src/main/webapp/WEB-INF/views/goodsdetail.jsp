@@ -55,9 +55,9 @@ $(function(){
 var gdate = "${gdto.g_date}";
 var availableDates = gdate.split(', ');
 var date = new Date();
-alert(availableDates[0],availableDates[1]);
 $('#mdp-demo').multiDatesPicker({
 // 	dateFormat: "mm-dd-yyyy",
+	maxPicks: 1,
 	beforeShowDay: function available(date){			
 		var thismonth = date.getMonth()+1;
 		var thisday = date.getDate();			
