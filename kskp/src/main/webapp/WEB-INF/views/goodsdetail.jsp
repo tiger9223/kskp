@@ -16,8 +16,7 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script>
     type="text/javascript"
-    src="//code.jquery.com/jquery-2.2.4.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    src="//code.jquery.com/jquery-2.2.4.js"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 </script>
 
 <link rel="stylesheet" type="text/css" href="/css/result-light.css">
