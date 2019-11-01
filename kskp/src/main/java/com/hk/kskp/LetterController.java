@@ -112,7 +112,7 @@ public class LetterController {
 		int pcount=LetterService.getPcount1(dto);
 
 		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
-		model.addAttribute("pmap", map);
+		model.addAttribute("map", map);
 		return "sendLetterlist";
 
 	}

@@ -64,6 +64,14 @@ public class LoginService implements ILoginService{
 	public boolean guserUpdate(GuideDto dto) {
 		return loginDao.guserUpdate(dto);
 	}
+	@Override
+	public MembersDto idChk(String m_email) {
+		return loginDao.idChk(m_email);
+	}
+	@Override
+	public GuideDto idChk1(String gu_email) {
+		return loginDao.idChk1(gu_email);
+	}
 	
 
 
