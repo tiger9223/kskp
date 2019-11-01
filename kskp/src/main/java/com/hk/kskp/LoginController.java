@@ -128,6 +128,16 @@ public class LoginController {
 		return "idchkform";
 	}
 	
+	@RequestMapping(value = "/idChk1.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String idChk1(Locale locale, Model model, String gu_email) {
+		logger.info("아이디중복체크", locale);
+		MembersDto dto = LoginService.idChk(gu_email);
+		GuideDto dto1 = LoginService.idChk1(gu_email);
+		model.addAttribute("dto", dto);
+		model.addAttribute("dto1", dto1);
+		return "idchkform1";
+	}
+	
 	
 	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUserForm() {
