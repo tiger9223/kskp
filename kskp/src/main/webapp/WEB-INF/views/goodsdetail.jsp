@@ -20,7 +20,7 @@
 </script>
 
 <link rel="stylesheet" type="text/css" href="/css/result-light.css">
-
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q&callback=initMap"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
@@ -159,8 +159,12 @@ $(function(){
 </form>
 <h2>${gdto.g_oneline}</h2> 
 <p>${gdto.g_conts}</p>      
-<div>만나는 시간<p>${gdto.mtime }</p></div>
-<div>만나는 시간<p>${gdto.mtime }</p></div>
+<div>만나는 시간<p>${gdto.g_mtime}</p></div>
+<div>만나는 장소<p>${gdto.g_address}</p></div>
+<a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap">
+</a>
+
 </body>
   <script>
     // tell the embed parent frame the height of the content
