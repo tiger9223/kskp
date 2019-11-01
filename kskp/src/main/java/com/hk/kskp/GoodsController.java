@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
+import com.hk.kskp.dtos.PayDto;
+import com.hk.kskp.service.ICashService;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.utils.UploadFileUtil;
@@ -34,6 +36,9 @@ public class GoodsController {
 	
 	@Autowired
 	private IGoodsService GoodsService;
+	
+	@Autowired
+	private ICashService CashService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -90,6 +95,13 @@ public class GoodsController {
 		return "goodsdetail";
 	}
 	
+	@RequestMapping(value = "/insertpay.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertPay(Locale locale, Model model, PayDto dto) {
+		logger.info("결제창으로 가기", locale);
+		System.out.println(dto);
+		model.addAttribute("dto",dto);
+		return "pay";
+	}
 	
 }//end
 

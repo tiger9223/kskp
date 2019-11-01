@@ -260,7 +260,7 @@ function previewImage(targetObj, View_area) {
 	<span>*</span>
 	</label>
 	<div class='col-xs-12'>
-	<input class='form-control' id='offerMeetingPoint'  type='text'>
+	<input class='form-control' name="g_address" id='offerMeetingPoint'  type='text'>
 	</div>
 	</div>
 	<div class='form-group clearfix'>
@@ -283,7 +283,7 @@ function previewImage(targetObj, View_area) {
 	<button id="submit" type="button" class='input-search-btn' value="Geocode">
 	<i aria-hidden='true' class='icon wb-search'></i>
 	</button>
-	<input class='form-control' name="g_address" id='inputSearchMap' value="" placeholder='만나는 장소의 주소 혹은 랜드마크 검색' type='text'>
+	<input class='form-control' id='inputSearchMap' value="" placeholder='만나는 장소의 주소 혹은 랜드마크 검색' type='text'>
 	<input name='g_lat' id="lat" type='hidden' value='0.0'>
 	<input name='g_lng' id="lng" type='hidden' value='0.0'>
 			</div>
