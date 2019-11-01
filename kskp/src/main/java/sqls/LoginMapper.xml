@@ -55,4 +55,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_SEQ=#{gu_seq}
 	</update>
 
+	<!-- 일반 아이디 중복 체크 -->
+	<select id="idChk" parameterType="String" resultType="MembersDto">
+		SELECT M_EMAIL FROM MEMBERS WHERE M_EMAIL=#{m_email}
+	</select>
+	<!-- 가이드 아이디 중복 체크 -->
+	<select id="idChk1" parameterType="String" resultType="MembersDto">
+		SELECT GU_EMAIL FROM GUIDE WHERE GU_EMAIL=#{gu_email}
+	</select>
+
 </mapper>

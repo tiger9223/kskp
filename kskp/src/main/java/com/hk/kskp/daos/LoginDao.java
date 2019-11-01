@@ -90,6 +90,14 @@ public class LoginDao implements ILoginDao {
 	public List<GuideDto> getGuserlist() {
 		return sqlSession.selectList(nameSpace+"getGUserStatus");
 	}
+	@Override
+	public MembersDto idChk(String m_email) {
+		return sqlSession.selectOne(nameSpace+"idChk", m_email);
+	}
+	@Override
+	public GuideDto idChk1(String gu_email) {
+		return sqlSession.selectOne(nameSpace+"idChk1", gu_email);
+	}
 
 
 	

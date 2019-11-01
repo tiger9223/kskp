@@ -33,6 +33,7 @@ import com.hk.kskp.utils.MailUtil;
 
 
 
+
 @Controller
 public class LoginController {
 	
@@ -115,8 +116,19 @@ public class LoginController {
 			model.addAttribute("email", email);
 			return "emailcert";
 			}
-	
 	}
+	
+	@RequestMapping(value = "/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String idChk(Locale locale, Model model, String m_email) {
+		logger.info("아이디중복체크", locale);
+		MembersDto dto = LoginService.idChk(m_email);
+		GuideDto dto1 = LoginService.idChk1(m_email);
+		model.addAttribute("dto", dto);
+		model.addAttribute("dto1", dto1);
+		return "idchkform";
+	}
+	
+	
 	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUserForm() {
 		logger.info("가이드회원가입 폼으로 이동");
@@ -150,7 +162,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/mlogin.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getLogin(HttpServletRequest request,Locale locale, Model model, String email, String pw) {
+	public String getLogin(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String pw) throws IOException {
 		logger.info("로그인", locale);
 	
 		HttpSession session = request.getSession();
@@ -160,6 +172,9 @@ public class LoginController {
 		
 		System.out.println("ldto="+ldto);
 		if(ldto == null && ldto1 ==null){
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('아이디 패스워드를 확인해주세요.'); history.go(-1);</script>");
+	            out.flush();
 			return "login";
 		}else if(ldto !=null) {
 			session.setAttribute("ldto", ldto);

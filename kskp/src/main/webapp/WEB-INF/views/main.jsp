@@ -66,7 +66,8 @@
 		<a href="nboardlist.do?pnum=1">공지사항</a>
 		<a href="memberalllist.do">전체회원보기</a>
 		<a href="sendLetterform.do">쪽지보내기</a>
-		<a href="letterlist.do?l_receiver=${ldto.m_email}">쪽지보기</a>
+		<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은쪽지보기</a>
+		<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸쪽지보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:otherwise>
@@ -75,7 +76,8 @@
 		<a href="nboardlist.do?pnum=1">공지사항</a>
 		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
 		<a href="sendLetterform.do">쪽지보내기</a>
-		<a href="letterlist.do?l_receiver=${ldto1.gu_email}">쪽지보기</a>
+		<a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1">받은쪽지보기</a>
+		<a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1">보낸쪽지보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>
