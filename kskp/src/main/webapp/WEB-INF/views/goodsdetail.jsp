@@ -153,14 +153,14 @@ $(function(){
 	})
 })
 </script>
-<p>결제 금액</p>
-<c:if test="">
+<p>결제 금액<input type="button"  id="pay"  value="에약하기"><input type="button"  id="price"  value="장바구니 담기"></p>
 
-</c:if>
 <input type="text" id="p_cost" name="p_cost" value="">
 </form>
 <h2>${gdto.g_oneline}</h2> 
 <p>${gdto.g_conts}</p>      
+<div>만나는 시간<p>${gdto.mtime }</p></div>
+<div>만나는 시간<p>${gdto.mtime }</p></div>
 </body>
   <script>
     // tell the embed parent frame the height of the content
