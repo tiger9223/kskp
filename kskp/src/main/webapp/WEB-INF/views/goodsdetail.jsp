@@ -20,7 +20,7 @@
 </script>
 
 <link rel="stylesheet" type="text/css" href="/css/result-light.css">
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q&callback=initMap"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
@@ -117,13 +117,26 @@ $('#mdp-demo').multiDatesPicker({
 width: 700px;
 height: 500px;
 }
+.map{
+width: 400px;
+height: 250px;
+}
+#icon{
+width: 70px;
+height: 70px;
+}
+#address{
+font-size: 18px;
+    font-weight: 700;
+    color: #343a40;
+    }
 </style>
 </head>
 <body>
 <h1>${gdto.g_name}</h1>
-<p>${gdto.g_area}</p>
+<p>대한민국 > <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj4KICAgIDxwYXRoIGZpbGw9IiM4NDhDOTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuNTcxIDRhMS40MyAxLjQzIDAgMSAxIDIuODU5LjAwMUExLjQzIDEuNDMgMCAwIDEgMy41NyA0ek0xIDRjMCAzIDQgNiA0IDZzNC0zIDQtNmMwLTIuMjExLTEuNzg5LTQtNC00LTIuMjExIDAtNCAxLjc4OS00IDR6Ii8+Cjwvc3ZnPgo=" alt="area"> ${gdto.g_area}</p>
 <p><img id="img1" src="${gdto.g_img1}"></p>
-<form action="insertpay.do" method="post">
+<form name="form" method="post">
 <input type="hidden" name="p_name" value="${gdto.g_name}"/>
 <input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
 <h3>원하는 날짜와 인원을 선택하세요.</h3>
@@ -131,16 +144,9 @@ height: 500px;
 <input type="hidden"  name="p_date" id="altField" >
 <p>인원 선택
 <select id="pnum" name="p_num">
-	  <option value="1" selected="selected">1</option>
-	  <option value="2">2</option>
-	  <option value="3" >3</option>
-	  <option value="4" >4</option>
-	  <option value="5" >5</option>
-	  <option value="6" >6</option>
-	  <option value="7" >7</option>
-	  <option value="8" >8</option>
-	  <option value="9" >9</option>
-	  <option value="10" >10</option>
+	  <c:forEach var="i" begin="1" end="${gdto.g_people}">
+	  <option value="<c:out value="${i}"/>" selected="selected"><c:out value="${i}"/></option>
+	  </c:forEach>
 </select>
 </p>
 <input type="button"  id="price"  value="금액 조회">
@@ -152,19 +158,36 @@ $(function(){
 		$("#p_cost").val(num*price);
 	})
 })
-</script>
-<p>결제 금액<input type="button"  id="pay"  value="에약하기"><input type="button"  id="price"  value="장바구니 담기"></p>
 
-<input type="text" id="p_cost" name="p_cost" value="">
+function pay(){
+	
+	
+}
+</script>
+
+<div><input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액"><p><input type="submit" value="에약하기" formcation="insertpay.do"><input type="submit" value="장바구니 담기" formcation="insertcart.do"></p></div>
 </form>
 <h2>${gdto.g_oneline}</h2> 
 <p>${gdto.g_conts}</p>      
-<div>만나는 시간<p>${gdto.g_mtime}</p></div>
-<div>만나는 장소<p>${gdto.g_address}</p></div>
-<a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
-<img src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap">
-</a>
+<div><h3>만나는 시간</h3><br/><p>
 
+<c:choose>
+<c:when test="${gdto.g_mtime < 13}">
+오전
+</c:when>
+<c:otherwise>
+오후
+</c:otherwise>
+</c:choose>
+
+${gdto.g_mtime} 시</p></div>
+<div><h2>만나는 장소</h2><br/>
+<p><img id="icon" src="img/63a3141ac6b918b94f2b1688ffc92fb4.png" alt="googleicon"/>
+<h3 id="address">${gdto.g_address}</h3></p></div>
+<a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
+<img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"><img class="map" src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"/>
+</a>
+<div><h3>코스 소개</h3><br/><p><span><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiM0OTUwNTYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEwIDE4Yy00LTQuNDA5LTYtNy43MjYtNi05Ljk1M0M0IDQuNzA3IDYuNjg2IDIgMTAgMnM2IDIuNzA3IDYgNi4wNDdjMCAyLjIyNy0yIDUuNTQ0LTYgOS45NTN6bTAtNy43NWEyLjI1IDIuMjUgMCAxIDAgMC00LjUgMi4yNSAyLjI1IDAgMCAwIDAgNC41eiIvPgo8L3N2Zz4K">${gdto.g_cname}</span><br/>${gdto.g_cconts}</p></div>
 </body>
   <script>
     // tell the embed parent frame the height of the content
@@ -174,7 +197,7 @@ $(function(){
         slug: "jm3cpdfc"
       }], "*")
     }
-
+    
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"    
   </script>
