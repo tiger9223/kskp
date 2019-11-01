@@ -59,7 +59,7 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 					<c:forEach items="${list}" var="dto">
 						<tr>
 							<td>${dto.q_seq}</td>
-							<td>${ldto.m_name}</td>
+							<td>${dto.m_name}</td>
 							<td><a href="qboarddetail.do?q_seq=${dto.q_seq}">${dto.q_title}</a>&nbsp;						
 					<c:choose>
 							<c:when test="${dto.q_flag eq '0'}">

@@ -11,20 +11,38 @@
     src="//code.jquery.com/jquery-2.2.4.js"
     
   ></script>
-
     <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
       <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
       <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
       <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
-
+	<link rel="stylesheet" media="all" href="https://d2yoing0loi5gh.cloudfront.net/assets/partner/application_template_1-2ece18b6c26275ab3bce2543416a6d5ce8ab1fb02e628874719778440a82ecb2.css" />
+<link rel="stylesheet" media="all" href="https://d2yoing0loi5gh.cloudfront.net/assets/partner/application_template_2-a79762e95ce2ee3797f3c699b7bae7897749e06c8ca7717bf815c52af7e70d4e.css" />
+<link rel="stylesheet" media="all" href="https://d2yoing0loi5gh.cloudfront.net/assets/partner/application-7951be54de562fdfddb2d15cb298a0a5f2474e9b5e8ed9be904d5e55d0384e1c.css" />
   <style id="compiled-css" type="text/css">
       /* 
 Just fixing jsfiddle embedded autosizing problem, 
 this style is not needed for MDP use.
 */
 body { height: 400px; }
+        #google-map {
+            width: 500px;
+            height: 500px;
+            margin: 0;
+            padding: 0
+        }
+        #search-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #FFFFFF;
+            padding: 5px;
+            border: 1px solid black;
+            text-align: center;
+            padding: left: 10px
+        }
   </style>
 
 
@@ -32,7 +50,7 @@ body { height: 400px; }
 
   <script type="text/javascript">//<![CDATA[
 
-    window.onload=function(){
+ $(function(){
     	var date = new Date();
 $('#mdp-demo').multiDatesPicker({
 	beforeShowDay: function noBefore(date){ 
@@ -43,7 +61,8 @@ $('#mdp-demo').multiDatesPicker({
 	altField: '#altField'
 });
 
-    }
+    });
+ 
 
   //]]></script>
 
@@ -54,6 +73,9 @@ $('#mdp-demo').multiDatesPicker({
 #gname{
  width : 400px;
  height : 300px;
+}
+#sub{
+margin: 5px 2px 100px 4px
 }
 </style>
 <script type="text/javascript">
@@ -100,8 +122,8 @@ function previewImage(targetObj, View_area) {
 			img.id = "prev_" + View_area;
 			img.classList.add("obj");
 			img.file = file;
-			img.style.width = '100px'; 
-			img.style.height = '100px';
+			img.style.width = '700px';
+			img.style.height = '500px';
 			preview.appendChild(img);
 			if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 				var reader = new FileReader();
@@ -124,6 +146,8 @@ function previewImage(targetObj, View_area) {
 		}
 	}
 }
+
+
 </script>
 </head>
 <body>
@@ -163,8 +187,8 @@ function previewImage(targetObj, View_area) {
 구체적 코스 작성
 " ></textarea></p>
 <p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
-<div id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '>
-<%=request.getRealPath("/")%></div></p>
+<div id='View_area' style='position:relative; width: 700px; height: 500px; color: black; border: 0px solid black; dispaly: inline; '>
+</div></p>
 <p>1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" /></p>
 <p>예약 인원수 <select name="g_people">
 	  <option value="1" selected="selected">1</option>
@@ -196,12 +220,88 @@ function previewImage(targetObj, View_area) {
 	  <option value="11" >11시간</option>
 	  <option value="12" >12시간</option>
 	</select></p>
-<p>만나는 장소 <input type="text" name="g_meet" placeholder="만나는 장소"/></p>
-<p>주소 <input type="text" name="g_address" placeholder="주소를 적어주세요"/></p>
+	<p>만나는 시간 <select name="g_mtime">  
+	  <option value="1"  selected="selected" >1시</option>
+	  <option value="2" >2시</option>
+	  <option value="3" >3시</option>
+	  <option value="4" >4시</option>
+	  <option value="5" >5시</option>
+	  <option value="6" >6시</option>
+	  <option value="7" >7시</option>
+	  <option value="8" >8시</option>
+	  <option value="9" >9시</option>
+	  <option value="10" >10시</option>
+	  <option value="11" >11시</option>
+	  <option value="12" >12시</option>
+	  <option value="13" >13시</option>
+	  <option value="14" >14시</option>
+	  <option value="15" >15시</option>
+	  <option value="16" >16시</option>
+	  <option value="17" >17시</option>
+	  <option value="18" >18시</option>
+	  <option value="19" >19시</option>
+	  <option value="20" >20시</option>
+	  <option value="21" >21시</option>
+	  <option value="22" >22시</option>
+	  <option value="23" >23시</option>
+	  <option value="24">0시</option>
+	</select></p>
+	
+	<hr class='divider'>
+	<div class='form-group clearfix' data-desc='• 넓은 범위의 장소를 설정하면 만남에 많은 시간이 소요됩니다.<br/>• 나쁜 예) 그린파크역, 시청역<br/>• 좋은 예) 그린파크역 1번 출구 앞 벤치, 시청역 2번 출구 오른쪽 스타벅스 입구 앞<br/>'>
+	<label class='control-label col-xs-12 margin-bottom-15 font-weight-600'>
+	만나는 장소
+	</label>
+	<div class='col-xs-12'>
+	<div class='row'>
+	<div class='form-group clearfix'>
+	<label class='control-label col-xs-12' for='offerMeetingPoint'>
+	만나는 장소 이름
+	<span>*</span>
+	</label>
+	<div class='col-xs-12'>
+	<input class='form-control' id='offerMeetingPoint'  type='text'>
+	</div>
+	</div>
+	<div class='form-group clearfix'>
+	<div class='col-xs-12'>
+	<p class='help-block'>• 만남을 위한 구체적인 장소를 알려주세요.<br/>• 낯선 곳에서의 여행자의 불안감을 해소해줍니다.<br/></p>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class='col-xs-12'>
+	<div class='row'>
+	<div class='form-group clearfix'>
+	<label class='control-label col-xs-12' for='inputSearchMap'>
+	만나는 장소 위치
+	<span>*</span>
+	</label>
+	<div class='col-xs-12'>
+	<div class='form-group' data-desc='• 여행자분들과 만날 장소는 처음 방문하는 여행자들도 쉽게 찾아갈 수 있는 곳으로 정해주세요.<br/>'>
+	<div class='input-search'>
+	<button id="submit" type="button" class='input-search-btn' value="Geocode">
+	<i aria-hidden='true' class='icon wb-search'></i>
+	</button>
+	<input class='form-control' name="g_address" id='inputSearchMap' value="" placeholder='만나는 장소의 주소 혹은 랜드마크 검색' type='text'>
+	<input name='g_lat' id="lat" type='hidden' value='0.0'>
+	<input name='g_lng' id="lng" type='hidden' value='0.0'>
+			</div>
+		</div>
+	</div>
+	<div class='col-xs-12 form-group'>
+	<div class='height-300' id='meetingPointMap'></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 <p>투어 날짜 </p>
  <div id="mdp-demo"></div>
-<input type="text"  name="g_date" id="altField" >
-<input type="submit" value="상품등록">
+<input type="hidden"  name="g_date" id="altField" >
+<input id="sub" type="submit" value="상품등록">
 </form>
   <script>
     // tell the embed parent frame the height of the content
@@ -215,5 +315,94 @@ function previewImage(targetObj, View_area) {
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"    
   </script>
+      <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q&callback=initMap">
+    </script>
+    <script>
+        /**
+         * Google Map API 주소의 callback 파라미터와 동일한 이름의 함수이다.
+         * Google Map API에서 콜백으로 실행시킨다.
+         */
+        function initMap() {
+            console.log('Map is initialized.');
+ 
+            /**
+             * 맵을 설정한다.
+             * 1번째 파라미터 : 구글 맵을 표시할 위치. 여기서는 #google-map
+             * 2번째 파라미터 : 맵 옵션.
+             *      ㄴ zoom : 맵 확대 정도
+             *      ㄴ center : 맵 중심 좌표 설정
+             *              ㄴ lat : 위도 (latitude)
+             *              ㄴ lng : 경도 (longitude)
+             */
+            var map = new google.maps.Map(document.getElementById('meetingPointMap'), {
+                zoom: 20,
+                center: {
+                    lat: 37.566535,
+                    lng: 126.97796919999996
+                }
+            });
+ 
+            /**
+             * Google Geocoding. Google Map API에 포함되어 있다.
+             */
+            var geocoder = new google.maps.Geocoder();
+ 
+            // submit 버튼 클릭 이벤트 실행
+            document.getElementById('submit').addEventListener('click', function() {
+                console.log('submit 버튼 클릭 이벤트 실행');
+ 
+                // 여기서 실행
+                geocodeAddress(geocoder, map);
+            });
+ 
+            /**
+             * geocodeAddress
+             * 
+             * 입력한 주소로 맵의 좌표를 바꾼다.
+             */
+            function geocodeAddress(geocoder, resultMap) {
+                console.log('geocodeAddress 함수 실행');
+ 
+                // 주소 설정
+                var address = document.getElementById('inputSearchMap').value;
+ 				alert(address);
+                /**
+                 * 입력받은 주소로 좌표에 맵 마커를 찍는다.
+                 * 1번째 파라미터 : 주소 등 여러가지. 
+                 *      ㄴ 참고 : https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingRequests
+                 * 
+                 * 2번째 파라미터의 함수
+                 *      ㄴ result : 결과값
+                 *      ㄴ status : 상태. OK가 나오면 정상.
+                 */
+                geocoder.geocode({'address': address}, function(result, status) {
+                    console.log(result);
+                    console.log(status);
+ 
+                    if (status === 'OK') {
+                        // 맵의 중심 좌표를 설정한다.
+                        resultMap.setCenter(result[0].geometry.location);
+                        // 맵의 확대 정도를 설정한다.
+                        resultMap.setZoom(18);
+                        // 맵 마커
+                        var marker = new google.maps.Marker({
+                            map: resultMap,
+                            position: result[0].geometry.location
+                        });
+ 
+                        // 위도
+                        console.log('위도(latitude) : ' + marker.position.lat());
+                        document.getElementById('lat').value = marker.position.lat();
+                        // 경도
+                        console.log('경도(longitude) : ' + marker.position.lng());
+                        document.getElementById('lng').value = marker.position.lng();
+                    } else {
+                        alert('지오코드가 다음의 이유로 성공하지 못했습니다 : ' + status);
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

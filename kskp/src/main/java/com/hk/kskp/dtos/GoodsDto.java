@@ -12,16 +12,12 @@ public class GoodsDto {
 	private String g_conts;
 	private int g_flag;
 	private String g_img1;
-	private String g_img2;
-	private String g_img3;
-	private String g_img4;
 	private int g_price;
 	private int g_people;
 	private int g_res;
 	private String g_oneline;
 	private String g_intro;
 	private String g_cos;
-	private String g_meet;
 	private String g_address;
 	private String g_cname;
 	private String g_time;
@@ -29,15 +25,44 @@ public class GoodsDto {
 	private String g_date;
 	private Date g_regdate;
 	private String g_thumbimg;
+	private String g_mtime;
+	private String g_lat;
+	private String g_lng;
 	
+	public String getG_mtime() {
+		return g_mtime;
+	}
+
+	public void setG_mtime(String g_mtime) {
+		this.g_mtime = g_mtime;
+	}
+
+	public String getG_lat() {
+		return g_lat;
+	}
+
+	public void setG_lat(String g_lat) {
+		this.g_lat = g_lat;
+	}
+
+	public String getG_lng() {
+		return g_lng;
+	}
+
+	public void setG_lng(String g_lng) {
+		this.g_lng = g_lng;
+	}
+
 	public GoodsDto() {
 		super();
 	}
 
+
+
 	public GoodsDto(int g_seq, int gu_seq, String g_area, String g_lan, String g_name, String g_conts, int g_flag,
-			String g_img1, String g_img2, String g_img3, String g_img4, int g_price, int g_people, int g_res,
-			String g_oneline, String g_intro, String g_cos, String g_meet, String g_address, String g_cname,
-			String g_time, String g_cconts, String g_date, Date g_regdate, String g_thumbimg) {
+			String g_img1, int g_price, int g_people, int g_res, String g_oneline, String g_intro, String g_cos,
+			String g_address, String g_cname, String g_time, String g_cconts, String g_date, Date g_regdate,
+			String g_thumbimg, String g_mtime, String g_lat, String g_lng) {
 		super();
 		this.g_seq = g_seq;
 		this.gu_seq = gu_seq;
@@ -47,16 +72,12 @@ public class GoodsDto {
 		this.g_conts = g_conts;
 		this.g_flag = g_flag;
 		this.g_img1 = g_img1;
-		this.g_img2 = g_img2;
-		this.g_img3 = g_img3;
-		this.g_img4 = g_img4;
 		this.g_price = g_price;
 		this.g_people = g_people;
 		this.g_res = g_res;
 		this.g_oneline = g_oneline;
 		this.g_intro = g_intro;
 		this.g_cos = g_cos;
-		this.g_meet = g_meet;
 		this.g_address = g_address;
 		this.g_cname = g_cname;
 		this.g_time = g_time;
@@ -64,6 +85,9 @@ public class GoodsDto {
 		this.g_date = g_date;
 		this.g_regdate = g_regdate;
 		this.g_thumbimg = g_thumbimg;
+		this.g_mtime = g_mtime;
+		this.g_lat = g_lat;
+		this.g_lng = g_lng;
 	}
 
 	public int getG_seq() {
@@ -130,29 +154,8 @@ public class GoodsDto {
 		this.g_img1 = g_img1;
 	}
 
-	public String getG_img2() {
-		return g_img2;
-	}
 
-	public void setG_img2(String g_img2) {
-		this.g_img2 = g_img2;
-	}
 
-	public String getG_img3() {
-		return g_img3;
-	}
-
-	public void setG_img3(String g_img3) {
-		this.g_img3 = g_img3;
-	}
-
-	public String getG_img4() {
-		return g_img4;
-	}
-
-	public void setG_img4(String g_img4) {
-		this.g_img4 = g_img4;
-	}
 
 	public int getG_price() {
 		return g_price;
@@ -202,13 +205,6 @@ public class GoodsDto {
 		this.g_cos = g_cos;
 	}
 
-	public String getG_meet() {
-		return g_meet;
-	}
-
-	public void setG_meet(String g_meet) {
-		this.g_meet = g_meet;
-	}
 
 	public String getG_address() {
 		return g_address;
@@ -270,12 +266,13 @@ public class GoodsDto {
 	public String toString() {
 		return "GoodsDto [g_seq=" + g_seq + ", gu_seq=" + gu_seq + ", g_area=" + g_area + ", g_lan=" + g_lan
 				+ ", g_name=" + g_name + ", g_conts=" + g_conts + ", g_flag=" + g_flag + ", g_img1=" + g_img1
-				+ ", g_img2=" + g_img2 + ", g_img3=" + g_img3 + ", g_img4=" + g_img4 + ", g_price=" + g_price
-				+ ", g_people=" + g_people + ", g_res=" + g_res + ", g_oneline=" + g_oneline + ", g_intro=" + g_intro
-				+ ", g_cos=" + g_cos + ", g_meet=" + g_meet + ", g_address=" + g_address + ", g_cname=" + g_cname
+				+ ", g_price=" + g_price + ", g_people=" + g_people + ", g_res=" + g_res + ", g_oneline=" + g_oneline
+				+ ", g_intro=" + g_intro + ", g_cos=" + g_cos + ", g_address=" + g_address + ", g_cname=" + g_cname
 				+ ", g_time=" + g_time + ", g_cconts=" + g_cconts + ", g_date=" + g_date + ", g_regdate=" + g_regdate
-				+ ", g_thumbimg=" + g_thumbimg + "]";
+				+ ", g_thumbimg=" + g_thumbimg + ", g_mtime=" + g_mtime + ", g_lat=" + g_lat + ", g_lng=" + g_lng + "]";
 	}
+
+
 
 	
 }

@@ -35,20 +35,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO GOODS 
 		(G_SEQ, GU_SEQ, G_AREA,
 		G_LAN, G_NAME, G_CONTS,
-		G_FLAG, G_IMG1, G_IMG2,
-		G_IMG3, G_IMG4, G_PRICE,
+		G_FLAG, G_IMG1, G_PRICE,
 		G_PEOPLE, G_RES, G_ONELINE,
-		G_INTRO, G_COS,G_MEET,
+		G_INTRO, G_COS,
 		G_ADDRESS,G_CNAME,G_TIME,
+		G_MTIME, G_LAT, G_LNG,
 		G_CCONTS,G_DATE,G_REGDATE,G_THUMBIMG) 
 		VALUES
 		(GOODS_SEQ.NEXTVAL ,#{gu_seq}, #{g_area},
 		'한국어',#{g_name},#{g_conts},
-		0,#{g_img1},NULL,
-		NULL,NULL,#{g_price},
+		0,#{g_img1},#{g_price},
 		#{g_people},0,#{g_oneline},
-		#{g_intro},#{g_cos},#{g_meet},
+		#{g_intro},#{g_cos},
 		#{g_address},#{g_cname},#{g_time},
+		#{g_mtime}, #{g_lat}, #{g_lng},
 		#{g_cconts},#{g_date},SYSDATE,#{g_thumbimg})
 	</insert>
 	<!--  -->

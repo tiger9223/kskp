@@ -48,14 +48,34 @@
 	</tr>
 	</c:otherwise>
 	</c:choose>
+	<c:choose>
+	<c:when test="${qdto.m_email eq ldto.m_email}">
 	<tr>
 		<td colspan="2">
 			<button onclick="qupdateBoard(${qdto.q_seq})">수정</button>
 			<button onclick="qdelboard(${qdto.q_seq})">삭제</button>
-			<button onclick="qansBoard(${qdto.q_seq})">답글</button>
 			<button onclick="qListBoard()">목록</button>
 		</td>
 	</tr>
+	</c:when>
+	<c:when test="${ldto.m_status eq 'A'}">
+	<tr>
+		<td colspan="2">
+			<button onclick="qansBoard(${qdto.q_seq})">답글</button>
+			<button onclick="qdelboard(${qdto.q_seq})">삭제</button>
+			<button onclick="qListBoard()">목록</button>
+		</td>
+	</tr>
+	</c:when>
+	<c:otherwise>
+	<tr>
+		<td colspan="2">
+			<button onclick="qListBoard()">목록</button>
+		</td>
+	</tr>
+	</c:otherwise>
+	</c:choose>
+	
 </table>
 <script type="text/javascript">
 function qListBoard(){

@@ -16,24 +16,23 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script>
     type="text/javascript"
-    src="//code.jquery.com/jquery-2.2.4.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-  </script>
+    src="//code.jquery.com/jquery-2.2.4.js"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+</script>
 
-    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+<link rel="stylesheet" type="text/css" href="/css/result-light.css">
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q&callback=initMap"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
 
-      <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-      <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
-
-  <style id="compiled-css" type="text/css">
+<style id="compiled-css" type="text/css">
       /* 
 Just fixing jsfiddle embedded autosizing problem, 
 this style is not needed for MDP use.
 */
 body { height: 400px; }
-  </style>
+</style>
 
 
   <!-- TODO: Missing CoffeeScript 2 -->
@@ -55,9 +54,9 @@ $(function(){
 var gdate = "${gdto.g_date}";
 var availableDates = gdate.split(', ');
 var date = new Date();
-alert(availableDates[0],availableDates[1]);
 $('#mdp-demo').multiDatesPicker({
 // 	dateFormat: "mm-dd-yyyy",
+	maxPicks: 1,
 	beforeShowDay: function available(date){			
 		var thismonth = date.getMonth()+1;
 		var thisday = date.getDate();			
@@ -79,8 +78,6 @@ $('#mdp-demo').multiDatesPicker({
 });
     
 });
-    	
-
 
   //]]></script>
 <style type="text/css">
@@ -116,32 +113,58 @@ $('#mdp-demo').multiDatesPicker({
 	margin-left: auto;
 	margin-right: auto;
 }
+#img1{
+width: 700px;
+height: 500px;
+}
 </style>
 </head>
 <body>
-<h1>상품 상세보기</h1>
-<table border="1">
-   <col width="188px">
-   <col width="50px">
-   <col width="100px">
-   <col width="300px">
-   <col width="80px">
-   <tr>
-   	  <th>여행 대표사진</th>  
-      <th>지역</th>   
-      <th>투어날짜</th>
-      <th>상품명</th>
-      <th>총판매 수</th>
-   </tr> 
-            <tr>
-               <td><img id="img" src="${gdto.g_thumbimg}"/></td>
-               <td>${gdto.g_area}</td>
-               <td> <div id="mdp-demo"></div>
-				<input type="text"  name="g_date" id="altField" ></td>
-               <td>${gdto.g_name}</td>
-               <td>${gdto.g_res}</td> 
-            </tr>   
-</table>
+<h1>${gdto.g_name}</h1>
+<p>${gdto.g_area}</p>
+<p><img id="img1" src="${gdto.g_img1}"></p>
+<form action="insertpay.do" method="post">
+<input type="hidden" name="p_name" value="${gdto.g_name}"/>
+<input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
+<h3>원하는 날짜와 인원을 선택하세요.</h3>
+<div id="mdp-demo"></div>
+<input type="hidden"  name="p_date" id="altField" >
+<p>인원 선택
+<select id="pnum" name="p_num">
+	  <option value="1" selected="selected">1</option>
+	  <option value="2">2</option>
+	  <option value="3" >3</option>
+	  <option value="4" >4</option>
+	  <option value="5" >5</option>
+	  <option value="6" >6</option>
+	  <option value="7" >7</option>
+	  <option value="8" >8</option>
+	  <option value="9" >9</option>
+	  <option value="10" >10</option>
+</select>
+</p>
+<input type="button"  id="price"  value="금액 조회">
+<script>
+$(function(){
+	$("#price").click(function(){
+		var num = $("#pnum").val();
+		var price = ${gdto.g_price};
+		$("#p_cost").val(num*price);
+	})
+})
+</script>
+<p>결제 금액<input type="button"  id="pay"  value="에약하기"><input type="button"  id="price"  value="장바구니 담기"></p>
+
+<input type="text" id="p_cost" name="p_cost" value="">
+</form>
+<h2>${gdto.g_oneline}</h2> 
+<p>${gdto.g_conts}</p>      
+<div>만나는 시간<p>${gdto.g_mtime}</p></div>
+<div>만나는 장소<p>${gdto.g_address}</p></div>
+<a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap">
+</a>
+
 </body>
   <script>
     // tell the embed parent frame the height of the content

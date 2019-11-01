@@ -77,11 +77,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="qgetAlllist" resultType="QaDto" parameterType="String">
-		SELECT Q_SEQ 
-	 		, M_SEQ
-	 		, Q_TITLE
-	 		, Q_REGDATE 
-	 		, Q_FLAG
+		SELECT q.Q_SEQ , m.M_NAME , m.M_EMAIL
+	 		, q.M_SEQ
+	 		, q.Q_TITLE
+	 		, q.Q_REGDATE 
+	 		, q.Q_FLAG
   	   FROM (
        		SELECT ROW_NUMBER() OVER (ORDER BY Q_SEQ DESC) AS RM
 		  		 , Q_SEQ
@@ -90,8 +90,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		 , Q_REGDATE 
 		 		 , Q_FLAG 
 	   		  FROM QA
-	  		)
- 	  WHERE CEIL(RM/5) = #{pnum}	      		      
+	  		) q, MEMBERS m
+ 	  WHERE CEIL(RM/5) = #{pnum} AND q.M_SEQ=m.m_SEQ	      		      
 	</select>
 		
 	<select id="qpcount" resultType="int">
@@ -115,6 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="qgetboard" parameterType="int" resultType="QaDto">
 		SELECT q.q_seq 
 		     , m.m_name
+		     , m.m_email
 		     , q.q_title 
 		     , q.q_regdate
 		     , q.q_conts

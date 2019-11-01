@@ -3,6 +3,8 @@ package com.hk.kskp.service;
 
 
 
+import java.util.List;
+
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 
@@ -45,4 +47,6 @@ public interface ILoginService {
 //				public LoginDto getUser(String rid);
 //				//사용자 등급변경
 //				public boolean updateUserRole(String rid, String rrole);
+		public List<MembersDto> getMuserlist();
+		public List<GuideDto> getGuserlist();
 }
