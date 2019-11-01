@@ -170,7 +170,7 @@ $(function(){
         slug: "jm3cpdfc"
       }], "*")
     }
-
+    
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"    
   </script>
