@@ -63,19 +63,23 @@ $('#mdp-demo').multiDatesPicker({
 
     });
  
-
   //]]></script>
 
 <style>
 .goods{
  width : 400px;
 }
-#gname{
- width : 400px;
- height : 300px;
-}
+
 #sub{
 margin: 5px 2px 100px 4px
+}
+.wrap {
+resize:none;
+line-height:30px;
+width:470px;
+overflow-y:hidden;
+height:30px;
+border:1px solid #ccc;
 }
 </style>
 <script type="text/javascript">
@@ -165,27 +169,20 @@ function previewImage(targetObj, View_area) {
 	</select>
 </p>
 <p>*여행제목<input class="goods" type="text" name="g_name"/></p>
-<P>
+<P class='help-block'>
 • 여행 주제를 정확하고 간결하게 표현해주세요.<br/>
 • 맞춤법이 맞지 않거나 이모티콘 혹은 특수문자를 사용하실 경우 상품 검수 절차로 인해 판매가 늦어질 수 있습니다.<br/>
 • 지역명이 포함된 제목은 상품 노출에 더 효과적입니다. (경복궁, 산책하는 여행 / 샌프란시스코! 경복궁 당일치기 등)<br/>
 </P>
 <p>*한줄요약<input class="goods" type="text" name="g_oneline"  /></p>
-<P>
+<P class='help-block'>
 • 제목과 연결되는 매력 포인트를 작성해 주세요.<br/>
 • 페이지에서 강조되어 나타납니다.<br/>
 </P>
 
 <p>*여행소개</p>
-<p><textarea id="gname" type="text" name="g_conts" placeholder="
+<p><textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea></p>
 
-[투어코스- 구체적 코스와 각각의 소요시간 작성]
- ex)
-서촌 골목을 소개합니다 (2시간 소요)
-구체적 코스 작성
-경복궁을 마지막으로 둘러봅시다 (1시간 반 소요)
-구체적 코스 작성
-" ></textarea></p>
 <p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
 <div id='View_area' style='position:relative; width: 700px; height: 500px; color: black; border: 0px solid black; dispaly: inline; '>
 </div></p>
@@ -202,10 +199,16 @@ function previewImage(targetObj, View_area) {
 	  <option value="9" >9</option>
 	  <option value="10" >10</option>
 	</select></p>
-<p>투어코스  <input type="text" name="g_cos" placeholder="투어코스" /></p>
-<p>투어소개  <input type="text" name="g_intro" placeholder="투어소개" /></p>
-<p>코스이름  <input type="text" name="g_cname" placeholder="코스이름" /></p>
-<p>코스내용  <input type="text" name="g_cconts" placeholder="코스내용" /></p>
+<p class='help-block'>
+• [투어코스- 구체적 코스와 각각의 소요시간 작성]<br/>
+• ex)<br/>
+• 서촌 골목을 소개합니다 (2시간 소요)<br/>
+• 구체적 코스 작성<br/>
+• 경복궁을 마지막으로 둘러봅시다 (1시간 반 소요)<br/>
+• 구체적 코스 작성<br/>
+</p>
+<p>투어코스  <input type="text" name="g_cname" /></p>
+<p>투어소개  <textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_cconts" ></textarea></p>
 <p>소요시간 <select name="g_time">
 	  <option value="1" selected="selected">1시간</option>
 	  <option value="2" >2시간</option>
