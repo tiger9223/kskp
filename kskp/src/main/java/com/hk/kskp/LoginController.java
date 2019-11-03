@@ -149,6 +149,7 @@ public class LoginController {
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUser(Locale locale,GuideDto dto) {
 		logger.info("가이드회원 회원가입", locale);
+		System.out.println(dto);
 		boolean isS=LoginService.gInsertUser(dto);
 		if(isS) {
 			return "login";

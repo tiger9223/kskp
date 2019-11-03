@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 가이드 회원가입 -->
 	<insert id="ginsertUser" parameterType="GuideDto">
 		INSERT INTO GUIDE(GU_SEQ,GU_PW,GU_NAME,GU_PHONE,GU_EMAIL,GU_REGDATE,GU_APPFLAG,GU_IMG,GU_INTRO,GU_CAREER,GU_BANK,GU_ACC) VALUES 
-		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',NULL,NULL,NULL,NULL,NULL)
+		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',NULL,NULL,NULL,#{gu_bank},#{gu_acc})
 	</insert>
 	<!-- 로그인 -->
 	<select id="mLogin" parameterType="MembersDto" resultType="MembersDto">
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT M_EMAIL FROM MEMBERS WHERE M_EMAIL=#{m_email}
 	</select>
 	<!-- 가이드 아이디 중복 체크 -->
-	<select id="idChk1" parameterType="String" resultType="MembersDto">
+	<select id="idChk1" parameterType="String" resultType="GuideDto">
 		SELECT GU_EMAIL FROM GUIDE WHERE GU_EMAIL=#{gu_email}
 	</select>
 

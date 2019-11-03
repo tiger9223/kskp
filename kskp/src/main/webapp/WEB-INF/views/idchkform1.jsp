@@ -11,19 +11,19 @@
 <title></title>
 <script type="text/javascript">
 	window.onload = function() {
-		var m_email = opener.document.getElementsByName("m_email")[0].value; //rid = 부모페이지의 rid값
+		var gu_email = opener.document.getElementsByName("gu_email")[0].value; //rid = 부모페이지의 rid값
 		//opener : 현재 페이지를 열어준 부모페이지
-		document.getElementsByName("m_email")[0].value = m_email; //rid = 현재페이지의 rid값이 됨
+		document.getElementsByName("gu_email")[0].value = gu_email; //rid = 현재페이지의 rid값이 됨
 	}
 	
 	function kk(bool) {
 		var parentPage1 = opener.document.getElementsByName("idchk")[0]; 
-		var parentPage = opener.document.getElementsByName("m_email")[0]; 
+		var parentPage = opener.document.getElementsByName("gu_email")[0]; 
 		if(bool) {
-			opener.document.getElementsByName("m_pw")[0].focus();
+			opener.document.getElementsByName("gu_pw")[0].focus();
 			parentPage.setAttribute("class","y");
 			parentPage1.setAttribute("class","y");
-			parentPage.setAttribute("disabled","ture");
+			parentPage.setAttribute("readonly","true");
 		}else {
 			parentPage.value = "";
 			parentPage.focus();
@@ -46,7 +46,7 @@
 
 <table border="1">
 	<tr>
-		<td><input type="text" name="m_email"></td>
+		<td><input type="text" name="gu_email"></td>
 	</tr>
 	<tr>
 		<td>${isS? "사용가능한 이메일입니다." : "중복된 이메일입니다."}  </td>

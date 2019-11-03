@@ -23,7 +23,7 @@
 			opener.document.getElementsByName("m_pw")[0].focus();
 			parentPage.setAttribute("class","y");
 			parentPage1.setAttribute("class","y");
-			parentPage.setAttribute("disabled","ture");
+			parentPage.setAttribute("readonly","ture");
 		}else {
 			parentPage.value = "";
 			parentPage.focus();

@@ -60,15 +60,15 @@
  	      
  	      //은행공백
  	     if($("#gu_bank").val() == ""){
- 	        alert("은행을 입력해주세요");
+ 	        alert("은행명을 입력해주세요");
  	        $("#gu_bank").focus();
  	        return false;
  	      }
  	           
- 	    //은행계좌
- 	     if($("#gu_bank").val() == ""){
- 	        alert("은행을 입력해주세요");
- 	        $("#gu_bank").focus();
+ 	    //은행계좌 공백
+ 	     if($("#gu_acc").val() == ""){
+ 	        alert("은행계좌를 입력해주세요");
+ 	        $("#gu_acc").focus();
  	        return false;
  	      }
  	    
@@ -97,15 +97,15 @@
 </head>
 <body>
 <h1>가이드 회원가입</h1>
-<form action="ginsertuser.do" method="post">
-<p>이름 : <input type="text" name="gu_name" placeholder="id" /></p>
-<p>이메일 : <input type="text" name="gu_email" placeholder="email" />
+<form onsubmit="return check()" action="ginsertuser.do" method="post">
+<p>이름 : <input type="text" id="gu_name" name="gu_name" placeholder="id" /></p>
+<p>이메일 : <input type="text" id="gu_email" name="gu_email" placeholder="email" class="n"/>
 <input type="button" name="idchk" value="중복체크" onclick="idChk()" class="n" ></p>
-<p>비밀번호 : <input type="text" name="gu_pw" placeholder="pw" /></p>
-<p>비밀번호 확인 : <input type="text" name="gu_pwchk" placeholder="pwchk" /></p>
-<p>휴대폰 : <input type="text" name="gu_phone" placeholder="telephone" /><input type="button" value="인증하기"></p>
-<p>은행 : <input type="text" name="gu_bank" placeholder="bank" /></p>
-<p>계좌번호 : <input type="text" name="gu_acc" placeholder="account" /></p>
+<p>비밀번호 : <input type="password" id="gu_pw" name="gu_pw" placeholder="pw" /></p>
+<p>비밀번호 확인 : <input type="password" id="gu_pwchk" name="gu_pwchk" placeholder="pwchk" /></p>
+<p>휴대폰 : <input type="text" id="gu_phone" name="gu_phone" placeholder="telephone" /><input type="button" value="인증하기"></p>
+<p>은행 : <input type="text" id="gu_bank" name="gu_bank" placeholder="bank" /></p>
+<p>계좌번호 : <input type="text" id="gu_acc" name="gu_acc" placeholder="account" /></p>
 <p>가이드사진 <input type="button" name="gu_img" value="첨부하기"></p>
 <input type="submit" value="회원가입">
 </form>
