@@ -127,9 +127,15 @@ height: 70px;
 }
 #address{
 font-size: 18px;
-    font-weight: 700;
-    color: #343a40;
+font-weight: 700;
+color: #343a40;
     }
+#gname{
+border: none;
+width : 470px;
+overflow:visible;
+    }
+
 </style>
 </head>
 <body>
@@ -163,12 +169,13 @@ function pay(){
 	
 	
 }
+
 </script>
 
 <div><input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액"><p><input type="submit" value="에약하기" formcation="insertpay.do"><input type="submit" value="장바구니 담기" formcation="insertcart.do"></p></div>
 </form>
 <h2>${gdto.g_oneline}</h2> 
-<p>${gdto.g_conts}</p>      
+<div style="white-space:pre;"><c:out value="${gdto.g_conts}" /></div>
 <div><h3>만나는 시간</h3><br/><p>
 
 <c:choose>
@@ -187,7 +194,7 @@ ${gdto.g_mtime} 시</p></div>
 <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
 <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"><img class="map" src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"/>
 </a>
-<div><h3>코스 소개</h3><br/><p><span><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiM0OTUwNTYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEwIDE4Yy00LTQuNDA5LTYtNy43MjYtNi05Ljk1M0M0IDQuNzA3IDYuNjg2IDIgMTAgMnM2IDIuNzA3IDYgNi4wNDdjMCAyLjIyNy0yIDUuNTQ0LTYgOS45NTN6bTAtNy43NWEyLjI1IDIuMjUgMCAxIDAgMC00LjUgMi4yNSAyLjI1IDAgMCAwIDAgNC41eiIvPgo8L3N2Zz4K">${gdto.g_cname}</span><br/>${gdto.g_cconts}</p></div>
+<div><h3>코스 소개</h3><br/><p><span><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiM0OTUwNTYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEwIDE4Yy00LTQuNDA5LTYtNy43MjYtNi05Ljk1M0M0IDQuNzA3IDYuNjg2IDIgMTAgMnM2IDIuNzA3IDYgNi4wNDdjMCAyLjIyNy0yIDUuNTQ0LTYgOS45NTN6bTAtNy43NWEyLjI1IDIuMjUgMCAxIDAgMC00LjUgMi4yNSAyLjI1IDAgMCAwIDAgNC41eiIvPgo8L3N2Zz4K">${gdto.g_cname}</span><br/><div style="white-space:pre;"><c:out value="${gdto.g_cconts}" /></div></p></div>
 </body>
   <script>
     // tell the embed parent frame the height of the content
