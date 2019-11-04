@@ -29,10 +29,13 @@ public interface ILoginDao {
 	public boolean guserUpdate(GuideDto dto);
 //	//회원 탈퇴
 //	public boolean withdraw(String rid);
+		
 	//일반 회원 조회
-	public List<MembersDto> getMuserlist();
+	public List<MembersDto> getMuserlist(MembersDto dto);
+	
 	//가이드 회원 조회
-	public List<GuideDto> getGuserlist();
+	public List<GuideDto> getGuserlist(GuideDto dto);
+	
 	
 //	//사용자 상세조회
 //	public LoginDto getUser(String rid);

@@ -43,6 +43,10 @@ public interface ILoginService {
 //				public LoginDto getUser(String rid);
 //				//사용자 등급변경
 //				public boolean updateUserRole(String rid, String rrole);
-		public List<MembersDto> getMuserlist();
-		public List<GuideDto> getGuserlist();
+		//일반회원 전체 조회
+		public List<MembersDto> getMuserlist(MembersDto dto);
+		
+		//가이츠 전체 조회
+		public List<GuideDto> getGuserlist(GuideDto dto);
+		
 }

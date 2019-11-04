@@ -54,5 +54,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="guserUpdate" parameterType="GuideDto">
 		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_SEQ=#{gu_seq}
 	</update>
+	
+	<!-- 일반회원 전체 목록 조회 -->
+	<select id="getMUserStatus" resultType="MembersDto">
+	select 		
+			M_NAME,
+			M_EMAIL,
+			M_REGDATE,
+			M_STATUS
+	 FROM   MEMBERS
+	</select>
+	
+	<!-- 가이드 전체 목록 조회 -->
+	<select id="getGUserStatus" resultType="GuideDto">
+		select 		
+			GU_NAME,
+			GU_EMAIL,
+			GU_REGDATE
+	 FROM GUIDE	
+	</select>
+	
 
 </mapper>

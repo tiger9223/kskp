@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,7 @@ import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
 import com.hk.kskp.utils.FindUtil;
 import com.hk.kskp.utils.MailUtil;
+import com.hk.kskp.utils.Paging;
 
 
 
@@ -258,15 +260,25 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/memberalllist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberAllList(Model model) {
-		logger.info("전체회원 정보보기");
-		List<MembersDto> mlist=LoginService.getMuserlist();
-		List<GuideDto> glist = LoginService.getGuserlist();
-		//MembersDto glist=LoginService.gUserInfo(seq);
+	public String memberAllList(Model model,MembersDto dto,GuideDto dto1) {
+		logger.info("일반 회원 전체조회");
+		logger.info("가이드 전체조회");		
+		List<MembersDto> mlist=LoginService.getMuserlist(dto);
+		List<GuideDto> glist = LoginService.getGuserlist(dto1);
 		model.addAttribute("mlist",mlist);
-		model.addAttribute("glist",glist);
+		model.addAttribute("glist",glist);	
+		
+		
 		return"memberalllist";
 	}
+	
+//	@RequestMapping(value = "/guidealllist.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String guideAllList(Model model, GuideDto dto) {
+//		logger.info("//가이드 전체조회");
+//		List<GuideDto> glist = LoginService.getGuserlist(dto);
+//		model.addAttribute("glist",glist);
+//		return"memberalllist";
+//	}
 	
 	
 

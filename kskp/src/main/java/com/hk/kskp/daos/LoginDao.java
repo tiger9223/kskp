@@ -18,10 +18,10 @@ import com.hk.kskp.dtos.MembersDto;
 public class LoginDao implements ILoginDao {
 
 	private String nameSpace="com.hk.login.";
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
 	public boolean mInsertUser(MembersDto dto) {
 		int count = sqlSession.insert(nameSpace+"minsertUser", dto);
@@ -64,7 +64,7 @@ public class LoginDao implements ILoginDao {
 	public MembersDto mUserInfo(int seq) {
 		return sqlSession.selectOne(nameSpace+"muserinfo", seq);
 	}
-	
+
 	@Override
 	public GuideDto gUserInfo(int seq) {
 		return sqlSession.selectOne(nameSpace+"guserinfo", seq);
@@ -82,20 +82,17 @@ public class LoginDao implements ILoginDao {
 		return count > 0 ? true:false;
 	}
 	@Override
-	public List<MembersDto> getMuserlist() {
+	public List<MembersDto> getMuserlist(MembersDto dto) {
 		return sqlSession.selectList(nameSpace+"getMUserStatus");
 	}
-	
+
 	@Override
-	public List<GuideDto> getGuserlist() {
+	public List<GuideDto> getGuserlist(GuideDto dto) {
 		return sqlSession.selectList(nameSpace+"getGUserStatus");
 	}
 
 
-	
-	
-	
-	}
+}
 
 
 
