@@ -103,14 +103,7 @@ public class GoodsController {
 		return "cart";
 	}
 	
-	@RequestMapping(value = "/insertpay.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertPay(Locale locale, Model model, PayDto dto) {
-		logger.info("상품 결제 페이지로 이동", locale);
-		System.out.println(dto);
-		model.addAttribute("dto",dto);
-		return "pay";
-	}
-	
+
 	
 }//end
 

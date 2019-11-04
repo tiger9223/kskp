@@ -188,7 +188,7 @@ function btn_click(str){
 			price.focus();
 			return false;
 		}else{
-			form.action="insertpay.do";
+			form.action="kakaoPay.do";
 		}
 	}else if(str == "res"){
 		if(date.value==""){
