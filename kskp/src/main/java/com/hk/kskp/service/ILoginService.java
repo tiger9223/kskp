@@ -53,4 +53,7 @@ public interface ILoginService {
 		//가이츠 전체 조회
 		public List<GuideDto> getGuserlist();
 		
+		
+		
+		
 }

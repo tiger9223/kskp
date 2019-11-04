@@ -84,5 +84,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idChk1" parameterType="String" resultType="GuideDto">
 		SELECT GU_EMAIL FROM GUIDE WHERE GU_EMAIL=#{gu_email}
 	</select>
+	
+	<!-- 메인화면에서  회원가입-->
+	
 
 </mapper>

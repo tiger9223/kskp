@@ -99,7 +99,6 @@ public class LoginDao implements ILoginDao {
 		return sqlSession.selectOne(nameSpace+"idChk1", gu_email);
 	}
 
-
 }
 
 

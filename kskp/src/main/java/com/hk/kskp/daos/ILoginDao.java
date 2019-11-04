@@ -39,10 +39,11 @@ public interface ILoginDao {
 	//아이디 중복체크
 	public MembersDto idChk(String m_email);
 	public GuideDto idChk1(String gu_email);
+	
 
 	
 	
-	//	//사용자 상세조회
+	//사용자 상세조회
 //	public LoginDto getUser(String rid);
 
 	

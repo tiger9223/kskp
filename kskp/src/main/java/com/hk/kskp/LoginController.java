@@ -347,10 +347,20 @@ public class LoginController {
 		MembersDto ldto = LoginService.mLogin(m_email,pw);
 		session.setAttribute("ldto", ldto);
 		return "main";
+	
+		}
 	}
-
-	
-	
+	@RequestMapping(value = "/signupform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String signupForm(Model model) {
+		logger.info("회원가입폼으로 이동");
+		System.out.println("여기");
+		return"signup";
+	}
+	@RequestMapping(value = "/signup.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuser(Model model){
+		logger.info("회원가입");
+		return apiResult;
+		
 	}
 
 }//end
