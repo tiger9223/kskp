@@ -64,13 +64,22 @@ public class LoginService implements ILoginService{
 	public boolean guserUpdate(GuideDto dto) {
 		return loginDao.guserUpdate(dto);
 	}
+	
 	@Override
-	public List<MembersDto> getMuserlist(MembersDto dto) {
-		return loginDao.getMuserlist(dto);
+	public MembersDto idChk(String m_email) {
+		return loginDao.idChk(m_email);
 	}
 	@Override
-	public List<GuideDto> getGuserlist(GuideDto dto) {
-		return loginDao.getGuserlist(dto);
+	public GuideDto idChk1(String gu_email) {
+		return loginDao.idChk1(gu_email);
+		}
+	@Override
+	public List<MembersDto> getMuserlist() {
+		return loginDao.getMuserlist();
+	}
+	@Override
+	public List<GuideDto> getGuserlist() {
+		return loginDao.getGuserlist();
 	}
 
 	

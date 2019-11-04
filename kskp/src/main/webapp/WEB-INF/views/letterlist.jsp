@@ -40,6 +40,9 @@
 			<th>제목</th>
 			<th>보낸시간</th>
 		</tr>
+		
+<c:choose>
+	<c:when test="${ldto.m_email eq dto.l_receiver}">
 		<c:choose>
 				<c:when test="${empty list}">
 					<tr>
@@ -79,8 +82,52 @@
 		<td colspan="5">
 			<input type="submit" value="삭제" />
 		</td>
-		
 	</tr>
+	</c:when>
+	
+	<c:otherwise>
+	<c:choose>
+	<c:when test="${empty list}">
+					<tr>
+						<td colspan="5" style="text-align : center;">---쪽지가 없습니다.---</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list}" var="dto">
+								<tr>
+									<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
+									<td>${dto.l_seq}</td>
+									<td>${dto.l_sender}</td>
+									<td><a href="letterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
+									<td><f:formatDate value="${dto.l_regdate}" pattern="yyyy-MM-dd"/></td>
+								</tr>
+					</c:forEach>
+				</c:otherwise>	
+		</c:choose>
+			<tr>
+               <td colspan="7" align="center">
+                  <a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=${map.prePageNum}">◀</a>
+                  <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
+                     <c:choose>
+                        <c:when test="${pnum eq i}">
+                           ${i}
+                        </c:when>
+                        <c:otherwise>
+                           <a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=${i}">${i}</a>
+                        </c:otherwise>
+                     </c:choose>   
+                  </c:forEach>
+                  <a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=${map.nextPageNum}">▶</a>
+               </td>
+            </tr>
+
+	<tr>
+		<td colspan="5">
+			<input type="submit" value="삭제" />
+		</td>
+	</tr>
+	</c:otherwise>
+	</c:choose>
 </table>
 </form>
 </body>

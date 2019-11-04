@@ -31,6 +31,10 @@ public interface ILoginService {
 		public boolean userUpdate(MembersDto dto);
 	//가이드 정보 수정
 		public boolean guserUpdate(GuideDto dto);
+		
+	//아이디 중복체크
+		public MembersDto idChk(String m_email);
+		public GuideDto idChk1(String gu_email);
 //				//회원 탈퇴
 //				public boolean withdraw(String rid);
 //				//아이디 중복체크
@@ -44,9 +48,9 @@ public interface ILoginService {
 //				//사용자 등급변경
 //				public boolean updateUserRole(String rid, String rrole);
 		//일반회원 전체 조회
-		public List<MembersDto> getMuserlist(MembersDto dto);
+		public List<MembersDto> getMuserlist();
 		
 		//가이츠 전체 조회
-		public List<GuideDto> getGuserlist(GuideDto dto);
+		public List<GuideDto> getGuserlist();
 		
 }

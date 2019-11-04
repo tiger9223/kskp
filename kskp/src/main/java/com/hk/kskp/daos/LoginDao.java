@@ -82,13 +82,21 @@ public class LoginDao implements ILoginDao {
 		return count > 0 ? true:false;
 	}
 	@Override
-	public List<MembersDto> getMuserlist(MembersDto dto) {
+	public List<MembersDto> getMuserlist() {
 		return sqlSession.selectList(nameSpace+"getMUserStatus");
 	}
 
 	@Override
-	public List<GuideDto> getGuserlist(GuideDto dto) {
+	public List<GuideDto> getGuserlist() {
 		return sqlSession.selectList(nameSpace+"getGUserStatus");
+	}
+	@Override
+	public MembersDto idChk(String m_email) {
+		return sqlSession.selectOne(nameSpace+"idChk", m_email);
+	}
+	@Override
+	public GuideDto idChk1(String gu_email) {
+		return sqlSession.selectOne(nameSpace+"idChk1", gu_email);
 	}
 
 

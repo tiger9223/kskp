@@ -35,6 +35,7 @@ import com.hk.kskp.utils.Paging;
 
 
 
+
 @Controller
 public class LoginController {
 	
@@ -117,8 +118,29 @@ public class LoginController {
 			model.addAttribute("email", email);
 			return "emailcert";
 			}
-	
 	}
+	
+	@RequestMapping(value = "/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String idChk(Locale locale, Model model, String m_email) {
+		logger.info("아이디중복체크", locale);
+		MembersDto dto = LoginService.idChk(m_email);
+		GuideDto dto1 = LoginService.idChk1(m_email);
+		model.addAttribute("dto", dto);
+		model.addAttribute("dto1", dto1);
+		return "idchkform";
+	}
+	
+	@RequestMapping(value = "/idChk1.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String idChk1(Locale locale, Model model, String gu_email) {
+		logger.info("아이디중복체크", locale);
+		MembersDto dto = LoginService.idChk(gu_email);
+		GuideDto dto1 = LoginService.idChk1(gu_email);
+		model.addAttribute("dto", dto);
+		model.addAttribute("dto1", dto1);
+		return "idchkform1";
+	}
+	
+	
 	@RequestMapping(value = "/ginsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUserForm() {
 		logger.info("가이드회원가입 폼으로 이동");
@@ -129,6 +151,7 @@ public class LoginController {
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String gInsertUser(Locale locale,GuideDto dto) {
 		logger.info("가이드회원 회원가입", locale);
+		System.out.println(dto);
 		boolean isS=LoginService.gInsertUser(dto);
 		if(isS) {
 			return "login";
@@ -152,7 +175,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/mlogin.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getLogin(HttpServletRequest request,Locale locale, Model model, String email, String pw) {
+	public String getLogin(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String pw) throws IOException {
 		logger.info("로그인", locale);
 	
 		HttpSession session = request.getSession();
@@ -162,6 +185,9 @@ public class LoginController {
 		
 		System.out.println("ldto="+ldto);
 		if(ldto == null && ldto1 ==null){
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('아이디 패스워드를 확인해주세요.'); history.go(-1);</script>");
+	            out.flush();
 			return "login";
 		}else if(ldto !=null) {
 			session.setAttribute("ldto", ldto);
@@ -260,11 +286,11 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/memberalllist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberAllList(Model model,MembersDto dto,GuideDto dto1) {
+	public String memberAllList(Model model) {
 		logger.info("일반 회원 전체조회");
 		logger.info("가이드 전체조회");		
-		List<MembersDto> mlist=LoginService.getMuserlist(dto);
-		List<GuideDto> glist = LoginService.getGuserlist(dto1);
+		List<MembersDto> mlist=LoginService.getMuserlist();
+		List<GuideDto> glist = LoginService.getGuserlist();
 		model.addAttribute("mlist",mlist);
 		model.addAttribute("glist",glist);	
 		
