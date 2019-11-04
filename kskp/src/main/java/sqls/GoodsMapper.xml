@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM GOODS WHERE G_SEQ=#{g_seq}
 	</select>
 	
-	<!--  -->
+	<!--한명의 가이드 상품 목록 -->
 	<select id="guidegoods" parameterType="GoodsDto" resultType="GoodsDto">
 		SELECT *
 		FROM GOODS WHERE GU_SEQ=#{gu_seq} ORDER BY SYSDATE DESC

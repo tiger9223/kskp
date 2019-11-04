@@ -95,13 +95,22 @@ public class GoodsController {
 		return "goodsdetail";
 	}
 	
+	@RequestMapping(value = "/insertcart.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertCart(Locale locale, Model model, PayDto dto) {
+		logger.info("상품 장바구니에 담기", locale);
+		System.out.println(dto);
+		model.addAttribute("dto",dto);
+		return "cart";
+	}
+	
 	@RequestMapping(value = "/insertpay.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertPay(Locale locale, Model model, PayDto dto) {
-		logger.info("결제창으로 가기", locale);
+		logger.info("상품 결제 페이지로 이동", locale);
 		System.out.println(dto);
 		model.addAttribute("dto",dto);
 		return "pay";
 	}
+	
 	
 }//end
 

@@ -80,13 +80,6 @@
 	
 	
 
-	
-	
-	
-	
-	
-	
-	
 </script>
 </head>
 <body>

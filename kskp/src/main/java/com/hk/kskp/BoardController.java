@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +37,10 @@ public class BoardController {
 	@RequestMapping(value="/nboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String nboardlist(HttpServletRequest request, Model model, String pnum) {
 		logger.info("공지사항으로 이동");
-		
+		HttpSession session = request.getSession();
+		if(session == null) {
+			return "redirect:loginform.do";
+		}
 		if(pnum == null) {
 			pnum = (String) request.getSession().getAttribute("pnum");			
 		}else {

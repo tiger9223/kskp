@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>main page</title>
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -55,13 +55,14 @@
 		<a href="muserinfo.do?seq=${ldto.m_seq}">내 정보보기</a>
 		<a href="qboardlist.do?pnum=1">질문과 답변</a>
 		<a href="nboardlist.do?pnum=1">공지사항</a>
+		<a href="mypage.do?seq=${ldto.m_seq}">마이페이지</a>
 		<a href="sendLetterform.do">쪽지보내기</a>
 		<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은쪽지보기</a>
 		<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸쪽지보기</a>
 		<a href="logout.do">로그아웃</a>
 	</c:when>
 	<c:when test="${ldto.m_status eq 'A'}">
-		<a href="auserinfo.do">내 정보보기</a>
+		<a href="mypage.do?seq=${ldto.m_seq}">마이페이지</a>
 		<a href="qboardlist.do?pnum=1">질문과 답변</a>
 		<a href="nboardlist.do?pnum=1">공지사항</a>
 		<a href="memberalllist.do">전체회원보기</a>

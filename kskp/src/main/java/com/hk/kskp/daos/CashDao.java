@@ -47,7 +47,7 @@ public class CashDao implements ICashDao{
 		return count>0?true:false;
 	}
 	
-	@Override
+	@Override//송금 승인하기
 	public boolean okSal(SalaryDto dto) {
 		int count = sqlSession.update(nameSpace+"oksal",dto);
 		return count>0?true:false;

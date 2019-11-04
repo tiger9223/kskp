@@ -8,7 +8,7 @@
 <title></title>
 </head>
 <body>
-<h1>결제하기</h1>
+<h1></h1>
 <form action="emailcerform.do" method="post">
 <h2></h2>
 <p>이름</p>

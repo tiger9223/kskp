@@ -145,6 +145,16 @@ overflow:visible;
 <form name="form" method="post">
 <input type="hidden" name="p_name" value="${gdto.g_name}"/>
 <input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
+<input type="hidden" name="p_meet" value="${gdto.g_address}"/>
+<input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
+<c:choose>
+<c:when test="${ldto.m_status eq 'M'}">
+<input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
+</c:when>
+<c:otherwise>
+<input type="hidden" name="m_seq" value="${ldto1.gu_seq}"/>
+</c:otherwise>
+</c:choose>
 <h3>원하는 날짜와 인원을 선택하세요.</h3>
 <div id="mdp-demo"></div>
 <input type="hidden"  name="p_date" id="altField" >
@@ -165,14 +175,41 @@ $(function(){
 	})
 })
 
-function pay(){
-	
-	
+function btn_click(str){
+	var date = document.getElementById("altField");
+	var price = document.getElementById("p_cost");
+	if(str == "pay"){
+		if(date.value==""){
+			alert("원하는 날짜를 클릭해주세요.");
+			date.focus();
+			return false;
+		}else if(price.value==""){	
+			alert("금액 조회 버튼을 클릭해주세요.");
+			price.focus();
+			return false;
+		}else{
+			form.action="insertpay.do";
+		}
+	}else if(str == "res"){
+		if(date.value==""){
+			alert("원하는 날짜를 클릭해주세요.");
+			date.focus();
+			return false;
+		}else if(price.value==""){	
+			alert("금액 조회 버튼을 클릭해주세요.");
+			price.focus();
+			return false;
+		}else{
+			form.action="insertcart.do";
+		}
+	}
 }
 
 </script>
 
-<div><input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액"><p><input type="submit" value="에약하기" formcation="insertpay.do"><input type="submit" value="장바구니 담기" formcation="insertcart.do"></p></div>
+<div><input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액"><p>
+<input type="submit" value="예약하기" onclick='return btn_click("pay");'></p></div>
+<input type="submit" value="장바구니 담기" onclick='return btn_click("res");'>
 </form>
 <h2>${gdto.g_oneline}</h2> 
 <div style="white-space:pre;"><c:out value="${gdto.g_conts}" /></div>
