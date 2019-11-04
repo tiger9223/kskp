@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
 <h1>swag 일반회원 목록조회</h1>
        <table border="1">
 			<col width="100px">
@@ -24,16 +25,23 @@
 				<th>이름</th>
 				<th>회원가입일자</th>
 			</tr>
-					
-			<c:forEach items="${mlist}" var="mDto">
-				<c:if test="${mDto.m_status eq 'M'}">
-			<tr>
-				<td>${mDto.m_email}</td>
-				<td>${mDto.m_name}</td>
-			    <td><fmt:formatDate value="${mDto.m_regdate}" pattern="yyyy년MM월dd일"/></td>				
-			</tr>
-				</c:if>
-			</c:forEach>
+			<c:choose>
+			
+					<c:when test="${empty mlist}">
+					<tr>
+						<td colspan="3" style="text-align: center;">---일반회원 목록이 없습니다.---</td>
+					</tr>
+					</c:when>
+					<c:otherwise>						
+					<c:forEach items="${mlist}" var="mDto">
+							<tr>
+								<td>${mDto.m_email}</td>
+								<td>${mDto.m_name}</td>
+			   					 <td><fmt:formatDate value="${mDto.m_regdate}" pattern="yyyy년MM월dd일"/></td>				
+							</tr>				
+					</c:forEach>			
+					</c:otherwise>
+			</c:choose>	
 						
 		
 	</table>
@@ -48,6 +56,11 @@
 				<th>이름</th>
 				<th>회원가입일자</th>
 			</tr>
+				<c:choose>
+					<c:when test="${empty glist}">			
+						<td colspan="4" style="text-align: center;">---가이드 목록이 없습니다.---</td>					
+					</c:when>
+			</c:choose>	
 			<c:forEach items="${glist}" var="mDto">
 			<tr>
 				<td>${mDto.gu_email}</td>

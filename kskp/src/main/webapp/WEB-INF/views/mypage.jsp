@@ -79,9 +79,9 @@
 			<li>
 				<h2>메세지</h2>
 				<ul>
-					<li><a href="">메세지 보내기</a></li>
-					<li><a href="">받은 메세지</a></li>
-					<li><a href="">보낸 메세지</a></li>
+					<li><a href="sendLetterform.do">메세지 보내기</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>
@@ -95,12 +95,17 @@
 			<ul>
 			<li>
 				<ul>
-				<a href=""><h2>전체 회원 조회</h2></a>
+				<a href="memberalllist.do"><h2>전체 회원 조회</h2></a>
 				</ul>
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>Q&A 글</h2></a>
+				<a href="qboardlist.do"><h2>Q&A 글</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href="nboardlist.do"><h2>공지사항</h2></a>
 				</ul>
 			</li>
 			<li>
@@ -116,9 +121,9 @@
 			<li>
 				<h2>메세지</h2>
 				<ul>
-					<li><a href="">메세지 보내기</a></li>
-					<li><a href="">받은 메세지</a></li>
-					<li><a href="">보낸 메세지</a></li>
+					<li><a href="sendLetterform.do">메세지 보내기</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>

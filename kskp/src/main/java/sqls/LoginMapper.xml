@@ -63,6 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			M_REGDATE,
 			M_STATUS
 	 FROM   MEMBERS
+	 WHERE M_STATUS='M'
 	</select>
 	
 	<!-- 가이드 전체 목록 조회 -->
