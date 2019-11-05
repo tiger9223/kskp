@@ -91,13 +91,14 @@
 		window.open("idChk1.do?gu_email="+gu_email,"check","width=300px, height=300px");
 		}
 	}
-	
+
+
 </script>
 
 </head>
 <body>
 <h1>가이드 회원가입</h1>
-<form onsubmit="return check()" action="ginsertuser.do" method="post">
+<form onsubmit="return check()" action="gemailcerform.do" method="post">
 <p>이름 : <input type="text" id="gu_name" name="gu_name" placeholder="id" /></p>
 <p>이메일 : <input type="text" id="gu_email" name="gu_email" placeholder="email" class="n"/>
 <input type="button" name="idchk" value="중복체크" onclick="idChk()" class="n" ></p>

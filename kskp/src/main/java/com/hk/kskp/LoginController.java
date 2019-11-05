@@ -72,6 +72,12 @@ public class LoginController {
 		session.setAttribute("dto", dto);
 		return "emailcert";
 	}
+	@RequestMapping(value = "/gemailcerform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String gemailcerform(HttpSession session, GuideDto dto,Model model) {
+		logger.info("이메일,핸드폰 인증 폼으로 이동");
+		session.setAttribute("dto", dto);
+		return "gemailcert";
+	}
 	@RequestMapping(value = "/minsertuserform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String minsertuserform(HttpServletRequest request) {
 		logger.info("일반회원가입 폼으로 이동");
@@ -85,6 +91,7 @@ public class LoginController {
 		model.addAttribute("phone", phone);
 		return "emailcert";
 	}
+
 	
 	@RequestMapping(value = "/minsertuser1.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String minsertuser1(HttpSession session,Locale locale,Model model, String phone, String pcer) throws IOException {
@@ -123,6 +130,25 @@ public class LoginController {
 			return "emailcert";
 			}
 	}
+
+	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String ginsertuser(HttpSession session,Locale locale,Model model, String email, String ecer) throws IOException {
+		logger.info("일반회원 회원가입", locale);
+		String a = (String)session.getAttribute("keyCode");
+		GuideDto dto=(GuideDto)session.getAttribute("dto");
+		if(ecer.equals(a)) {
+			session.removeAttribute("keyCode");
+			boolean isS=LoginService.gInsertUser(dto);
+			if(isS) {
+			session.removeAttribute("dto");
+			}
+			return "login";
+			
+		}else {
+			model.addAttribute("email", email);
+			return "gemailcert";
+			}
+	}
 	
 	@RequestMapping(value = "/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String idChk(Locale locale, Model model, String m_email) {
@@ -151,19 +177,7 @@ public class LoginController {
 		return "gSignup";
 	}
 	
-	
-	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String gInsertUser(Locale locale,GuideDto dto) {
-		logger.info("가이드회원 회원가입", locale);
-		System.out.println(dto);
-		boolean isS=LoginService.gInsertUser(dto);
-		if(isS) {
-			return "login";
-		}else {
-			System.out.println("실패");
-			return "login";
-		}
-	}
+
 	
 	@RequestMapping(value = "/loginform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String loginform(Model model, HttpSession session) {
@@ -291,6 +305,23 @@ public class LoginController {
 		MailUtil.sendMail(email, subject, msg);
 		model.addAttribute("email", email);
 		return "emailcert";
+	}
+	@RequestMapping(value = "/gsendemail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String gsendphone(Model model, String phone,HttpSession session, String email) throws Exception {
+		logger.info("이메일 인증번호 보내기");
+		String keyCode = FindUtil.createKey();
+		session.setAttribute("keyCode",keyCode);
+	
+		String subject = "SWAG 이메일 인증번호 입니다";
+		String msg="";
+		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+		msg += "<h3 style='color: blue;'>이메일 인증코드입니다.</h3>";
+		msg += "<div style='font-size: 130%'>";
+		msg += keyCode + "</strong> 를 입력해주세요.</div><br/>";
+		
+		MailUtil.sendMail(email, subject, msg);
+		model.addAttribute("email", email);
+		return "gemailcert";
 	}
 
 	@RequestMapping(value = "/memberalllist.do", method = {RequestMethod.GET,RequestMethod.POST})
