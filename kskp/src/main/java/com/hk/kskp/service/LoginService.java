@@ -78,8 +78,20 @@ public class LoginService implements ILoginService{
 		return loginDao.getMuserlist();
 	}
 	@Override
-	public List<GuideDto> getGuserlist() {
-		return loginDao.getGuserlist();
+	public List<GuideDto> getGuserlist(String pnum) {
+		return loginDao.getGuserlist(pnum);
+	}
+	@Override
+	public boolean guideApp(GuideDto dto) {
+		return loginDao.guideApp(dto);
+	}
+	@Override
+	public boolean delGuide( GuideDto dto) {
+		return loginDao.delGuide(dto);
+	}
+	@Override
+	public int getPcount(GuideDto dto) {
+		return loginDao.getPcount(dto);
 	}
 
 	

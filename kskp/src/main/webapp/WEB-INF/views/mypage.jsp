@@ -105,7 +105,7 @@
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>가이드 가입승인</h2></a>
+				<a href="guideappform.do&pnum=1"><h2>가이드 가입승인</h2></a>
 				</ul>
 			</li>
 			<li>

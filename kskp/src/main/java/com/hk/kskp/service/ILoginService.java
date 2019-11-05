@@ -51,6 +51,18 @@ public interface ILoginService {
 		public List<MembersDto> getMuserlist();
 		
 		//가이츠 전체 조회
-		public List<GuideDto> getGuserlist();
+		public List<GuideDto> getGuserlist(String pnum);
+		
+		//가이드 전체 조회 페이지 수 
+		public int getPcount(GuideDto dto);
+		//가이드 승인
+		public boolean guideApp(GuideDto dto);
+		//가이드 거절
+		public boolean delGuide(GuideDto dto);
+		
+		
+		
+		
+		
 		
 }
