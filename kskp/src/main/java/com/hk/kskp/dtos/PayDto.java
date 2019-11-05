@@ -9,17 +9,15 @@ public class PayDto {
 	private int p_num;
 	private String p_date;
 	private String p_name;
-	private String p_conts;
 	private String p_img;
-	private String p_meet;
-	private String p_flag;
+	private int p_flag;
 	
 	public PayDto() {
 		super();
 	}
 
-	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
-			String p_img, String p_meet, String p_flag) {
+	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, 
+			String p_img,  int p_flag) {
 		super();
 		this.p_seq = p_seq;
 		this.g_seq = g_seq;
@@ -28,9 +26,7 @@ public class PayDto {
 		this.p_num = p_num;
 		this.p_date = p_date;
 		this.p_name = p_name;
-		this.p_conts = p_conts;
 		this.p_img = p_img;
-		this.p_meet = p_meet;
 		this.p_flag = p_flag;
 	}
 
@@ -90,14 +86,6 @@ public class PayDto {
 		this.p_name = p_name;
 	}
 
-	public String getP_conts() {
-		return p_conts;
-	}
-
-	public void setP_conts(String p_conts) {
-		this.p_conts = p_conts;
-	}
-
 	public String getP_img() {
 		return p_img;
 	}
@@ -106,27 +94,19 @@ public class PayDto {
 		this.p_img = p_img;
 	}
 
-	public String getP_meet() {
-		return p_meet;
-	}
-
-	public void setP_meet(String p_meet) {
-		this.p_meet = p_meet;
-	}
-
-	public String getP_flag() {
+	public int getP_flag() {
 		return p_flag;
 	}
 
-	public void setP_flag(String p_flag) {
+	public void setP_flag(int p_flag) {
 		this.p_flag = p_flag;
 	}
 
 	@Override
 	public String toString() {
 		return "Pay [p_seq=" + p_seq + ", g_seq=" + g_seq + ", m_seq=" + m_seq + ", p_cost=" + p_cost + ", p_num="
-				+ p_num + ", p_date=" + p_date + ", p_name=" + p_name + ", p_conts=" + p_conts + ", p_img=" + p_img
-				+ ", p_meet=" + p_meet + ", p_flag=" + p_flag + "]";
+				+ p_num + ", p_date=" + p_date + ", p_name=" + p_name + ", p_conts=" +  ", p_img=" + p_img
+				+ ", p_meet=" +  ", p_flag=" + p_flag + "]";
 	}
 	
 

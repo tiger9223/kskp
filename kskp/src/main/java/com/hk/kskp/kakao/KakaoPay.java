@@ -36,9 +36,12 @@ public class KakaoPay {
 	    	
 	    	System.out.println(dto.getP_name()+"   "+dto.getP_num()+"   "+dto.getP_cost());
 	        RestTemplate restTemplate = new RestTemplate();
-	        String p_num = Integer.toString(dto.getP_num());
-	        String p_cost = Integer.toString(dto.getP_cost());
+	        String p_seq = Integer.toString(dto.getP_seq());
 	        String g_seq = Integer.toString(dto.getG_seq());
+	        String m_seq = Integer.toString(dto.getM_seq());
+	        String p_cost = Integer.toString(dto.getP_cost());
+	        String p_num = Integer.toString(dto.getP_num());
+	        String p_flag = Integer.toString(dto.getP_flag());
 	        // 서버로 요청할 Header
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.add("Authorization", "KakaoAK " + "ef1f8ef9e142f97694256e7421f3f829");
@@ -49,12 +52,12 @@ public class KakaoPay {
 	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 	        params.add("cid", "TC0ONETIME");
 	        params.add("partner_order_id", g_seq);
-	        params.add("partner_user_id", "gorany");
+	        params.add("partner_user_id", m_seq);
 	        params.add("item_name", dto.getP_name());
 	        params.add("quantity", p_num);
 	        params.add("total_amount", p_cost);
 	        params.add("tax_free_amount", "100");
-	        params.add("approval_url", "http://localhost:8888/kskp/kakaoPaySuccess.do?g_seq="+g_seq+"&p_cost="+p_cost);
+	        params.add("approval_url", "http://localhost:8888/kskp/kakaoPaySuccess.do?p_seq="+p_seq+"&g_seq="+g_seq+"&m_seq="+m_seq+"&p_cost="+p_cost+"&p_num="+p_num+"&p_flag="+p_flag+"&p_date="+dto.getP_date()+"&p_name="+dto.getP_name()+"&p_img="+dto.getP_img());
 	        params.add("cancel_url", "http://localhost:8888/kakaoPayCancel");
 	        params.add("fail_url", "http://localhost:8888/kakaoPaySuccessFail");
 	 
@@ -79,11 +82,11 @@ public class KakaoPay {
 	        
 	    }
 	    
-	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token, String g_seq, String p_cost) {
+	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token,String p_seq,String g_seq,String m_seq,String p_num,String p_cost, String p_flag,String p_date,String p_name,String p_img) {
 
 	        log.info("KakaoPayInfoVO............................................");
 	        log.info("-----------------------------");
-	        
+	      
 	        RestTemplate restTemplate = new RestTemplate();
 	 
 	        // 서버로 요청할 Header
@@ -97,7 +100,7 @@ public class KakaoPay {
 	        params.add("cid", "TC0ONETIME");
 	        params.add("tid", kakaoPayReadyVO.getTid());
 	        params.add("partner_order_id", g_seq);
-	        params.add("partner_user_id", "gorany");
+	        params.add("partner_user_id", m_seq);
 	        params.add("pg_token", pg_token);
 	        params.add("total_amount", p_cost);
 	        

@@ -17,5 +17,7 @@
 결제금액:    [[${info.amount.total}]]<br/>
 결제방법:    [[${info.payment_method_type}]]<br/>
 
+<h1>[[${dto}]]</h1>
+<h2>[[${info}]]</h2>
 </body>
 </html>
