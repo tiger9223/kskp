@@ -66,16 +66,9 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 					
 		<c:choose>
 			<c:when test="${empty list}">
-			<c:choose>
-			<c:when test="${ldto.m_status eq 'M'}">
-			<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
-			</c:when>
-			</c:choose>
-			<c:choose>
-			<c:when test="${ldto.m_status eq 'A'}">
-			<td colspan="5" style="text-align: center;">---작성된 글이 없습니다.---</td>
-			</c:when>
-			</c:choose>
+				<tr>
+					<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
+				</tr>	
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list}" var="dto">
@@ -87,7 +80,7 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 					<td><fmt:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 
 					<td>${dto.n_count}</td>
 					</c:when>
-					<c:otherwise>	
+					<c:otherwise>
 					<td>${dto.n_seq}</td>
 					<td><a href="ngetboard.do?n_seq=${dto.n_seq}">${dto.n_title}</a></td>
 					<td><fmt:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 

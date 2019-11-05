@@ -69,9 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 가이드 전체 목록 조회 -->
 	<select id="getGUserStatus" resultType="GuideDto">
 		select 		
-			GU_NAME,
-			GU_EMAIL,
-			GU_REGDATE
+			*
 	 FROM GUIDE	
 	</select>
 	
@@ -84,5 +82,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idChk1" parameterType="String" resultType="GuideDto">
 		SELECT GU_EMAIL FROM GUIDE WHERE GU_EMAIL=#{gu_email}
 	</select>
+		<!-- 가이드 가입 승인  -->
+	<update id="guideApp" parameterType="GuideDto">
+		UPDATE GUIDE SET GU_APPFLAG='1' WHERE gu_seq=#{gu_seq}
+	</update>
+	<delete id="delGuide" parameterType="GuideDto">
+		<!-- 가이드 가입 거절 -->
+	DELETE GUIDE WHERE GU_SEQ=#{gu_seq}
+	</delete>
+	
+	<select id="pcount" resultType="int" parameterType="GuideDto">
+		SELECT CEIL(COUNT(CASE WHEN GU_APPFLAG=0 THEN 1 END)/10) FROM GUIDE 
+	</select>
+	
+	
+	
+	
+	
+
+	<!-- 메인화면에서  회원가입-->
+	
 
 </mapper>
