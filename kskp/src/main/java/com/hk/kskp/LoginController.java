@@ -352,8 +352,38 @@ public class LoginController {
 		MembersDto ldto = LoginService.mLogin(m_email,pw);
 		session.setAttribute("ldto", ldto);
 		return "main";
+	
+		}
 	}
+	@RequestMapping(value = "/signupform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String signupForm(Model model) {
+		logger.info("회원가입폼으로 이동");
+		System.out.println("여기");
+		return"signup";
 	}
+	@RequestMapping(value = "/signup.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String minsertuser(Model model){
+		logger.info("회원가입");
+		return apiResult;
+		
+	}
+	@RequestMapping(value = "/conditions.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String conditionsForm(Model model) {
+		logger.info("이용약관으로 이동");
+		return"conditions";
+	}
+	@RequestMapping(value = "/privacy.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String privacyForm(Model model) {
+		logger.info("개인정보처리방침");
+		return"privacy";
+	}
+	
+	@RequestMapping(value = "/responsibility.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String responsibilityForm(Model model) {
+		logger.info("개인정보처리방침");
+		return"responsibility";
+	}
+	
 	
 	@RequestMapping(value = "/guideappform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guideappform(HttpServletRequest request,Model model,GuideDto dto,String pnum) {
@@ -425,5 +455,8 @@ public class LoginController {
 	
 	
 	
+
+
+
 
 }//end

@@ -112,6 +112,7 @@ public class LoginDao implements ILoginDao {
 		return count>0?true:false;
 	}
 
+
 	@Override
 	public int getPcount(GuideDto dto) {
 		int pcount =  sqlSession.selectOne(nameSpace+"pcount",dto);

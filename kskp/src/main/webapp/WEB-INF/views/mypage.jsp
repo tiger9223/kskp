@@ -71,21 +71,20 @@
 				</ul>
 			</li>
 			<li>
-				<h2>메세지</h2>
 				<ul>
-					<a href=""><h2>결제내역</h2></a>
+				<a href=""><h2>결제내역</h2></a>
 				</ul>
 			</li>
 			<li>
 				<h2>메세지</h2>
 				<ul>
-					<li><a href="">메세지 보내기</a></li>
-					<li><a href="">받은 메세지</a></li>
-					<li><a href="">보낸 메세지</a></li>
+					<li><a href="sendLetterform.do">메세지 보내기</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="muserinfo.do?m_email=${ldto.m_email}"><h2>계정관리</h2></a>
+				<a href="muserinfo.do?seq=${ldto.m_seq}"><h2>계정관리</h2></a>
 			</li>
 		</ul>
 	</nav>
@@ -95,12 +94,17 @@
 			<ul>
 			<li>
 				<ul>
-				<a href=""><h2>전체 회원 조회</h2></a>
+				<a href="memberalllist.do"><h2>전체 회원 조회</h2></a>
 				</ul>
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>Q&A 글</h2></a>
+				<a href="qboardlist.do?pnum=1"><h2>Q&A 글</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href="nboardlist.do?pnum=1"><h2>공지사항</h2></a>
 				</ul>
 			</li>
 			<li>
@@ -116,9 +120,9 @@
 			<li>
 				<h2>메세지</h2>
 				<ul>
-					<li><a href="">메세지 보내기</a></li>
-					<li><a href="">받은 메세지</a></li>
-					<li><a href="">보낸 메세지</a></li>
+					<li><a href="sendLetterform.do">메세지 보내기</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>
