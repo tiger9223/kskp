@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.kskp.dtos.GuideDto;
+import com.hk.kskp.dtos.LetterDto;
 import com.hk.kskp.dtos.MembersDto;
 
 
@@ -87,8 +88,10 @@ public class LoginDao implements ILoginDao {
 	}
 
 	@Override
-	public List<GuideDto> getGuserlist() {
-		return sqlSession.selectList(nameSpace+"getGUserStatus");
+	public List<GuideDto> getGuserlist(String pnum) {
+		Map<String, String> map=new HashMap<>();
+		map.put("pnum",pnum);
+		return sqlSession.selectList(nameSpace+"getGUserStatus",map);
 	}
 	@Override
 	public MembersDto idChk(String m_email) {
@@ -98,8 +101,24 @@ public class LoginDao implements ILoginDao {
 	public GuideDto idChk1(String gu_email) {
 		return sqlSession.selectOne(nameSpace+"idChk1", gu_email);
 	}
+	@Override
+	public boolean guideApp(GuideDto dto) {
+		int count = sqlSession.update(nameSpace+"guideApp", dto);
+		return count > 0 ? true:false;
+	}
+	@Override
+	public boolean delGuide(GuideDto dto) {
+		int count = sqlSession.delete(nameSpace+"delGuide", dto);
+		return count>0?true:false;
+	}
 
 
+	@Override
+	public int getPcount(GuideDto dto) {
+		int pcount =  sqlSession.selectOne(nameSpace+"pcount",dto);
+		return pcount;
+	}
+	
 }
 
 

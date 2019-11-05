@@ -163,15 +163,17 @@
 		</a>
 		<ul>
 			<li><a href="">비밀번호 찾기</a></li>
-			<li><a href="">회원가입</a></li>
+			<li><a href="signup.do">회원가입</a></li>
 		</ul>
 	</div>
 	<footer>
 		<ul>
-			<li><a href="">이용약관</a></li>
-			<li><a href="">개인정보처리방침</a></li>
-			<li><a href="">책임의 한계와 법적고지</a></li>
-			<li><a href="">고객센터</a></li>
+
+			<li><a href="conditions.do">이용약관</a></li>
+			<li><a href="privacy.do">개인정보처리방침</a></li>
+			<li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
+			<li><a href="">회원정보 고객센터</a></li>
+
 		</ul>
 		<p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
 	</footer>

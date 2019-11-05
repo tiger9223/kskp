@@ -35,6 +35,7 @@
 #bar {
 	padding: 20px;
 }
+
 #body {
 	width: 300px;
 	padding: 20px;
@@ -45,6 +46,7 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
 </style>
 <script type="text/javascript">
 </script>

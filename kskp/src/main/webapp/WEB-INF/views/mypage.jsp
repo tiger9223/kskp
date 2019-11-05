@@ -99,17 +99,17 @@
 			</li>
 			<li>
 				<ul>
-				<a href="qboardlist.do"><h2>Q&A 글</h2></a>
+				<a href="qboardlist.do?pnum=1"><h2>Q&A 글</h2></a>
 				</ul>
 			</li>
 			<li>
 				<ul>
-				<a href="nboardlist.do"><h2>공지사항</h2></a>
+				<a href="nboardlist.do?pnum=1"><h2>공지사항</h2></a>
 				</ul>
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>가이드 가입승인</h2></a>
+				<a href="guideappform.do&pnum=1"><h2>가이드 가입승인</h2></a>
 				</ul>
 			</li>
 			<li>
