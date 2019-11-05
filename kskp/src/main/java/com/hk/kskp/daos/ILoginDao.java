@@ -30,10 +30,10 @@ public interface ILoginDao {
 //	//회원 탈퇴
 //	public boolean withdraw(String rid);
 		
-	//일반 회원 조회
+	//일반 회원 전체조회
 	public List<MembersDto> getMuserlist();
 	
-	//가이드 회원 조회
+	//가이드 회원 전체조회
 
 	public List<GuideDto> getGuserlist();
 	//아이디 중복체크

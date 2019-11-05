@@ -362,5 +362,23 @@ public class LoginController {
 		return apiResult;
 		
 	}
+	@RequestMapping(value = "/conditions.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String conditionsForm(Model model) {
+		logger.info("이용약관으로 이동");
+		return"conditions";
+	}
+	@RequestMapping(value = "/privacy.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String privacyForm(Model model) {
+		logger.info("개인정보처리방침");
+		return"privacy";
+	}
+	
+	@RequestMapping(value = "/responsibility.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String responsibilityForm(Model model) {
+		logger.info("개인정보처리방침");
+		return"responsibility";
+	}
+
+
 
 }//end
