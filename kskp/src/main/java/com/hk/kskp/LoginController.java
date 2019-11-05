@@ -294,7 +294,6 @@ public class LoginController {
 		model.addAttribute("mlist",mlist);
 		model.addAttribute("glist",glist);	
 		
-		
 		return"memberalllist";
 	}
 	
