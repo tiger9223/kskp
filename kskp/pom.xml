@@ -16,12 +16,28 @@
 	<!-- oracle driver를 maven 저장소에서 제공하지 않기 때문에 따로 oracle driver를 제공하는
 	 저장소를 지정한다. 이때 repositories 태그에 설정하면 된다. -->
 	<repositories>
+	           <repository>
+        <id>kakaodev-public</id>
+        <url>http://devrepo.kakao.com:8088/nexus/content/groups/public/</url>
+    </repository>
 	        <repository>
 	            <id>codelds</id>
 	            <url>https://code.lds.org/nexus/content/groups/main-repo</url>
 	        </repository>
 	</repositories>
 	<dependencies>
+	<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.10</version>
+    <scope>provided</scope>
+</dependency>
+      <dependency>
+       <groupId>com.kakao.sdk</groupId>
+       <artifactId>usermgmt</artifactId>
+       <version>1.0.33</version>
+       <type>aar</type>
+    </dependency>
 	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 	<dependency>
    		 <groupId>org.apache.commons</groupId>
