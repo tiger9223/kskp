@@ -28,6 +28,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.daos.LoginDao;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
 import com.hk.kskp.utils.FindUtil;
@@ -51,9 +52,11 @@ public class LoginController {
 	this.naverLoginBO = naverLoginBO;
 	}
 
-
 	@Autowired
 	private ILoginService LoginService;
+	
+	@Autowired
+	private IGoodsService GoodsService;
 	
 	@RequestMapping(value = "/emailce11rform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String emailc11erform(HttpServletRequest request) {

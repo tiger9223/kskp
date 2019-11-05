@@ -82,12 +82,14 @@
    <col width="110px">
    <col width="300px">
    <col width="80px">
+   <col width="80px">
    <tr>
    	  <th>여행 대표사진</th>  
       <th>지역</th>   
       <th>등록일</th>
       <th>상품명</th>
       <th>총판매 수</th>
+      <th>상품 승인</th>
    </tr>
       <c:choose>
          <c:when test="${empty list}">
@@ -106,7 +108,15 @@
                <td>${dto.g_area}</td>
                <td><fmt:formatDate value="${dto.g_regdate}" pattern="yyyy년MM월dd일"/></td>
                <td>${dto.g_name}</td>
-               <td>${dto.g_res}</td> 
+               <td>${dto.g_res}</td>
+               <c:choose>
+        	   <c:when test="${dto.g_flag eq '1'}">
+               <td style="color:green;">승인 완료</td>
+               </c:when>
+               <c:otherwise>
+               <td style="color:red;">승인 대기</td>
+               </c:otherwise>
+               </c:choose>
             </tr>   
             </c:forEach>
          </c:otherwise>

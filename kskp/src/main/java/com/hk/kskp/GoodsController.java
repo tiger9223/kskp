@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
+import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.dtos.PayDto;
 import com.hk.kskp.service.ICashService;
 import com.hk.kskp.service.IGoodsService;
@@ -86,10 +89,10 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value = "/goodsdetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String goodsDetail(Locale locale, Model model, GoodsDto dto) {
+	public String goodsDetail(Locale locale, Model model, int g_seq) {
 		logger.info("상품 상세보기", locale);
-		GoodsDto gdto = GoodsService.getGoods(dto.getG_seq());
-		System.out.println(dto.getG_seq());
+		GoodsDto gdto = GoodsService.getGoods(g_seq);
+		System.out.println(g_seq);
 		System.out.println("디티오"+gdto);
 		model.addAttribute("gdto",gdto);
 		return "goodsdetail";
@@ -103,7 +106,31 @@ public class GoodsController {
 		return "cart";
 	}
 	
+	@RequestMapping(value = "/insertpay.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertPay(Locale locale, Model model, PayDto dto, HttpServletRequest request) {
+		logger.info("결제완료", locale);
+		HttpSession session = request.getSession();
+		MembersDto ldto =  (MembersDto)session.getAttribute("ldto");
+		System.out.println("dto: "+dto);
+		System.out.println("dto.getG_seq(): "+dto.getG_seq());
+		boolean isS = CashService.pay(dto);
+		model.addAttribute("dto",dto);
+		if(isS) {
+			GoodsService.upPeople(dto.getG_seq());
+			return "redirect:paylist.do?m_seq="+ldto.getM_seq();
+		}else {
+		    return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
+		}
+	}
 
+	@RequestMapping(value = "/paylist.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String payList(Locale locale, Model model, int m_seq) {
+		logger.info("결제 내역보기", locale);
+		List<PayDto> list = CashService.getAllPay(m_seq);
+		System.out.println(m_seq);
+		model.addAttribute("list",list);
+		return "paylist";
+	}
 	
 }//end
 

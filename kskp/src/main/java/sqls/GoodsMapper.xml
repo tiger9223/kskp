@@ -49,11 +49,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{g_mtime}, #{g_lat}, #{g_lng},
 		#{g_cconts},#{g_date},SYSDATE,#{g_thumbimg})
 	</insert>
-	<!--  -->
+	<!-- 상품 승인 -->
 	<update id="appgoods" parameterType="GoodsDto">
 		UPDATE GOODS SET G_FLAG=1,G_REGDATE=SYSDATE WHERE G_SEQ=#{g_seq}
 	</update>
-	
+	<!-- 상품 결제 할 때 마다 인원수 +1 -->
+	<update id="uppeople" parameterType="int">
+		UPDATE GOODS SET G_RES=G_RES+1 WHERE G_SEQ=#{g_seq}
+	</update>
 	<!-- 상품 수정  -->
 	<update id="updategoods" parameterType="GoodsDto">
 		UPDATE GOODS SET G_NAME=#{g_name}, G_CONTS=#{g_conts}, G_DATE=#{g_date},

@@ -17,6 +17,10 @@
 결제금액:    [[${info.amount.total}]]<br/>
 결제방법:    [[${info.payment_method_type}]]<br/>
 
+<form action="insertpay.do" method="post">
+<<input type="hidden"  name="dto" value="${dto}" >
+<input type="submit" value="확인"/>
+</form>
 <h1>[[${dto}]]</h1>
 <h2>[[${info}]]</h2>
 </body>

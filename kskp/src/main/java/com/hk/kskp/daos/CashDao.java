@@ -38,7 +38,7 @@ public class CashDao implements ICashDao{
 
 	@Override//나의 결제 내역
 	public List<PayDto> getAllPay(int m_seq) {
-		return sqlSession.selectOne(nameSpace+"getallpay");
+		return sqlSession.selectList(nameSpace+"getallpay",m_seq);
 	}
 
 	@Override//송금 신청하기

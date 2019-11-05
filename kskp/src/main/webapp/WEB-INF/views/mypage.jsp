@@ -72,7 +72,7 @@
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>결제내역</h2></a>
+				<a href="paylist.do?m_seq=${ldto.m_seq}"><h2>결제내역</h2></a>
 				</ul>
 			</li>
 			<li>
