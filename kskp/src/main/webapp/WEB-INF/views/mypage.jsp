@@ -71,9 +71,8 @@
 				</ul>
 			</li>
 			<li>
-				<h2>메세지</h2>
 				<ul>
-					<a href=""><h2>결제내역</h2></a>
+				<a href=""><h2>결제내역</h2></a>
 				</ul>
 			</li>
 			<li>
@@ -85,7 +84,7 @@
 				</ul>
 			</li>
 			<li>
-				<a href="muserinfo.do?m_email=${ldto.m_email}"><h2>계정관리</h2></a>
+				<a href="muserinfo.do?seq=${ldto.m_seq}"><h2>계정관리</h2></a>
 			</li>
 		</ul>
 	</nav>

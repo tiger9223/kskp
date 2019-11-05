@@ -82,6 +82,17 @@
 		<a href="logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>
+<div>
+<h2>최근 올라온 상품</h2>
 
+</div>
+<div>
+<h2>SWAG 인기 상품</h2>
+
+</div>
+<div>
+<h2>후기 모음</h2>
+
+</div>
 </body>
 </html>
