@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-</head>  
+</head>
 <body>
-<jsp:forward page="main.do" />
+<a href="qboardlist.do?pnum=1">질문과 답변</a>
+<a href="nboardlist.do?pnum=1">공지사항</a>
 </body>
 </html>

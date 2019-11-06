@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-</head>  
+</head>
 <body>
-<jsp:forward page="main.do" />
+<a href="minsertuserform.do">일반회원가입</a>
+<a href="ginsertuserform.do">가이드회원가입</a>
 </body>
 </html>

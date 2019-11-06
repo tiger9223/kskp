@@ -7,94 +7,401 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main page</title>
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<style type="text/css">
-#hello {
-	border: soild red 1px;
+<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/jquery.bxslider.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/jquery.bxslider.min.js"></script>
+	<style type="text/css">
+.top_nav01{
+   width: 130px;
+   height: 30px;
+   float: right;
+   margin-top: 25px;
 }
-
-#header {
-	text-align: center;
+.top_nav01 li{
+   float: left;
+   line-height: 30px;
+   text-align: center;
+   border-radius: 3px;
+   position: relative;
 }
-
-#container {
-	width: 300px;
-	padding: 20px;
-	padding-left: 15px;
-	margin-bottom: 20px;
-	text-align: center;
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
+.top_nav01 a{
+   color: #fff;
+   font-size: 14px;
 }
-
-#bar {
-	padding: 20px;
+.top_nav01>li:first-child a:hover{
+   text-decoration: underline;
 }
-
-#body {
-	width: 300px;
-	padding: 20px;
-	padding-left: 15px;
-	margin-bottom: 20px;
-	text-align: center;
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
+.icon_box{
+   display: inline-block;
+   width: 40px;
+   height: 40px;
+   border-radius: 20px;
+   background-color: #ced9df;
+   border: 1px solid #999;
+   overflow: hidden;
+   margin-top: -5px;
+   margin-left: 29px;
+   cursor: pointer; 
 }
+.icon_box img{
+   width: 100%;
+   height: 100%;
+}
+.info_box{
+   width: 150px;
+   height: 100px;
+   border: 1px solid #ddd;
+   background-color: #ededed;
+   position: absolute;
+   top: 40px;
+   right: -6px;
+   overflow: hidden;
+}
+.info_box li{
+   width: 100%;
+   height: 33.333%;
+   color: #999;
+   border-bottom: 1px solid #ddd;
+   text-align: left;
+   text-indent: 5px;
+}
+.info_box li:nth-child(2) span{
+   font-size: 11px;
+}
+.info_box li a{
+   display: block;
+   color: #666;
+}
+.info_box li i{
+   font-size: 10px;
+}
+.info_box li:hover a{
+   background-color: #888;
+   color: #fff;
+}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('.slider').bxSlider({
+				pager:true,
+				controls:false,
+				auto:true,
+				speed:3000
+			});
+			$(".info_box").hide();
+			$(".icon_box").click(function(){
+				if($(this).next().css("display") == "none"){
+					$(".info_box").slideDown(300);
+				}else{
+					$(".info_box").slideUp(300);
+				}
+			});
 
-</style>
-<script type="text/javascript">
-</script>
+		});
+	</script>
 </head>
 <body>
-<c:choose>
-	<c:when test="${ldto.m_status eq 'M'}">
-		<a href="muserinfo.do?seq=${ldto.m_seq}">내 정보보기</a>
-		<a href="qboardlist.do?pnum=1">질문과 답변</a>
-		<a href="nboardlist.do?pnum=1">공지사항</a>
-		<a href="mypage.do?seq=${ldto.m_seq}">마이페이지</a>
-		<a href="sendLetterform.do">쪽지보내기</a>
-		<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은쪽지보기</a>
-		<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸쪽지보기</a>
-		<a href="logout.do">로그아웃</a>
-	</c:when>
-	<c:when test="${ldto.m_status eq 'A'}">
-		<a href="mypage.do?seq=${ldto.m_seq}">마이페이지</a>
-		<a href="qboardlist.do?pnum=1">질문과 답변</a>
-		<a href="nboardlist.do?pnum=1">공지사항</a>
-		<a href="memberalllist.do">전체회원보기</a>
-		<a href="sendLetterform.do">쪽지보내기</a>
-		<a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은쪽지보기</a>
-		<a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸쪽지보기</a>
-		<a href="logout.do">로그아웃</a>
-	</c:when>
-	<c:otherwise>
-		<a href="guserinfo.do?seq=${ldto1.gu_seq}">내 정보보기</a>
-		<a href="qboardlist.do?pnum=1">질문과 답변</a>
-		<a href="nboardlist.do?pnum=1">공지사항</a>
-		<a href="mypage.do?seq=${ldto1.gu_seq}">마이페이지</a>
-		<a href="sendLetterform.do">쪽지보내기</a>
-		<a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1">받은쪽지보기</a>
-		<a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1">보낸쪽지보기</a>
-		<a href="logout.do">로그아웃</a>
-	</c:otherwise>
-</c:choose>
-<div>
-<h2>최근 올라온 상품</h2>
-
-</div>
-<div>
-<h2>SWAG 인기 상품</h2>
-
-</div>
-<div>
-<h2>후기 모음</h2>
-
-</div>
+	<header>
+		<div class="header_wrap">
+			<h1>
+				<a href=""><img src="img/main_logo.png" alt=""></a>
+			</h1>
+			<c:choose>
+			<c:when test="${ldto == null and ldto1 == null}">
+			<ul class="top_nav">
+				<li>
+					<a href="servicecenter.do">고객센터</a>
+				</li>
+				<li>
+					<a href="selectsignup.do">회원가입</a>
+				</li>
+				<li>
+					<a href="loginform.do">로그인</a>
+				</li>
+			</ul>
+			</c:when>
+			<c:when test="${ldto.m_status eq 'M'}">
+			<ul class="top_nav01">
+				<li>
+					<a href="servicecenter.do">고객센터</a>
+				</li>
+				<li class="icon">
+					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+					<ul class="info_box">
+						<li><a href="mypage.do?seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> 1000p</span></a></li>
+						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>
+			</c:when>
+			<c:when test="${ldto.m_status eq 'A'}">
+			<ul class="top_nav01">
+				<li>
+					<a href="servicecenter.do">고객센터</a>
+				</li>
+				<li class="icon">
+					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+					<ul class="info_box">
+						<li><a href="mypage.do?seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="memberalllist.do"><i class="fas fa-coins"></i>　전체회원조회</a></li>
+						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>
+			</c:when>
+			<c:otherwise>
+			<ul class="top_nav01">
+				<li>
+					<a href="servicecenter.do">고객센터</a>
+				</li>
+				<li class="icon">
+					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+					<ul class="info_box">
+						<li><a href="mypage.do?seq=${ldto1.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>
+			</c:otherwise>
+		</c:choose>	
+		</div>
+		<div class="line"></div>
+		<div class="search_wrap">
+			<div class="search_box">
+				<h2>어떤곳을 찾으세요?</h2>
+				<input type="text" placeholder="가이드상품을 검색해보세요!" class="text">
+				<input type="submit" value="" class="button"><!--검색버튼-->
+			</div>
+			<div class="img_box01">
+				<ul>
+					<li>
+						<img src="img/main_img01.jpg" alt="">
+						<a href="">
+							<p>서울</p>
+						</a>
+					</li>
+					<li>
+						<img src="img/main_img02.jpg" alt="">
+						<a href="">
+							<p>인천</p>
+						</a>
+					</li>
+					<li>
+						<img src="img/main_img03.jpg" alt="">
+						<a href="">
+							<p>대전</p>
+						</a>
+					</li>
+					<li>
+						<img src="img/main_img04.jpg" alt="">
+						<a href="">
+							<p>대구</p>
+						</a>
+					</li>
+					<li>
+						<img src="img/main_img05.jpg" alt="">
+						<a href="">
+							<p>부산</p>
+						</a>
+					</li>
+					<li>
+						<img src="img/main_img06.jpg" alt="">
+						<a href="">
+							<p>제주</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div id="content">
+		<div class="content_wrap">
+			<ul class="slider">
+				<li>
+					<a href="">
+						<img src="img/banner_01.jpg" alt="">
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="img/banner_02.jpg" alt="">
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="img/banner_03.jpg" alt="">
+					</a>
+				</li>
+			</ul>
+			<h3 class="color01"><i class="fas fa-star"></i> 인기 많은 순 <i class="fas fa-star"></i></h3>
+			<div class="img_box02">
+				<ul>
+					<li>
+						<a href="">
+							<img src="img/main_img01.jpg" alt="">
+							<div class="text_box">
+								<p class="subtitle">서울 - 국립박물관</p>
+								<h4>서울 : 박물관 투어</h4>
+								<p class="star"><!--별점 들어갈 자리-->
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								</p>
+								<p class="price">20000원 / 1인</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="img/main_img02.jpg" alt="">
+							<div class="text_box">
+								<p class="subtitle">서울 - 국립박물관</p>
+								<h4>서울 : 박물관 투어</h4>
+								<p class="star"><!--별점 들어갈 자리-->
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								</p>
+								<p class="price">20000원 / 1인</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="img/main_img03.jpg" alt="">
+							<div class="text_box">
+								<p class="subtitle">서울 - 국립박물관</p>
+								<h4>서울 : 박물관 투어</h4>
+								<p class="star"><!--별점 들어갈 자리-->
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								</p>
+								<p class="price">20000원 / 1인</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="img/main_img04.jpg" alt="">
+							<div class="text_box">
+								<p class="subtitle">서울 - 국립박물관</p>
+								<h4>서울 : 박물관 투어</h4>
+								<p class="star"><!--별점 들어갈 자리-->
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								</p>
+								<p class="price">20000원 / 1인</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<h3 class="color02"><i class="fab fa-gratipay"></i> <i class="far fa-laugh-wink"></i> 여행 꿀팁</h3>
+			<div class="img_box03">
+				<ul>
+					<li>
+						<a href="">
+							<img src="" alt="">
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="" alt="">
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="" alt="">
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="" alt="">
+						</a>
+					</li>
+				</ul>
+			</div>
+			<h3 class="color03"><i class="fas fa-camera-retro"></i> <i class="fas fa-camera-retro"></i> 후기사진 모음</h3>
+			<div class="img_box04">
+				<ul>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
+					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="line02"></div>
+	<footer>
+		<div class="footer_wrap">
+			<div class="left_box">
+				<p class="center">고객센터</p>
+				<p class="number">010-7139-5141</p>
+				<p class="sub">연중무휴</p>
+				<button>메일보내기</button>
+			</div>
+			<div class="right_box">
+				<ul>
+					<li><a href="">이용 약관</a></li>
+					<li><a href="">개인정보 처리방침</a></li>
+					<li><a href="">취소 및 환불정책</a></li>
+				</ul>
+				<p class="info">상호명 : (주)SWAG | 대표 : 신민철 | 사업자등록번호 : 010-12-34567 | 주소 : 서울 특별시 금천구 독산동 한신아파트 1동 703호 | 이메일 : <a href="">smc5141@naver.com</a></p>
+				<p class="copy">자사는 프로젝트를 위해 만들어진 회사이며 상표등록원에 등록되어있지 않습니다.<br>copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

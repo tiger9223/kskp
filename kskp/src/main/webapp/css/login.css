@@ -1,0 +1,117 @@
+body{
+		background-color: #ededed;
+}
+.log_wrap{
+		width: 600px;
+		height: 700px;
+		margin: 0 auto;
+		margin-top: 150px;
+}
+h1{
+	width: 250px;
+	height: auto;
+	margin: 0 auto;
+}
+h1 img{
+	width: 100%;
+}
+.text{
+	display: block;
+	width: 390px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 20px;
+	padding-left: 10px;
+	border: 1px solid #ccc;
+}
+.button{
+	width: 400px;
+	height: 50px;
+	background-color: #1b3371;
+	border: 0;
+	color: #fff;
+	font-size: 18px;
+	margin: 0 auto;
+	margin-top: 30px;
+	display: block;
+	cursor: pointer;
+}
+.line{
+	width: 400px;
+	height: 1px;
+	margin: 0 auto;
+	background-color: #ddd;
+	margin-top: 25px;
+}
+.button02{
+	display: block;
+	width: 400px;
+	height: 50px;
+	border:1px solid #ddd;
+	background-color: #fff;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 25px;
+}
+.button02 span{
+	padding-left: 20px;
+	position: absolute;
+	left: 50px;
+	top: 17px;
+}
+.logo_box{
+	width: 50px;
+	height: 50px;
+	background-color: #FFE800;
+	background-image: url('img/back_img.jpg');
+	background-size: cover;
+	cursor: pointer;
+	border-right: 1px solid #ddd;
+}
+.log_wrap ul{
+	width: 400px;
+	height: 30px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.log_wrap li{
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+.log_wrap li:first-child{
+	border-right: 1px solid #777;
+	box-sizing: border-box;
+}
+footer ul{
+	width: 600px;
+	height: 30px;
+	margin: 0 auto;
+}
+footer li{
+	float: left;
+	font-size: 13px;
+}
+footer li:first-child{
+	padding-left: 33px;
+}
+footer li::after{
+	content: '|';
+	color: #666;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+footer li:last-child::after{
+	content: '';
+	padding-right: 0px;	}
+.copy{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 12px;
+}
+footer img{
+	width: 50px;
+	height: auto;
+	margin-right: 5px;
+	margin-bottom: -5px;
+}
