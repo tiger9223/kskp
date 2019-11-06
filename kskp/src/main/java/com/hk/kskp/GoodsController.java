@@ -61,6 +61,14 @@ public class GoodsController {
 		return "insertgoodsform";
 	}
 	
+	@RequestMapping(value = "/goodsappform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String goodsAppForm(Locale locale, Model model, GuideDto dto) {
+		logger.info("상품승인 페이지로 이동", locale);
+		List<GoodsDto> list = GoodsService.guideGoods(dto.getGu_seq());
+		model.addAttribute("list", list);
+		System.out.println(list);
+		return "goodsapp";
+	}
 	
 	@RequestMapping(value = "/insertgoods.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertGoods(Locale locale,Model model, GoodsDto dto, MultipartFile file) throws IOException, Exception {
