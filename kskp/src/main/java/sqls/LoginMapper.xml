@@ -90,12 +90,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 가이드 가입 거절 -->
 	DELETE GUIDE WHERE GU_SEQ=#{gu_seq}
 	</delete>
-	
+	<!-- 가이드 페이징 -->
 	<select id="pcount" resultType="int" parameterType="GuideDto">
 		SELECT CEIL(COUNT(CASE WHEN GU_APPFLAG=0 THEN 1 END)/10) FROM GUIDE 
 	</select>
-	
-	
+	<!-- 가이드 승인목록리스트 -->
+	<select id="getapplist" resultType="GuideDto">
+		select * FROM(
+		SELECT ROW_NUMBER() OVER (ORDER BY GU_SEQ DESC) AS RN,
+		GU_SEQ,GU_NAME,GU_REGDATE,GU_APPFLAG FROM GUIDE WHERE GU_APPFLAG=0
+		) WHERE CEIL(RN/10)=#{pnum}
+	</select>
 	
 	
 	

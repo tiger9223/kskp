@@ -80,8 +80,8 @@ public class LoginService implements ILoginService{
 		return loginDao.getMuserlist();
 	}
 	@Override
-	public List<GuideDto> getGuserlist(String pnum) {
-		return loginDao.getGuserlist(pnum);
+	public List<GuideDto> getGuserlist() {
+		return loginDao.getGuserlist();
 	}
 	@Override
 	public boolean guideApp(GuideDto dto) {
@@ -94,6 +94,10 @@ public class LoginService implements ILoginService{
 	@Override
 	public int getPcount(GuideDto dto) {
 		return loginDao.getPcount(dto);
+	}
+	@Override
+	public List<GuideDto> getGuserapplist(String pnum) {
+		return loginDao.getGuserapplist(pnum);
 	}
 
 	
