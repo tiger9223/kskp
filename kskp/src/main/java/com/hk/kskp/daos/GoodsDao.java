@@ -48,11 +48,23 @@ public class GoodsDao implements IGoodsDao{
 		return count>0?true:false;
 	}
 
+	@Override//승인할 상품목록 가져오기 
+	public List<GoodsDto> appGoodsList() {
+		return sqlSession.selectList(nameSpace+"appgoodslist");
+	}
+	
 	@Override//상품 승인
 	public boolean appGoods(int g_seq) {
 		int count = sqlSession.update(nameSpace+"appgoods", g_seq);
 		return count>0?true:false;
 	}
+	
+	@Override//상품 승인취소
+	public boolean appNoGoods(int g_seq) {
+		int count = sqlSession.update(nameSpace+"appnogoods", g_seq);
+		return count>0?true:false;
+	}
+
 	
 	@Override//상품 수정
 	public boolean updateGoods(GoodsDto dto) {
@@ -109,6 +121,9 @@ public class GoodsDao implements IGoodsDao{
 		int count = sqlSession.update(nameSpace+"uppeople",g_seq);
 		return count>0?true:false;
 	}
+
+	
+	
 
 	
 

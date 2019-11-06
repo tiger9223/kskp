@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.daos.LoginDao;
+import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.IGoodsService;
@@ -202,7 +203,11 @@ public class LoginController {
 		GuideDto ldto1 = LoginService.gLogin(email, pw);
 		PrintWriter out = response.getWriter();
 		
-	 
+		List<GoodsDto> alist = GoodsService.getAllGoods();
+		List<GoodsDto> blist = GoodsService.getBestGoods();
+		model.addAttribute("alist", alist);
+		model.addAttribute("blist", blist);
+		
 		if(ldto == null && ldto1 ==null){
 	            out.println("<script>alert('아이디 패스워드를 확인해주세요.'); history.go(-1);</script>");
 	            out.flush();
@@ -216,7 +221,7 @@ public class LoginController {
 		}else if(ldto1.getGu_appflag()==0) {
 			 out.println("<script>alert('회원가입 승인 대기중입니다.'); history.go(-1);</script>");
 			 out.flush();
-			 return "login";
+			return "login";
 		}
 		return null;
 	}
@@ -413,10 +418,20 @@ public class LoginController {
 	
 	@RequestMapping(value = "/responsibility.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String responsibilityForm(Model model) {
-		logger.info("개인정보처리방침");
+		logger.info("책임의 한계와 법적고지");
 		return"responsibility";
 	}
-	
+	@RequestMapping(value = "/serivecenter.do", method = {RequestMethod.GET,RequestMethod.POST})
+	   public String serivecenterForm(Model model) {
+	      logger.info("고객센터");
+	      return"serivecenter";
+	}
+	   
+	@RequestMapping(value = "/cancel.do", method = {RequestMethod.GET,RequestMethod.POST})
+	   public String cancelForm(Model model) {
+	      logger.info("환불정책");
+	      return"cancel";
+	}
 	
 	@RequestMapping(value = "/guideappform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guideappform(HttpServletRequest request,Model model,GuideDto dto,String pnum) {

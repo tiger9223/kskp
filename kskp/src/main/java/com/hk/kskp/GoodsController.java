@@ -4,11 +4,13 @@ package com.hk.kskp;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -62,12 +64,40 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value = "/goodsappform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String goodsAppForm(Locale locale, Model model, GuideDto dto) {
+	public String goodsAppForm(Locale locale, Model model) {
 		logger.info("상품승인 페이지로 이동", locale);
-		List<GoodsDto> list = GoodsService.guideGoods(dto.getGu_seq());
+		List<GoodsDto> list = GoodsService.appGoodsList();
 		model.addAttribute("list", list);
 		System.out.println(list);
 		return "goodsapp";
+	}
+	
+	@RequestMapping(value = "/goodsapp.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String goodsApp(Locale locale,HttpServletResponse response ,HttpServletRequest request,Model model, int g_seq) throws IOException {
+		logger.info("상품승인", locale);
+		PrintWriter out = response.getWriter();
+		boolean isS = GoodsService.appGoods(g_seq);
+		if(isS) {
+			System.out.println("성공");
+			return "redirect: goodsappform.do";
+		}else {
+		    return "redirect: goodsappform.do";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/goodsappno.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String goodsAppNo(Locale locale, Model model, int g_seq) {
+		logger.info("상품승인취소", locale);
+		boolean isS = GoodsService.appNoGoods(g_seq);
+		if(isS) {
+			System.out.println("성공");
+			return "redirect: goodsappform.do";
+		}else {
+			System.out.println("실패");
+		    return "redirect: goodsappform.do";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/insertgoods.do", method = {RequestMethod.GET,RequestMethod.POST})

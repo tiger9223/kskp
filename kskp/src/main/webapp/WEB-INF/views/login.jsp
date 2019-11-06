@@ -172,8 +172,7 @@
 			<li><a href="conditions.do">이용약관</a></li>
 			<li><a href="privacy.do">개인정보처리방침</a></li>
 			<li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
-			<li><a href="">회원정보 고객센터</a></li>
-
+			<li><a href="servicecenter.do">고객센터</a></li>
 		</ul>
 		<p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
 	</footer>

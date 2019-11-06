@@ -28,8 +28,14 @@ public interface IGoodsService {
 	//상품 등록
 	public boolean insertGoods(GoodsDto dto);
 	
+	//승인할 상품 목록 불러오기
+	public List<GoodsDto> appGoodsList();
+	
 	//상품 승인
 	public boolean appGoods(int g_seq);
+	
+	//상품 승인취소
+	public boolean appNoGoods(int g_seq);
 	
 	//상품 수정
 	public boolean updateGoods(GoodsDto dto);

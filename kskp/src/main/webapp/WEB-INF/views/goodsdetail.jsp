@@ -149,13 +149,8 @@ overflow:visible;
 <input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
 <c:choose>
 <c:when test="${ldto.m_status eq 'M'}">
-<input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
-</c:when>
-<c:otherwise>
-<input type="hidden" name="m_seq" value="${ldto1.gu_seq}"/>
-</c:otherwise>
-</c:choose>
 <h3>원하는 날짜와 인원을 선택하세요.</h3>
+<input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
 <div id="mdp-demo"></div>
 <input type="hidden"  name="p_date" id="altField" >
 <p>인원 선택
@@ -206,11 +201,14 @@ function btn_click(str){
 }
 
 </script>
-
 <div><input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액"><p>
 <input type="submit" value="예약하기" onclick='return btn_click("pay");'></p></div>
 <input type="submit" value="장바구니 담기" onclick='return btn_click("res");'>
 </form>
+</c:when>
+<c:otherwise>
+</c:otherwise>
+</c:choose>
 <h2>${gdto.g_oneline}</h2> 
 <div style="white-space:pre;"><c:out value="${gdto.g_conts}" /></div>
 <div><h3>만나는 시간</h3><br/><p>

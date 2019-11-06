@@ -114,7 +114,7 @@
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>여행상품 승인</h2></a>
+				<a href="goodsappform.do"><h2>여행상품 승인</h2></a>
 				</ul>
 			</li>
 			<li>

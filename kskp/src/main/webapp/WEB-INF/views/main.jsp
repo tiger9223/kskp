@@ -162,7 +162,7 @@
 				<li class="icon">
 					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
 					<ul class="info_box">
-						<li><a href="mypage.do?seq=${ldto1.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="mypage.do?seq=${ldto1.gu_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
 				</li>
@@ -309,6 +309,7 @@
 							</div>
 						</a>
 					</li>
+					
 				</ul>
 			</div>
 			<h3 class="color02"><i class="fab fa-gratipay"></i> <i class="far fa-laugh-wink"></i> 여행 꿀팁</h3>
@@ -394,9 +395,9 @@
 			</div>
 			<div class="right_box">
 				<ul>
-					<li><a href="">이용 약관</a></li>
-					<li><a href="">개인정보 처리방침</a></li>
-					<li><a href="">취소 및 환불정책</a></li>
+				   <li><a href="conditions.do">이용 약관</a></li>
+	               <li><a href="privacy.do">개인정보 처리방침</a></li>
+	               <li><a href="cancel.do">취소 및 환불정책</a></li>
 				</ul>
 				<p class="info">상호명 : (주)SWAG | 대표 : 신민철 | 사업자등록번호 : 010-12-34567 | 주소 : 서울 특별시 금천구 독산동 한신아파트 1동 703호 | 이메일 : <a href="">smc5141@naver.com</a></p>
 				<p class="copy">자사는 프로젝트를 위해 만들어진 회사이며 상표등록원에 등록되어있지 않습니다.<br>copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
