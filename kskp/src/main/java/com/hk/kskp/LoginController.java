@@ -28,8 +28,10 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.daos.LoginDao;
 import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
+import com.hk.kskp.dtos.LetterDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.IGoodsService;
+import com.hk.kskp.service.ILetterService;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LoginService;
 import com.hk.kskp.utils.FindUtil;
@@ -58,6 +60,10 @@ public class LoginController {
 	
 	@Autowired
 	private IGoodsService GoodsService;
+	
+	@Autowired
+	private ILetterService LetterService;
+
 	
 	@RequestMapping(value = "/emailce11rform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String emailc11erform(HttpServletRequest request) {
@@ -235,8 +241,28 @@ public class LoginController {
 	
 
 	@RequestMapping(value = "/mypage.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String myPage(Model model) {
+	public String myPage(Model model,int seq ) {
 		logger.info("마이페이지로 이동");
+		MembersDto dto = LoginService.mUserInfo(seq);
+		GuideDto gdto = LoginService.gUserInfo(seq);
+		
+		if(dto!=null) {
+			int count = LetterService.lcount(dto.getM_email());
+			int count1 = LetterService.scount(dto.getM_email());
+			model.addAttribute("count", count);
+			model.addAttribute("count1", count1);
+			return"mypage";
+		}else if(gdto!=null) {
+			int count = LetterService.lcount(gdto.getGu_email());
+			int count1 = LetterService.scount(gdto.getGu_email());
+			model.addAttribute("count", count);
+			model.addAttribute("count1", count1);
+			return"mypage";
+		}
+		
+		
+		
+		
 		return"mypage";
 	}
 	
@@ -262,6 +288,12 @@ public class LoginController {
 	public String userInfoform(Model model) {
 		logger.info("일반회원 정보수정 폼으로 이동");
 		return"updateUserInfo";
+	}
+	
+	@RequestMapping(value = "/starReview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String starReview(Model model) {
+		logger.info("일반회원 정보수정 폼으로 이동");
+		return"starRboard";
 	}
 	
 	

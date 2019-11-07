@@ -75,5 +75,15 @@ public class LetterService implements ILetterService {
 		return LetterDao.getPcount1(dto);
 	}
 
+	@Override
+	public int lcount(String l_receiver) {
+		return LetterDao.lcount(l_receiver);
+	}
+
+	@Override
+	public int scount(String l_sender) {
+		return LetterDao.scount(l_sender);
+	}
+
 	
 }

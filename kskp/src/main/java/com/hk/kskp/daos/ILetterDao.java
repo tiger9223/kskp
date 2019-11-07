@@ -43,5 +43,10 @@ public interface ILetterDao {
 	//보낸 메세지 함 페이지 개수 구하기
 	public int getPcount1(LetterDto dto);
 		
+	//받은메세지 갯수
+	public int lcount(String l_receiver);
 
+	//보낸메세지 갯수
+	public int scount(String l_sender);
+	
 }
