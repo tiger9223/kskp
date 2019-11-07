@@ -14,10 +14,12 @@
 	<td>받는 사람</td>
 	<td>${dto.gu_email}</td>
 <tr>
-	<td><textarea rows="30" cols="30" name="conts"></textarea></td>
+	<td>거절사유</td>
+	<td><textarea rows="10" cols="50" name="conts"></textarea></td>
 </tr>
 <tr>
-<td><button onclick="location.href='delguide.do?gu_seq=${dto.gu_seq}'">이메일전송</button><td>
+<td colspan="2" align="right"><button onclick="location.href='delguide.do?gu_seq=${dto.gu_seq}'" >이메일전송</button></td>
+</tr>
 </table>
 
 </body>

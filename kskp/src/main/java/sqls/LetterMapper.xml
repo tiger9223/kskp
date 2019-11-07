@@ -69,4 +69,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT CEIL(COUNT(CASE WHEN L_SENDDELFLAG=0 THEN 1 END)/5) FROM LETTER WHERE L_SENDER=#{l_sender}
 	</select>
 
+	<select id="lcount" resultType="int" parameterType="String" >
+		select count(*) from letter where L_receiver = #{l_receiver} and L_RECDELFLAG=0
+	</select>
+	
+	<select id="scount" resultType="int" parameterType="String" >
+		select count(*) from letter where L_SENDER = #{l_sender} and L_SENDDELFLAG=0
+	</select>
+
 </mapper>
