@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.daos.LoginDao;
+import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.IGoodsService;
@@ -214,7 +215,11 @@ public class LoginController {
 		GuideDto ldto1 = LoginService.gLogin(email, pw);
 		PrintWriter out = response.getWriter();
 		
-	 
+		List<GoodsDto> alist = GoodsService.getAllGoods();
+		List<GoodsDto> blist = GoodsService.getBestGoods();
+		model.addAttribute("alist", alist);
+		model.addAttribute("blist", blist);
+		
 		if(ldto == null && ldto1 ==null){
 	            out.println("<script>alert('아이디 패스워드를 확인해주세요.'); history.go(-1);</script>");
 	            out.flush();
@@ -228,7 +233,7 @@ public class LoginController {
 		}else if(ldto1.getGu_appflag()==0) {
 			 out.println("<script>alert('회원가입 승인 대기중입니다.'); history.go(-1);</script>");
 			 out.flush();
-			 return "login";
+			return "login";
 		}
 		return null;
 	}
@@ -337,11 +342,11 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/memberalllist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberAllList(Model model,String pnum) {
+	public String memberAllList(Model model) {
 		logger.info("일반 회원 전체조회");
 		logger.info("가이드 전체조회");		
 		List<MembersDto> mlist=LoginService.getMuserlist();
-		List<GuideDto> glist = LoginService.getGuserlist(pnum);
+		List<GuideDto> glist = LoginService.getGuserlist();
 		model.addAttribute("mlist",mlist);
 		model.addAttribute("glist",glist);	
 		
@@ -425,77 +430,99 @@ public class LoginController {
 	
 	@RequestMapping(value = "/responsibility.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String responsibilityForm(Model model) {
-		logger.info("개인정보처리방침");
+		logger.info("책임의 한계와 법적고지");
 		return"responsibility";
 	}
 	
+	@RequestMapping(value = "/serivecenter.do", method = {RequestMethod.GET,RequestMethod.POST})
+	   public String serivecenterForm(Model model) {
+	      logger.info("고객센터");
+	      return"serivecenter";
+	}
+	   
+	@RequestMapping(value = "/cancel.do", method = {RequestMethod.GET,RequestMethod.POST})
+	   public String cancelForm(Model model) {
+	      logger.info("환불정책");
+	      return"cancel";
+	}
 	
 	@RequestMapping(value = "/guideappform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guideappform(HttpServletRequest request,Model model,GuideDto dto,String pnum) {
 		logger.info("가이드 승인 폼");
-		
 		if(pnum == null) {
 			pnum = (String)request.getSession().getAttribute("pnum");
 		}else {
 			request.getSession().setAttribute("pnum", pnum);
 		}		
-		List<GuideDto> list = LoginService.getGuserlist(pnum);
-		
+		List<GuideDto> list = LoginService.getGuserapplist(pnum);
 		int p = Integer.parseInt(pnum);
-
 		if(p > 1) {
 			if(list.size() == 0) {
-				list = LoginService.getGuserlist(String.valueOf(p-1));
+				list = LoginService.getGuserapplist(String.valueOf(p-1));
 			}
 		}
-		
 		model.addAttribute("list",list);
-		
 		int pcount=LoginService.getPcount(dto);
-
 		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 10);
 		model.addAttribute("map", map);
-		
 		return"guideapp";
-		
-		
-		
 	}
 	
+	@RequestMapping(value = "/guappdetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String guappdetail(Model model,int gu_seq) {
+		logger.info("가이드 상세보기");
+		GuideDto dto=LoginService.gUserInfo(gu_seq);
+		model.addAttribute("dto",dto);
+		return"guappdetail";
+	}
 	
 	@RequestMapping(value = "/guideapp.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String guideapp(HttpServletResponse response,Model model, GuideDto dto) throws IOException {
+	public String guideapp(Model model, GuideDto dto) throws IOException {
 		logger.info("가이드 가입승인 ");
 		boolean isS = LoginService.guideApp(dto);
 		model.addAttribute("dto",dto);
-		PrintWriter out = response.getWriter();
 		if(isS){
-			 out.println("<script>alert('가이드 승인 완료!'); history.go(-1);</script>"); 
-	         out.flush();
-	         return"redirect:guideappform.do";
+
+	         return"redirect:guideappform.do?pum=1";
 		}else {
-			 out.println("<script>alert('가이드 승인에 실패했습니다.'); history.go(-1);</script>");
-	         out.flush();
-			return"guideappform.do";
+			return"guideappdetail.do?gu_Seq="+dto.getGu_seq();
 		}
 	}
+	 
+
+	@RequestMapping(value = "/noguideapp.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String noguideapp(Model model,int gu_seq) {
+		logger.info("가이드거절이메일 폼");
+		GuideDto dto=LoginService.gUserInfo(gu_seq);
+		model.addAttribute("dto",dto);
+		return"noguideapp";
+	}
+	
 	
 	
 	@RequestMapping(value="delguide.do",method= {RequestMethod.POST,RequestMethod.GET})
-	public String delguide(HttpServletResponse response,Model model,GuideDto dto) throws IOException {
+	public String delguide(HttpServletResponse response,Model model,GuideDto dto,String email,String conts) throws Exception {
 		logger.info("가이드 거절하기");
+		String subject = "swag가이드 가입거절 사유입니다.";
+		String msg=conts; 
+		msg += "";
+		MailUtil.sendMail(email, subject, msg);
+		model.addAttribute("email", email);
+
 		boolean isS=LoginService.delGuide(dto);
 		PrintWriter out = response.getWriter();
 		if(isS){
-			 out.println("<script>alert('가이드 승인을 거절하였습니다.'); history.go(-1);</script>");
-	         out.flush();
-	 		return"redirect:guideappform.do";
+	 		return"redirect:guideappform.do?&pnum=1";
 		}else {
-			out.println("<script>alert('가이드 차단에 실패하였습니다.'); history.go(-1);</script>");
-	        out.flush();
-			return"guideappform.do";
+		
+			return"guideappform.do?&pnum=1";
 		}
 	}
+	
+	
+	
+	
+	
 	
 	
 	

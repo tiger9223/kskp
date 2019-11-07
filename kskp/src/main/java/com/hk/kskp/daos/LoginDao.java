@@ -88,10 +88,9 @@ public class LoginDao implements ILoginDao {
 	}
 
 	@Override
-	public List<GuideDto> getGuserlist(String pnum) {
-		Map<String, String> map=new HashMap<>();
-		map.put("pnum",pnum);
-		return sqlSession.selectList(nameSpace+"getGUserStatus",map);
+	public List<GuideDto> getGuserlist() {
+		
+		return sqlSession.selectList(nameSpace+"getGUserStatus");
 	}
 	@Override
 	public MembersDto idChk(String m_email) {
@@ -119,6 +118,7 @@ public class LoginDao implements ILoginDao {
 		return pcount;
 	}
 	@Override
+
 	public int memailCheck(String email) {
 		
 		return sqlSession.selectOne(nameSpace+"memailCheck", email);
@@ -127,6 +127,13 @@ public class LoginDao implements ILoginDao {
 	public int gemailCheck(String email) {
 		
 		return sqlSession.selectOne(nameSpace+"gemailCheck", email);
+	}
+
+	public List<GuideDto> getGuserapplist(String pnum) {
+		Map<String, String> map=new HashMap<>();
+		map.put("pnum",pnum);
+		return sqlSession.selectList(nameSpace+"getapplist",map);
+
 	}
 	
 }

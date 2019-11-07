@@ -80,8 +80,8 @@ public class LoginService implements ILoginService{
 		return loginDao.getMuserlist();
 	}
 	@Override
-	public List<GuideDto> getGuserlist(String pnum) {
-		return loginDao.getGuserlist(pnum);
+	public List<GuideDto> getGuserlist() {
+		return loginDao.getGuserlist();
 	}
 	@Override
 	public boolean guideApp(GuideDto dto) {
@@ -96,6 +96,7 @@ public class LoginService implements ILoginService{
 		return loginDao.getPcount(dto);
 	}
 	@Override
+
 	public int memailCheck(String email) {
 		// TODO Auto-generated method stub
 		return loginDao.memailCheck(email);
@@ -104,6 +105,10 @@ public class LoginService implements ILoginService{
 	public int gemailCheck(String email) {
 		// TODO Auto-generated method stub
 		return loginDao.gemailCheck(email);
+	}
+	public List<GuideDto> getGuserapplist(String pnum) {
+		return loginDao.getGuserapplist(pnum);
+
 	}
 
 	

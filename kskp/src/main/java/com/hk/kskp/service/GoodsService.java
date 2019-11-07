@@ -46,8 +46,18 @@ public class GoodsService implements IGoodsService{
 	}
 	
 	@Override
+	public List<GoodsDto> appGoodsList() {
+		return GoodsDao.appGoodsList();
+	}
+	
+	@Override
 	public boolean appGoods(int g_seq) {
 		return GoodsDao.appGoods(g_seq);
+	}
+	
+	@Override
+	public boolean appNoGoods(int g_seq) {
+		return GoodsDao.appNoGoods(g_seq);
 	}
 
 	@Override
@@ -99,6 +109,10 @@ public class GoodsService implements IGoodsService{
 	public boolean upPeople(int g_seq) {
 		return GoodsDao.upPeople(g_seq);
 	}
+
+	
+
+	
 
 	
 

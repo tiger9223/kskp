@@ -10,5 +10,6 @@
 <body>
 <a href="qboardlist.do?pnum=1">질문과 답변</a>
 <a href="nboardlist.do?pnum=1">공지사항</a>
+<a href="">찾아오시는 길</a>
 </body>
 </html>

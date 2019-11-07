@@ -3,26 +3,36 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.goods">
-	<!--  -->
+	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getallgoods" parameterType="int" resultType="GoodsDto">
-		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE
+		SELECT *
 		FROM GOODS WHERE G_FLAG=1 ORDER BY SYSDATE DESC
 	</select>
-	<!--  -->
+	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getbestgoods" resultType="GoodsDto">
 		SELECT g.G_AREA, g.G_NAME, g.G_IMG1, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE
-		FROM GOODS g, REVIEW r WHERE g.G_SEQ=r.G_SEQ AND (SELECT)
+		FROM GOODS g, REVIEW r WHERE g.G_SEQ=r.G_SEQ AND g.G_FLAG=1 ORDER BY (SELECT COUNT(R_SEQ) FROM REVIEW) DESC
 	</select>
-	<!--  -->
+	<!--  WHERE절에 AND G_FLAG='1' 넣어줘야함-->
 	<select id="getareagoods" parameterType="GoodsDto" resultType="GoodsDto">
 		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE
 		FROM GOODS WHERE G_AREA=#{g_area} AND G_FLAG=1 ORDER BY SYSDATE DESC
 	</select>
-	
+	<!--승인 받아봐야하는 상품 목록 -->
+	<select id="appgoodslist" resultType="GoodsDto">
+		SELECT g.G_SEQ, g.G_AREA, g.G_NAME, g.G_THUMBIMG,g.G_REGDATE, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE,g.G_FLAG, gu.GU_SEQ, gu.GU_NAME,gu.GU_PHONE,gu.GU_EMAIL,gu.GU_IMG,gu.GU_INTRO,gu.GU_BANK,gu.GU_ACC
+		FROM GOODS g, GUIDE gu WHERE g.GU_SEQ=gu.GU_SEQ ORDER BY SYSDATE DESC
+	</select>
 	<!-- 상품 상세조회  WHERE절에 AND G_FLAG='1' 넣어줘야함-->
 	<select id="getgoods" parameterType="GoodsDto" resultType="GoodsDto">
-		SELECT *
-		FROM GOODS WHERE G_SEQ=#{g_seq}
+		SELECT g.G_SEQ,g.GU_SEQ,g.G_AREA,g.G_LAN,
+		g.G_NAME,g.G_CONTS,g.G_FLAG,g.G_IMG1,
+		g.G_PRICE,g.G_PEOPLE,g.G_RES,g.G_ONELINE,
+		g.G_ADDRESS,g.G_TIME,g.G_DATE,g.G_REGDATE,
+		g.G_THUMBIMG,g.G_MTIME,g.G_LAT,g.G_LNG,
+		g.G_CATEGORY,g.G_INFO,gu.GU_NAME,gu.GU_EMAIL,
+		gu.GU_IMG,gu.GU_INTRO
+		FROM GOODS g, GUIDE gu WHERE G_SEQ=#{g_seq} AND g.GU_SEQ=gu.GU_SEQ
 	</select>
 	
 	<!--한명의 가이드 상품 목록 -->
@@ -37,21 +47,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		G_LAN, G_NAME, G_CONTS,
 		G_FLAG, G_IMG1, G_PRICE,
 		G_PEOPLE, G_RES, G_ONELINE,
-		G_ADDRESS,G_CNAME,G_TIME,
+		G_ADDRESS,G_CATEGORY,G_TIME,
 		G_MTIME, G_LAT, G_LNG,
-		G_CCONTS,G_DATE,G_REGDATE,G_THUMBIMG) 
+		G_INFO,G_DATE,G_REGDATE,G_THUMBIMG) 
 		VALUES
 		(GOODS_SEQ.NEXTVAL ,#{gu_seq}, #{g_area},
 		'한국어',#{g_name},#{g_conts},
 		0,#{g_img1},#{g_price},
 		#{g_people},0,#{g_oneline},
-		#{g_address},#{g_cname},#{g_time},
+		#{g_address},#{g_category},#{g_time},
 		#{g_mtime}, #{g_lat}, #{g_lng},
-		#{g_cconts},#{g_date},SYSDATE,#{g_thumbimg})
+		#{g_info},#{g_date},SYSDATE,#{g_thumbimg})
 	</insert>
 	<!-- 상품 승인 -->
 	<update id="appgoods" parameterType="GoodsDto">
-		UPDATE GOODS SET G_FLAG=1,G_REGDATE=SYSDATE WHERE G_SEQ=#{g_seq}
+		UPDATE GOODS SET G_FLAG=1 WHERE G_SEQ=#{g_seq}
+	</update>
+	
+	<!-- 상품 승인취소 -->
+	<update id="appnogoods" parameterType="GoodsDto">
+		UPDATE GOODS SET G_FLAG=0 WHERE G_SEQ=#{g_seq}
 	</update>
 	<!-- 상품 결제 할 때 마다 인원수 +1 -->
 	<update id="uppeople" parameterType="int">

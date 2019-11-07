@@ -162,7 +162,7 @@
 				<li class="icon">
 					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
 					<ul class="info_box">
-						<li><a href="mypage.do?seq=${ldto1.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="mypage.do?seq=${ldto1.gu_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
 				</li>
@@ -238,6 +238,30 @@
 					</a>
 				</li>
 			</ul>
+			<h3 class="color01"><i class="fas fa-star"></i> 최근 올라온 상품<i class="fas fa-star"></i></h3>
+			<div class="img_box02">
+				<ul>
+				<c:forEach var="dto" items="${alist}" begin="0" end="4" step="1" >
+					<li>
+						<a href="goodsdetail.do?g_seq=${dto.g_seq}">
+							<img src="${dto.g_thumbimg}" alt="image">
+							<div class="text_box">
+								<p class="subtitle">${dto.g_area} - 국립박물관</p>
+								<h4>${dto.g_name}</h4>
+								<p class="star"><!--별점 들어갈 자리-->
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								</p>
+								<p class="price">${dto.g_price}원 / 1인</p>
+							</div>
+						</a>
+					</li>
+					</c:forEach>
+				</ul>
+			</div>
 			<h3 class="color01"><i class="fas fa-star"></i> 인기 많은 순 <i class="fas fa-star"></i></h3>
 			<div class="img_box02">
 				<ul>
@@ -394,9 +418,9 @@
 			</div>
 			<div class="right_box">
 				<ul>
-					<li><a href="">이용 약관</a></li>
-					<li><a href="">개인정보 처리방침</a></li>
-					<li><a href="">취소 및 환불정책</a></li>
+				   <li><a href="conditions.do">이용 약관</a></li>
+	               <li><a href="privacy.do">개인정보 처리방침</a></li>
+	               <li><a href="cancel.do">취소 및 환불정책</a></li>
 				</ul>
 				<p class="info">상호명 : (주)SWAG | 대표 : 신민철 | 사업자등록번호 : 010-12-34567 | 주소 : 서울 특별시 금천구 독산동 한신아파트 1동 703호 | 이메일 : <a href="">smc5141@naver.com</a></p>
 				<p class="copy">자사는 프로젝트를 위해 만들어진 회사이며 상표등록원에 등록되어있지 않습니다.<br>copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>

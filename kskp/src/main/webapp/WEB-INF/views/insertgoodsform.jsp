@@ -158,6 +158,7 @@ function previewImage(targetObj, View_area) {
 <h1>상품등록</h1>
 <form action="insertgoods.do" method="post" enctype="multipart/form-data">
 <input type="hidden" name="gu_seq" value="${ldto1.gu_seq}" />
+<hr>
 <p>*도시
 	<select name="g_area">
 	  <option value="서울" selected="selected">서울</option>
@@ -168,26 +169,81 @@ function previewImage(targetObj, View_area) {
 	  <option value="제주" >제주</option>
 	</select>
 </p>
+<hr>
+<p>
+*여행 카테고리<br/><br/>
+<input type="radio" name="g_category" value="박물관/미술관">박물관/미술관&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="g_category" value="국립공원">국립공원&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="g_category" value="야경">야경<br/><br/>
+<input type="radio" name="g_category" value="시티투어" checked="checked">시티투어&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="g_category" value="액티비티">액티비티&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="g_category" value="맛집/카페">맛집/카페<br/><br/>
+<input type="radio" name="g_category" value="통역/비지니스">통역/비지니스&nbsp;&nbsp;&nbsp;
+<input type="radio" name="g_category" value="쇼핑">쇼핑
+<p class='help-block'>
+• 아래의 카테고리 중 1개만 선택이 가능합니다.
+• 상품을 가장 잘 표현하는 카테고리를 선택해주세요.
+</p>
+</p>
+<hr>
 <p>*여행제목<input class="goods" type="text" name="g_name"/></p>
 <P class='help-block'>
 • 여행 주제를 정확하고 간결하게 표현해주세요.<br/>
 • 맞춤법이 맞지 않거나 이모티콘 혹은 특수문자를 사용하실 경우 상품 검수 절차로 인해 판매가 늦어질 수 있습니다.<br/>
 • 지역명이 포함된 제목은 상품 노출에 더 효과적입니다. (경복궁, 산책하는 여행 / 샌프란시스코! 경복궁 당일치기 등)<br/>
 </P>
-<p>*한줄요약<input class="goods" type="text" name="g_oneline"  /></p>
+<hr>
+<p>*한줄요약<input class="goods" type="text" name="g_oneline"  />
+</p>
 <P class='help-block'>
 • 제목과 연결되는 매력 포인트를 작성해 주세요.<br/>
 • 페이지에서 강조되어 나타납니다.<br/>
 </P>
-
+<hr>
 <p>*여행소개</p>
-<p><textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea></p>
-
-<p>*여행 대표 사진  <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
+<p>
+<textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
+</p>
+<p class='help-block'> 
+• 상품 작성 예시 <br/>
+[매력 포인트 - 투어의 매력 포인트에 관해 간단히 소개해주세요.]<br/>
+ex) 서울을 소개합니다. 서울은 대한민국의 수도이며 경제적 문화적 중심지이기도 합니다. 서울에서 여러분께 저만이 알고 있는 특별한 여행지들을 소개할게요<br/>
+<br/>
+[투어 코스 - 구체적인 코스와 각각의 소요 시간에 관해 간단히 설명해주세요]<br/>
+ex)<br/>
+1. 서촌 골목을 소개합니다.(2시간)<br/>
+2. 서촌 맛ㅈ비 여행을 함께 해요(1시간)<br/>
+3. 경복궁을 마지막으로 둘러봅니다.(2시간)
+</p>
+<hr>
+<p>*소요시간 
+	<select name="g_time">
+		  <option value="1" selected="selected">1시간</option>
+		  <option value="2" >2시간</option>
+		  <option value="3" >3시간</option>
+		  <option value="4" >4시간</option>
+		  <option value="5" >5시간</option>
+		  <option value="6" >6시간</option>
+		  <option value="7" >7시간</option>
+		  <option value="8" >8시간</option>
+		  <option value="9" >9시간</option>
+		  <option value="10" >10시간</option>
+		  <option value="11" >11시간</option>
+		  <option value="12" >12시간</option>
+	</select>
+</p>
+<hr>
+<p>*여행 대표 사진  
+<input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
 <div id='View_area' style='position:relative; width: 700px; height: 500px; color: black; border: 0px solid black; dispaly: inline; '>
-</div></p>
-<p>1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" /></p>
-<p>예약 인원수 <select name="g_people">
+</div>
+</p>
+<hr>
+<p>
+*1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" />
+</p>
+<hr>
+<p>*1인당 예약 가능 인원수 <select name="g_people">
 	  <option value="1" selected="selected">1</option>
 	  <option value="2">2</option>
 	  <option value="3" >3</option>
@@ -199,31 +255,16 @@ function previewImage(targetObj, View_area) {
 	  <option value="9" >9</option>
 	  <option value="10" >10</option>
 	</select></p>
-<p class='help-block'>
-• [투어코스- 구체적 코스와 각각의 소요시간 작성]<br/>
-• ex)<br/>
-• 서촌 골목을 소개합니다 (2시간 소요)<br/>
-• 구체적 코스 작성<br/>
-• 경복궁을 마지막으로 둘러봅시다 (1시간 반 소요)<br/>
-• 구체적 코스 작성<br/>
+<hr>
+<p>
+*필수 안내사항<textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_info" ></textarea><br/>
 </p>
-<p>투어코스  <input type="text" name="g_cname" /></p>
-<p>투어소개  <textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_cconts" ></textarea></p>
-<p>소요시간 <select name="g_time">
-	  <option value="1" selected="selected">1시간</option>
-	  <option value="2" >2시간</option>
-	  <option value="3" >3시간</option>
-	  <option value="4" >4시간</option>
-	  <option value="5" >5시간</option>
-	  <option value="6" >6시간</option>
-	  <option value="7" >7시간</option>
-	  <option value="8" >8시간</option>
-	  <option value="9" >9시간</option>
-	  <option value="10" >10시간</option>
-	  <option value="11" >11시간</option>
-	  <option value="12" >12시간</option>
-	</select></p>
-	<p>만나는 시간 <select name="g_mtime">  
+<p class='help-block'>
+ <br/>
+• 복장 및 필요물품 또는 불필요물품 등 여행자에게 안내할 사항들을 적어주세요.
+</p>
+<hr>
+	<p>*만나는 시간 <select name="g_mtime">  
 	  <option value="1"  selected="selected" >1시</option>
 	  <option value="2" >2시</option>
 	  <option value="3" >3시</option>
@@ -253,13 +294,13 @@ function previewImage(targetObj, View_area) {
 	<hr class='divider'>
 	<div class='form-group clearfix' data-desc='• 넓은 범위의 장소를 설정하면 만남에 많은 시간이 소요됩니다.<br/>• 나쁜 예) 그린파크역, 시청역<br/>• 좋은 예) 그린파크역 1번 출구 앞 벤치, 시청역 2번 출구 오른쪽 스타벅스 입구 앞<br/>'>
 	<label class='control-label col-xs-12 margin-bottom-15 font-weight-600'>
-	만나는 장소
+	*만나는 장소
 	</label>
 	<div class='col-xs-12'>
 	<div class='row'>
 	<div class='form-group clearfix'>
 	<label class='control-label col-xs-12' for='offerMeetingPoint'>
-	만나는 장소 이름
+	*만나는 장소 이름
 	<span>*</span>
 	</label>
 	<div class='col-xs-12'>
@@ -277,7 +318,7 @@ function previewImage(targetObj, View_area) {
 	<div class='row'>
 	<div class='form-group clearfix'>
 	<label class='control-label col-xs-12' for='inputSearchMap'>
-	만나는 장소 위치
+	*만나는 장소 위치
 	<span>*</span>
 	</label>
 	<div class='col-xs-12'>
@@ -299,11 +340,12 @@ function previewImage(targetObj, View_area) {
 	</div>
 </div>
 
-
-
-<p>투어 날짜 </p>
+<hr>
+<hr>
+<p>*투어 가능 날짜 </p>
  <div id="mdp-demo"></div>
 <input type="hidden"  name="g_date" id="altField" >
+<hr>
 <input id="sub" type="submit" value="상품등록">
 </form>
   <script>

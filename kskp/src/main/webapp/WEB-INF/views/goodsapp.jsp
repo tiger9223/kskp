@@ -70,31 +70,39 @@
     -o-transform:scale(1.2);
     transform:scale(1.2);
 }
-}
 
+}
 </style>
 </head>
 <body>
-<h1>상품관리</h1>
+<h1>상품 승인 관리</h1>
 <table border="1">
    <col width="188px">
    <col width="50px">
+   <col width="90px">
+   <col width="60px">
+   <col width="80px">
    <col width="110px">
    <col width="300px">
    <col width="80px">
    <col width="80px">
+   <col width="50px">
    <tr>
    	  <th>여행 대표사진</th>  
+   	  <th>가이드 이메일</th>
+   	  <th>가이드 이름</th>
+   	  <th>가이드 연락처</th>
       <th>지역</th>   
       <th>등록일</th>
       <th>상품명</th>
       <th>총판매 수</th>
-      <th>상품 승인</th>
+      <th>승인 여부</th>
+      <th>승인 확인</th>
    </tr>
       <c:choose>
          <c:when test="${empty list}">
             <tr>
-               <td colspan="6" style="text-align: center;">---등록된 상품이 없습니다.---</td>
+               <td colspan="10" style="text-align: center;">---승인할 상품이 없습니다.---</td>
             </tr>   
          </c:when>
          <c:otherwise>
@@ -105,6 +113,9 @@
 				<img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/>
 				</div>	  
                </td>
+               <td>${dto.gu_email}</td>
+               <td>${dto.gu_name}</td>
+               <td>${dto.gu_phone}</td>
                <td>${dto.g_area}</td>
                <td><fmt:formatDate value="${dto.g_regdate}" pattern="yyyy년MM월dd일"/></td>
                <td>${dto.g_name}</td>
@@ -112,24 +123,27 @@
                <c:choose>
         	   <c:when test="${dto.g_flag eq '1'}">
                <td style="color:green;">승인 완료</td>
+               <td><input type="button" value="승인취소" onclick="appNo(${dto.g_seq})"/></td>
                </c:when>
                <c:otherwise>
                <td style="color:red;">승인 대기</td>
+               <td><input type="button" value="승인" onclick="app(${dto.g_seq})"/></td>
                </c:otherwise>
                </c:choose>
             </tr>   
             </c:forEach>
          </c:otherwise>
       </c:choose>
-               <tr>
-                  <td colspan="6">
-                     <a href="insertgoodsform.do">상품등록</a>
-                  </td>
-              </tr>
 </table>
 <script type="text/javascript">
 function goods(g_seq){
 	location.href="goodsdetail.do?g_seq="+g_seq;
+}
+function app(g_seq){
+	location.href="goodsapp.do?g_seq="+g_seq;
+}
+function appNo(g_seq){
+	location.href="goodsappno.do?g_seq="+g_seq;
 }
 </script>
 </body>

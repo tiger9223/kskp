@@ -39,7 +39,7 @@ public interface ILoginDao {
 	
 	//가이드 회원 전체조회
 
-	public List<GuideDto> getGuserlist(String pnum);
+	public List<GuideDto> getGuserlist();
 	//아이디 중복체크
 	public MembersDto idChk(String m_email);
 	public GuideDto idChk1(String gu_email);
@@ -49,8 +49,9 @@ public interface ILoginDao {
 	public boolean guideApp(GuideDto dto);
 	//가이드 거절
 	public boolean delGuide(GuideDto dto);
+	//가이드 가입승인 목록
+	public List<GuideDto>getGuserapplist(String pnum);
 	
-
 	//가이드 승인 페이지 개수 구하기
 		public int getPcount(GuideDto dto);
 	//	//사용자 상세조회

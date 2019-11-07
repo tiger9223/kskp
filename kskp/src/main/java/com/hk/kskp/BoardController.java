@@ -144,11 +144,12 @@ public class BoardController {
 		return "qinsertboard";
 	}
 	@RequestMapping(value="/qinsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public String qinsertBoard(Model model,QaDto dto) {		
+	public String qinsertBoard(Model model,QaDto dto,QaDto dto1) {		
 		logger.info("질문답변 글 추가하기");
 		System.out.println(dto);
-		
+		System.out.println(dto1);
 		boolean isS = BoardService.qinsertBoard(dto);
+		boolean isS1 = BoardService.qinsertBoard(dto1);
 		if(isS) {
 			return "redirect:qboardlist.do";
 		}
