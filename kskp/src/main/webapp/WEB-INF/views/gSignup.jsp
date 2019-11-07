@@ -6,6 +6,112 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title></title>
+<style>
+   @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+*{
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Gothic', sans-serif;
+   }
+   li{
+      list-style: none;
+   }
+   a{
+      text-decoration: none;
+      color: #666;
+   }
+   img{
+      border: 0;
+   }
+   body{
+      background-color: #ededed;
+   }
+   .log_wrap{
+      width: 600px;
+      height: 1300px;
+      margin: 0 auto;
+      margin-top: 70px;
+   }
+   h1{
+      width: 250px;
+      height: auto;
+      margin: 0 auto;
+      margin-bottom: 10px;
+   }
+   h1 img{
+      width: 100%;
+   }
+   .text{
+      display: block;
+      width: 390px;
+      height: 50px;
+      margin: 0 auto;
+      margin-top: 10px;
+      padding-left: 10px;
+      border: 1px solid #ccc;
+   }
+   .title{
+      width: 390px;
+      padding-left: 10px;
+      margin: 0 auto;
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
+   }
+   .notice{
+      width: 390px;
+      margin: 0 auto;
+      padding-left: 10px;
+      font-size: 12px;
+      padding-top: 5px;
+   }
+   .button{
+      width: 400px;
+      height: 50px;
+      background-color: #1b3371;
+      border: 0;
+      color: #fff;
+      font-size: 18px;
+      margin: 0 auto;
+      margin-top: 40px;
+      display: block;
+      cursor: pointer;
+   }
+   footer ul{
+      width: 600px;
+      height: 30px;
+      margin: 0 auto;
+      margin-top: 50px;
+   }
+   footer li{
+      float: left;
+      font-size: 13px;
+   }
+   footer li:first-child{
+      padding-left: 33px;
+   }
+   footer li::after{
+      content: '|';
+      color: #666;
+      padding-left: 25px;
+      padding-right: 25px;
+   }
+   footer li:last-child::after{
+      content: '';
+      padding-right: 0px;   
+  }
+   .copy{
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+   }
+   footer img{
+      width: 50px;
+      height: auto;
+      margin-right: 5px;
+      margin-bottom: -5px;
+   }
+</style>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script type="text/javascript">
 	
@@ -97,18 +203,63 @@
 
 </head>
 <body>
-<h1>가이드 회원가입</h1>
+<div class="log_wrap">
+      <h1>
+         <a href="main.do">
+            <img src="img/logo.png" alt="">
+         </a>
+      </h1>
+
+
 <form onsubmit="return check()" action="gemailcerform.do" method="post">
-<p>이름 : <input type="text" id="gu_name" name="gu_name" placeholder="id" /></p>
-<p>이메일 : <input type="text" id="gu_email" name="gu_email" placeholder="email" class="n"/>
-<input type="button" name="idchk" value="중복체크" onclick="idChk()" class="n" ></p>
-<p>비밀번호 : <input type="password" id="gu_pw" name="gu_pw" placeholder="pw" /></p>
-<p>비밀번호 확인 : <input type="password" id="gu_pwchk" name="gu_pwchk" placeholder="pwchk" /></p>
-<p>휴대폰 : <input type="text" id="gu_phone" name="gu_phone" placeholder="telephone" /><input type="button" value="인증하기"></p>
-<p>은행 : <input type="text" id="gu_bank" name="gu_bank" placeholder="bank" /></p>
-<p>계좌번호 : <input type="text" id="gu_acc" name="gu_acc" placeholder="account" /></p>
-<p>가이드사진 <input type="button" name="gu_img" value="첨부하기"></p>
-<input type="submit" value="회원가입">
+
+<p class="title">이름</p>
+<input type="text" id="gu_name" class="text" name="gu_name" placeholder="이름(한글만가능)" />
+<div class="notice" id="name_check"></div>
+
+<p class="title" >이메일</p> 
+<input type="text" id="gu_email" class="text" name="gu_email" placeholder="email@email.com" >
+<div class="notice" id="id_check"></div>
+
+<p class="title">비밀번호</p>
+<input type="password" id="gu_pw" class="text" name="gu_pw" placeholder="문자+숫자+특수문자" />
+<div class="notice" id="pw_check"></div>
+
+ <p class="title">비밀번호 확인</p>
+ <input type="password" id="gu_pwchk" class="text" name="gu_pwchk" placeholder="비밀번호확인" />
+<div class="notice" id="pwchk_check"></div>
+
+<p class="title">핸드폰 번호</p>
+<input type="text" id="gu_phone" class="text"  name="gu_phone" placeholder="-없이 입력해주세요" />
+<div class="notice" id="phone_check"></div>
+
+<p class="title">은행명</p>
+<input type="text" id="gu_bank" class="text" name="gu_bank" placeholder="은행명" />
+<div class="notice" id="back_check"></div>
+
+<p class="title">계좌번호</p>
+<input type="text" id="gu_acc" class="text" name="gu_acc" placeholder="- 없이 입력해주세요" />
+<div class="notice" id="acc_check"></div>
+
+<p class="title">사진</p>
+<input type="button" class="text" name="gu_img" value="첨부하기">
+<div class="notice" id="img_check"></div>
+
+<input type="submit" id="reg_submit" class="button" value="회원가입">
 </form>
+
+</div>
+<footer>
+      <ul>
+
+         <li><a href="conditions.do">이용약관</a></li>
+         <li><a href="privacy.do">개인정보처리방침</a></li>
+         <li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
+         <li><a href="">고객센터</a></li>
+
+      </ul>
+      <p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
+   </footer>
 </body>
+
 </html>

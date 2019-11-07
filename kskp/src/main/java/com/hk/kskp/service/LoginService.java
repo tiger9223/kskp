@@ -95,6 +95,16 @@ public class LoginService implements ILoginService{
 	public int getPcount(GuideDto dto) {
 		return loginDao.getPcount(dto);
 	}
+	@Override
+	public int memailCheck(String email) {
+		// TODO Auto-generated method stub
+		return loginDao.memailCheck(email);
+	}
+	@Override
+	public int gemailCheck(String email) {
+		// TODO Auto-generated method stub
+		return loginDao.gemailCheck(email);
+	}
 
 	
 

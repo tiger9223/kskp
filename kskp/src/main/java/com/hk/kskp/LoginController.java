@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.daos.LoginDao;
@@ -57,6 +58,17 @@ public class LoginController {
 	
 	@Autowired
 	private IGoodsService GoodsService;
+	
+	// id 중복 체크 컨트롤러
+		@RequestMapping(value = "/emailCheck.do", method = RequestMethod.GET)
+		@ResponseBody
+		public int idCheck(@RequestParam("email") String email) {
+			int check = LoginService.gemailCheck(email);
+			check = LoginService.memailCheck(email);
+			return check;
+		}
+	
+	
 	
 	@RequestMapping(value = "/emailce11rform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String emailc11erform(HttpServletRequest request) {

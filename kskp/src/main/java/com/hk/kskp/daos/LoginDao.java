@@ -118,6 +118,16 @@ public class LoginDao implements ILoginDao {
 		int pcount =  sqlSession.selectOne(nameSpace+"pcount",dto);
 		return pcount;
 	}
+	@Override
+	public int memailCheck(String email) {
+		
+		return sqlSession.selectOne(nameSpace+"memailCheck", email);
+	}
+	@Override
+	public int gemailCheck(String email) {
+		
+		return sqlSession.selectOne(nameSpace+"gemailCheck", email);
+	}
 	
 }
 

@@ -30,7 +30,10 @@ public interface ILoginDao {
 	public boolean guserUpdate(GuideDto dto);
 //	//회원 탈퇴
 //	public boolean withdraw(String rid);
-		
+	
+	public int memailCheck(String email);
+	
+	public int gemailCheck(String email);
 	//일반 회원 전체조회
 	public List<MembersDto> getMuserlist();
 	

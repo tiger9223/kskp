@@ -95,6 +95,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT CEIL(COUNT(CASE WHEN GU_APPFLAG=0 THEN 1 END)/10) FROM GUIDE 
 	</select>
 	
+	<select id="memailCheck" resultType="int" parameterType="MembersDto">
+		SELECT COUNT(*) FROM MEMBERS WHERE M_EMAIL=#{email}
+	</select>
+	
+		<select id="gemailCheck" resultType="int" parameterType="GuideDto">
+		SELECT COUNT(*) FROM GUIDE WHERE GU_EMAIL=#{email}
+	</select>
 	
 	
 	
