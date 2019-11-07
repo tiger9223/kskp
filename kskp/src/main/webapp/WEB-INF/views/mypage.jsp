@@ -67,7 +67,7 @@
 			</li>
 			<li>
 				<ul>
-				<a href=""><h2>장바구니</h2></a>
+				<a href="cartlist.do?m_seq=${ldto.m_seq}"><h2>장바구니</h2></a>
 				</ul>
 			</li>
 			<li>

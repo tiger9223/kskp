@@ -140,18 +140,23 @@ overflow:visible;
 </head>
 <body>
 <h1>${gdto.g_name}</h1>
+
 <p>대한민국 > <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj4KICAgIDxwYXRoIGZpbGw9IiM4NDhDOTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuNTcxIDRhMS40MyAxLjQzIDAgMSAxIDIuODU5LjAwMUExLjQzIDEuNDMgMCAwIDEgMy41NyA0ek0xIDRjMCAzIDQgNiA0IDZzNC0zIDQtNmMwLTIuMjExLTEuNzg5LTQtNC00LTIuMjExIDAtNCAxLjc4OS00IDR6Ii8+Cjwvc3ZnPgo=" alt="area"> ${gdto.g_area}</p>
+
 <p><img id="img1" src="${gdto.g_img1}"></p>
+<hr>
 <form name="form" method="post">
 <input type="hidden" name="p_name" value="${gdto.g_name}"/>
 <input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
 <input type="hidden" name="p_meet" value="${gdto.g_address}"/>
 <input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
+<input type="hidden" name="p_img" value="${gdto.g_thumbimg}"/>
+<input type="hidden" name="p_meet" value="${gdto.g_address}"/>
 <c:choose>
 <c:when test="${ldto.m_status eq 'M'}">
 <h3>원하는 날짜와 인원을 선택하세요.</h3>
 <input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
-<div id="mdp-demo"></div>
+<div id="mdp-demo">
 <input type="hidden"  name="p_date" id="altField" >
 <p>인원 선택
 <select id="pnum" name="p_num">
@@ -159,7 +164,7 @@ overflow:visible;
 	  <option value="<c:out value="${i}"/>" selected="selected"><c:out value="${i}"/></option>
 	  </c:forEach>
 </select>
-</p>
+
 <input type="button"  id="price"  value="금액 조회">
 <script>
 $(function(){
@@ -201,17 +206,25 @@ function btn_click(str){
 }
 
 </script>
-<div><input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액"><p>
-<input type="submit" value="예약하기" onclick='return btn_click("pay");'></p></div>
+<input type="text" id="p_cost" name="p_cost" value="" placeholder="결제 금액">
+<input type="submit" value="예약하기" onclick='return btn_click("pay");'>
 <input type="submit" value="장바구니 담기" onclick='return btn_click("res");'>
+</p>
+</div>
 </form>
 </c:when>
 <c:otherwise>
 </c:otherwise>
 </c:choose>
+<hr>
 <h2>${gdto.g_oneline}</h2> 
 <div style="white-space:pre;"><c:out value="${gdto.g_conts}" /></div>
-<div><h3>만나는 시간</h3><br/><p>
+<hr>
+<h3>안내사항</h3> 
+<div style="white-space:pre;"><c:out value="${gdto.g_info}" /></div>
+<hr>
+
+<div><h2>만나는 시간</h2><br/><p>
 
 <c:choose>
 <c:when test="${gdto.g_mtime < 13}">
@@ -223,13 +236,14 @@ function btn_click(str){
 </c:choose>
 
 ${gdto.g_mtime} 시</p></div>
+<hr>
 <div><h2>만나는 장소</h2><br/>
 <p><img id="icon" src="img/63a3141ac6b918b94f2b1688ffc92fb4.png" alt="googleicon"/>
 <h3 id="address">${gdto.g_address}</h3></p></div>
 <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
 <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"><img class="map" src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"/>
 </a>
-<div><h3>코스 소개</h3><br/><p><span><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiM0OTUwNTYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEwIDE4Yy00LTQuNDA5LTYtNy43MjYtNi05Ljk1M0M0IDQuNzA3IDYuNjg2IDIgMTAgMnM2IDIuNzA3IDYgNi4wNDdjMCAyLjIyNy0yIDUuNTQ0LTYgOS45NTN6bTAtNy43NWEyLjI1IDIuMjUgMCAxIDAgMC00LjUgMi4yNSAyLjI1IDAgMCAwIDAgNC41eiIvPgo8L3N2Zz4K">${gdto.g_cname}</span><br/><div style="white-space:pre;"><c:out value="${gdto.g_cconts}" /></div></p></div>
+<hr>
 <div><h3>후기</h3></div>
 </body>
   <script>

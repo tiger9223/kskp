@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.cash">
 	<!-- 회원 상품 장바구니 담기 -->	
-	<insert id="pay" parameterType="PayDto">
+	<insert id="cart" parameterType="PayDto">
 		INSERT INTO PAY
 		(P_SEQ, G_SEQ, M_SEQ,
 		P_COST, P_NUM, P_DATE,
@@ -13,12 +13,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 		(PAY_SEQ.NEXTVAL, #{g_seq},#{m_seq},
 		#{p_cost},#{p_num},#{p_date},
-		#{p_name},NULL,NULL,
-		NULL,0)
+		#{p_name},NULL,#{p_img},
+		#{p_meet},0)
 	</insert>
+	
 	<!-- 회원의 결제내역 가져오기 -->
 	<select id="getallpay" parameterType="int" resultType="PayDto">
 		SELECT *
-		FROM PAY WHERE M_SEQ=#{m_seq} ORDER BY SYSDATE DESC
+		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=1 ORDER BY SYSDATE DESC
+	</select>
+	<!-- 회원의 장바구니 가져오기 -->
+	<select id="cartList" parameterType="int" resultType="PayDto">
+		SELECT *
+		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=0 ORDER BY SYSDATE DESC
 	</select>
 </mapper>

@@ -140,8 +140,13 @@ public class GoodsController {
 	public String insertCart(Locale locale, Model model, PayDto dto) {
 		logger.info("상품 장바구니에 담기", locale);
 		System.out.println(dto);
-		model.addAttribute("dto",dto);
-		return "cart";
+		boolean isS = CashService.cart(dto);
+		if(isS) {
+			return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
+		}else {
+			return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
+		}
+		
 	}
 	
 	@RequestMapping(value = "/insertpay.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -168,6 +173,15 @@ public class GoodsController {
 		System.out.println(m_seq);
 		model.addAttribute("list",list);
 		return "paylist";
+	}
+	
+	@RequestMapping(value = "/cartlist.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String cartList(Locale locale, Model model, int m_seq) {
+		logger.info("내 장바구니 보기", locale);
+		List<PayDto> list = CashService.cartList(m_seq);
+		System.out.println(list);
+		model.addAttribute("list",list);
+		return "cart";
 	}
 	
 }//end
