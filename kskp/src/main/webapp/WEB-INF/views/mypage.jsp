@@ -164,9 +164,9 @@
 			<li>
 				<h2>메세지</h2>
 				<ul>
-					<li><a href="">메세지 보내기</a></li>
-					<li><a href="">받은 메세지</a></li>
-					<li><a href="">보낸 메세지</a></li>
+					<li><a href="sendLetterform.do">메세지 보내기</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>
