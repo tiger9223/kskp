@@ -238,6 +238,30 @@
 					</a>
 				</li>
 			</ul>
+			<h3 class="color01"><i class="fas fa-star"></i> 최근 올라온 상품<i class="fas fa-star"></i></h3>
+			<div class="img_box02">
+				<ul>
+				<c:forEach var="dto" items="${alist}" begin="0" end="4" step="1" >
+					<li>
+						<a href="goodsdetail.do?g_seq=${dto.g_seq}">
+							<img src="${dto.g_thumbimg}" alt="image">
+							<div class="text_box">
+								<p class="subtitle">${dto.g_area} - 국립박물관</p>
+								<h4>${dto.g_name}</h4>
+								<p class="star"><!--별점 들어갈 자리-->
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								</p>
+								<p class="price">${dto.g_price}원 / 1인</p>
+							</div>
+						</a>
+					</li>
+					</c:forEach>
+				</ul>
+			</div>
 			<h3 class="color01"><i class="fas fa-star"></i> 인기 많은 순 <i class="fas fa-star"></i></h3>
 			<div class="img_box02">
 				<ul>
@@ -309,7 +333,6 @@
 							</div>
 						</a>
 					</li>
-					
 				</ul>
 			</div>
 			<h3 class="color02"><i class="fab fa-gratipay"></i> <i class="far fa-laugh-wink"></i> 여행 꿀팁</h3>
