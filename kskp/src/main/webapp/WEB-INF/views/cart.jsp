@@ -7,6 +7,29 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style>
+.image { overflow: hidden; }
+
+.image  img {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+}
+.image:hover img {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+}
+</style>
 <title>cartlist</title>
 </head>
 <body>
@@ -35,18 +58,22 @@
          </c:when>
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
-            <input type="hidden" name="p_seq" value="${dto.p_name}"/>
-			<input type="hidden" name="g_seq" value="${dto.g_conts}"/>
-			<input type="hidden" name="m_seq" value="${dto.g_address}"/>
-			<input type="hidden" name="p_cost" value="${dto.g_seq}"/>
-			<input type="hidden" name="p_date" value="${dto.g_thumbimg}"/>
+            <input type="hidden" name="p_seq" value="${dto.p_seq}"/>
+			<input type="hidden" name="g_seq" value="${dto.g_seq}"/>
+			<input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
+			<input type="hidden" name="p_cost" value="${dto.p_cost}"/>
+			<input type="hidden" name="p_num" value="${dto.p_num}"/>
+			<input type="hidden" name="p_date" value="${dto.p_date}"/>
+            <input type="hidden" name="p_name" value="${dto.p_name}"/>
+			<input type="hidden" name="p_img" value="${dto.p_img}"/>
+			<input type="hidden" name="p_meet" value="${dto.p_meet}"/>
 	            <tr>
-	               <td><img id="img" src="${dto.p_img}" onclick="goods(${dto.g_seq})"/></td>
+	               <td><div class="image"><img id="img" src="${dto.p_img}" onclick="goods(${dto.g_seq})"/></div></td>
 	               <td>${dto.p_name}</td>
 	               <td>${dto.p_date}</td>
 	               <td>${dto.p_cost}</td>
 	               <td>${dto.p_num}</td>
-	               <td><input type="submit" value="예약하기" onclick='return btn_click("pay");'></td> 
+	               <td><input type="submit" value="예약하기" /></td> 
 	            </tr>   
             </c:forEach>
          </c:otherwise>

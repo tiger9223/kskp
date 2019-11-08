@@ -113,6 +113,14 @@ public class BoardDao implements IBoardDao	{
 		int count = sqlSession.update(nameSpace+"insertans", dto);
 		return count>0?true:false;
 	}
+	
+	//Q&A 미답변 확인하기
+	@Override
+	public boolean unanswered(QaDto dto) {
+		int count = sqlSession.update(nameSpace+"qunanswered", dto);
+		return count>0?true:false;
+		}
+	
 
 
 

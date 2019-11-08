@@ -75,6 +75,17 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 			<c:when test="${ldto.m_status eq 'A'}">
 			<td colspan="5" style="text-align: center;">---작성된 글이 없습니다.---</td>
 			</c:when>
+			<c:otherwise>
+				<tr>
+					<th>아이디</th>
+				 <td>${ldto1.gu_email}</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td>${ldto1.gu_name}</td>
+				</tr>
+				<td colspan="5" style="text-align: center;">---작성된 글이 없습니다.---</td>
+			</c:otherwise>
 			</c:choose>
 			</c:when>
 			<c:otherwise>

@@ -52,6 +52,9 @@ public interface IBoardService {
 	//Q&A 글 답변달기
 	public boolean qinsertAns(QaDto dto);
 
+	//Q&A 미답변 확인하기
+	public boolean unanswered(QaDto dto);
+
 	
 
 	

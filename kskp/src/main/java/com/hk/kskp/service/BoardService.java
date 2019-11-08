@@ -102,4 +102,11 @@ public class BoardService implements IBoardService{
 		return boardDao.qinsertAns(dto);
 	}
 	
-}
+	//Q&A 미답변 확인하기
+	@Override
+	public boolean unanswered(QaDto dto) {
+		return boardDao.unanswered(dto);
+			
+	}	
+	
+}//IBoardService
