@@ -167,8 +167,6 @@
 					<li><a href="sendLetterform.do">메세지 보내기</a></li>
 					<li><a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1">받은 메세지 - ${count}개</a></li>
 					<li><a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1">보낸 메세지 - ${count1}개</a></li>
-					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
-					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>
