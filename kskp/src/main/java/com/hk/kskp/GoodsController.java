@@ -142,7 +142,7 @@ public class GoodsController {
 		System.out.println(dto);
 		boolean isS = CashService.cart(dto);
 		if(isS) {
-			return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
+			return "redirect:cartlist.do?m_seq="+dto.getM_seq();
 		}else {
 			return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
 		}

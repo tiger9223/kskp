@@ -32,6 +32,10 @@ public interface ILoginService {
 	//가이드 정보 수정
 		public boolean guserUpdate(GuideDto dto);
 		
+		public int memailCheck(String email);
+		
+		public int gemailCheck(String email);	
+		
 	//아이디 중복체크
 		public MembersDto idChk(String m_email);
 		public GuideDto idChk1(String gu_email);

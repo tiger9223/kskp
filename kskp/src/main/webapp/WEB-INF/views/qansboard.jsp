@@ -22,7 +22,7 @@
 	</tr>
 	<tr>
 		<th>이름</th>
-		<td>${qdto.m_name}</td>
+		<td>${qdto.m_name}</td>     
 	</tr>
 	<tr>
 		<th>작성일</th>

@@ -246,7 +246,7 @@
 						<a href="goodsdetail.do?g_seq=${dto.g_seq}">
 							<img src="${dto.g_thumbimg}" alt="image">
 							<div class="text_box">
-								<p class="subtitle">${dto.g_area} - 국립박물관</p>
+								<p class="subtitle">${dto.g_area} - ${dto.g_category}</p>
 								<h4>${dto.g_name}</h4>
 								<p class="star"><!--별점 들어갈 자리-->
 								    <span>★</span>

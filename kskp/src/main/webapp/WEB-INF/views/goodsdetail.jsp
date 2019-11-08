@@ -151,7 +151,6 @@ overflow:visible;
 <input type="hidden" name="p_meet" value="${gdto.g_address}"/>
 <input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
 <input type="hidden" name="p_img" value="${gdto.g_thumbimg}"/>
-<input type="hidden" name="p_meet" value="${gdto.g_address}"/>
 <c:choose>
 <c:when test="${ldto.m_status eq 'M'}">
 <h3>원하는 날짜와 인원을 선택하세요.</h3>
@@ -237,12 +236,15 @@ function btn_click(str){
 
 ${gdto.g_mtime} 시</p></div>
 <hr>
-<div><h2>만나는 장소</h2><br/>
-<p><img id="icon" src="img/63a3141ac6b918b94f2b1688ffc92fb4.png" alt="googleicon"/>
-<h3 id="address">${gdto.g_address}</h3></p></div>
+<div>
+<h2>만나는 장소</h2>
+<img id="icon" src="img/63a3141ac6b918b94f2b1688ffc92fb4.png" alt="googleicon"/>
+<h3 id="address">${gdto.g_address}</h3>
 <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
-<img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"><img class="map" src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"/>
+<img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap">
+<img class="map" src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="googlemap"/>
 </a>
+</div>
 <hr>
 <div><h3>후기</h3></div>
 </body>

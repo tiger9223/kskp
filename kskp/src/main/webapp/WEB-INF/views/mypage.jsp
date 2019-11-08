@@ -79,8 +79,8 @@
 				<h2>메세지</h2>
 				<ul>
 					<li><a href="sendLetterform.do">메세지 보내기</a></li>
-					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
-					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지 - ${count}개</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지 - ${count1}개</a></li>
 				</ul>
 			</li>
 			<li>
@@ -126,8 +126,8 @@
 				<h2>메세지</h2>
 				<ul>
 					<li><a href="sendLetterform.do">메세지 보내기</a></li>
-					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
-					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지 - ${count}개</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지 - ${count1}개</a></li>
 				</ul>
 			</li>
 			<li>
@@ -154,7 +154,7 @@
 			<li>
 				<h2>후기관리</h2>
 				<ul>
-					<li><a href="">답글 달지 않은 후기</a></li>
+					<li><a href="starReview.do">답글 달지 않은 후기</a></li>
 					<li><a href="">답글 한 후기</a></li>
 				</ul>
 			</li>
@@ -169,12 +169,14 @@
 				<h2>메세지</h2>
 				<ul>
 					<li><a href="sendLetterform.do">메세지 보내기</a></li>
+					<li><a href="letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1">받은 메세지 - ${count}개</a></li>
+					<li><a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1">보낸 메세지 - ${count1}개</a></li>
 					<li><a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=1">받은 메세지</a></li>
 					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href=""><h2>계정관리</h2></a>
+				<a href="guserinfo.do?seq=${ldto1.gu_seq}"><h2>계정관리</h2></a>
 			</li>
 		</ul>
 	</nav>

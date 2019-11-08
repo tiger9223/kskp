@@ -94,5 +94,18 @@ public class LetterDao implements ILetterDao {
 	public void delletter(LetterDto dto) {
 		sqlSession.delete(nameSpace+"delletter",dto);
 	}
+
+	@Override
+	public int lcount(String l_receiver) {
+		return sqlSession.selectOne(nameSpace+"lcount", l_receiver);
+	}
+
+	@Override
+	public int scount(String l_sender) {
+		return sqlSession.selectOne(nameSpace+"scount", l_sender);
+	}
+
+
+	
 	
 }

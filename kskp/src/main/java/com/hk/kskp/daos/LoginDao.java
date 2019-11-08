@@ -118,10 +118,22 @@ public class LoginDao implements ILoginDao {
 		return pcount;
 	}
 	@Override
+
+	public int memailCheck(String email) {
+		
+		return sqlSession.selectOne(nameSpace+"memailCheck", email);
+	}
+	@Override
+	public int gemailCheck(String email) {
+		
+		return sqlSession.selectOne(nameSpace+"gemailCheck", email);
+	}
+
 	public List<GuideDto> getGuserapplist(String pnum) {
 		Map<String, String> map=new HashMap<>();
 		map.put("pnum",pnum);
 		return sqlSession.selectList(nameSpace+"getapplist",map);
+
 	}
 	
 }
