@@ -20,11 +20,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원의 결제내역 가져오기 -->
 	<select id="getallpay" parameterType="int" resultType="PayDto">
 		SELECT *
-		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=1 ORDER BY SYSDATE DESC
+		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=1 ORDER BY P_SEQ DESC
 	</select>
 	<!-- 회원의 장바구니 가져오기 -->
 	<select id="cartList" parameterType="int" resultType="PayDto">
 		SELECT *
-		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=0 ORDER BY SYSDATE DESC
+		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=0 ORDER BY P_SEQ DESC
 	</select>
+	
+	<!-- 상품 결제 후 flag -->
+	<update id="paygoods" parameterType="PayDto">
+		UPDATE PAY SET P_FLAG=1 WHERE P_SEQ=#{p_seq}
+	</update>
+	
 </mapper>
