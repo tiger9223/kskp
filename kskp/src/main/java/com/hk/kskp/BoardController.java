@@ -144,12 +144,10 @@ public class BoardController {
 		return "qinsertboard";
 	}
 	@RequestMapping(value="/qinsertboard.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public String qinsertBoard(Model model,QaDto dto,QaDto dto1) {		
+	public String qinsertBoard(Model model,QaDto dto) {		
 		logger.info("질문답변 글 추가하기");
 		System.out.println(dto);
-		System.out.println(dto1);
 		boolean isS = BoardService.qinsertBoard(dto);
-		boolean isS1 = BoardService.qinsertBoard(dto1);
 		if(isS) {
 			return "redirect:qboardlist.do";
 		}
@@ -199,7 +197,7 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/qansform.do",method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value="qansform.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String qansForm(Model model,QaDto dto) {
 		logger.info("답변폼으로 이동");
 		QaDto qdto = BoardService.qgetBoard(dto.getQ_seq());
@@ -218,7 +216,42 @@ public class BoardController {
 			return "qinsertboard";
 	}
 	
-
+	@RequestMapping(value="unanswereform.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String unanswereForm(Model model,QaDto dto,String pnum) {
+		logger.info("답변폼으로 이동");
+		List<QaDto> list = BoardService.qgetAllList(pnum);
+		model.addAttribute("list",list);
+		return "unanswere";
+	}	
+	
+//	@RequestMapping(value="unanswered.do",method = {RequestMethod.POST,RequestMethod.GET})
+//	public String unanswered(Model model,QaDto dto) {
+//		logger.info("미답변 글 ");
+//		boolean isS = BoardService.qboardList(dto);
+//		if(isS) {
+//			return "redirect:qboardlist.do?q_seq="+dto.getQ_seq();
+//		}
+//			return "qinsertboard";
+//	}
+//	
+//	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+//	 public String qboardList(HttpServletRequest request, Model model, String pnum) {
+//		logger.info("질답 목록보기");
+//		
+//		if(pnum==null) {
+//			pnum=(String)request.getSession().getAttribute("pnum");
+//		}else {			
+//			request.getSession().setAttribute("pnum", pnum);			
+//		}
+//		
+//		List<QaDto> list = BoardService.qgetAllList(pnum);
+//		model.addAttribute("list",list);
+//		
+//		int pcount=BoardService.qgetPcount();
+//		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+//		model.addAttribute("pmap", map);
+//		return "qboardlist";
+//	}
 
 			
 	

@@ -89,11 +89,12 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 				%>
 				<a href="qboardlist.do?pnum=<%=map.get("nextPageNum")%>">▶</a>
 			</td>
-		</tr>	  
-						<tr>
-							<td colspan="4"><a href="qinsertform.do">글추가</a>
-						</tr>
-						
+		</tr>
+			<c:if test="${ldto.m_status eq 'M'}">
+			<tr>
+				<td colspan="4"><a href="qinsertform.do">글추가</a>
+			</tr>
+			</c:if>	
 		</table>
 	</form>
 </body>
