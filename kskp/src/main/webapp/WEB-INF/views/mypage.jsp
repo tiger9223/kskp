@@ -104,6 +104,11 @@
 			</li>
 			<li>
 				<ul>
+				<a href="unanswered.do?pnum=1"><h2>미답변 글</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
 				<a href="nboardlist.do?pnum=1"><h2>공지사항</h2></a>
 				</ul>
 			</li>
@@ -125,7 +130,6 @@
 					<li><a href="sendletterlist.do?l_sender=${ldto.m_email}&pnum=1">보낸 메세지</a></li>
 				</ul>
 			</li>
-			<li>
 			<li>
 				<a href="auserinfo.do"><h2>계정관리</h2></a>
 			</li>
