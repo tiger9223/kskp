@@ -21,8 +21,8 @@ public class CashService implements ICashService{
 	}
 
 	@Override
-	public PayDto getPays() {
-		return CashDao.getPays();
+	public List<PayDto> getPays(int gu_seq) {
+		return CashDao.getPays(gu_seq);
 	}
 
 	@Override
@@ -73,6 +73,11 @@ public class CashService implements ICashService{
 	@Override
 	public PayDto getPeople(int p_seq) {
 		return CashDao.getPeople(p_seq);
+	}
+
+	@Override
+	public PayDto review(int p_seq) {
+		return CashDao.review(p_seq);
 	}
 
 	

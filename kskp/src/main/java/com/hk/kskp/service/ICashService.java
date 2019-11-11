@@ -10,9 +10,9 @@ public interface ICashService {
 	//결제하기
 	public boolean pay(PayDto dto);
 	
-	//가이드 수익내기 위한 결제 정보 가져오기
-	public PayDto getPays();
-	
+	//가이드 수익가져오기
+	public List<PayDto> getPays(int gu_seq);
+		
 	//가이드 수익내기
 	public boolean insertSal(SalaryDto dto);
 	
@@ -42,4 +42,7 @@ public interface ICashService {
 	
 	//결제 인원 수
 	public PayDto getPeople(int p_seq);
+	
+	//리뷰 쓰기
+	public PayDto review(int p_seq);
 }

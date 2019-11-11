@@ -14,14 +14,14 @@ public class ReviewDto {
 	private int r_star;
 	private String r_ans;
 	private int r_guflag;
-	private int r_falg;
-	
+	private int r_mflag;
+
 	public ReviewDto() {
 		super();
 	}
 
 	public ReviewDto(int r_seq, int m_seq, int g_seq, String r_conts, Date r_regdate, String r_img, int r_star,
-			String r_ans, int r_guflag, int r_falg) {
+			String r_ans, int r_guflag, int r_mflag) {
 		super();
 		this.r_seq = r_seq;
 		this.m_seq = m_seq;
@@ -32,7 +32,7 @@ public class ReviewDto {
 		this.r_star = r_star;
 		this.r_ans = r_ans;
 		this.r_guflag = r_guflag;
-		this.r_falg = r_falg;
+		this.r_mflag = r_mflag;
 	}
 
 	public int getR_seq() {
@@ -108,18 +108,18 @@ public class ReviewDto {
 	}
 
 	public int getR_falg() {
-		return r_falg;
+		return r_mflag;
 	}
 
-	public void setR_falg(int r_falg) {
-		this.r_falg = r_falg;
+	public void setR_falg(int r_mflag) {
+		this.r_mflag = r_mflag;
 	}
 
 	@Override
 	public String toString() {
 		return "Review [r_seq=" + r_seq + ", m_seq=" + m_seq + ", g_seq=" + g_seq + ", r_conts=" + r_conts
 				+ ", r_regdate=" + r_regdate + ", r_img=" + r_img + ", r_star=" + r_star + ", r_ans=" + r_ans
-				+ ", r_guflag=" + r_guflag + ", r_falg=" + r_falg + "]";
+				+ ", r_guflag=" + r_guflag + ", r_mflag=" + r_mflag + "]";
 	}
 	
 	

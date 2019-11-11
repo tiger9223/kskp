@@ -3,10 +3,13 @@
 package com.hk.kskp;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.kskp.dtos.GoodsDto;
@@ -201,6 +206,15 @@ public class GoodsController {
 		model.addAttribute("list",list);
 		return "cart";
 	}
+	
+	@RequestMapping(value = "/salary.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String salary(Locale locale, Model model, int gu_seq) {
+		logger.info("수익내역 보기", locale);
+		List<PayDto> list = CashService.getPays(gu_seq);
+		model.addAttribute("list",list);
+		return "guidesalary";
+	}
+
 	
 }//end
 

@@ -25,9 +25,9 @@ public class CashDao implements ICashDao{
 		return count>0?true:false;
 	}
 
-	@Override//가이드 수익내기 위한 결제 정보 가져오기
-	public PayDto getPays() {
-		return sqlSession.selectOne(nameSpace+"getpays");
+	@Override//가이드 수익가져오기
+	public List<PayDto> getPays(int gu_seq) {
+		return sqlSession.selectList(nameSpace+"getpays", gu_seq);
 	}
 
 	@Override//가이드 수익내기
@@ -87,6 +87,11 @@ public class CashDao implements ICashDao{
 	@Override//결제 인원 수
 	public PayDto getPeople(int p_seq) {
 		return sqlSession.selectOne(nameSpace+"getpeople",p_seq);
+	}
+
+	@Override//리뷰쓰기
+	public PayDto review(int p_seq) {
+		return sqlSession.selectOne(nameSpace+"review",p_seq);
 	}
 
 
