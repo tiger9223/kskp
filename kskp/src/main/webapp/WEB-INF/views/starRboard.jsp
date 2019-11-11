@@ -66,7 +66,7 @@
 		<td colspan="2"><textarea rows="10" cols="40"></textarea></td>
 	</tr>
 	<tr>
-	<td colspan="2"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
+	<td colspan="2" align="right"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
 	</tr>
 		</table>
 	</form>
