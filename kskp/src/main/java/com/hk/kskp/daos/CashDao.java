@@ -89,6 +89,11 @@ public class CashDao implements ICashDao{
 		return sqlSession.selectOne(nameSpace+"getpeople",p_seq);
 	}
 
+	@Override//리뷰쓰기
+	public PayDto review(int p_seq) {
+		return sqlSession.selectOne(nameSpace+"review",p_seq);
+	}
+
 
 
 	

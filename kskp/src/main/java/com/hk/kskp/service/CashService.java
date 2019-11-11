@@ -75,6 +75,11 @@ public class CashService implements ICashService{
 		return CashDao.getPeople(p_seq);
 	}
 
+	@Override
+	public PayDto review(int p_seq) {
+		return CashDao.review(p_seq);
+	}
+
 	
 
 	

@@ -36,12 +36,13 @@
 <body>
 <h1>결제내역</h1>
 <table border="1">
+
    <col width="188px">
    <col width="300px">
    <col width="70px">
    <col width="110px">
    <col width="80px">
-   <col width="70px">
+   <col width="120px">
    <tr>
    	  <th></th> 
       <th>상품명</th>
@@ -64,7 +65,8 @@
 	           <td>${dto.p_date}</td>
 	           <td>${dto.p_cost}</td>
 	           <td>${dto.p_num}</td>
-	           <td></td>
+               <td align="center"><input type="button" onclick='location.href="writereview.do?p_seq=${dto.p_seq}"'  value="후기작성"></td>
+      
             </tr>   
             </c:forEach>
          </c:otherwise>

@@ -43,6 +43,9 @@ public interface ICashDao {
 	//결제 인원 수
 	public PayDto getPeople(int p_seq);
 	
+	//리뷰 쓰기
+	public PayDto review(int p_seq);
+	
 	
 	
 }

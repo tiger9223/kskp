@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title></title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -41,10 +43,12 @@
 	color: #777;
 }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <h1>별점 후기 달기</h1>
 	<form action="starReview.do">
+		<input type="hidden" name="m_seq" value="ldto.m_seq">
 		<input type="hidden" id="r_star" name="r_star">
 		<table border="1">
 			<tr colspan="2">
@@ -60,15 +64,22 @@
 			</tr>
 	<tr>
 		<td>상품명</td>
-		<td>상품명나오기</td>
+		<td>${dto.g_name}</td>
 	</tr>
 	<tr >
-		<td colspan="2"><textarea rows="10" cols="40"></textarea></td>
+		<td colspan="2"><textarea rows="10" cols="40" id="ckeditor" name="r_conts"></textarea></td>
 	</tr>
 	<tr>
 	<td colspan="2" align="right"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
 	</tr>
 		</table>
 	</form>
+<script>
+	//id가 ckeditor인 태그에 ckeditor를 적용시킴
+	CKEDITOR.replace("ckeditor",{
+	    filebrowserUploadUrl : "/kskp"+"/imageUpload.do",         //,width : '800px'
+	    width : '800px' , height : '500px' , enterMode:Number(2)
+	}) //이미지 업로드 기능을 추가하기위한 코드
+</script>
 </body>
 </html>

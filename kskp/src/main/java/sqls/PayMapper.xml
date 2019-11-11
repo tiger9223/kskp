@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원의 결제내역 가져오기 -->
 	<select id="getallpay" parameterType="int" resultType="PayDto">
-		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
+		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_NAME,g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
 		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
 	</select>
 	
@@ -47,5 +47,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="cartpay" parameterType="PayDto">
 		UPDATE PAY SET P_FLAG=1 WHERE P_SEQ=#{p_seq}
 	</update>
+	
+	<!-- review 쓰기위한 정보 -->
+	<select id="review" parameterType="int" resultType="PayDto">
+		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
+		FROM PAY p, GOODS g WHERE P_SEQ=#{p_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+	</select>
 	
 </mapper>
