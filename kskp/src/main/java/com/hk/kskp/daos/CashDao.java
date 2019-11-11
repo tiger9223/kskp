@@ -21,7 +21,7 @@ public class CashDao implements ICashDao{
 
 	@Override//결제하기
 	public boolean pay(PayDto dto) {
-		int count = sqlSession.update(nameSpace+"pay",dto);
+		int count = sqlSession.insert(nameSpace+"pay",dto);
 		return count>0?true:false;
 	}
 
@@ -66,6 +66,13 @@ public class CashDao implements ICashDao{
 		return count>0?true:false;
 	}
 
+	@Override//장바구니 결제
+	public boolean cartPay(PayDto dto) {
+		int count = sqlSession.update(nameSpace+"cartpay",dto);
+		return count>0?true:false;
+	}
+
+	
 	@Override//내 장바구니 담긴것 보기
 	public List<PayDto> cartList(int m_seq) {
 		return sqlSession.selectList(nameSpace+"cartList", m_seq);
@@ -81,6 +88,7 @@ public class CashDao implements ICashDao{
 	public PayDto getPeople(int p_seq) {
 		return sqlSession.selectOne(nameSpace+"getpeople",p_seq);
 	}
+
 
 
 	

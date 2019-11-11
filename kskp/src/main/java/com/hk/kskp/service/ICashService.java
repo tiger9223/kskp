@@ -31,6 +31,9 @@ public interface ICashService {
 	//장바구니 담기
 	public boolean cart(PayDto dto);
 	
+	//장바구니 결제
+	public boolean cartPay(PayDto dto);
+	
 	//내 장바구니 담긴 것 보기
 	public List<PayDto> cartList(int m_seq);
 	

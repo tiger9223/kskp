@@ -56,6 +56,11 @@ public class CashService implements ICashService{
 	}
 	
 	@Override
+	public boolean cartPay(PayDto dto) {
+	return CashDao.cartPay(dto);
+	}
+	
+	@Override
 	public List<PayDto> cartList(int m_seq) {
 		return CashDao.cartList(m_seq);
 	}
@@ -69,6 +74,8 @@ public class CashService implements ICashService{
 	public PayDto getPeople(int p_seq) {
 		return CashDao.getPeople(p_seq);
 	}
+
+	
 
 	
 

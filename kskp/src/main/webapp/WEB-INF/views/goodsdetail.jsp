@@ -150,7 +150,7 @@ overflow:visible;
 <input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
 <input type="hidden" name="p_meet" value="${gdto.g_address}"/>
 <input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
-<input type="hidden" name="p_img" value="${gdto.g_thumbimg}"/>
+<input type="hidden" name="g_thumbimg" value="${gdto.g_thumbimg}"/>
 <c:choose>
 <c:when test="${ldto.m_status eq 'M'}">
 <h3>원하는 날짜와 인원을 선택하세요.</h3>

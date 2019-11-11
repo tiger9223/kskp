@@ -59,7 +59,7 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <tr>
-               <td><div class="image"><img id="img" src="${dto.p_img}" onclick="goods(${dto.g_seq})"/></div></td>
+               <td><div class="image"><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></div></td>
 	           <td>${dto.p_name}</td>
 	           <td>${dto.p_date}</td>
 	           <td>${dto.p_cost}</td>

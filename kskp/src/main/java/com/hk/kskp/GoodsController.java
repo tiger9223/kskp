@@ -165,6 +165,24 @@ public class GoodsController {
 		    return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
 		}
 	}
+	@RequestMapping(value = "/cartpay.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String cartPay(Locale locale, Model model, PayDto dto, HttpServletRequest request) {
+		logger.info("장바구니 결제완료", locale);
+		HttpSession session = request.getSession();
+		MembersDto ldto =  (MembersDto)session.getAttribute("ldto");
+		System.out.println("dto: "+dto);
+		System.out.println("dto.getG_seq(): "+dto.getG_seq());
+		boolean isS = CashService.cartPay(dto);
+		model.addAttribute("dto",dto);
+		if(isS) {
+			GoodsService.upPeople(dto.getG_seq());
+			return "redirect:paylist.do?m_seq="+ldto.getM_seq();
+		}else {
+		    return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
+		}
+	}
+	
+	
 
 	@RequestMapping(value = "/paylist.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String payList(Locale locale, Model model, int m_seq) {
