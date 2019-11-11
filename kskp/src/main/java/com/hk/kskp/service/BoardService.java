@@ -104,8 +104,8 @@ public class BoardService implements IBoardService{
 	
 	//Q&A 미답변 확인하기
 	@Override
-	public boolean unanswered(QaDto dto) {
-		return boardDao.unanswered(dto);
+	public List<QaDto> unansweredList(String pnum) {
+		return boardDao.unansweredList(pnum);
 			
 	}	
 	
