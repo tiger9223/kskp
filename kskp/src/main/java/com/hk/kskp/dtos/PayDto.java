@@ -1,5 +1,7 @@
 package com.hk.kskp.dtos;
 
+import com.google.cloud.Date;
+
 public class PayDto {
 	
 	private int p_seq;
@@ -13,14 +15,17 @@ public class PayDto {
 	private String p_img;
 	private String g_thumbimg;
 	private String p_meet;
+	private String g_name;
 	private int p_flag;
+	private Date p_regdate;
+	private int p_rflag;
 	
 	public PayDto() {
 		super();
 	}
 
 	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
-			String p_img, String g_thumbimg, String p_meet, int p_flag) {
+			String p_img, String g_thumbimg, String p_meet, String g_name, int p_flag, Date p_regdate, int p_rflag) {
 		super();
 		this.p_seq = p_seq;
 		this.g_seq = g_seq;
@@ -33,9 +38,11 @@ public class PayDto {
 		this.p_img = p_img;
 		this.g_thumbimg = g_thumbimg;
 		this.p_meet = p_meet;
+		this.g_name = g_name;
 		this.p_flag = p_flag;
+		this.p_regdate = p_regdate;
+		this.p_rflag = p_rflag;
 	}
-
 
 	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name,
 			int p_flag) {
@@ -138,6 +145,14 @@ public class PayDto {
 		this.p_meet = p_meet;
 	}
 
+	public String getG_name() {
+		return g_name;
+	}
+
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
+	}
+
 	public int getP_flag() {
 		return p_flag;
 	}
@@ -146,13 +161,29 @@ public class PayDto {
 		this.p_flag = p_flag;
 	}
 
+	public Date getP_regdate() {
+		return p_regdate;
+	}
+
+	public void setP_regdate(Date p_regdate) {
+		this.p_regdate = p_regdate;
+	}
+
+	public int getP_rflag() {
+		return p_rflag;
+	}
+
+	public void setP_rflag(int p_rflag) {
+		this.p_rflag = p_rflag;
+	}
+
 	@Override
 	public String toString() {
 		return "PayDto [p_seq=" + p_seq + ", g_seq=" + g_seq + ", m_seq=" + m_seq + ", p_cost=" + p_cost + ", p_num="
 				+ p_num + ", p_date=" + p_date + ", p_name=" + p_name + ", p_conts=" + p_conts + ", p_img=" + p_img
-				+ ", g_thumbimg=" + g_thumbimg + ", p_meet=" + p_meet + ", p_flag=" + p_flag + "]";
+				+ ", g_thumbimg=" + g_thumbimg + ", p_meet=" + p_meet + ", g_name=" + g_name + ", p_flag=" + p_flag
+				+ ", p_regdate=" + p_regdate + ", p_rflag=" + p_rflag + "]";
 	}
-	
 	
 
 }

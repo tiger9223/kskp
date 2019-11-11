@@ -9,17 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(P_SEQ, G_SEQ, M_SEQ,
 		P_COST, P_NUM, P_DATE,
 		P_NAME, P_CONTS, P_IMG,
-		P_MEET,P_FLAG) 
+		P_MEET,P_FLAG,P_REGDATE,
+		P_RFLAG) 
 		VALUES
 		(PAY_SEQ.NEXTVAL, #{g_seq},#{m_seq},
 		#{p_cost},#{p_num},#{p_date},
 		#{p_name},NULL,NULL,
-		NULL,0)
+		NULL,0,SYSDATE,
+		0)
 	</insert>
 	
 	<!-- 회원의 결제내역 가져오기 -->
 	<select id="getallpay" parameterType="int" resultType="PayDto">
-		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
+		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM, p.P_RFLAG
 		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
 	</select>
 	
@@ -35,17 +37,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(P_SEQ, G_SEQ, M_SEQ,
 		P_COST, P_NUM, P_DATE,
 		P_NAME, P_CONTS, P_IMG,
-		P_MEET,P_FLAG) 
+		P_MEET,P_FLAG,P_REGDATE,
+		P_RFLAG) 
 		VALUES
 		(PAY_SEQ.NEXTVAL, #{g_seq},#{m_seq},
 		#{p_cost},#{p_num},#{p_date},
 		#{p_name},NULL,NULL,
-		NULL,1)
+		NULL,1,SYSDATE,
+		0)
 	</insert>
 	
 	<!-- 장바구니 결제 -->
 	<update id="cartpay" parameterType="PayDto">
 		UPDATE PAY SET P_FLAG=1 WHERE P_SEQ=#{p_seq}
 	</update>
+	
+	<!-- 가이드 수익 가져오기 -->
+	<select id="getpays" parameterType="int" resultType="PayDto">
+		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM, m.M_EMAIL, m.M_NAME
+		FROM PAY p, GUIDE gu, GOODS g,MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+	</select>
 	
 </mapper>
