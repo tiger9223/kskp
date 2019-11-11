@@ -116,9 +116,8 @@ public class BoardDao implements IBoardDao	{
 	
 	//Q&A 미답변 확인하기
 	@Override
-	public boolean unanswered(QaDto dto) {
-		int count = sqlSession.update(nameSpace+"qunanswered", dto);
-		return count>0?true:false;
+	public List<QaDto> unansweredList(String pnum) {
+		return sqlSession.selectList(nameSpace+"unanswered",pnum);
 		}
 	
 

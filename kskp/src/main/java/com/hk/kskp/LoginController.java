@@ -483,13 +483,6 @@ public class LoginController {
 	      return"cancel";
 	}
 	
-	@RequestMapping(value = "/unanswered.do", method = {RequestMethod.GET,RequestMethod.POST})
-	   public String unanswered(Model model) {
-	      logger.info("미답변 글");
-	      return"unanswered";
-	}
-	
-	
 	
 	@RequestMapping(value = "/guideappform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guideappform(HttpServletRequest request,Model model,GuideDto dto,String pnum) {

@@ -88,8 +88,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		 , M_SEQ
 		 		 , Q_TITLE
 		 		 , Q_REGDATE 
-		 		 , Q_FLAG 
-	   		  FROM QA
+		 		 , Q_FLAG
+	   		  FROM QA 
 	  		) q, MEMBERS m
  	  WHERE CEIL(RM/5) = #{pnum} AND q.M_SEQ=m.m_SEQ	      		      
 	</select>
@@ -140,6 +140,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="qdelboard" parameterType="int">
 		DELETE FROM QA WHERE Q_SEQ=#{seq}
 	</delete>
+	
+	<select id="unanswered" resultType="QaDto" parameterType="String">
+		SELECT q.Q_SEQ , m.M_NAME , m.M_EMAIL
+	 		, q.M_SEQ
+	 		, q.Q_TITLE
+	 		, q.Q_REGDATE 
+	 		, q.Q_FLAG
+  	   FROM (
+       		SELECT ROW_NUMBER() OVER (ORDER BY Q_SEQ DESC) AS RM
+		  		 , Q_SEQ
+		 		 , M_SEQ
+		 		 , Q_TITLE
+		 		 , Q_REGDATE 
+		 		 , Q_FLAG
+	   		  FROM QA WHERE Q_FLAG = 0
+	  		) q, MEMBERS m
+ 	  WHERE CEIL(RM/5) = #{pnum} AND q.M_SEQ=m.m_SEQ	      		      
+	</select>
+		
+	<select id="qpcount1" resultType="int">
+		SELECT CEIL(COUNT(*)/5) 
+		  FROM QA		
+	</select>
+	
+	
 	
 	
 	

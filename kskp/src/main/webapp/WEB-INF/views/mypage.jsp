@@ -99,7 +99,7 @@
 			</li>
 			<li>
 				<ul>
-				<a href="qboardlist.do?pnum=1"><h2>Q&A 글</h2></a>
+				<a href="qboardlist.do?pnum=1"><h2>Q&A 전체글</h2></a>
 				</ul>
 			</li>
 			<li>

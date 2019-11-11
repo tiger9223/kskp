@@ -53,8 +53,7 @@ public interface IBoardService {
 	public boolean qinsertAns(QaDto dto);
 
 	//Q&A 미답변 확인하기
-	public boolean unanswered(QaDto dto);
-
+	public List<QaDto> unansweredList(String pnum);
 	
 
 	

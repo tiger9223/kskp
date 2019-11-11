@@ -121,7 +121,7 @@ public class BoardController {
 				
 	@RequestMapping(value="/qboardlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	 public String qboardList(HttpServletRequest request, Model model, String pnum) {
-		logger.info("질답 목록보기");
+		logger.info("질문답변 목록보기");
 		
 		if(pnum==null) {
 			pnum=(String)request.getSession().getAttribute("pnum");
@@ -216,13 +216,13 @@ public class BoardController {
 			return "qinsertboard";
 	}
 	
-	@RequestMapping(value="unanswereform.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public String unanswereForm(Model model,QaDto dto,String pnum) {
-		logger.info("답변폼으로 이동");
-		List<QaDto> list = BoardService.qgetAllList(pnum);
-		model.addAttribute("list",list);
-		return "unanswere";
-	}	
+//	@RequestMapping(value="unanswereform.do",method = {RequestMethod.POST,RequestMethod.GET})
+//	public String unanswereForm(Model model,QaDto dto,String pnum) {
+//		logger.info("답변폼으로 이동");
+//		List<QaDto> list = BoardService.qgetAllList(pnum);
+//		model.addAttribute("list",list);
+//		return "unanswere";
+//	}	
 	
 //	@RequestMapping(value="unanswered.do",method = {RequestMethod.POST,RequestMethod.GET})
 //	public String unanswered(Model model,QaDto dto) {
@@ -252,6 +252,24 @@ public class BoardController {
 //		model.addAttribute("pmap", map);
 //		return "qboardlist";
 //	}
+	@RequestMapping(value="/unanswered.do",method = {RequestMethod.POST,RequestMethod.GET})
+	 public String unansweredList(HttpServletRequest request, Model model, String pnum) {
+		logger.info("미답변 목록보기");
+		System.out.println("여기");
+		if(pnum==null) {
+			pnum=(String)request.getSession().getAttribute("pnum");
+		}else {			
+			request.getSession().setAttribute("pnum", pnum);			
+		}
+		
+		List<QaDto> list = BoardService.unansweredList(pnum);
+		model.addAttribute("list",list);
+		
+		int pcount=BoardService.qgetPcount();
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+		model.addAttribute("pmap", map);
+		return "unansweredlist";
+	}
 
 			
 	
