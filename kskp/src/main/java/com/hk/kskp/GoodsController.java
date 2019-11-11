@@ -207,7 +207,13 @@ public class GoodsController {
 		return "cart";
 	}
 	
-	
+	@RequestMapping(value = "/salary.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String salary(Locale locale, Model model, int gu_seq) {
+		logger.info("수익내역 보기", locale);
+		List<PayDto> list = CashService.getPays(gu_seq);
+		model.addAttribute("list",list);
+		return "guidesalary";
+	}
 
 	
 }//end
