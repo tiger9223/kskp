@@ -59,16 +59,14 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <input type="hidden" name="p_seq" value="${dto.p_seq}"/>
+            <input type="hidden" name="p_name" value="${dto.p_name}"/>
 			<input type="hidden" name="g_seq" value="${dto.g_seq}"/>
 			<input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
 			<input type="hidden" name="p_cost" value="${dto.p_cost}"/>
 			<input type="hidden" name="p_num" value="${dto.p_num}"/>
-			<input type="hidden" name="p_date" value="${dto.p_date}"/>
-            <input type="hidden" name="p_name" value="${dto.p_name}"/>
-			<input type="hidden" name="p_img" value="${dto.p_img}"/>
-			<input type="hidden" name="p_meet" value="${dto.p_meet}"/>
+			<input type="hidden" name="p_flag" value="${dto.p_flag}"/>
 	            <tr>
-	               <td><div class="image"><img id="img" src="${dto.p_img}" onclick="goods(${dto.g_seq})"/></div></td>
+	               <td><div class="image"><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></div></td>
 	               <td>${dto.p_name}</td>
 	               <td>${dto.p_date}</td>
 	               <td>${dto.p_cost}</td>

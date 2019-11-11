@@ -11,6 +11,7 @@ public class PayDto {
 	private String p_name;
 	private String p_conts;
 	private String p_img;
+	private String g_thumbimg;
 	private String p_meet;
 	private int p_flag;
 	
@@ -19,7 +20,7 @@ public class PayDto {
 	}
 
 	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
-			String p_img, String p_meet, int p_flag) {
+			String p_img, String g_thumbimg, String p_meet, int p_flag) {
 		super();
 		this.p_seq = p_seq;
 		this.g_seq = g_seq;
@@ -30,38 +31,24 @@ public class PayDto {
 		this.p_name = p_name;
 		this.p_conts = p_conts;
 		this.p_img = p_img;
+		this.g_thumbimg = g_thumbimg;
 		this.p_meet = p_meet;
 		this.p_flag = p_flag;
 	}
 
-	
-	
-	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_img,
-			int p_flag) {
-		super();
-		this.p_seq = p_seq;
-		this.g_seq = g_seq;
-		this.m_seq = m_seq;
-		this.p_cost = p_cost;
-		this.p_num = p_num;
-		this.p_date = p_date;
-		this.p_name = p_name;
-		this.p_img = p_img;
-		this.p_flag = p_flag;
-	}
-	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, 
-			int p_flag) {
-		super();
-		this.p_seq = p_seq;
-		this.g_seq = g_seq;
-		this.m_seq = m_seq;
-		this.p_cost = p_cost;
-		this.p_num = p_num;
-		this.p_date = p_date;
-		this.p_name = p_name;
-		this.p_flag = p_flag;
-	}
 
+	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name,
+			int p_flag) {
+		super();
+		this.p_seq = p_seq;
+		this.g_seq = g_seq;
+		this.m_seq = m_seq;
+		this.p_cost = p_cost;
+		this.p_num = p_num;
+		this.p_date = p_date;
+		this.p_name = p_name;
+		this.p_flag = p_flag;
+	}
 
 	public int getP_seq() {
 		return p_seq;
@@ -135,6 +122,14 @@ public class PayDto {
 		this.p_img = p_img;
 	}
 
+	public String getG_thumbimg() {
+		return g_thumbimg;
+	}
+
+	public void setG_thumbimg(String g_thumbimg) {
+		this.g_thumbimg = g_thumbimg;
+	}
+
 	public String getP_meet() {
 		return p_meet;
 	}
@@ -155,9 +150,8 @@ public class PayDto {
 	public String toString() {
 		return "PayDto [p_seq=" + p_seq + ", g_seq=" + g_seq + ", m_seq=" + m_seq + ", p_cost=" + p_cost + ", p_num="
 				+ p_num + ", p_date=" + p_date + ", p_name=" + p_name + ", p_conts=" + p_conts + ", p_img=" + p_img
-				+ ", p_meet=" + p_meet + ", p_flag=" + p_flag + "]";
+				+ ", g_thumbimg=" + g_thumbimg + ", p_meet=" + p_meet + ", p_flag=" + p_flag + "]";
 	}
-
 	
 	
 

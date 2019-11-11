@@ -13,23 +13,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 		(PAY_SEQ.NEXTVAL, #{g_seq},#{m_seq},
 		#{p_cost},#{p_num},#{p_date},
-		#{p_name},NULL,#{p_img},
-		#{p_meet},0)
+		#{p_name},NULL,NULL,
+		NULL,0)
 	</insert>
 	
 	<!-- 회원의 결제내역 가져오기 -->
 	<select id="getallpay" parameterType="int" resultType="PayDto">
-		SELECT *
-		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=1 ORDER BY P_SEQ DESC
+		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
+		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
 	</select>
+	
 	<!-- 회원의 장바구니 가져오기 -->
 	<select id="cartList" parameterType="int" resultType="PayDto">
-		SELECT *
-		FROM PAY WHERE M_SEQ=#{m_seq} AND P_FLAG=0 ORDER BY P_SEQ DESC
+		SELECT p.P_SEQ, p.G_SEQ,p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM , p.G_SEQ, p.P_FLAG
+		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=0 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
 	</select>
 	
 	<!-- 상품 결제 후 flag -->
-	<update id="paygoods" parameterType="PayDto">
+	<insert id="pay" parameterType="PayDto">
+		INSERT INTO PAY
+		(P_SEQ, G_SEQ, M_SEQ,
+		P_COST, P_NUM, P_DATE,
+		P_NAME, P_CONTS, P_IMG,
+		P_MEET,P_FLAG) 
+		VALUES
+		(PAY_SEQ.NEXTVAL, #{g_seq},#{m_seq},
+		#{p_cost},#{p_num},#{p_date},
+		#{p_name},NULL,NULL,
+		NULL,1)
+	</insert>
+	
+	<!-- 장바구니 결제 -->
+	<update id="cartpay" parameterType="PayDto">
 		UPDATE PAY SET P_FLAG=1 WHERE P_SEQ=#{p_seq}
 	</update>
 	
