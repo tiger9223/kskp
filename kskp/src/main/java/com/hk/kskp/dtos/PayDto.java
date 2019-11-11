@@ -49,6 +49,19 @@ public class PayDto {
 		this.p_img = p_img;
 		this.p_flag = p_flag;
 	}
+	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, 
+			int p_flag) {
+		super();
+		this.p_seq = p_seq;
+		this.g_seq = g_seq;
+		this.m_seq = m_seq;
+		this.p_cost = p_cost;
+		this.p_num = p_num;
+		this.p_date = p_date;
+		this.p_name = p_name;
+		this.p_flag = p_flag;
+	}
+
 
 	public int getP_seq() {
 		return p_seq;

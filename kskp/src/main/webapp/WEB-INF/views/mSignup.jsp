@@ -115,7 +115,7 @@
 </style>
 <script type="text/javascript">
    
-//    function check(){
+    function check(){
       
 //         var getMail = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/);
 //         var getpwCheck= RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/);
@@ -130,12 +130,10 @@
 //               return false;
 //             }     
 
-// //           //이메일 공백 확인
-// //          if($("#m_email").val() == ""){
-// //            alert("이메일을 입력해주세요");
-// //            $("#m_email").focus();
-// //            return false;
-// //          }
+          //이메일 공백 확인
+          if($("#m_email").val() == ""){
+           return false;
+         }
               
           
 // //        //이메일 유효성 검사
@@ -182,7 +180,7 @@
 //       }else{
 //       window.open("idChk.do?m_email="+m_email,"check","width=300px, height=300px");
 //       }
-//    }
+   }
 	
 	
 	

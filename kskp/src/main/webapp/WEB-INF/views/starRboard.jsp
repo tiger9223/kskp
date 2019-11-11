@@ -45,16 +45,16 @@
 <body>
 <h1>별점 후기 달기</h1>
 	<form action="starReview.do">
-		<input type="hidden" id="r_star" value="r_star">
+		<input type="hidden" id="r_star" name="r_star">
 		<table border="1">
 			<tr colspan="2">
 				<td colspan="2">
 					<p class="star_rating">
-						<a href="#" class="on" name="R_STAR" value="1">★</a> 
-						<a href="#"class="on" name="R_STAR" value="2">★</a> 
-						<a href="#" class="on" name="R_STAR" value="3">★</a> 
-						<a href="#" name="R_STAR" value="4">★</a>
-						<a href="#" name="R_STAR" value="5">★</a>
+						<a href="#" class="on" name="r_star" value="1">★</a> 
+						<a href="#"class="on" name="r_star" value="2">★</a> 
+						<a href="#" class="on" name="r_star" value="3">★</a> 
+						<a href="#" name="r_star" value="4">★</a>
+						<a href="#" name="r_star" value="5">★</a>
 					</p>
 				</td>
 			</tr>
@@ -63,7 +63,7 @@
 		<td>상품명나오기</td>
 	</tr>
 	<tr >
-		<td colspan="2"><textarea></textarea></td>
+		<td colspan="2"><textarea rows="10" cols="40"></textarea></td>
 	</tr>
 	<tr>
 	<td colspan="2"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
