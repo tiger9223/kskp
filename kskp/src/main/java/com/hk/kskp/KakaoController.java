@@ -36,7 +36,7 @@ public class KakaoController {
 	    }
 	    
 	    @GetMapping("/kakaoPaySuccess.do")
-	    public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model,String p_seq, String g_seq, String m_seq , String p_cost, String p_num, String p_flag, String p_date, String p_name, String p_img) {
+	    public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model,String p_seq, String g_seq, String m_seq , String p_cost, String p_num, String p_flag, String p_date, String p_name) {
 	        log.info("kakaoPaySuccess get............................................");
 	        log.info("kakaoPaySuccess pg_token : " + pg_token);
 	        int pseq = Integer.parseInt(p_seq);
@@ -45,9 +45,9 @@ public class KakaoController {
 	        int pcost = Integer.parseInt(p_cost);
 	        int pnum = Integer.parseInt(p_num);
 	        int pflag = Integer.parseInt(p_flag);
-	        PayDto dto = new PayDto(pseq, gseq, mseq, pcost, pnum, p_date, p_name, p_img, pflag);
+	        PayDto dto = new PayDto(pseq, gseq, mseq, pcost, pnum, p_date, p_name, pflag);
 	        model.addAttribute("dto",dto);
-	        model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token, p_seq, g_seq, m_seq, p_num, p_cost,p_flag, p_date, p_name, p_img));
+	        model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token, p_seq, g_seq, m_seq, p_num, p_cost,p_flag, p_date, p_name));
 	    }
 	
 	

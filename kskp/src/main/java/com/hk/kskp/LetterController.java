@@ -19,8 +19,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.LetterDto;
+import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.service.ILetterService;
+import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.LetterService;
 import com.hk.kskp.utils.Paging;
 
@@ -36,10 +39,16 @@ public class LetterController {
 	@Autowired
 	private ILetterService LetterService;
 
+	@Autowired
+	private ILoginService LoginService;
 
 	@RequestMapping(value="/sendLetterform.do",method = RequestMethod.GET)
 	public String sendLetterform(Model model)  {
 		logger.info("쪽지쓰기폼으로 이동");
+		
+		
+		
+		
 //		model.addAttribute("msg", "쪽지쓰기");
 		return "sendLetter";
 	}
@@ -47,19 +56,30 @@ public class LetterController {
 	
 
 	@RequestMapping(value="sendletter.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public String sendLetter(Model model,LetterDto dto)  {
+	public String sendLetter(Model model,LetterDto dto,int seq )  {
 		logger.info("쪽지쓰기");
 
+		MembersDto dto1 = LoginService.mUserInfo(seq);
+		GuideDto gdto = LoginService.gUserInfo(seq);
+		
+		List<MembersDto> mlist=LoginService.getMuserlist();
+		List<GuideDto> glist = LoginService.getGuserlist();
+		
 		boolean isS = LetterService.sendLetter(dto);
 		if(isS) {
-			model.addAttribute("msg", "쪽지보내기 성공!!");
-			return "main";
-		}else {
+			if(dto1!=null) {
+				
+				return "redirect:mypage.do?seq="+dto1.getM_seq();
+			}else if(gdto != null) {
+				return "redirect:mypage.do?seq="+gdto.getGu_seq();
+			}
+			}else{
 		model.addAttribute("msg", "쪽지보내기 실패ㅠㅠ");
 		return "letterlist";
 	}
+		return "letterlist";
+		}
 
-	}
 	@RequestMapping(value="/letterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String letterlist(HttpServletRequest request ,Model model,LetterDto dto, String pnum) {
 		logger.info("받은쪽지보기");
@@ -129,7 +149,6 @@ public class LetterController {
 		logger.info("보낸쪽지 상세보기");
 		LetterDto dto=LetterService.sendletterDetail(l_seq);
 		model.addAttribute("dto", dto);
-
 		return "sendletterdetail"; 
 	}
 

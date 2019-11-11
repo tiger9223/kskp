@@ -57,7 +57,7 @@ public class KakaoPay {
 	        params.add("quantity", p_num);
 	        params.add("total_amount", p_cost);
 	        params.add("tax_free_amount", "100");
-	        params.add("approval_url", "http://localhost:8888/kskp/kakaoPaySuccess.do?p_seq="+p_seq+"&g_seq="+g_seq+"&m_seq="+m_seq+"&p_cost="+p_cost+"&p_num="+p_num+"&p_flag="+p_flag+"&p_date="+dto.getP_date()+"&p_name="+dto.getP_name()+"&p_img="+dto.getP_img());
+	        params.add("approval_url", "http://localhost:8888/kskp/kakaoPaySuccess.do?p_seq="+p_seq+"&g_seq="+g_seq+"&m_seq="+m_seq+"&p_cost="+p_cost+"&p_num="+p_num+"&p_flag="+p_flag+"&p_date="+dto.getP_date()+"&p_name="+dto.getP_name());
 	        params.add("cancel_url", "http://localhost:8888/kakaoPayCancel");
 	        params.add("fail_url", "http://localhost:8888/kakaoPaySuccessFail");
 	 
@@ -82,7 +82,7 @@ public class KakaoPay {
 	        
 	    }
 	    
-	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token,String p_seq,String g_seq,String m_seq,String p_num,String p_cost, String p_flag,String p_date,String p_name,String p_img) {
+	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token,String p_seq,String g_seq,String m_seq,String p_num,String p_cost, String p_flag,String p_date,String p_name) {
 
 	        log.info("KakaoPayInfoVO............................................");
 	        log.info("-----------------------------");

@@ -3,26 +3,31 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.goods">
+
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getallgoods" parameterType="int" resultType="GoodsDto">
 		SELECT *
-		FROM GOODS WHERE G_FLAG=1 ORDER BY SYSDATE DESC
+		FROM GOODS WHERE G_FLAG=1 ORDER BY G_REGDATE DESC
 	</select>
+	
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getbestgoods" resultType="GoodsDto">
 		SELECT g.G_AREA, g.G_NAME, g.G_IMG1, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE
 		FROM GOODS g, REVIEW r WHERE g.G_SEQ=r.G_SEQ AND g.G_FLAG=1 ORDER BY (SELECT COUNT(R_SEQ) FROM REVIEW) DESC
 	</select>
+	
 	<!--  WHERE절에 AND G_FLAG='1' 넣어줘야함-->
 	<select id="getareagoods" parameterType="GoodsDto" resultType="GoodsDto">
 		SELECT G_AREA, G_NAME, G_IMG1, G_PRICE, G_PEOPLE, G_RES, G_ONELINE
-		FROM GOODS WHERE G_AREA=#{g_area} AND G_FLAG=1 ORDER BY SYSDATE DESC
+		FROM GOODS WHERE G_AREA=#{g_area} AND G_FLAG=1 ORDER BY G_REGDATE DESC
 	</select>
+	
 	<!--승인 받아봐야하는 상품 목록 -->
 	<select id="appgoodslist" resultType="GoodsDto">
 		SELECT g.G_SEQ, g.G_AREA, g.G_NAME, g.G_THUMBIMG,g.G_REGDATE, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE,g.G_FLAG, gu.GU_SEQ, gu.GU_NAME,gu.GU_PHONE,gu.GU_EMAIL,gu.GU_IMG,gu.GU_INTRO,gu.GU_BANK,gu.GU_ACC
-		FROM GOODS g, GUIDE gu WHERE g.GU_SEQ=gu.GU_SEQ ORDER BY SYSDATE DESC
+		FROM GOODS g, GUIDE gu WHERE g.GU_SEQ=gu.GU_SEQ ORDER BY G_REGDATE DESC
 	</select>
+	
 	<!-- 상품 상세조회  WHERE절에 AND G_FLAG='1' 넣어줘야함-->
 	<select id="getgoods" parameterType="GoodsDto" resultType="GoodsDto">
 		SELECT g.G_SEQ,g.GU_SEQ,g.G_AREA,g.G_LAN,
@@ -38,8 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--한명의 가이드 상품 목록 -->
 	<select id="guidegoods" parameterType="GoodsDto" resultType="GoodsDto">
 		SELECT *
-		FROM GOODS WHERE GU_SEQ=#{gu_seq} ORDER BY SYSDATE DESC
+		FROM GOODS WHERE GU_SEQ=#{gu_seq} ORDER BY G_REGDATE DESC
 	</select>
+	
 	<!-- 상품등록 -->
 	<insert id="insertgoods" parameterType="GoodsDto">
 		INSERT INTO GOODS 
@@ -59,6 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{g_mtime}, #{g_lat}, #{g_lng},
 		#{g_info},#{g_date},SYSDATE,#{g_thumbimg})
 	</insert>
+	
 	<!-- 상품 승인 -->
 	<update id="appgoods" parameterType="GoodsDto">
 		UPDATE GOODS SET G_FLAG=1 WHERE G_SEQ=#{g_seq}
@@ -68,10 +75,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="appnogoods" parameterType="GoodsDto">
 		UPDATE GOODS SET G_FLAG=0 WHERE G_SEQ=#{g_seq}
 	</update>
+	
 	<!-- 상품 결제 할 때 마다 인원수 +1 -->
 	<update id="uppeople" parameterType="int">
 		UPDATE GOODS SET G_RES=G_RES+1 WHERE G_SEQ=#{g_seq}
 	</update>
+	
 	<!-- 상품 수정  -->
 	<update id="updategoods" parameterType="GoodsDto">
 		UPDATE GOODS SET G_NAME=#{g_name}, G_CONTS=#{g_conts}, G_DATE=#{g_date},
@@ -79,6 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		G_REGDATE=SYSDATE 
 		WHERE G_SEQ=#{g_seq}
 	</update>
+	
 	<!--  -->
 	<insert id="insertreview" parameterType="ReviewDto">
 		INSERT INTO REVIEW
@@ -90,10 +100,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{r_conts},SYSDATE,#{r_img},
 		#{r_star},NULL,0)
 	</insert>
+	
 	<!--  -->
 	<delete id="delreview" parameterType="ReviewDto">
 		DELETE FROM REVIEW WHERE R_SEQ=#{r_seq}
 	</delete>
+	
 	<!--  -->
 	<update id="updatereview" parameterType="ReviewDto">
 		UPDATE REVIEW SET R_CONTS=#{r_conts}, R_IMG=#{r_img},
