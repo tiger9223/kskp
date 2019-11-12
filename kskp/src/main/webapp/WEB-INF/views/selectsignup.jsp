@@ -29,7 +29,7 @@
    }
    .log_wrap{
       width: 600px;
-      height: 700px;
+      height: 200px;
       margin: 0 auto;
       margin-top: 70px;
    }
@@ -42,9 +42,6 @@
    h1 img{
       width: 100%;
    }
-
-
-
    footer ul{
       width: 600px;
       height: 30px;
@@ -79,69 +76,68 @@
       margin-right: 5px;
       margin-bottom: -5px;
    }
-   button{
-  background:#1AAB8A;
-  color:#fff;
-  border:none;
-  position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-}
-button:hover{
-  background:#fff;
-  color:#1AAB8A;
-}
-button:before,button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #1AAB8A;
-  transition:400ms ease all;
-}
-button:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-button:hover:before,button:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
-
+   .button_box{
+    width: 650px;
+    height: 330px;
+    margin: 0 auto;
+    margin-bottom: 170px;
+   }
+  button{
+    width: 300px;
+    height: 330px;
+    float: left;
+    margin-right: 50px;
+    background-color: #fff;
+    border:1px solid #ddd;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button img{
+    width: 80%;
+    height: auto;
+    margin-top: -50px;
+  }
+  button:nth-child(2){
+    margin-right: 0;
+  }
+  .button_box p{
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    color: #777;
+  }
+  button:hover{
+    transform: scale(1.03);
+  }
 </style>
 </head>
 <body>
 <div class="log_wrap">
-      <h1>
-         <a href="main.do">
-            <img src="img/logo.png" alt="">
-         </a>
-      </h1>
-      	<button type="button" onclick="location.href='minsertuserform.do'">일반 회원 가입</button>
-
-	<button type="button" onclick="location.href='ginsertuserform.do'">가이드 회원 가입</button>
+  <h1>
+     <a href="main.do">
+        <img src="img/logo.png" alt="">
+     </a>
+  </h1>
 </div>
+  <div class="button_box">
+     <button type="button" onclick="location.href='minsertuserform.do'">
+        <img src="img/form_icon01.jpg" alt="">
+        <p>일반 회원가입</p>
+     </button>
 
-
-
-	<footer>
-      <ul>
-
-         <li><a href="conditions.do">이용약관</a></li>
-         <li><a href="privacy.do">개인정보처리방침</a></li>
-         <li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
-         <li><a href="">고객센터</a></li>
-
-      </ul>
-      <p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
-   </footer>
+     <button type="button" onclick="location.href='ginsertuserform.do'">
+        <img src="img/form_icon02.jpg" alt="">
+        <p>가이드 회원가입</p>    
+     </button>
+   </div>
+<footer>
+  <ul>
+     <li><a href="conditions.do">이용약관</a></li>
+     <li><a href="privacy.do">개인정보처리방침</a></li>
+     <li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
+     <li><a href="">고객센터</a></li>
+  </ul>
+  <p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
+</footer>
 </body>
 </html>

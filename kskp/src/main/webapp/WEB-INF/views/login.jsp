@@ -163,7 +163,7 @@
 		</a>
 		<ul>
 			<li><a href="">비밀번호 찾기</a></li>
-			<li><a href="signup.do">회원가입</a></li>
+			<li><a href="selectsignup.do">회원가입</a></li>
 		</ul>
 	</div>
 	<footer>
