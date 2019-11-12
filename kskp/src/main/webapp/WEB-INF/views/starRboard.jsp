@@ -10,12 +10,21 @@
 <title></title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+$(".img1").click(function(){
+		$('.img1 img').attr('src');
+	  alert(images);      
+	});
+});
+
 	$(document).ready(function() {
 		$(".star_rating a").click(function() {
 			$(this).parent().children("a").removeClass("on");
 			$(this).addClass("on").prevAll("a").addClass("on");
-			$("#r_star").val($(this).attr('value'));
+			var star =$(this).attr('value');
+			$("#r_star").val(star);
 			event.preventDefault();
+			alert(star);
 		});
 	});
 </script>
@@ -47,15 +56,17 @@
 </head>
 <body>
 <h1>별점 후기 달기</h1>
-	<form action="starReview.do">
-		<input type="hidden" name="m_seq" value="ldto.m_seq">
-		<input type="hidden" id="r_star" name="r_star">
+	<form action="writereview.do" method="post">
+		<input type="hidden" name="m_seq" value="${ldto.m_seq}">
+		<input type="hidden" id="r_star" name="r_star" value="3">
+		<input type="hidden" name="g_seq" value="${dto.g_seq}"/>
+		<input type="hidden" name="p_seq" value="${dto.p_seq}"/>
 		<table border="1">
 			<tr colspan="2">
 				<td colspan="2">
 					<p class="star_rating">
 						<a href="#" class="on" name="r_star" value="1">★</a> 
-						<a href="#"class="on" name="r_star" value="2">★</a> 
+						<a href="#" class="on" name="r_star" value="2">★</a> 
 						<a href="#" class="on" name="r_star" value="3">★</a> 
 						<a href="#" name="r_star" value="4">★</a>
 						<a href="#" name="r_star" value="5">★</a>
@@ -64,11 +75,12 @@
 			</tr>
 	<tr>
 		<td>상품명</td>
-		<td>${dto.g_name}</td>
+		<td>${dto.p_name}</td>
 	</tr>
-	<tr >
+	<tr>
 		<td colspan="2"><textarea rows="10" cols="40" id="ckeditor" name="r_conts"></textarea></td>
 	</tr>
+	
 	<tr>
 	<td colspan="2" align="right"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
 	</tr>

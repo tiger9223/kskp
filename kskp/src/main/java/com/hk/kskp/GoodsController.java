@@ -31,9 +31,11 @@ import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.dtos.PayDto;
+import com.hk.kskp.dtos.ReviewDto;
 import com.hk.kskp.service.ICashService;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
+import com.hk.kskp.service.IReviewService;
 import com.hk.kskp.utils.UploadFileUtil;
 
 @Controller
@@ -49,6 +51,9 @@ public class GoodsController {
 	
 	@Autowired
 	private ICashService CashService;
+	
+	@Autowired
+	private IReviewService ReviewService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -135,9 +140,23 @@ public class GoodsController {
 	public String goodsDetail(Locale locale, Model model, int g_seq) {
 		logger.info("상품 상세보기", locale);
 		GoodsDto gdto = GoodsService.getGoods(g_seq);
-		System.out.println(g_seq);
+		List<ReviewDto> list = ReviewService.reviewlist(g_seq);
+		int star1 = ReviewService.star1(g_seq);
+		int star2 = ReviewService.star2(g_seq);
+		int star3 = ReviewService.star3(g_seq);
+		int star4 = ReviewService.star4(g_seq);
+		int star5 = ReviewService.star5(g_seq);
+		double avg = ReviewService.staravg(g_seq);
+		System.out.println("avg:"+avg);
 		System.out.println("디티오"+gdto);
 		model.addAttribute("gdto",gdto);
+		model.addAttribute("star1",star1);
+		model.addAttribute("star2",star2);
+		model.addAttribute("star3",star3);
+		model.addAttribute("star4",star4);
+		model.addAttribute("star5",star5);
+		model.addAttribute("avg",avg);
+		model.addAttribute("list",list);
 		return "goodsdetail";
 	}
 	

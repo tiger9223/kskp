@@ -3,7 +3,8 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -247,6 +248,67 @@ ${gdto.g_mtime} 시</p></div>
 </div>
 <hr>
 <div><h3>후기</h3></div>
+
+		<div>
+			<p>평점 &nbsp;${avg}
+			<hr/>
+			★-${star1}명<br />
+			★★-	${star2}명<br />
+			★★★ - ${star3}명<br />
+			★★★★ - ${star4}명<br />
+			★★★★★ - ${star5}명
+			</p>
+			<hr/>
+		</div>
+	<c:choose>
+		<c:when test="${empty list}">
+			처음으로 후기를 남겨주세요~
+		</c:when>
+		<c:otherwise>
+		<c:forEach items="${list}" var="dto">
+		<table>
+			<tr>
+				<td><c:choose>
+				<c:when test="${dto.r_star eq 1}">
+				★ &nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 2}">
+				★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 3}">
+				★★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 4}">
+				★★★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 5}">
+				★★★★★&nbsp;
+				</c:when>
+				</c:choose>
+				</td>
+				<td>${dto.m_name}</td>
+				<td><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </td>
+			</tr>
+			<tr>
+				<td colspan="3">${dto.r_conts}</td>
+			</tr>
+			<hr>
+		</table>
+		</c:forEach>
+		</c:otherwise>
+	</c:choose>
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
   <script>
     // tell the embed parent frame the height of the content
