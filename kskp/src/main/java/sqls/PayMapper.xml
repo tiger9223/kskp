@@ -22,13 +22,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원의 결제내역 가져오기 -->
 	<select id="getallpay" parameterType="int" resultType="PayDto">
 		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_NAME,g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
-		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_REGDATE DESC
 	</select>
 	
 	<!-- 회원의 장바구니 가져오기 -->
 	<select id="cartList" parameterType="int" resultType="PayDto">
 		SELECT p.P_SEQ, p.G_SEQ,p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM , p.G_SEQ, p.P_FLAG
-		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=0 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+		FROM PAY p, GOODS g WHERE M_SEQ=#{m_seq} AND P_FLAG=0 AND p.G_SEQ=g.G_SEQ ORDER BY P_REGDATE DESC
 	</select>
 	
 	<!-- 상품 결제 후 flag -->
@@ -56,12 +56,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- review 쓰기위한 정보 -->
 	<select id="review" parameterType="int" resultType="PayDto">
 		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
-		FROM PAY p, GOODS g WHERE P_SEQ=#{p_seq} AND P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+		FROM PAY p, GOODS g WHERE p.P_SEQ=#{p_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY p.P_REGDATE DESC
 	</select>
 	<!-- 가이드 수익 가져오기 -->
 	<select id="getpays" parameterType="int" resultType="PayDto">
-		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM, m.M_EMAIL, m.M_NAME
-		FROM PAY p, GUIDE gu, GOODS g,MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM, m.M_EMAIL, m.M_NAME, p.P_REGDATE
+		FROM PAY p, GUIDE gu, GOODS g, MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
 	</select>
 	
 </mapper>

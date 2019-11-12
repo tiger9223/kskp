@@ -52,7 +52,7 @@
       <c:choose>
          <c:when test="${empty list}">
             <tr>
-               <td colspan="6" style="text-align: center;">결제 내역이 없습니다</td>
+               <td colspan="5" style="text-align: center;">수익 내역이 없습니다</td>
             </tr>   
          </c:when>
          <c:otherwise>
@@ -63,13 +63,12 @@
 	           <td><fmt:formatDate value="${dto.p_regdate}" pattern="yyyy년MM월dd일"/></td>
 	           <td>${dto.p_cost}</td>
 	           <td>${dto.p_num}</td>
-	           <td></td>
             </tr>   
             </c:forEach>
          </c:otherwise>
          </c:choose>
          <tr>
-         
+         <td colspan="5"><button>송금신청</button></td>
          </tr>
 </table>
 <script type="text/javascript">
