@@ -383,10 +383,22 @@
 				$("#pwchk_check").css("color", "green");
 	    	} 
 	    	
-	    	
 	    });
 		
 		
+	    $("#gu_img").blur(function(){
+	    	var gu_img = $("#gu_img").val();
+	    	if(gu_img == ""){
+	    		$('#img_check').text('사진을 첨부해주세요 :)');
+				$('#img_check').css('color', 'red');		
+				$("#reg_submit").attr("disabled", true);
+	    	 }else{
+		    		$("#img_check").text("멋지십니다!");
+					$("#img_check").css("color", "green");
+		    	} 
+	    });
+	    
+	    
 	   $("#gu_email").blur(function(){
 			// id = "id_reg" / name = "userId"
 			var gu_email = $('#gu_email').val();
@@ -474,7 +486,7 @@
 <div class="notice" id="acc_check"></div>
 
 <p class="title">사진</p>
-<input type="file" name="file" class="text" onchange="previewImage(this,'img_check')">
+<input type="file" name="file" id="gu_img" class="text" onchange="previewImage(this,'img_check')">
 <div class="notice" id="img_check"></div>
 
 <input type="submit" id="reg_submit" class="button" value="회원가입">

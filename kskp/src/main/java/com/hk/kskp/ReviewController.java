@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,7 @@ import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.dtos.PayDto;
+import com.hk.kskp.dtos.ReviewDto;
 import com.hk.kskp.service.ICashService;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
@@ -43,6 +48,9 @@ public class ReviewController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
+	private IReviewService ReviewService;
+	
+	@Autowired
 	private ILoginService LoginService;
 	
 	@Autowired
@@ -52,15 +60,14 @@ public class ReviewController {
 	private ICashService CashService;
 	
 
-	@Autowired
-	private IReviewService ReviewService;
+
 	
 	
 
 
-	@RequestMapping(value = "/writereview.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String wirtereview(Locale locale,Model model ,int p_seq) {
-		logger.info("후기작성 이동", locale);
+	@RequestMapping(value = "/writereviewform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String wirtereviewform(Locale locale,Model model ,int p_seq) {
+		logger.info("후기작성폼 이동", locale);
 	    PayDto dto = CashService.review(p_seq);
 	    System.out.println(dto);
 		model.addAttribute("dto",dto);
@@ -69,7 +76,7 @@ public class ReviewController {
 	
 	@ResponseBody
     @RequestMapping(value = "/imageUpload.do",method= {RequestMethod.POST})
-    public String communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
+    public String communityImageUpload(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam MultipartFile upload) throws Exception {
        System.out.println("후기 이미지");
        //한글깨짐을 방지하기위해 문자셋 설정
        response.setCharacterEncoding("utf-8");
@@ -98,6 +105,9 @@ public class ReviewController {
             PrintWriter printWriter = response.getWriter();
             
             String fileUrl = "/kskp/resources/ckimage/" + stored_fname;
+            
+          
+        	model.addAttribute("fileUrl",fileUrl);
             System.out.println(fileUrl);
             printWriter.println("{\"fileName\" : \""+stored_fname+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");     
             printWriter.flush();
@@ -105,6 +115,42 @@ public class ReviewController {
             printWriter.close(); 
             return null;
         }
+	
+	
+	@RequestMapping(value = "/writereview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String wirtereview(Locale locale,Model model ,ReviewDto dto,int p_seq,HttpServletRequest request) {
+		logger.info("후기작성", locale);
+		String r_conts=dto.getR_conts();
+		//Jsoup 라이브러리(html파서)를 이용해서 html모양의 문자열을 정말 html객체로 만들어서 사용----> text로 반환
+		Document doc=Jsoup.parseBodyFragment(r_conts);
+		Elements docs=doc.body().getElementsByTag("img");
+		String imgUrl="";
+		for (int i = 0; i < docs.size(); i++) {
+			if(i==docs.size()-1) {
+				imgUrl+=docs.eq(i).attr("src");
+			}else {
+				imgUrl+=docs.eq(i).attr("src")+",";				
+			}
+		}
+		dto.setR_img(imgUrl);
+		System.out.println("imgUrl:"+imgUrl);
+		/////Jsoup 사용 끝
+		
+		HttpSession session = request.getSession();
+		MembersDto ldto =  (MembersDto)session.getAttribute("ldto");
+		PayDto dto1 = CashService.review(p_seq);
+		boolean isS = ReviewService.writeReview(dto);
+		System.out.println(dto);
+		
+		if(isS) {
+			return "redirect:paylist.do?m_seq="+dto.getM_seq();
+		}else {
+			return "redirect:writereview.do?p_seq="+dto1.getP_seq();
+		}
+	}
+	
+	
+	
 	
 	
 	

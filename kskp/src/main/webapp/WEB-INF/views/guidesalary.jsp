@@ -3,7 +3,7 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +52,7 @@
       <c:choose>
          <c:when test="${empty list}">
             <tr>
-               <td colspan="6" style="text-align: center;">결제 내역이 없습니다</td>
+               <td colspan="5" style="text-align: center;">수익 내역이 없습니다</td>
             </tr>   
          </c:when>
          <c:otherwise>
@@ -60,16 +60,15 @@
             <tr>
                <td><div class="image"><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></div></td>
 	           <td>${dto.p_name}</td>
-	           <td><fmt:formatDate value="${dto.p_regdate}" pattern="yyyy년MM월dd일"/></td>
+	           <td><f:formatDate value="${dto.p_regdate}" pattern="yyyy-MM-dd"/></td>
 	           <td>${dto.p_cost}</td>
 	           <td>${dto.p_num}</td>
-	           <td></td>
             </tr>   
             </c:forEach>
          </c:otherwise>
          </c:choose>
          <tr>
-         
+         <td colspan="5"><button>송금신청</button></td>
          </tr>
 </table>
 <script type="text/javascript">

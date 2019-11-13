@@ -11,7 +11,7 @@
 <meta content='width=device-width, initial-scale=1.0, user-scalable=0' name='viewport'>
 <meta content='Partner' name='description'>
 <meta content='' name='author'>
-<title>Partner | MYREALTRIP</title>
+<title>GUIDE | SWAG</title>
 <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="T9a1SD5LHk3qqbwC5gYYbKp0EotINZ1SzivykFhnkjug6UKlfBmP60c2rbt2vTlT7icOYO4Hy1D6wqzBioaHyg==" />
 <link href='https://d2yoing0loi5gh.cloudfront.net/assets/favicon-e7fc64f202376533d86106e6f712ed41eee1e843dbc5de3b2765938656f8eb93.ico' rel='shortcut icon'>
