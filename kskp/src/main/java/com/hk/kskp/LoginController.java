@@ -1,5 +1,6 @@
 package com.hk.kskp;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.hk.kskp.daos.LoginDao;
@@ -38,6 +41,7 @@ import com.hk.kskp.service.LoginService;
 import com.hk.kskp.utils.FindUtil;
 import com.hk.kskp.utils.MailUtil;
 import com.hk.kskp.utils.Paging;
+import com.hk.kskp.utils.UploadFileUtil;
 
 
 
@@ -61,6 +65,9 @@ public class LoginController {
 	
 	@Autowired
 	private IGoodsService GoodsService;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 
 	// id 중복 체크 컨트롤러
@@ -155,12 +162,24 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String ginsertuser(HttpSession session,Locale locale,Model model, String email, String ecer) throws IOException {
+	public String ginsertuser(HttpSession session,Locale locale,Model model, String email, String ecer,MultipartFile file) throws Exception {
 		logger.info("가이드 회원가입", locale);
 		String a = (String)session.getAttribute("keyCode");
 		GuideDto dto=(GuideDto)session.getAttribute("dto");
 		if(ecer.equals(a)) {
 			session.removeAttribute("keyCode");
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+			String fileName = null;
+
+			if(file != null) {
+			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+			} else {
+			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+			System.out.println(uploadPath);
+			dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+			System.out.println(dto);
 			boolean isS=LoginService.gInsertUser(dto);
 			if(isS) {
 			session.removeAttribute("dto");

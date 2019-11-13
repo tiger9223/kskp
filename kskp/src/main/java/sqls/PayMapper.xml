@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- review 쓰기위한 정보 -->
 	<select id="review" parameterType="int" resultType="PayDto">
-		SELECT p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
+		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
 		FROM PAY p, GOODS g WHERE p.P_SEQ=#{p_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY p.P_REGDATE DESC
 	</select>
 	<!-- 가이드 수익 가져오기 -->

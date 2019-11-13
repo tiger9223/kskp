@@ -5,8 +5,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.hk.review">
 
 	<insert id="writereview" parameterType="ReviewDto">
-		INSERT INTO LETTER(R_SEQ,M_SEQ,G_SEQ,R_CONTS,R_REGDATE,R_IMG,R_STAR,R_ANS,R_GUFLAG)
-		VALUES(Review_SEQ.NEXTVAL,#{m_seq},#{g_seq},#{r_conts},SYSDATE,#{R_IMG},null,'0')
+		INSERT INTO REVIEW
+		(R_SEQ, M_SEQ, G_SEQ,
+		R_CONTS, R_REGDATE, R_IMG,
+		R_STAR, R_ANS, R_GUFLAG,R_MFLAG) 
+		VALUES
+		(REVIEW_SEQ.NEXTVAL ,#{m_seq}, #{g_seq},
+		#{r_conts},SYSDATE,#{r_img},
+		#{r_star},NULL,0,0)
 	</insert>
+	
+	<select id="reviewlist" parameterType="int" resultType="ReviewDto">
+	select r.r_star,m.m_name,r.r_regdate,r.r_conts from review r,Members m where r.g_seq=#{g_seq} and r.m_seq = m.m_seq
+	</select>
+	
+	
+	
+	<select id="star1" parameterType="int" resultType="int">
+	select count(*) from review where r_star=1 and g_seq=#{g_seq}
+	</select>
+	
+	<select id="star2" parameterType="int" resultType="int">
+	select count(*) from review where r_star=2 and g_seq=#{g_seq}
+	</select>
+	
+	<select id="star3" parameterType="int" resultType="int">
+	select count(*) from review where r_star=3 and g_seq=#{g_seq}
+	</select>
+	
+	<select id="star4" parameterType="int" resultType="int">
+	select count(*) from review where r_star=4 and g_seq=#{g_seq}
+	</select>
+	
+	<select id="star5" parameterType="int" resultType="int">
+	select count(*) from review where r_star=5 and g_seq=#{g_seq}
+	</select>
+	
+	<!-- 별 평균  -->
+	<select id="staravg" parameterType="int" resultType="String">
+	select avg(r_star) from review where g_seq=#{g_seq}
+	</select>
 
 </mapper>

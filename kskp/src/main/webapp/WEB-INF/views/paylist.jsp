@@ -65,8 +65,14 @@
 	           <td>${dto.p_date}</td>
 	           <td>${dto.p_cost}</td>
 	           <td>${dto.p_num}</td>
-               <td align="center"><input type="button" onclick='location.href="writereview.do?p_seq=${dto.p_seq}"'  value="후기작성"></td>
-      
+	           <c:choose>
+	           	<c:when test="${dto.p_rflag eq 0}">
+	           	<td align="center"><input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성"></td>
+	           	</c:when>
+	           	<c:otherwise>
+	           	<td>후기작성완료</td>
+	           	</c:otherwise>
+	           </c:choose>
             </tr>   
             </c:forEach>
          </c:otherwise>
