@@ -26,8 +26,13 @@ public class CashService implements ICashService{
 	}
 
 	@Override
-	public boolean insertSal(SalaryDto dto) {
-		return CashDao.insertSal(dto);
+	public int SalSum(int gu_seq) {
+		return CashDao.SalSum(gu_seq);
+	}
+
+	@Override
+	public int SalPeople(int gu_seq) {
+		return CashDao.SalPeople(gu_seq);
 	}
 
 	@Override
@@ -79,6 +84,8 @@ public class CashService implements ICashService{
 	public PayDto review(int p_seq) {
 		return CashDao.review(p_seq);
 	}
+
+	
 
 	
 
