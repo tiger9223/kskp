@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -118,7 +119,7 @@ public class ReviewController {
 	
 	
 	@RequestMapping(value = "/writereview.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String wirtereview(Locale locale,Model model ,ReviewDto dto,int p_seq,HttpServletRequest request) {
+	public String wirtereview(Locale locale,Model model ,ReviewDto dto, PayDto dto2, int p_seq, HttpServletRequest request) {
 		logger.info("후기작성", locale);
 		String r_conts=dto.getR_conts();
 		//Jsoup 라이브러리(html파서)를 이용해서 html모양의 문자열을 정말 html객체로 만들어서 사용----> text로 반환
@@ -140,19 +141,66 @@ public class ReviewController {
 		MembersDto ldto =  (MembersDto)session.getAttribute("ldto");
 		PayDto dto1 = CashService.review(p_seq);
 		boolean isS = ReviewService.writeReview(dto);
-		System.out.println(dto);
-		
 		if(isS) {
+			CashService.updatereivew(p_seq);
 			return "redirect:paylist.do?m_seq="+dto.getM_seq();
-		}else {
+		}
+		else {
 			return "redirect:writereview.do?p_seq="+dto1.getP_seq();
 		}
 	}
 	
 	
+	@RequestMapping(value = "/reviewphotoform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String reviewphotoform(Locale locale,Model model) {
+		logger.info("사진빼기 폼 이동", locale);
+		List<ReviewDto> list = ReviewService.reviewphoto();
+		List<String> slist = new ArrayList<>();
+		
+		for(ReviewDto dto:list) {
+			String img = dto.getR_img();
+			if(img.contains(",")) {
+				String[] array = img.split(",");
+				for(int i=0;i<array.length;i++) {
+					slist.add(array[i]);
+				}
+			}else {
+				slist.add(img);
+			}
+		}
+		
+		model.addAttribute("slist",slist);
+		return "reviewphoto";
+	}
 	
 	
+
+	@RequestMapping(value = "/guidenoreview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String guidenoreview(Locale locale,Model model,int gu_seq ) {
+	    List<ReviewDto> list = ReviewService.guidenoreview(gu_seq);
+	    model.addAttribute("list",list);
+		return "guidenoreview";
+	}
 	
+	@RequestMapping(value = "/getreviewform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getrivewform(Locale locale,Model model ,int r_seq ) {
+		logger.info("가이드 답글 달기 폼으 로 이동", locale);
+	    ReviewDto dto = ReviewService.getreview(r_seq);
+		model.addAttribute("dto",dto);
+		return "insertguidereview";
+	}
+	
+	@RequestMapping(value = "/insertgreview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getrivew(Locale locale,Model model,ReviewDto dto,int gu_seq) {
+		logger.info("가이드 답글 로 이동", locale);
+		System.out.println(dto);
+	    boolean isS=ReviewService.insertgreview(dto);
+	    if(isS) {
+	    	return "redirect:guidenoreview.do?gu_seq="+gu_seq;
+	    }else {
+	    	return "insertguidereview";
+	    }
+	}
 	
 	
 	

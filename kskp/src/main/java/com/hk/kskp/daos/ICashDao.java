@@ -13,8 +13,11 @@ public interface ICashDao {
 	//가이드 수익가져오기
 	public List<PayDto> getPays(int gu_seq);
 	
-	//가이드 수익내기
-	public boolean insertSal(SalaryDto dto);
+	//가이드 총수익
+	public int SalSum(int gu_seq);
+	
+	//가이드 총수익 인원수
+	public int SalPeople(int gu_seq);
 	
 	//나의 결제 내역
 	public List<PayDto> getAllPay(int m_seq);
@@ -46,6 +49,7 @@ public interface ICashDao {
 	//리뷰 쓰기
 	public PayDto review(int p_seq);
 	
-	
+	//리뷰 작성
+	public boolean updatereivew(int p_seq);
 	
 }

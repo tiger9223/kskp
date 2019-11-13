@@ -15,17 +15,19 @@ public class PayDto {
 	private String p_img;
 	private String g_thumbimg;
 	private String p_meet;
-	private String g_name;
 	private int p_flag;
 	private Date p_regdate;
 	private int p_rflag;
+	private String m_email;
+	private String m_name;
 	
 	public PayDto() {
 		super();
 	}
 
 	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
-			String p_img, String g_thumbimg, String p_meet, String g_name, int p_flag, Date p_regdate, int p_rflag) {
+			String p_img, String g_thumbimg, String p_meet, int p_flag, Date p_regdate, int p_rflag, String m_email,
+			String m_name) {
 		super();
 		this.p_seq = p_seq;
 		this.g_seq = g_seq;
@@ -38,10 +40,11 @@ public class PayDto {
 		this.p_img = p_img;
 		this.g_thumbimg = g_thumbimg;
 		this.p_meet = p_meet;
-		this.g_name = g_name;
 		this.p_flag = p_flag;
 		this.p_regdate = p_regdate;
 		this.p_rflag = p_rflag;
+		this.m_email = m_email;
+		this.m_name = m_name;
 	}
 
 	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name,
@@ -56,7 +59,7 @@ public class PayDto {
 		this.p_name = p_name;
 		this.p_flag = p_flag;
 	}
-
+	
 	public int getP_seq() {
 		return p_seq;
 	}
@@ -145,14 +148,6 @@ public class PayDto {
 		this.p_meet = p_meet;
 	}
 
-	public String getG_name() {
-		return g_name;
-	}
-
-	public void setG_name(String g_name) {
-		this.g_name = g_name;
-	}
-
 	public int getP_flag() {
 		return p_flag;
 	}
@@ -177,13 +172,29 @@ public class PayDto {
 		this.p_rflag = p_rflag;
 	}
 
+	public String getM_email() {
+		return m_email;
+	}
+
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
 	@Override
 	public String toString() {
 		return "PayDto [p_seq=" + p_seq + ", g_seq=" + g_seq + ", m_seq=" + m_seq + ", p_cost=" + p_cost + ", p_num="
 				+ p_num + ", p_date=" + p_date + ", p_name=" + p_name + ", p_conts=" + p_conts + ", p_img=" + p_img
-				+ ", g_thumbimg=" + g_thumbimg + ", p_meet=" + p_meet + ", g_name=" + g_name + ", p_flag=" + p_flag
-				+ ", p_regdate=" + p_regdate + ", p_rflag=" + p_rflag + "]";
+				+ ", g_thumbimg=" + g_thumbimg + ", p_meet=" + p_meet + ", p_flag=" + p_flag + ", p_regdate="
+				+ p_regdate + ", p_rflag=" + p_rflag + ", m_email=" + m_email + ", m_name=" + m_name + "]";
 	}
-	
 
+	
 }

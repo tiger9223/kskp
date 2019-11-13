@@ -8,7 +8,9 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <style>
-.image { overflow: hidden; }
+.image {
+ overflow: hidden; 
+ }
 
 .image  img {
     -webkit-transform:scale(1);

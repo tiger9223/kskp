@@ -230,8 +230,12 @@ public class GoodsController {
 	public String salary(Locale locale, Model model, int gu_seq) {
 		logger.info("수익내역 보기", locale);
 		List<PayDto> list = CashService.getPays(gu_seq);
+		int SalSum = CashService.SalSum(gu_seq);
+		int SalPeople = CashService.SalPeople(gu_seq);
 		System.out.println(list);
 		model.addAttribute("list",list);
+		model.addAttribute("SalSum",SalSum);
+		model.addAttribute("SalPeople",SalPeople);
 		return "guidesalary";
 	}
 

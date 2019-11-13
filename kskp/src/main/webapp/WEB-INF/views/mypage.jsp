@@ -154,7 +154,7 @@
 			<li>
 				<h2>후기관리</h2>
 				<ul>
-					<li><a href="starReview.do">답글 달지 않은 후기</a></li>
+					<li><a href="guidenoreview.do?gu_seq=${ldto1.gu_seq}">답글 달지 않은 후기</a></li>
 					<li><a href="">답글 한 후기</a></li>
 				</ul>
 			</li>

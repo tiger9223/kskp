@@ -30,10 +30,22 @@ public class CashDao implements ICashDao{
 		return sqlSession.selectList(nameSpace+"getpays", gu_seq);
 	}
 
-	@Override//가이드 수익내기
-	public boolean insertSal(SalaryDto dto) {
-		int count = sqlSession.insert(nameSpace+"insertsal",dto);
-		return count>0?true:false;
+	@Override//가이드 총수익
+	public int SalSum(int gu_seq){
+		String a = sqlSession.selectOne(nameSpace+"salsum",gu_seq);
+		if(a == null) {
+			a = "0";
+		}
+		return Integer.parseInt(a);
+	}
+	
+	@Override//가이드 총수익 인원수
+	public int SalPeople(int gu_seq){
+		String a = sqlSession.selectOne(nameSpace+"salpeople",gu_seq);
+		if(a == null) {
+			a = "0";
+		}
+		return Integer.parseInt(a);
 	}
 
 	@Override//나의 결제 내역
@@ -92,6 +104,12 @@ public class CashDao implements ICashDao{
 	@Override//리뷰쓰기
 	public PayDto review(int p_seq) {
 		return sqlSession.selectOne(nameSpace+"review",p_seq);
+	}
+
+	@Override
+	public boolean updatereivew(int p_seq) {
+		int count = sqlSession.update(nameSpace+"updatereivew", p_seq);
+		return count>0?true:false;
 	}
 
 
