@@ -50,8 +50,30 @@ public class ReviewService implements IReviewService{
 	}
 
 	@Override
-	public List<ReviewDto> reviewlist(int g_g_seq) {
-		return ReviewDao.reviewlist(g_g_seq);
+	public List<ReviewDto> reviewlist(int g_seq) {
+		return ReviewDao.reviewlist(g_seq);
 	}
+
+	@Override
+	public List<ReviewDto> reviewphoto() {
+		return ReviewDao.reviewphoto();
+	}
+
+	@Override
+	public List<ReviewDto> guidenoreview(int gu_seq) {
+		return ReviewDao.guidenoreview(gu_seq);
+	}
+
+	@Override
+	public ReviewDto getreview(int r_seq) {
+		return ReviewDao.getreview(r_seq);
+	}
+
+	@Override
+	public boolean insertgreview(ReviewDto dto) {
+		return ReviewDao.insertgreview(dto);
+	}
+
+	
 
 }

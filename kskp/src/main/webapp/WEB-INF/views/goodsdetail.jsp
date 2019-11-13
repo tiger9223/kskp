@@ -33,6 +33,8 @@ Just fixing jsfiddle embedded autosizing problem,
 this style is not needed for MDP use.
 */
 body { height: 400px; }
+
+
 </style>
 
 
@@ -136,6 +138,10 @@ border: none;
 width : 470px;
 overflow:visible;
     }
+    
+#reply{
+color: black;
+}
 
 </style>
 </head>
@@ -292,6 +298,16 @@ ${gdto.g_mtime} 시</p></div>
 			<tr>
 				<td colspan="3">${dto.r_conts}</td>
 			</tr>
+			<c:if test="${dto.r_ans != null}">
+			<br/>
+			<br/>
+			<tr>
+				<td>
+				&nbsp;<img id="reply" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj4KICAgIDxwYXRoIGZpbGw9IiNDRUQ0REEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIgOGg4djJIMFYwaDJ2OHoiLz4KPC9zdmc+Cg==" alt="reply"/>${gdto.gu_name}
+				&nbsp;<br/>${dto.r_ans}</td>
+			</tr>
+			</c:if>
+		
 			<hr>
 		</table>
 		</c:forEach>

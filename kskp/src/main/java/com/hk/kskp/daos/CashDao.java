@@ -94,6 +94,12 @@ public class CashDao implements ICashDao{
 		return sqlSession.selectOne(nameSpace+"review",p_seq);
 	}
 
+	@Override
+	public boolean updatereivew(int p_seq) {
+		int count = sqlSession.update(nameSpace+"updatereivew", p_seq);
+		return count>0?true:false;
+	}
+
 
 
 	

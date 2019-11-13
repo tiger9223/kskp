@@ -61,5 +61,28 @@ public class ReviewDao implements IReviewDao {
 		return sqlSession.selectList(nameSpace+"reviewlist", g_seq);
 	}
 
+	@Override
+	public List<ReviewDto> reviewphoto() {
+		return sqlSession.selectList(nameSpace+"reviewphoto");
+	}
+
+	@Override
+	public List<ReviewDto> guidenoreview(int gu_seq) {
+		return sqlSession.selectList(nameSpace+"guidenoreview",gu_seq);
+	}
+
+	@Override
+	public ReviewDto getreview(int r_seq) {
+		return sqlSession.selectOne(nameSpace+"getreview", r_seq);
+	}
+
+	@Override
+	public boolean insertgreview(ReviewDto dto) {
+		int count = sqlSession.update(nameSpace+"insertgreview", dto);
+		return count>0?true:false;
+	}
+
+	
+
 	
 }

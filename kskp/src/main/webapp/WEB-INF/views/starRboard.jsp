@@ -10,13 +10,6 @@
 <title></title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-$(".img1").click(function(){
-		$('.img1 img').attr('src');
-	  alert(images);      
-	});
-});
-
 	$(document).ready(function() {
 		$(".star_rating a").click(function() {
 			$(this).parent().children("a").removeClass("on");

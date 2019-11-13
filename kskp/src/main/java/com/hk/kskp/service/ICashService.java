@@ -45,4 +45,7 @@ public interface ICashService {
 	
 	//리뷰 쓰기
 	public PayDto review(int p_seq);
+	
+	//리뷰 작성 후
+	public boolean updatereivew(int p_seq);
 }

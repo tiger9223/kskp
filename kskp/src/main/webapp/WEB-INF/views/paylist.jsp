@@ -67,11 +67,16 @@
 	           <td>${dto.p_num}</td>
 	           <c:choose>
 	           	<c:when test="${dto.p_rflag eq 0}">
-	           	<td align="center"><input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성"></td>
+	           	<td align="center">
+	           		<input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성">
+	           		<input type="button" onclick='location.href="reviewphotoform.do"' value="후기사진">				
+	           	</td>
 	           	</c:when>
-	           	<c:otherwise>
-	           	<td>후기작성완료</td>
-	           	</c:otherwise>
+	           		<c:when test="${dto.p_rflag eq 1}">
+	           		<td>
+	           		후기작성완료
+	           		</td>
+	           		</c:when>
 	           </c:choose>
             </tr>   
             </c:forEach>

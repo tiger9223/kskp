@@ -80,6 +80,11 @@ public class CashService implements ICashService{
 		return CashDao.review(p_seq);
 	}
 
+	@Override
+	public boolean updatereivew(int p_seq) {
+		return CashDao.updatereivew(p_seq);
+	}
+
 	
 
 	
