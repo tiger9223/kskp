@@ -7,8 +7,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getallgoods" parameterType="int" resultType="GoodsDto">
 		SELECT *
-		FROM GOODS WHERE G_FLAG=1 ORDER BY G_REGDATE DESC
+		FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.GU_SEQ= gu.GU_SEQ ORDER BY G_REGDATE DESC
 	</select>
+	
+	<select id="getallgoods1" parameterType="String" resultType="GoodsDto">
+		SELECT *
+		FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.GU_SEQ= gu.GU_SEQ ORDER BY G_REGDATE DESC
+		WHERE CEIL(RN/5) = #{pnum}
+	</select>
+		<select id="gcount" resultType="int" parameterType="String" >
+		SELECT COUNT(*)
+		FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.GU_SEQ= gu.GU_SEQ ORDER BY G_REGDATE DESC
+	</select>
+	
 	
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getbestgoods" resultType="GoodsDto">
@@ -113,5 +124,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		R_REGDATE=SYSDATE 
 		WHERE R_SEQ=#{r_seq}
 	</update>
+	
+	<select id="searchcategory" parameterType="map" resultType="GoodsDto">
+		SELECT *
+		FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.G_CATEGORY=#{cate} AND g.GU_SEQ= gu.GU_SEQ ORDER BY G_REGDATE DESC
+		WHERE CEIL(RN/5) = #{pnum}
+	</select>
+	
+	<select id="gccount" resultType="int" parameterType="String" >
+		SELECT COUNT(*)
+		FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.G_CATEGORY=#{cate} AND g.GU_SEQ= gu.GU_SEQ ORDER BY G_REGDATE DESC
+	</select>
 	
 </mapper>

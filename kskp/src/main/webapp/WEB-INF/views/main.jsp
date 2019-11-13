@@ -133,7 +133,7 @@
 					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
 					<ul class="info_box">
 						<li><a href="mypage.do?seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
-						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> 1000p</span></a></li>
+						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> ${ldto.m_point}p</span></a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
 				</li>
@@ -180,41 +180,53 @@
 			<div class="img_box01">
 				<ul>
 					<li>
-						<img src="img/main_img01.jpg" alt="">
-						<a href="">
-							<p>서울</p>
-						</a>
-					</li>
+                  <a href="selectarea.do?enkey=Seoul&kokey=서울&pnum=1">
+                     <img src="img/main_img01.jpg" alt="">
+                     <div class="over">
+                        <p>서울</p>
+                     </div>
+                  </a>
+               </li>
 					<li>
-						<img src="img/main_img02.jpg" alt="">
-						<a href="">
-							<p>인천</p>
-						</a>
-					</li>
-					<li>
-						<img src="img/main_img03.jpg" alt="">
-						<a href="">
-							<p>대전</p>
-						</a>
-					</li>
-					<li>
-						<img src="img/main_img04.jpg" alt="">
-						<a href="">
-							<p>대구</p>
-						</a>
-					</li>
-					<li>
-						<img src="img/main_img05.jpg" alt="">
-						<a href="">
-							<p>부산</p>
-						</a>
-					</li>
-					<li>
-						<img src="img/main_img06.jpg" alt="">
-						<a href="">
-							<p>제주</p>
-						</a>
-					</li>
+                  <a href="selectarea.do?enkey=Incheon&kokey=인천&pnum=1">
+                     <img src="img/main_img02.jpg" alt="">
+                     <div class="over">
+                        <p>인천</p>
+                     </div>
+                  </a>
+               </li>
+               	<li>
+                  <a href="selectarea.do?enkey=Daejeon&kokey=대전&pnum=1">
+                     <img src="img/main_img03.jpg" alt="">
+                     <div class="over">
+                        <p>대전</p>
+                     </div>
+                  </a>
+               </li>
+               	<li>
+                  <a href="selectarea.do?enkey=Daegu&kokey=대구&pnum=1">
+                     <img src="img/main_img04.jpg" alt="">
+                     <div class="over">
+                        <p>대구</p>
+                     </div>
+                  </a>
+               </li>
+               	<li>
+                  <a href="selectarea.do?enkey=Busan&kokey=부산&pnum=1">
+                     <img src="img/main_img05.jpg" alt="">
+                     <div class="over">
+                        <p>부산</p>
+                     </div>
+                  </a>
+               </li>
+                              	<li>
+                  <a href="selectarea.do?enkey=Jeju&kokey=제주&pnum=1">
+                     <img src="img/main_img06.jpg" alt="">
+                     <div class="over">
+                        <p>제주</p>
+                     </div>
+                  </a>
+               </li>
 				</ul>
 			</div>
 		</div>
@@ -241,7 +253,7 @@
 			<h3 class="color01"><i class="fas fa-star"></i> 최근 올라온 상품<i class="fas fa-star"></i></h3>
 			<div class="img_box02">
 				<ul>
-				<c:forEach var="dto" items="${alist}" begin="0" end="4" step="1" >
+				<c:forEach var="dto" items="${alist}" begin="0" end="3" step="1" >
 					<li>
 						<a href="goodsdetail.do?g_seq=${dto.g_seq}">
 							<img src="${dto.g_thumbimg}" alt="image">

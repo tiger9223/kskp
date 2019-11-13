@@ -1,6 +1,8 @@
 package com.hk.kskp.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,6 +122,31 @@ public class GoodsDao implements IGoodsDao{
 	public boolean upPeople(int g_seq) {
 		int count = sqlSession.update(nameSpace+"uppeople",g_seq);
 		return count>0?true:false;
+	}
+
+	@Override //카테고리별 상품 찾기
+	public List<GoodsDto> searchcategory(String cate, String pnum) {
+		Map<String,String> map = new HashMap<>();
+		map.put("cate", cate);
+		map.put("pnum", pnum);
+		return sqlSession.selectList(nameSpace+"searchcategory", map);
+	}
+
+	@Override
+	public List<GoodsDto> getallgoods1(String pnum) {
+		return sqlSession.selectList(nameSpace+"getallgoods1", pnum);
+	}
+
+	@Override
+	public int gcount() {
+		int gcount = sqlSession.selectOne(nameSpace+"gcount");
+		return gcount;
+	}
+
+	@Override
+	public int gccount(String cate) {
+		int gccount = sqlSession.selectOne(nameSpace+"gcount", cate);
+		return gccount;
 	}
 
 	

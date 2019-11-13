@@ -11,7 +11,16 @@ public class MembersDto {
 	private String m_phone;
 	private Date m_regdate;
 	private String m_acc;
+	private int m_point;
 	
+	public int getM_point() {
+		return m_point;
+	}
+
+	public void setM_point(int m_point) {
+		this.m_point = m_point;
+	}
+
 	public MembersDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -76,7 +85,7 @@ public class MembersDto {
 	
 
 	public MembersDto(int m_seq, String m_pw, String m_status, String m_name, String m_email, Date m_regdate,
-			String m_acc) {
+			String m_acc, int m_point) {
 		super();
 		this.m_seq = m_seq;
 		this.m_pw = m_pw;
@@ -85,6 +94,7 @@ public class MembersDto {
 		this.m_email = m_email;
 		this.m_regdate = m_regdate;
 		this.m_acc = m_acc;
+		this.m_point = m_point;
 	}
 
 

@@ -146,7 +146,7 @@
 <body>
 <div class="log_wrap">
 		<h1>
-			<a href="">
+			<a href="main.do">
 				<img src="img/logo.png" alt="">
 			</a>
 		</h1>

@@ -15,6 +15,12 @@ public interface IGoodsDao {
 	//인기 상품 순으로 조회
 	public List<GoodsDto> getBestGoods();
 	
+	public List<GoodsDto> getallgoods1(String pnum);
+	
+	public int gcount();
+	
+	public int gccount(String cate);
+	
 	//지역별 상품 순으로 조회
 	public List<GoodsDto> getAreaGoods(String g_area);
 	
@@ -53,6 +59,8 @@ public interface IGoodsDao {
 	
 	//답변 등록
 	public boolean insertAnswer(ReviewDto dto);
+	//카테고리별 상품 찾기
+	public List<GoodsDto> searchcategory(String cate, String pnum);
 	
 	//한 상품의 후기 전체가져오기
 	public List<ReviewDto> getAllReview(int r_seq);

@@ -110,6 +110,27 @@ public class GoodsService implements IGoodsService{
 		return GoodsDao.upPeople(g_seq);
 	}
 
+
+	@Override
+	public List<GoodsDto> searchcategory(String cate, String pnum) {
+		return GoodsDao.searchcategory(cate, pnum);
+	}
+
+	@Override
+	public List<GoodsDto> getallgoods1(String pnum) {
+		return GoodsDao.getallgoods1(pnum);
+	}
+
+	@Override
+	public int gcount() {
+		return GoodsDao.gcount();
+	}
+
+	@Override
+	public int gccount(String cate) {
+		return GoodsDao.gccount(cate);
+	}
+
 	
 
 	

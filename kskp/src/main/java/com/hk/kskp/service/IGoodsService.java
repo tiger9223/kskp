@@ -52,6 +52,15 @@ public interface IGoodsService {
 	//답변 등록
 	public boolean insertAnswer(ReviewDto dto);
 	
+	//카테고리별 상품 찾기
+	public List<GoodsDto> searchcategory(String cate, String pnum);
+	
+	public List<GoodsDto> getallgoods1(String pnum);
+	
+	public int gcount();
+	
+	public int gccount(String cate);
+	
 	//한 상품의 후기 전체가져오기
 	public List<ReviewDto> getAllReview(int r_seq);
 	
