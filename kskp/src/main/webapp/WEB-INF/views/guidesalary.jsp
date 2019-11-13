@@ -45,8 +45,8 @@
    <tr>
    	  <th></th> 
       <th>상품명</th>
-      <th>결제날짜</th>
-   	  <th>가격</th>  
+      <th>여행 날짜</th>
+   	  <th>수익 금액</th>  
       <th>인원수</th>
    </tr>
       <c:choose>
@@ -60,7 +60,7 @@
             <tr>
                <td><div class="image"><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></div></td>
 	           <td>${dto.p_name}</td>
-	           <td><f:formatDate value="${dto.p_regdate}" pattern="yyyy-MM-dd"/></td>
+	           <td>${dto.p_date}</td>
 	           <td>${dto.p_cost}</td>
 	           <td>${dto.p_num}</td>
             </tr>   
@@ -68,7 +68,15 @@
          </c:otherwise>
          </c:choose>
          <tr>
-         <td colspan="5"><button>송금신청</button></td>
+         <td colspan="4">총 수익</td>
+         <td >${SalSum}</td>
+         </tr>
+         <tr>
+         <td colspan="4">총 판매 인원수</td>
+         <td>${SalPeople}</td>
+         </tr>
+         <tr>
+         <td colspan="5"><button type="button" onclick="">송금신청</button></td>
          </tr>
 </table>
 <script type="text/javascript">

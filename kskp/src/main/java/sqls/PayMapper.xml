@@ -3,6 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hk.cash">
+
 	<!-- 회원 상품 장바구니 담기 -->	
 	<insert id="cart" parameterType="PayDto">
 		INSERT INTO PAY
@@ -51,6 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="cartpay" parameterType="PayDto">
 		UPDATE PAY SET P_FLAG=1 WHERE P_SEQ=#{p_seq}
 	</update>
+
 	
 	<!-- 리뷰작성 -->
 	<update id="updatereivew" parameterType="int">
@@ -63,10 +65,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM
 		FROM PAY p, GOODS g WHERE p.P_SEQ=#{p_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY p.P_REGDATE DESC
 	</select>
+	
 	<!-- 가이드 수익 가져오기 -->
 	<select id="getpays" parameterType="int" resultType="PayDto">
+	<![CDATA[  
 		SELECT p.P_SEQ, p.G_SEQ, p.P_NAME, g.G_THUMBIMG, p.P_DATE, p.P_COST, p.P_NUM, m.M_EMAIL, m.M_NAME, p.P_REGDATE
-		FROM PAY p, GUIDE gu, GOODS g, MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ ORDER BY P_SEQ DESC
+		FROM PAY p, GUIDE gu, GOODS g, MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ AND TO_DATE(p.P_DATE,'MM/DD/YYYY') < SYSDATE ORDER BY P_SEQ DESC
+	  ]]>
 	</select>
 	
+	<!-- 가이드 총수익 가져오기 -->
+	<select id="salsum" parameterType="int" resultType="String">
+	<![CDATA[ 
+		SELECT SUM(p.P_COST)
+		FROM PAY p, GUIDE gu, GOODS g, MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ AND TO_DATE(p.P_DATE,'MM/DD/YYYY') < SYSDATE
+	 ]]>
+	</select>
+	
+	<!-- 가이드 총수익 가져오기 -->
+	<select id="salpeople" parameterType="int" resultType="String">
+	<![CDATA[ 
+		SELECT SUM(p.P_NUM)
+		FROM PAY p, GUIDE gu, GOODS g, MEMBERS m WHERE m.M_SEQ=p.M_SEQ AND g.GU_SEQ = gu.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND p.P_FLAG=1 AND p.G_SEQ=g.G_SEQ AND TO_DATE(p.P_DATE,'MM/DD/YYYY') < SYSDATE
+	 ]]>
+	</select>
 </mapper>
