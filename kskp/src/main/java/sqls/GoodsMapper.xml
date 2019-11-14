@@ -5,12 +5,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.hk.goods">
 
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
-	<select id="getallgoods" parameterType="int" resultType="GoodsDto">
-		SELECT *
-		FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.GU_SEQ= gu.GU_SEQ ORDER BY G_REGDATE DESC
+		<select id="getallgoods"  resultType="GoodsDto">
+	SELECT * FROM
+    GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.GU_SEQ= gu.GU_SEQ 
+     
 	</select>
 	
-
+	<select id="getallgoods1" parameterType="map" resultType="GoodsDto">
+	SELECT * FROM(SELECT ROW_NUMBER() OVER (ORDER BY g.G_REGDATE DESC) AS RN, g.G_SEQ,g.GU_SEQ,g.G_AREA,g.G_LAN,
+	g.G_NAME,g.G_CONTS,g.G_FLAG,g.G_IMG1, g.G_PRICE,g.G_PEOPLE,g.G_RES,g.G_ONELINE,
+	g.G_ADDRESS,g.G_TIME,g.G_DATE,g.G_REGDATE, g.G_THUMBIMG,g.G_MTIME,g.G_LAT,g.G_LNG,
+	g.G_CATEGORY,g.G_INFO,gu.GU_NAME,gu.GU_EMAIL, gu.GU_IMG,gu.GU_INTRO
+    FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND G_AREA=#{kokey} AND g.GU_SEQ= gu.GU_SEQ)
+    WHERE CEIL(RN/10) = #{pnum} 
+	</select>
+	<!-- 카테고리 목록대로 가져오기 -->
+	<select id="searchcategory" parameterType="map" resultType="GoodsDto">
+       SELECT * FROM(SELECT ROW_NUMBER() OVER (ORDER BY g.g_regdate DESC) AS RN, g.G_SEQ,g.GU_SEQ,g.G_AREA,g.G_LAN,
+	   g.G_NAME,g.G_CONTS,g.G_FLAG,g.G_IMG1, g.G_PRICE,g.G_PEOPLE,g.G_RES,g.G_ONELINE, g.G_ADDRESS,g.G_TIME,g.G_DATE,g.G_REGDATE,
+	   g.G_THUMBIMG,g.G_MTIME,g.G_LAT,g.G_LNG, g.G_CATEGORY,g.G_INFO,gu.GU_NAME,gu.GU_EMAIL,
+	   gu.GU_IMG,gu.GU_INTRO FROM GOODS g, GUIDE gu WHERE G_FLAG=1 AND g.G_CATEGORY=#{cate} AND G_AREA=#{kokey} AND g.GU_SEQ= gu.GU_SEQ)
+		WHERE CEIL(RN/10) = #{pnum}
+	</select>
+	<select id="gcount" resultType="int" parameterType="String">
+		SELECT CEIL(COUNT(CASE WHEN G_FLAG=1 THEN 1 END)/10) FROM GOODS WHERE G_AREA=#{kokey} 
+	</select>
+	<select id="gccount" resultType="int" parameterType="map">
+		  SELECT CEIL(COUNT(CASE WHEN G_FLAG=1 THEN 1 END)/10) FROM GOODS WHERE G_CATEGORY = #{cate} AND G_AREA=#{kokey}
+	</select>
+	
 	
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getbestgoods" resultType="GoodsDto">
