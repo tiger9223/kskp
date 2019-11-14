@@ -51,4 +51,7 @@ public interface ICashService {
 	
 	//리뷰 작성 후
 	public boolean updatereivew(int p_seq);
+	
+	//상품 상품당 수익내역
+	public List<PayDto> detailSal(PayDto dto);
 }

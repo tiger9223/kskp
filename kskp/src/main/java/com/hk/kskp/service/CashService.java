@@ -90,6 +90,11 @@ public class CashService implements ICashService{
 		return CashDao.updatereivew(p_seq);
 	}
 
+	@Override
+	public List<PayDto> detailSal(PayDto dto) {
+		return CashDao.detailSal(dto);
+	}
+
 	
 
 	

@@ -68,8 +68,7 @@
 	           <c:choose>
 	           	<c:when test="${dto.p_rflag eq 0}">
 	           	<td align="center">
-	           		<input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성">
-	           		<input type="button" onclick='location.href="reviewphotoform.do"' value="후기사진">				
+	           		<input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성">			
 	           	</td>
 	           	</c:when>
 	           		<c:when test="${dto.p_rflag eq 1}">
@@ -85,7 +84,7 @@
 </table>
 <script type="text/javascript">
 function goods(g_seq){
-	location.href="goodsdetail.do?g_seq="+g_seq;
+	location.href="detailsal.do?g_seq="+g_seq;
 }
 </script>
 </body>

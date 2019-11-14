@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.kskp.dtos.GoodsDto;
+import com.hk.kskp.dtos.ReviewDto;
 import com.hk.kskp.service.IGoodsService;
+import com.hk.kskp.service.IReviewService;
 import com.hk.kskp.utils.Paging;
 
 /**
@@ -33,14 +35,43 @@ public class HomeController {
 	@Autowired
 	private IGoodsService GoodsService;
 	
+	@Autowired
+	private IReviewService ReviewService;
+	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(HttpServletRequest request,Model model) {
 		logger.info("메인페이지 이동");
 		List<GoodsDto> alist = GoodsService.getAllGoods();
 		List<GoodsDto> blist = GoodsService.getBestGoods();
+		List<ReviewDto> rlist = ReviewService.reviewphoto();
+		List<ReviewDto> slist = new ArrayList<>();
+		
+		for(int i=0;i<rlist.size();i++) {
+			ReviewDto dto = rlist.get(i);
+			String img = dto.getR_img();
+			
+			if(img.contains(",")) {
+				String[] array = img.split(",");
+				for(int j=0;j<array.length;j++) {
+					ReviewDto rdto = new ReviewDto();
+					rdto.setG_seq(dto.getG_seq());
+					rdto.setR_img(array[j]);
+					slist.add(rdto);
+				}
+			}else {
+				ReviewDto rdto = new ReviewDto();
+				rdto.setG_seq(dto.getG_seq());
+				rdto.setR_img(img);
+				slist.add(rdto);
+			}
+		}
+
+		model.addAttribute("slist",slist);
 		model.addAttribute("alist", alist);
 		model.addAttribute("blist", blist);
+		
 		return "main";
+		
 	}
 	@RequestMapping(value = "/selectsignup.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String selectsignup(HttpServletRequest request) {

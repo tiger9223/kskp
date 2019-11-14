@@ -20,6 +20,62 @@ public class PayDto {
 	private int p_rflag;
 	private String m_email;
 	private String m_name;
+	private String g_img1;
+	private int sumcost;
+	private String g_name;
+	
+	
+	public PayDto(int p_seq, int g_seq, int m_seq, int p_cost, int p_num, String p_date, String p_name, String p_conts,
+			String p_img, String g_thumbimg, String p_meet, int p_flag, Date p_regdate, int p_rflag, String m_email,
+			String m_name, String g_img1, int sumcost, int sumnum,String g_name) {
+		super();
+		this.p_seq = p_seq;
+		this.g_seq = g_seq;
+		this.m_seq = m_seq;
+		this.p_cost = p_cost;
+		this.p_num = p_num;
+		this.p_date = p_date;
+		this.p_name = p_name;
+		this.p_conts = p_conts;
+		this.p_img = p_img;
+		this.g_thumbimg = g_thumbimg;
+		this.p_meet = p_meet;
+		this.p_flag = p_flag;
+		this.p_regdate = p_regdate;
+		this.p_rflag = p_rflag;
+		this.m_email = m_email;
+		this.m_name = m_name;
+		this.g_img1 = g_img1;
+		this.sumcost = sumcost;
+		this.sumnum = sumnum;
+		this.g_name = g_name;
+	}
+
+	public String getG_img1() {
+		return g_img1;
+	}
+
+	public void setG_img1(String g_img1) {
+		this.g_img1 = g_img1;
+	}
+
+	public int getSumcost() {
+		return sumcost;
+	}
+
+	public void setSumcost(int sumcost) {
+		this.sumcost = sumcost;
+	}
+
+	public int getSumnum() {
+		return sumnum;
+	}
+
+	public void setSumnum(int sumnum) {
+		this.sumnum = sumnum;
+	}
+
+	private int sumnum;
 	
 	public PayDto() {
 		super();
@@ -194,6 +250,14 @@ public class PayDto {
 				+ p_num + ", p_date=" + p_date + ", p_name=" + p_name + ", p_conts=" + p_conts + ", p_img=" + p_img
 				+ ", g_thumbimg=" + g_thumbimg + ", p_meet=" + p_meet + ", p_flag=" + p_flag + ", p_regdate="
 				+ p_regdate + ", p_rflag=" + p_rflag + ", m_email=" + m_email + ", m_name=" + m_name + "]";
+	}
+
+	public String getG_name() {
+		return g_name;
+	}
+
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
 	}
 
 	

@@ -1,19 +1,33 @@
 package com.hk.kskp.dtos;
 
+import java.util.Date;
+
 public class SalaryDto {
 	
 	private int s_seq;
-	private int g_seq;
+	private int gu_seq;
 	private int s_cost;
-	private String s_date;
-	private String s_name;
+	private Date s_regdate;
+	private Date s_aregdate;
 	private String s_bank;
 	private String s_acc;
 	private int s_flag;
 	
 	public SalaryDto() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public SalaryDto(int s_seq, int gu_seq, int s_cost, Date s_regdate, Date s_aregdate, String s_bank, String s_acc,
+			int s_flag) {
+		super();
+		this.s_seq = s_seq;
+		this.gu_seq = gu_seq;
+		this.s_cost = s_cost;
+		this.s_regdate = s_regdate;
+		this.s_aregdate = s_aregdate;
+		this.s_bank = s_bank;
+		this.s_acc = s_acc;
+		this.s_flag = s_flag;
 	}
 
 	public int getS_seq() {
@@ -24,12 +38,12 @@ public class SalaryDto {
 		this.s_seq = s_seq;
 	}
 
-	public int getG_seq() {
-		return g_seq;
+	public int getGu_seq() {
+		return gu_seq;
 	}
 
-	public void setG_seq(int g_seq) {
-		this.g_seq = g_seq;
+	public void setGu_seq(int gu_seq) {
+		this.gu_seq = gu_seq;
 	}
 
 	public int getS_cost() {
@@ -40,20 +54,20 @@ public class SalaryDto {
 		this.s_cost = s_cost;
 	}
 
-	public String getS_date() {
-		return s_date;
+	public Date getS_regdate() {
+		return s_regdate;
 	}
 
-	public void setS_date(String s_date) {
-		this.s_date = s_date;
+	public void setS_regdate(Date s_regdate) {
+		this.s_regdate = s_regdate;
 	}
 
-	public String getS_name() {
-		return s_name;
+	public Date getS_aregdate() {
+		return s_aregdate;
 	}
 
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
+	public void setS_aregdate(Date s_aregdate) {
+		this.s_aregdate = s_aregdate;
 	}
 
 	public String getS_bank() {
@@ -80,25 +94,12 @@ public class SalaryDto {
 		this.s_flag = s_flag;
 	}
 
-	public SalaryDto(int s_seq, int g_seq, int s_cost, String s_date, String s_name, String s_bank, String s_acc,
-			int s_flag) {
-		super();
-		this.s_seq = s_seq;
-		this.g_seq = g_seq;
-		this.s_cost = s_cost;
-		this.s_date = s_date;
-		this.s_name = s_name;
-		this.s_bank = s_bank;
-		this.s_acc = s_acc;
-		this.s_flag = s_flag;
-	}
-
 	@Override
 	public String toString() {
-		return "SalaryDto [s_seq=" + s_seq + ", g_seq=" + g_seq + ", s_cost=" + s_cost + ", s_date=" + s_date
-				+ ", s_name=" + s_name + ", s_bank=" + s_bank + ", s_acc=" + s_acc + ", s_flag=" + s_flag + "]";
+		return "SalaryDto [s_seq=" + s_seq + ", gu_seq=" + gu_seq + ", s_cost=" + s_cost + ", s_regdate=" + s_regdate
+				+ ", s_aregdate=" + s_aregdate + ", s_bank=" + s_bank + ", s_acc=" + s_acc + ", s_flag=" + s_flag + "]";
 	}
-	
+
 	
 	
 

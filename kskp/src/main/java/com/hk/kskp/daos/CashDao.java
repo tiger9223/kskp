@@ -112,6 +112,11 @@ public class CashDao implements ICashDao{
 		return count>0?true:false;
 	}
 
+	@Override
+	public List<PayDto> detailSal(PayDto dto) {
+		return sqlSession.selectList(nameSpace+"getpays1", dto);
+	}
+
 
 
 	

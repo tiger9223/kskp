@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="reviewphoto" resultType="ReviewDto">
-	select r_img from review
+	select g_seq, r_img from review where NOT r_img is NULL
 	</select>
 	
 	<select id="star1" parameterType="int" resultType="int">
@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 답글 달 후기 -->
 	<select id="getreview" parameterType="int" resultType="ReviewDto" >
-	select * from review where r_seq=#{r_seq}
+	select * from review where r_seq=#{r_seq} 
 	</select>
 
 	<!-- 가이드 후기달기 -->

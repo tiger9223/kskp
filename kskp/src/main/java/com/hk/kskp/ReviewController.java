@@ -150,30 +150,6 @@ public class ReviewController {
 		}
 	}
 	
-	
-	@RequestMapping(value = "/reviewphotoform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String reviewphotoform(Locale locale,Model model) {
-		logger.info("사진빼기 폼 이동", locale);
-		List<ReviewDto> list = ReviewService.reviewphoto();
-		List<String> slist = new ArrayList<>();
-		
-		for(ReviewDto dto:list) {
-			String img = dto.getR_img();
-			if(img.contains(",")) {
-				String[] array = img.split(",");
-				for(int i=0;i<array.length;i++) {
-					slist.add(array[i]);
-				}
-			}else {
-				slist.add(img);
-			}
-		}
-		
-		model.addAttribute("slist",slist);
-		return "reviewphoto";
-	}
-	
-	
 
 	@RequestMapping(value = "/guidenoreview.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guidenoreview(Locale locale,Model model,int gu_seq ) {

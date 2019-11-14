@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -34,9 +35,11 @@ import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.LetterDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.dtos.ReviewDto;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILetterService;
 import com.hk.kskp.service.ILoginService;
+import com.hk.kskp.service.IReviewService;
 import com.hk.kskp.service.LoginService;
 import com.hk.kskp.utils.FindUtil;
 import com.hk.kskp.utils.MailUtil;
@@ -65,6 +68,9 @@ public class LoginController {
 	
 	@Autowired
 	private IGoodsService GoodsService;
+	
+	@Autowired
+	private IReviewService ReviewService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -246,6 +252,30 @@ public class LoginController {
 		
 		List<GoodsDto> alist = GoodsService.getAllGoods();
 		List<GoodsDto> blist = GoodsService.getBestGoods();
+		List<ReviewDto> rlist = ReviewService.reviewphoto();
+		List<ReviewDto> slist = new ArrayList<>();
+		
+		for(int i=0;i<rlist.size();i++) {
+			ReviewDto dto = rlist.get(i);
+			String img = dto.getR_img();
+			
+			if(img.contains(",")) {
+				String[] array = img.split(",");
+				for(int j=0;j<array.length;j++) {
+					ReviewDto rdto = new ReviewDto();
+					rdto.setG_seq(dto.getG_seq());
+					rdto.setR_img(array[j]);
+					slist.add(rdto);
+				}
+			}else {
+				ReviewDto rdto = new ReviewDto();
+				rdto.setG_seq(dto.getG_seq());
+				rdto.setR_img(img);
+				slist.add(rdto);
+			}
+		}
+
+		model.addAttribute("slist",slist);
 		model.addAttribute("alist", alist);
 		model.addAttribute("blist", blist);
 		

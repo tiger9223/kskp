@@ -239,6 +239,15 @@ public class GoodsController {
 		return "guidesalary";
 	}
 
+	@RequestMapping(value = "/detailsal.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String detailsal(Locale locale, Model model, PayDto dto) {
+		logger.info("상품당 수익내역 보기", locale);
+		List<PayDto> list = CashService.detailSal(dto);
+		model.addAttribute("list",list);
+		return "detailSal";
+	}
+
+	
 	
 }//end
 

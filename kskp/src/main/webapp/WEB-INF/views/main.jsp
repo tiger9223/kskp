@@ -374,48 +374,17 @@
 			</div>
 			<h3 class="color03"><i class="fas fa-camera-retro"></i> <i class="fas fa-camera-retro"></i> 후기사진 모음</h3>
 			<div class="img_box04">
+			<c:choose>
+        	 <c:when test="${empty slist}">
+        	 </c:when>
+        	   <c:otherwise>
 				<ul>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img01.jpg" alt=""></a></li>
-					<li><a href=""><img src="img/main_img02.jpg" alt=""></a></li>
+				<c:forEach var="dto" items="${slist}" begin="0" end="39" step="1" >
+					<li><a href="goodsdetail.do?g_seq=${dto.g_seq}"><img src="${dto.r_img}" alt="replyimg"></a></li>
+				</c:forEach>
 				</ul>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 	</div>
