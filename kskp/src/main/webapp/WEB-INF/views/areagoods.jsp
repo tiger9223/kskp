@@ -12,9 +12,52 @@
 	<link rel="stylesheet" href="css/jquery.bxslider.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	<script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+<!--       <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"> -->
+			<link rel="stylesheet" href="css/datepicker.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+      
+      <style type="text/css">
+      .ui-datepicker{ font-size: 12px; width: 270px; }
+      </style>
 	<script>
+	  $.datepicker.setDefaults({
+	      prevText: '이전 달',
+	      nextText: '다음 달',
+	      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	      monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	      dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	      showMonthAfterYear: true,
+	      yearSuffix: '년'
+	  });
 	
-		
+	 $(function(){
+		 var date = new Date();
+		 $('#mdp-demo').multiDatesPicker({
+				maxPicks: 1,
+				beforeShowDay: function noBefore(date){ 
+					   if (date < new Date()) 
+					       return [false]; 
+					   return [true]; 
+					},
+				altField: '#altField'
+			});
+		 
+		 
+// 		 $("#mdp-demo").hide();
+//          $("#datepick").click(function(){
+//             if($(this).next().css("display") == "none"){
+//                $("#mdp-demo").slideDown(200);
+//             }else{
+//                $("#mdp-demo").slideUp(200);
+//             }
+//          });
+
+
+	    });
 	
 	
 	
@@ -98,7 +141,7 @@
 	        $win.scrollTop(0);
 	  
 	    $(window).scroll(function(){
-	        yPosition = $win.scrollTop() - 388;
+	        yPosition = $win.scrollTop() - 370;
 	        if (yPosition < 0)
 	        {
 	            yPosition = 0;
@@ -208,8 +251,10 @@
 					<li><a href="selectarea.do?cate=통역/비즈니스&enkey=${enkey}&kokey=${kokey}&pnum=1"><i class="fas fa-briefcase"></i>통역 / 비즈니스</a> </li>
 				</ul>
 				<ul class="menu02">
-					<li><i class="far fa-calendar-alt"></i> 날짜</li>
+					<li id="datepick" style="cursor:pointer;"><i class="far fa-calendar-alt"></i>날짜</li>
 				</ul>
+					 <div id="mdp-demo" style="z-index: 999"></div>
+					<input type="hidden"  name="g_date" id="altField" >
 			</div>
 			<div class="con_box">
 				<ul class="menu03">
@@ -245,6 +290,24 @@
 				</c:if>
 				</c:forEach>
 
+			<c:choose>
+				<c:when test="${cate == null}">
+				<div class="pager">
+					<a href="selectarea.do?enkey=${enkey}&kokey=${kokey}&pnum=${map.prePageNum}">≪</a>
+					<c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
+						<c:choose>
+							<c:when test="${pnum eq i}">
+								${i}
+							</c:when>
+							<c:otherwise>
+								<a href="selectarea.do?enkey=${enkey}&kokey=${kokey}&pnum=${i}">${i}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<a href="selectarea.do?enkey=${enkey}&kokey=${kokey}&pnum=${map.nextPageNum}">≫</a>
+				</div>
+			</c:when>
+		<c:otherwise>
 				<div class="pager">
 					<a href="selectarea.do?cate=${cate}&enkey=${enkey}&kokey=${kokey}&pnum=${map.prePageNum}">≪</a>
 					<c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
@@ -259,6 +322,9 @@
 					</c:forEach>
 					<a href="selectarea.do?cate=${cate}&enkey=${enkey}&kokey=${kokey}&pnum=${map.nextPageNum}">≫</a>
 				</div>
+			</c:otherwise>
+			</c:choose>
+			
 			</div>
 		</div>
 	</div>

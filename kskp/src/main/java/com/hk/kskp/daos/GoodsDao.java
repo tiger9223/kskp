@@ -23,6 +23,13 @@ public class GoodsDao implements IGoodsDao{
 	public List<GoodsDto> getAllGoods() {
 		return sqlSession.selectList(nameSpace+"getallgoods" );
 	}
+	@Override//상품 등록날짜 순으로 전체 조회
+	public List<GoodsDto> getAllGoods1(String pnum,String kokey) {
+		Map<String,String> map = new HashMap<>();
+		map.put("kokey", kokey);
+		map.put("pnum", pnum);
+		return sqlSession.selectList(nameSpace+"getallgoods1",map);
+	}
 
 	@Override//인기 상품 순으로 조회
 	public List<GoodsDto> getBestGoods() {
@@ -125,27 +132,26 @@ public class GoodsDao implements IGoodsDao{
 	}
 
 	@Override //카테고리별 상품 찾기
-	public List<GoodsDto> searchcategory(String cate, String pnum) {
+	public List<GoodsDto> searchcategory(String cate, String pnum,String kokey) {
 		Map<String,String> map = new HashMap<>();
 		map.put("cate", cate);
 		map.put("pnum", pnum);
+		map.put("kokey", kokey);
 		return sqlSession.selectList(nameSpace+"searchcategory", map);
 	}
 
 	@Override
-	public List<GoodsDto> getallgoods1(String pnum) {
-		return sqlSession.selectList(nameSpace+"getallgoods1", pnum);
-	}
-
-	@Override
-	public int gcount() {
-		int gcount = sqlSession.selectOne(nameSpace+"gcount");
+	public int gcount(String kokey) {
+		int gcount = sqlSession.selectOne(nameSpace+"gcount",kokey);
 		return gcount;
 	}
 
 	@Override
-	public int gccount(String cate) {
-		int gccount = sqlSession.selectOne(nameSpace+"gcount", cate);
+	public int gccount(String cate,String kokey) {
+		Map<String,String> map = new HashMap<>();
+		map.put("cate", cate);
+		map.put("kokey", kokey);
+		int gccount = sqlSession.selectOne(nameSpace+"gcount", map);
 		return gccount;
 	}
 

@@ -43,7 +43,7 @@
    background-color: #ced9df;
    border: 1px solid #999;
    overflow: hidden;
-   margin-top: -5px;
+   margin-top: -15px;
    margin-left: 29px;
    cursor: pointer; 
 }
@@ -379,10 +379,14 @@
         	 </c:when>
         	   <c:otherwise>
 				<ul>
+
 				<c:forEach var="dto" items="${slist}" begin="0" end="39" step="1" >
 					<li><a href="goodsdetail.do?g_seq=${dto.g_seq}"><img src="${dto.r_img}" alt="replyimg"></a></li>
 				</c:forEach>
+
+				
 				</ul>
+
 				</c:otherwise>
 			</c:choose>
 			</div>

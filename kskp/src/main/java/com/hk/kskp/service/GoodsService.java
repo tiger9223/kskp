@@ -19,6 +19,10 @@ public class GoodsService implements IGoodsService{
 	public List<GoodsDto> getAllGoods() {
 		return GoodsDao.getAllGoods();
 	}
+	@Override
+	public List<GoodsDto> getAllGoods1(String pnum,String kokey) {
+		return GoodsDao.getAllGoods1(pnum, kokey);
+	}
 
 	@Override
 	public List<GoodsDto> getBestGoods() {
@@ -112,23 +116,19 @@ public class GoodsService implements IGoodsService{
 
 
 	@Override
-	public List<GoodsDto> searchcategory(String cate, String pnum) {
-		return GoodsDao.searchcategory(cate, pnum);
+	public List<GoodsDto> searchcategory(String cate, String pnum,String kokey) {
+		return GoodsDao.searchcategory(cate, pnum,kokey);
+	}
+
+
+	@Override
+	public int gcount(String kokey) {
+		return GoodsDao.gcount(kokey);
 	}
 
 	@Override
-	public List<GoodsDto> getallgoods1(String pnum) {
-		return GoodsDao.getallgoods1(pnum);
-	}
-
-	@Override
-	public int gcount() {
-		return GoodsDao.gcount();
-	}
-
-	@Override
-	public int gccount(String cate) {
-		return GoodsDao.gccount(cate);
+	public int gccount(String cate,String kokey) {
+		return GoodsDao.gccount(cate,kokey);
 	}
 
 	

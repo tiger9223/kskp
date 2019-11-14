@@ -10,6 +10,7 @@ public interface IGoodsService {
 	//상품 등록날짜 순으로 전체 조회
 	public List<GoodsDto> getAllGoods();
 	
+	public List<GoodsDto> getAllGoods1(String pnum,String kokey);
 	//인기 상품 순으로 조회
 	public List<GoodsDto> getBestGoods();
 	
@@ -53,13 +54,11 @@ public interface IGoodsService {
 	public boolean insertAnswer(ReviewDto dto);
 	
 	//카테고리별 상품 찾기
-	public List<GoodsDto> searchcategory(String cate, String pnum);
+	public List<GoodsDto> searchcategory(String cate, String pnum,String kokey);
 	
-	public List<GoodsDto> getallgoods1(String pnum);
+	public int gcount(String kokey);
 	
-	public int gcount();
-	
-	public int gccount(String cate);
+	public int gccount(String cate,String kokey);
 	
 	//한 상품의 후기 전체가져오기
 	public List<ReviewDto> getAllReview(int r_seq);

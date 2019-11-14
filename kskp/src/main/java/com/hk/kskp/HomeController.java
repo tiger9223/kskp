@@ -66,7 +66,7 @@ public class HomeController {
 			}
 		}
 
-		model.addAttribute("slist",slist);
+		model.addAttribute("slist", slist);
 		model.addAttribute("alist", alist);
 		model.addAttribute("blist", blist);
 		
@@ -93,27 +93,32 @@ public class HomeController {
 		}		
 		int p = Integer.parseInt(pnum);
 		List<GoodsDto> list = new ArrayList<>();
-		
+		int gcount;
 		if(cate == null) {
-			list = GoodsService.getallgoods1(pnum);
+			list = GoodsService.getAllGoods1(pnum,kokey);
+			gcount=GoodsService.gcount(kokey);
 		if(p > 1) {
 			if(list.size() == 0) {
-				list = GoodsService.getallgoods1(String.valueOf(p-1));
+				list = GoodsService.getAllGoods1(String.valueOf(p-1),kokey);
+				gcount=GoodsService.gcount(kokey);
 			}
 		}
 		}else {
-			list = GoodsService.searchcategory(cate,pnum);
+			list = GoodsService.searchcategory(cate,pnum,kokey);
+			gcount=GoodsService.gccount(cate,kokey);
 		if(p > 1) {
 			if(list.size() == 0) {
-				list = GoodsService.getallgoods1(String.valueOf(p-1));
+				list = GoodsService.searchcategory(cate,String.valueOf(p-1),kokey);
+				gcount=GoodsService.gccount(cate,kokey);
 			}
 		}
 		}
 		
 	
 		System.out.println(list);
+		System.out.println(gcount);
 		model.addAttribute("list", list);
-		int gcount=GoodsService.gcount();
+		
 		model.addAttribute("enkey", enkey);
 		model.addAttribute("kokey", kokey);
 		model.addAttribute("cate", cate);
@@ -121,35 +126,6 @@ public class HomeController {
 		model.addAttribute("map", map);
 		return "areagoods";
 	}
-	@RequestMapping(value = "/searchcategory.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String searchcategory(HttpServletRequest request, Locale locale, Model model,String pnum, String cate, String enkey, String kokey) {
-		logger.info(cate+"선택");
-		
-		if(pnum == null) {
-			pnum = (String)request.getSession().getAttribute("pnum");
-		}else {
-			request.getSession().setAttribute("pnum", pnum);
-		}	
-		
-		
-		List<GoodsDto> list = GoodsService.searchcategory(cate,pnum);
-		
-		int p = Integer.parseInt(pnum);
-		
-		if(p > 1) {
-			if(list.size() == 0) {
-				list = GoodsService.searchcategory(cate,String.valueOf(p-1));
-			}
-		}
-		model.addAttribute("list", list);
-		int gccount = GoodsService.gccount(cate);
-		
-		
-		model.addAttribute("enkey", enkey);
-		model.addAttribute("kokey", kokey);
-		Map<String, Integer> map=Paging.pagingValue(gccount, pnum, 5);
-		model.addAttribute("map", map);
-		return "areagoods";
-	}
+	
 	
 }
