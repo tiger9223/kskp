@@ -40,8 +40,9 @@ height:160px;
 </head>
 <body>
 <h1>수익내역</h1>
-<form action="appsalform.do" method="post"></form>
+<form action="appsalform.do" method="post">
 <input type="hidden" name="gu_seq" value="${ldto1.gu_seq}"/>
+
 <table border="1">
    <col width="188px">
    <col width="300px">
@@ -88,17 +89,45 @@ height:160px;
          </tr>
          <tr>
          	<td colspan="3">정산 받은 금액</td>
-         	<td>${sdto.sumsal}</td>
+         	<td>${gdto.getgsal}</td>
          </tr>
+          <c:choose>
+         <c:when test="${rdto.s_flag eq 0}">
          <tr>
          <td colspan="3">정산가능금액</td>
-     	<td><c:out value="${cost}"/></td>
+         <td>관리자 정산 승인 대기중</td>
          </tr>
+         </c:when>
+         <c:otherwise>
+          <tr>
+           <td colspan="3">정산가능금액</td>
+     	<td><c:out value="${cost - sdto.getsal}"/></td>
+         </tr>
+         </c:otherwise>
+         </c:choose>
          <tr>
-         <td colspan="4"><input id="sub" type="submit" value="송금신청"></td>
+         <td colspan="4"><input id="sub" type="submit"  value="송금신청" ${rdto.s_flag eq 0 ? 'disabled' : ''}></td>
          </tr>
+         <input type="hidden" id="flag" value="${rdto.s_flag}"  />
+         <input type="hidden" name="sal" value="<c:out value="${cost - sdto.getsal}"/>"  />
+         
+       
 </table>
+</form>
 <script type="text/javascript">
+$(document).ready(function() {
+	$("#sub").click(function(){
+		
+		var flag = $("flag").val();
+		if(flag==0){
+			$("#sub").attr("disabled", true);
+
+		}
+		
+	});
+});
+
+
 function app(gu_seq){
 	location.href="appsalform.do?gu_seq="+gu_seq;
 }

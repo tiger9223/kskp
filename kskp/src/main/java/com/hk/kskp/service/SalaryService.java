@@ -43,5 +43,15 @@ public class SalaryService implements ISalaryService {
 	public SalaryDto getSal(int gu_seq) {
 		return SalaryDao.getSal(gu_seq);
 	}
+
+	@Override
+	public SalaryDto waitsal(int gu_seq) {
+		return SalaryDao.waitsal(gu_seq);
+	}
+
+	@Override
+	public SalaryDto getgsal(int gu_seq) {
+		return SalaryDao.getgsal(gu_seq);
+	}
 	
 }

@@ -48,4 +48,14 @@ public class SalaryDao implements ISalaryDao{
 		return sqlSession.selectOne(nameSpace+"getsal", gu_seq);
 	}
 
+	@Override
+	public SalaryDto waitsal(int gu_seq) {
+		return sqlSession.selectOne(nameSpace+"waitsal",gu_seq);
+	}
+
+	@Override
+	public SalaryDto getgsal(int gu_seq) {
+		return sqlSession.selectOne(nameSpace+"getgsal", gu_seq);
+	}
+
 }

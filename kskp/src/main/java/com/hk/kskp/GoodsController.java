@@ -235,17 +235,22 @@ public class GoodsController {
 	@RequestMapping(value = "/salary.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String salary(Locale locale, Model model, int gu_seq) {
 		logger.info("수익내역 보기", locale);
-	
+		
 		List<PayDto> list = CashService.getPays(gu_seq);
 		int SalSum = CashService.SalSum(gu_seq);
 		int SalPeople = CashService.SalPeople(gu_seq);
 		SalaryDto sdto = SalaryService.getSal(gu_seq);
+		SalaryDto rdto = SalaryService.waitsal(gu_seq);
+		SalaryDto gdto = SalaryService.getgsal(gu_seq);
+		System.out.println(rdto);
 		System.out.println(sdto);
 		System.out.println(list);
 		model.addAttribute("list",list);
 		model.addAttribute("SalSum",SalSum);
 		model.addAttribute("SalPeople",SalPeople);
 		model.addAttribute("sdto",sdto);
+		model.addAttribute("rdto", rdto);
+		model.addAttribute("gdto", gdto);
 		return "guidesalary";
 	}
 

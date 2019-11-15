@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 가이드 수익 송금 신청 -->
 	<insert id="appsal" parameterType="SalaryDto">
-	INSERT INTO SALARY (S_SEQ,GU_SEQ,S_COST,S_REGDATE,S_BANK,S_ACC,S_FLAG,S_AREGDATE)
-	VALUES(salary_seq.nextval,#{gu_seq},#{s_cost},SYSDATE,#{s_bank},#{s_acc},0,null)
+	INSERT INTO SALARY (S_SEQ,GU_SEQ,S_COST,S_REGDATE,S_BANK,S_ACC,S_FLAG,S_AREGDATE,S_GCOST)
+	VALUES(salary_seq.nextval,#{gu_seq},#{s_cost},SYSDATE,#{s_bank},#{s_acc},0,null,#{s_gcost})
     </insert>
 	
 	<!-- 송금 내역 -->
@@ -31,11 +31,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	UPDATE SALARY SET S_FLAG=1, S_AREGDATE=SYSDATE WHERE S_SEQ=#{s_seq}
 	</update>
 
-	<!-- 현재 정산받은 금액 -->
+	<!--  정산받은 금액 -->
 	<select id="getsal" parameterType="int" resultType="SalaryDto">
 	<![CDATA[ 
 	SELECT SUM(S_COST) as getsal FROM SALARY s,GUIDE gu WHERE gu.GU_SEQ=#{gu_seq} AND gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=1
 	 ]]>
 	</select>
+	
+	<!-- 수수료를 때고 정산받은 금액 -->
+	<select id="getgsal" parameterType="int" resultType="SalaryDto">
+	<![CDATA[ 
+	SELECT SUM(S_GCOST) as getgsal FROM SALARY s,GUIDE gu WHERE gu.GU_SEQ=#{gu_seq} AND gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=1
+	 ]]>
+	</select>
+	
+	<select id="waitsal" parameterType="int" resultType="SalaryDto">
+	 SELECT * FROM SALARY WHERE GU_SEQ=#{gu_seq} AND s_flag=0
+	</select>
+
+	  
+
+
+
 
 </mapper>

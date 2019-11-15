@@ -16,8 +16,12 @@ public interface ISalaryDao {
 	public List<SalaryDto> adminsallist();
 	//관리자 정산확인
 	public boolean okaysal(int s_seq);
-	//가이드 현재 정산금액
+	//가이드  정산금액
 	public SalaryDto getSal(int gu_seq);
+	//가이드 정산 대기중
+	public SalaryDto waitsal(int gu_seq);
 	
+	//가이드 수수료 뺀 정산금액
+	public SalaryDto getgsal(int gu_seq);
 	
 }
