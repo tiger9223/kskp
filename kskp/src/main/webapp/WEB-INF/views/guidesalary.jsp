@@ -88,7 +88,7 @@ height:160px;
          </tr>
          <tr>
          	<td colspan="3">정산 받은 금액</td>
-         	<td>${nowcost}</td>
+         	<td>${sdto.sumsal}</td>
          </tr>
          <tr>
          <td colspan="3">정산가능금액</td>

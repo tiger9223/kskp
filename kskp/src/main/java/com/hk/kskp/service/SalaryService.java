@@ -40,8 +40,8 @@ public class SalaryService implements ISalaryService {
 	}
 
 	@Override
-	public int nowcost(int gu_seq) {
-		return SalaryDao.nowcost(gu_seq);
+	public SalaryDto getSal(int gu_seq) {
+		return SalaryDao.getSal(gu_seq);
 	}
 	
 }

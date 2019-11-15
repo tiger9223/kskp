@@ -17,7 +17,7 @@ public interface ISalaryDao {
 	//관리자 정산확인
 	public boolean okaysal(int s_seq);
 	//가이드 현재 정산금액
-	public int nowcost(int gu_seq);
+	public SalaryDto getSal(int gu_seq);
 	
 	
 }

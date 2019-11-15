@@ -44,8 +44,8 @@ public class SalaryDao implements ISalaryDao{
 	}
 
 	@Override
-	public int nowcost(int gu_seq) {
-		return sqlSession.selectOne(nameSpace+"nowcost", gu_seq);
+	public SalaryDto getSal(int gu_seq) {
+		return sqlSession.selectOne(nameSpace+"getsal", gu_seq);
 	}
 
 }

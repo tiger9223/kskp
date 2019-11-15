@@ -32,6 +32,7 @@ import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
 import com.hk.kskp.dtos.PayDto;
 import com.hk.kskp.dtos.ReviewDto;
+import com.hk.kskp.dtos.SalaryDto;
 import com.hk.kskp.service.ICashService;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
@@ -238,13 +239,13 @@ public class GoodsController {
 		List<PayDto> list = CashService.getPays(gu_seq);
 		int SalSum = CashService.SalSum(gu_seq);
 		int SalPeople = CashService.SalPeople(gu_seq);
-		int nowcost=SalaryService.nowcost(gu_seq);
-		System.out.println(nowcost);
+		SalaryDto sdto = SalaryService.getSal(gu_seq);
+		System.out.println(sdto);
 		System.out.println(list);
 		model.addAttribute("list",list);
 		model.addAttribute("SalSum",SalSum);
 		model.addAttribute("SalPeople",SalPeople);
-		model.addAttribute("nowcost",nowcost);
+		model.addAttribute("sdto",sdto);
 		return "guidesalary";
 	}
 
