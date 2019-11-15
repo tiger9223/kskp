@@ -64,9 +64,10 @@ height:160px;
          <c:otherwise>
 				<c:set var="cost" value="0" />
         	 <c:set var="num" value="0" />
+        	 
             <c:forEach items="${list}" var="dto">
   			<tr>
-               <td><div class="image"><img id="img" src="${dto.g_img1}" onclick="goods(${dto.g_seq})"/></div></td>
+               <td><div class="image"><img id="img" src="${dto.g_img1}" onclick="goods(${dto.g_seq},${ldto1.gu_seq})"/></div></td>
 	           <td>${dto.g_name}</td> 
 	           <td>${dto.sumcost}</td>
 	           <td>${dto.sumnum}</td>
@@ -86,7 +87,11 @@ height:160px;
          <td ><c:out value="${num}"/></td>
          </tr>
          <tr>
-         <td colspan="3">송금 신청 가능 금액</td>
+         	<td colspan="3">정산 받은 금액</td>
+         	<td>${nowcost}</td>
+         </tr>
+         <tr>
+         <td colspan="3">정산가능금액</td>
      	<td><c:out value="${cost}"/></td>
          </tr>
          <tr>
@@ -97,8 +102,8 @@ height:160px;
 function app(gu_seq){
 	location.href="appsalform.do?gu_seq="+gu_seq;
 }
-function goods(g_seq){
-	location.href="goodsdetail.do?g_seq="+g_seq;
+function goods(g_seq,gu_seq){
+	location.href="detailsal.do?g_seq="+g_seq+"&gu_seq="+gu_seq;
 }
 </script>
 </body>
