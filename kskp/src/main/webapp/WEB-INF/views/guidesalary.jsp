@@ -40,6 +40,8 @@ height:160px;
 </head>
 <body>
 <h1>수익내역</h1>
+<form action="appsalform.do" method="post"></form>
+<input type="hidden" name="gu_seq" value="${ldto1.gu_seq}"/>
 <table border="1">
    <col width="188px">
    <col width="300px">
@@ -70,7 +72,7 @@ height:160px;
 	           <td>${dto.sumnum}</td>
 	 		</tr>
 	 		  <c:set var="cost" value="${cost + dto.sumcost}"/>
-	            <c:set var="num" value="${num + dto.sumnum}"/>
+	          <c:set var="num" value="${num + dto.sumnum}"/>
             </c:forEach>
           
          </c:otherwise>
@@ -84,22 +86,20 @@ height:160px;
          <td ><c:out value="${num}"/></td>
          </tr>
          <tr>
-         <td colspan="3">정산가능금액</td>
+         <td colspan="3">송금 신청 가능 금액</td>
      	<td><c:out value="${cost}"/></td>
          </tr>
          <tr>
-         <td colspan="4"><button type="button" onclick="app(${ldto1.gu_seq})">송금신청</button></td>
+         <td colspan="4"><input id="sub" type="submit" value="송금신청"></td>
          </tr>
 </table>
 <script type="text/javascript">
 function app(gu_seq){
 	location.href="appsalform.do?gu_seq="+gu_seq;
 }
-	
-	function goods(g_seq){
-		location.href="detailsal.do?g_seq="+g_seq;
-	}
-	
+function goods(g_seq){
+	location.href="goodsdetail.do?g_seq="+g_seq;
+}
 </script>
 </body>
 </html>
