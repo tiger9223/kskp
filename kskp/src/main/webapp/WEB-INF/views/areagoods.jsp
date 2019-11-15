@@ -19,7 +19,8 @@
       <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
       
       <style type="text/css">
-      .ui-datepicker{ font-size: 12px; width: 270px; }
+      .ui-datepicker { width: 293px; padding: 0 0; display: none; font-size: 1px;}
+      .ui-datepicker-week-end{padding: 0 0 !important;}
       </style>
 	<script>
 	  $.datepicker.setDefaults({
@@ -47,15 +48,16 @@
 			});
 		 
 		 
-// 		 $("#mdp-demo").hide();
-//          $("#datepick").click(function(){
-//             if($(this).next().css("display") == "none"){
-//                $("#mdp-demo").slideDown(200);
-//             }else{
-//                $("#mdp-demo").slideUp(200);
-//             }
-//          });
+   $("#datepick").click(function(){
+	   $("#datepicker").toggle();
+   })
 
+   
+   $(".ui-button").click(function(){
+	 var button = $(this).val();
+	   
+	   alert(button);  
+   })
 
 	    });
 	
@@ -149,9 +151,14 @@
 	        $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});
 	    }); 
 
-
+			$(".undefined").click(function(){
+				var date = $("#altField").val();
+				location.href="selectdate.do?enkey=${enkey}&kokey=${kokey}&cate=${cate}&date="+date;
+			});
 
 		});
+		
+
 
 	</script>
 </head>
@@ -251,10 +258,12 @@
 					<li><a href="selectarea.do?cate=통역/비즈니스&enkey=${enkey}&kokey=${kokey}&pnum=1"><i class="fas fa-briefcase"></i>통역 / 비즈니스</a> </li>
 				</ul>
 				<ul class="menu02">
-					<li id="datepick" style="cursor:pointer;"><i class="far fa-calendar-alt"></i>날짜</li>
+					<li id="datepick" style="cursor:pointer;"><i class="far fa-calendar-alt"></i>날짜 <a style="color:#00bcf8">${subdate}</a></li>
 				</ul>
+				<div id="datepicker" style="display: none;" style="z-index: 999">
 					 <div id="mdp-demo" style="z-index: 999"></div>
 					<input type="hidden"  name="g_date" id="altField" >
+				</div>
 			</div>
 			<div class="con_box">
 				<ul class="menu03">
@@ -267,7 +276,7 @@
 				<c:set var="key" value="${kokey}" />
 				<c:if test="${key eq gdto.g_area}">
 					<ul class="menu04">
-					<li>
+					<li style="z-index: -10;">
 						<a href="goodsdetail.do?g_seq=${gdto.g_seq}">
 							<img src="${gdto.g_img1}" alt="">
 							<div class="text_box">
@@ -290,24 +299,7 @@
 				</c:if>
 				</c:forEach>
 
-			<c:choose>
-				<c:when test="${cate == null}">
-				<div class="pager">
-					<a href="selectarea.do?enkey=${enkey}&kokey=${kokey}&pnum=${map.prePageNum}">≪</a>
-					<c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
-						<c:choose>
-							<c:when test="${pnum eq i}">
-								${i}
-							</c:when>
-							<c:otherwise>
-								<a href="selectarea.do?enkey=${enkey}&kokey=${kokey}&pnum=${i}">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<a href="selectarea.do?enkey=${enkey}&kokey=${kokey}&pnum=${map.nextPageNum}">≫</a>
-				</div>
-			</c:when>
-		<c:otherwise>
+		
 				<div class="pager">
 					<a href="selectarea.do?cate=${cate}&enkey=${enkey}&kokey=${kokey}&pnum=${map.prePageNum}">≪</a>
 					<c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
@@ -322,8 +314,7 @@
 					</c:forEach>
 					<a href="selectarea.do?cate=${cate}&enkey=${enkey}&kokey=${kokey}&pnum=${map.nextPageNum}">≫</a>
 				</div>
-			</c:otherwise>
-			</c:choose>
+		
 			
 			</div>
 		</div>

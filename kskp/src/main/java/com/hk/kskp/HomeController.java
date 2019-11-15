@@ -23,6 +23,7 @@ import com.hk.kskp.dtos.ReviewDto;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.IReviewService;
 import com.hk.kskp.utils.Paging;
+import com.hk.kskp.utils.SubString;
 
 /**
  * Handles requests for the application home page.
@@ -94,31 +95,77 @@ public class HomeController {
 		int p = Integer.parseInt(pnum);
 		List<GoodsDto> list = new ArrayList<>();
 		int gcount;
-		if(cate == null) {
+		if(cate == "" || cate == null) {
 			list = GoodsService.getAllGoods1(pnum,kokey);
 			gcount=GoodsService.gcount(kokey);
-		if(p > 1) {
-			if(list.size() == 0) {
-				list = GoodsService.getAllGoods1(String.valueOf(p-1),kokey);
-				gcount=GoodsService.gcount(kokey);
+			
+			if(p > 1) {
+				if(list.size() == 0) {
+					list = GoodsService.getAllGoods1(String.valueOf(p-1),kokey);
+					gcount=GoodsService.gcount(kokey);
+				}
 			}
-		}
+		
 		}else {
+			System.out.println("ㅇㅇ");
 			list = GoodsService.searchcategory(cate,pnum,kokey);
 			gcount=GoodsService.gccount(cate,kokey);
-		if(p > 1) {
-			if(list.size() == 0) {
-				list = GoodsService.searchcategory(cate,String.valueOf(p-1),kokey);
-				gcount=GoodsService.gccount(cate,kokey);
+			System.out.println("1gcount = "+gcount);
+			if(p > 1) {
+				if(list.size() == 0) {
+					list = GoodsService.searchcategory(cate,String.valueOf(p-1),kokey);
+					gcount=GoodsService.gccount(cate,kokey);
+				}
 			}
-		}
 		}
 		
 	
-		System.out.println(list);
-		System.out.println(gcount);
+		System.out.println("list = "+list);
+		System.out.println("2gcount = "+gcount);
 		model.addAttribute("list", list);
 		
+		model.addAttribute("enkey", enkey);
+		model.addAttribute("kokey", kokey);
+		model.addAttribute("cate", cate);
+		Map<String, Integer> map=Paging.pagingValue(gcount, pnum, 5);
+		model.addAttribute("map", map);
+		return "areagoods";
+	}	@RequestMapping(value = "/selectdate.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String selectdate(HttpServletRequest request,Locale locale, Model model, String enkey, String kokey, String pnum, String cate,String date) {
+		logger.info("날짜  선택");
+		System.out.println("날짜"+ date);
+		if(pnum == null) {
+			pnum = (String)request.getSession().getAttribute("pnum");
+		}else {
+			request.getSession().setAttribute("pnum", pnum);
+		}		
+		int p = Integer.parseInt(pnum);
+		List<GoodsDto> list = new ArrayList<>();
+		int gcount;
+		if(cate == "" || cate == null) {
+			list = GoodsService.getAllGoods2(pnum,kokey,date);
+			gcount=GoodsService.gcount2(kokey,date);
+		if(p > 1) {
+			if(list.size() == 0) {
+				list = GoodsService.getAllGoods2(String.valueOf(p-1),kokey,date);
+				gcount=GoodsService.gcount2(kokey,date);
+			}
+		}
+		}else {
+			list = GoodsService.searchcategory2(cate,pnum,kokey,date);
+			gcount=GoodsService.gccount2(cate,kokey,date);
+		if(p > 1) {
+			if(list.size() == 0) {
+				list = GoodsService.searchcategory2(cate,String.valueOf(p-1),kokey,date);
+				gcount=GoodsService.gccount2(cate,kokey,date);
+			}
+		}
+		}
+		String subdate = SubString.sub(date);
+		System.out.println(list);
+		System.out.println(list);
+		model.addAttribute("subdate", subdate);
+		model.addAttribute("list", list);
 		model.addAttribute("enkey", enkey);
 		model.addAttribute("kokey", kokey);
 		model.addAttribute("cate", cate);

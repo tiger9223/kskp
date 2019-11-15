@@ -17,6 +17,16 @@ public interface IGoodsService {
 	//지역별 상품 순으로 조회
 	public List<GoodsDto> getAreaGoods(String g_area);
 	
+	public List<GoodsDto> getAllGoods2(String pnum, String kokey, String date);
+	//카테고리별 상품 찾기
+	public List<GoodsDto> searchcategory2(String cate, String pnum, String kokey,String date);
+	
+	public int gcount2(String kokey,String date);
+	
+	public int gccount2(String cate,String kokey,String date);
+	
+	
+	
 	//가이드 상품관리 조회
 	public List<GoodsDto> guideGoods(int gu_seq);
 	

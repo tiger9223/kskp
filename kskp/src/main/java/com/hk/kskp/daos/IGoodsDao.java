@@ -16,6 +16,14 @@ public interface IGoodsDao {
 	//카테고리별 상품 찾기
 	public List<GoodsDto> searchcategory(String cate, String pnum, String kokey);
 	
+	
+	public List<GoodsDto> getAllGoods2(String pnum, String kokey, String date);
+	//카테고리별 상품 찾기
+	public List<GoodsDto> searchcategory2(String cate, String pnum, String kokey,String date);
+	
+	public int gcount2(String kokey,String date);
+	
+	public int gccount2(String cate,String kokey,String date);
 	//인기 상품 순으로 조회
 	public List<GoodsDto> getBestGoods();
 	
