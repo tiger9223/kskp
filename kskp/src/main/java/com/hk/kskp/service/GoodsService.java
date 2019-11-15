@@ -132,9 +132,26 @@ public class GoodsService implements IGoodsService{
 	}
 
 	
-
+	@Override
+	public List<GoodsDto> getAllGoods2(String pnum,String kokey,String date) {
+		return GoodsDao.getAllGoods2(pnum, kokey,date);
+	}
 	
+	@Override
+	public List<GoodsDto> searchcategory2(String cate, String pnum,String kokey,String date) {
+		return GoodsDao.searchcategory2(cate, pnum,kokey,date);
+	}
 
+
+	@Override
+	public int gcount2(String kokey,String date) {
+		return GoodsDao.gcount2(kokey,date);
+	}
+
+	@Override
+	public int gccount2(String cate,String kokey,String date) {
+		return GoodsDao.gccount2(cate,kokey,date);
+	}
 	
 
 	

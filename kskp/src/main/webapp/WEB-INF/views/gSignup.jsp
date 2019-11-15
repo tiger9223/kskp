@@ -113,94 +113,8 @@
    }
 </style>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<script type="text/javascript">
-	
-// 	function check(){
-		
-// 		  var getMail = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/);
-// 		  var getpwCheck= RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/);
-// 		  var getName= RegExp(/^[가-힣]+$/); 
-//  		  var idchk = document.getElementsByName("idchk")[0].getAttribute("class");
- 		
-// 		//이름 유효성 검사  (한글만)
-// 		  if(!getName.test($("#gu_name").val())){
-// 		        alert("이름을 형식에 맞게 입력해주세요");
-// 		        $("#gu_name").val("");
-// 		        $("#gu_name").focus();
-// 		        return false;
-// 		      }	  
-
-// 		    //이메일 공백 확인
-// 	      if($("#gu_email").val() == ""){
-// 	        alert("이메일을 입력해주세요");
-// 	        $("#gu_email").focus();
-// 	        return false;
-// 	      }
-	           
-		    
-// 	    //이메일 유효성 검사
-// 	      if(!getMail.test($("#gu_email").val())){
-// 	        alert("이메일형식에 맞게 입력해주세요")
-// 	        $("#gu_email").val("");
-// 	        $("#gu_email").focus();
-// 	        return false;
-// 	      }
-		  
-// 		  //비밀번호 유효성검사
-// 	      if(!getpwCheck.test($("#gu_pw").val())) {
-// 	      alert("비밀번호를 형식에 맞춰서  입력해주세요");
-// 	      $("#gu_pw").val("");
-// 	      $("#gu_pwchk").val("");
-// 	      $("#gu_pw").focus();
-// 	      return false;
-// 	      }
-	 
-	   
-//  	      //비밀번호 일치여부
-//  	      if($("#gu_pw").val() != ($("#gu_pwchk").val())){ 
-//  	      alert("비밀번호가 일치하지 않습니다.");
-//  	      $("#gu_pwchk").val("");
-// 	      $("#gu_pwchk").focus();
-// 	      return false;
-// 	     }
- 	      
-//  	      //은행공백
-//  	     if($("#gu_bank").val() == ""){
-//  	        alert("은행명을 입력해주세요");
-//  	        $("#gu_bank").focus();
-//  	        return false;
-//  	      }
- 	           
-//  	    //은행계좌 공백
-//  	     if($("#gu_acc").val() == ""){
-//  	        alert("은행계좌를 입력해주세요");
-//  	        $("#gu_acc").focus();
-//  	        return false;
-//  	      }
- 	    
-//  	      //회원가입 시 중복체크 확인여부
-//   	      if(idchk!='y'){
-//   	    	  alert("중복체크를 확인하세요.");  	    	 
-//   	    	  return false;
-// 	      }
- 	      
-// 	return true;	  
-// 	}
-	
-// 	//아이디 중복검사 창
-// 	function idChk() {
-// 		var gu_email = document.getElementsByName("gu_email")[0].value;
-// 		//open("url", "title", "창의 속성 설정")
-// 		if(gu_email==""){
-// 			alert("이메일을 입력해주세요.");
-// 		}else{
-// 		window.open("idChk1.do?gu_email="+gu_email,"check","width=300px, height=300px");
-// 		}
-// 	}
-
-	
-	
-	function previewImage(targetObj, img_check) {
+<script type="text/javascript">	
+		function previewImage(targetObj, img_check) {
 		var preview = document.getElementById(img_check); //div id
 		var ua = window.navigator.userAgent;
 	  //ie일때(IE8 이하에서만 작동)
@@ -267,182 +181,258 @@
 			}
 		}
 	}
-	$(function(){
-	    var getMail = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/);
-	    var getpwCheck= RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/);
-	    var getName= RegExp(/^[가-힣]+$/); 
-	    var getPhone = /^\d{3}\d{3,4}\d{4}$/;
+	var acccheck;
+	var bankcheck;
+	var namecheck;
+	var emailcheck;
+	var phonecheck;
+	var pwcheck;
+	var pwchkcheck;
+	var imgcheck;
+		
+	function acccheckfun(){
 	    var getAcc= /[^0-9]/g;
-	    
-		    
-		    $("#gu_acc").blur(function(){
-		    	var gu_acc = $("#gu_acc").val();
-		    	if(gu_acc == ""){
-		    		$('#acc_check').text('계좌번호를 입력해주세요 :)');
-					$('#acc_check').css('color', 'red');		
+	  	var gu_acc = $("#gu_acc").val();
+    	if(gu_acc == ""){
+    		$('#acc_check').text('계좌번호를 입력해주세요 :)');
+			$('#acc_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			acccheck= false;
+    	}else if(getAcc.test(gu_acc)){
+    		$("#acc_check").text(" -없이 정확히 입력해주세요 ");
+			$("#acc_check").css("color", "red");
+			$("#reg_submit").attr("disabled", true);
+			acccheck= false;
+    	}else{
+    		$("#acc_check").text("감사합니다.");
+			$("#acc_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			acccheck= true;
+    	} 
+    	 
+	}
+	function bankcheckfun(){
+    	var gu_bank = $("#gu_bank").val();
+    	if(gu_bank == ""){
+    		$('#bank_check').text('은행명을 입력해주세요 :)');
+			$('#bank_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			bankcheck = false;
+    	}else{
+    		$("#bank_check").text("감사합니다");
+			$("#bank_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			bankcheck = true;
+    	} 
+    	 
+	}
+	
+	function phonecheckfun(){
+	    var getPhone = /^\d{3}\d{3,4}\d{4}$/;
+    	var gu_phone = $("#gu_phone").val();
+    	if(gu_phone == ""){
+    		$('#phone_check').text('핸드폰번호를 입력해주세요 :)');
+			$('#phone_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			phonecheck = false;
+    	}else if(!getPhone.test(gu_phone)){
+    		$("#phone_check").text(" -없이 010xxx(x)yyyy방식으로 입력해주세요 ");
+			$("#phone_check").css("color", "red");
+			$("#reg_submit").attr("disabled", true);
+			phonecheck = false;
+    	}else{
+    		$("#phone_check").text("정상적인 번호입니다");
+			$("#phone_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			phonecheck = true;
+    	} 
+    	 
+	}
+	
+	function namecheckfun(){
+	    var getName= RegExp(/^[가-힣]+$/); 
+    	var gu_name = $("#gu_name").val();
+    	if(gu_name == ""){
+    		$('#name_check').text('이름을 입력해주세요 :)');
+			$('#name_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			namecheck = false;
+    	}else if(!getName.test(gu_name)){
+    		$("#name_check").text("이름을 한글로만 형식에 맞게 입력해주세요. ");
+			$("#name_check").css("color", "red");
+			$("#reg_submit").attr("disabled", true);
+			namecheck = false;
+    	}else{
+    		$("#name_check").text("멋진 이름입니다.");
+			$("#name_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			namecheck = true;
+    	} 
+    	 
+    	
+	}
+	
+	function pwcheckfun(){
+		var getpwCheck= RegExp(/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/);
+    	var gu_pw = $("#gu_pw").val();
+    	if(gu_pw == ""){
+    		$('#pw_check').text('비밀번호를 입력해주세요 :)');
+			$('#pw_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			pwcheck = false;
+    	}else if(!getpwCheck.test(gu_pw)){
+    		$("#pw_check").text("비밀번호를 문자+숫자+특수문자 포함 8~16자 이내로 입력해주세요. ");
+			$("#pw_check").css("color", "red");
+			$("#reg_submit").attr("disabled", true);
+			pwcheck = false;
+    	}else{
+    		$("#pw_check").text("안전합니다! ");
+			$("#pw_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			pwcheck = true;
+    	} 
+    	
+    	
+	}
+	
+	function pwchkcheckfun(){
+    	var gu_pw = $("#gu_pw").val();
+    	var gu_pwchk = $("#gu_pwchk").val();
+    	if(gu_pwchk == ""){
+    		$('#pwchk_check').text('확인비밀번호를 입력해주세요 :)');
+			$('#pwchk_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			pwchkcheck = false;
+    	}else if(gu_pw != gu_pwchk && gu_pwchk != ""){
+    		$("#pwchk_check").text("비밀번호가 일치하지 않습니다. ");
+			$("#pwchk_check").css("color", "red");
+			$("#reg_submit").attr("disabled", true);
+			pwchkcheck = false;
+    	}else{
+    		$("#pwchk_check").text("일치합니다!");
+			$("#pwchk_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			pwchkcheck = true;
+    	} 
+	}
+	
+	function imgcheckfun(){
+    	var gu_img = $("#gu_img").val();
+    	if(gu_img == ""){
+    		$('#img_check').text('사진을 첨부해주세요 :)');
+			$('#img_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			imgcheck = false;
+    	 }else{
+	    		$("#img_check").text("멋지십니다!");
+				$("#img_check").css("color", "green");
+				$("#reg_submit").attr("disabled", false);
+				imgcheck = true;
+	    	} 
+	}
+	
+	function emailcheckfun(){
+		var getMail = RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/);
+		var gu_email = $('#gu_email').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/emailCheck.do?email='+ gu_email,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);		
+				if(gu_email == ""){
+					
+					$('#id_check').text('이메일을 입력해주세요 :)');
+					$('#id_check').css('color', 'red');		
 					$("#reg_submit").attr("disabled", true);
-		    	}else if(getAcc.test(gu_acc)){
-		    		$("#acc_check").text(" -없이 정확히 입력해주세요 ");
-					$("#acc_check").css("color", "red");
-					$("#reg_submit").attr("disabled", true);
-		    	}else{
-		    		$("#acc_check").text("감사합니다.");
-					$("#acc_check").css("color", "green");
-		    	} 
-		    	 
-		    	
-		    	
+					emailcheck = false;
+				}
+				else if(data == 0){
+					$("#id_check").text("멋진 아이디입니다! ");
+					$("#id_check").css("color", "green");
+					$("#reg_submit").attr("disabled", false);
+					emailcheck = true;
+					if(!getMail.test(gu_email)){
+						// 0 : 아이디 길이 / 문자열 검사
+						$("#id_check").text("이메일 형식으로 입력해주세요. ");
+						$("#id_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+						emailcheck = false;
+					}
+				}else if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						$("#id_check").text("이미 사용중인 이메일입니다 ");
+						$("#id_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+						emailcheck = false;
+					}
+		
+				}, 
+				error : function() {
+						console.log("실패");
+				}
+ 					  });
+	   	 }
+	
+	
+	$(function(){	    	        
+	    $("#gu_acc").blur(function(){
+	    	acccheckfun();	    			    	
 		    });
-	    
-	    
+	        
 	    $("#gu_bank").blur(function(){
-	    	var gu_bank = $("#gu_bank").val();
-	    	if(gu_bank == ""){
-	    		$('#bank_check').text('은행명을 입력해주세요 :)');
-				$('#bank_check').css('color', 'red');		
-				$("#reg_submit").attr("disabled", true);
-	    	}else{
-	    		$("#bank_check").text("감사합니다");
-				$("#bank_check").css("color", "green");
-	    	} 
-	    	 
-	    	
-	    	
+	    	bankcheckfun();	    		    	
 	    });
-	    
-	    
+	    	    
 	    $("#gu_phone").blur(function(){
-	    	var gu_phone = $("#gu_phone").val();
-	    	if(gu_phone == ""){
-	    		$('#phone_check').text('핸드폰번호를 입력해주세요 :)');
-				$('#phone_check').css('color', 'red');		
-				$("#reg_submit").attr("disabled", true);
-	    	}else if(!getPhone.test(gu_phone)){
-	    		$("#phone_check").text(" -없이 입력해주세요 ");
-				$("#phone_check").css("color", "red");
-				$("#reg_submit").attr("disabled", true);
-	    	}else{
-	    		$("#phone_check").text("정상적인 번호입니다");
-				$("#phone_check").css("color", "green");
-	    	} 
-	    	 
-	    	
-	    	
+	    	phonecheckfun();    		    	
 	    });
-		
-		
+			
 	    $("#gu_name").blur(function(){
-	    	var gu_name = $("#gu_name").val();
-	    	if(gu_name == ""){
-	    		$('#name_check').text('이름을 입력해주세요 :)');
-				$('#name_check').css('color', 'red');		
-				$("#reg_submit").attr("disabled", true);
-	    	}else if(!getName.test(gu_name)){
-	    		$("#name_check").text("이름을 한글로만 형식에 맞게 입력해주세요. ");
-				$("#name_check").css("color", "red");
-				$("#reg_submit").attr("disabled", true);
-	    	}else{
-	    		$("#name_check").text("멋진 이름입니다.");
-				$("#name_check").css("color", "green");
-	    	} 
-	    	 
-	    	
-	    	
+	    	namecheckfun();
 	    });
 		
 	    $("#gu_pw").blur(function(){
-	    	var gu_pw = $("#gu_pw").val();
-	    	if(gu_pw == ""){
-	    		$('#pw_check').text('비밀번호를 입력해주세요 :)');
-				$('#pw_check').css('color', 'red');		
-				$("#reg_submit").attr("disabled", true);
-	    	}else if(!getpwCheck.test(gu_pw)){
-	    		$("#pw_check").text("비밀번호를 문자+숫자+특수문자 포함 8~16자 이내로 입력해주세요. ");
-				$("#pw_check").css("color", "red");
-				$("#reg_submit").attr("disabled", true);
-	    	}else{
-	    		$("#pw_check").text("안전합니다! ");
-				$("#pw_check").css("color", "green");
-	    	} 
-	    	
-	    	
+	    	pwcheckfun();
 	    });
+	    
 	    $("#gu_pwchk").blur(function(){
-	    	var gu_pw = $("#gu_pw").val();
-	    	var gu_pwchk = $("#gu_pwchk").val();
-	    	if(gu_pwchk == ""){
-	    		$('#pwchk_check').text('확인비밀번호를 입력해주세요 :)');
-				$('#pwchk_check').css('color', 'red');		
-				$("#reg_submit").attr("disabled", true);
-	    	}else if(gu_pw != gu_pwchk && gu_pwchk != ""){
-	    		$("#pwchk_check").text("비밀번호가 일치하지 않습니다. ");
-				$("#pwchk_check").css("color", "red");
-				$("#reg_submit").attr("disabled", true);
-	    	}else{
-	    		$("#pwchk_check").text("일치합니다!");
-				$("#pwchk_check").css("color", "green");
-	    	} 
+	    	pwchkcheckfun();
 	    	
-	    });
-		
+	    });		
 		
 	    $("#gu_img").blur(function(){
-	    	var gu_img = $("#gu_img").val();
-	    	if(gu_img == ""){
-	    		$('#img_check').text('사진을 첨부해주세요 :)');
-				$('#img_check').css('color', 'red');		
-				$("#reg_submit").attr("disabled", true);
-	    	 }else{
-		    		$("#img_check").text("멋지십니다!");
-					$("#img_check").css("color", "green");
-		    	} 
+	    	imgcheckfun();
 	    });
 	    
 	    
 	   $("#gu_email").blur(function(){
-			// id = "id_reg" / name = "userId"
-			var gu_email = $('#gu_email').val();
-			$.ajax({
-				url : '${pageContext.request.contextPath}/emailCheck.do?email='+ gu_email,
-				type : 'get',
-				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : "+ data);		
-					if(gu_email == ""){
-						
-						$('#id_check').text('이메일을 입력해주세요 :)');
-						$('#id_check').css('color', 'red');		
-						$("#reg_submit").attr("disabled", true);
-					}
-					else if(data == 0){
-						$("#id_check").text("멋진 아이디입니다! ");
-						$("#id_check").css("color", "green");
-						if(!getMail.test(gu_email)){
-							// 0 : 아이디 길이 / 문자열 검사
-							$("#id_check").text("이메일 형식으로 입력해주세요. ");
-							$("#id_check").css("color", "red");
-							$("#reg_submit").attr("disabled", true);
-						}
-					}else if (data == 1) {
-							// 1 : 아이디가 중복되는 문구
-							$("#id_check").text("이미 사용중인 이메일입니다 ");
-							$("#id_check").css("color", "red");
-							$("#reg_submit").attr("disabled", true);
-						}else{
-							
-		
-						}
-					
-			
-					}, 
-					error : function() {
-							console.log("실패");
-					}
-	 					  });
-		   	 });
+		   emailcheckfun();
 
 	});	
-	
-	
+    	$("form").submit(function(){
+    		
+    		if(acccheck && bankcheck && namecheck && emailcheck && phonecheck && pwcheck && pwchkcheck && imgcheck){
+    			alert("789");
+    			return true;
+    		}else{
+    			emailcheckfun();
+    			pwcheckfun();
+    			pwchkcheckfun();
+    			namecheckfun();
+    			acccheckfun();
+    			phonecheckfun();
+    			bankcheckfun();
+    			imgcheckfun();
+    			
+    			if(acccheck && bankcheck && namecheck && emailcheck && phonecheck && pwcheck && pwchkcheck && imgcheck){
+    				return true;
+    			}else{
+    				return false;
+    			}
+    		}
+    	});
+	   
+	});
 </script>
 
 </head>
@@ -455,7 +445,7 @@
       </h1>
 
 
-<form onsubmit="return check()" action="gemailcerform.do" method="post" enctype="multipart/form-data">
+<form action="gemailcerform.do" method="post" enctype="multipart/form-data">
 
 <p class="title">이름</p>
 <input type="text" id="gu_name" class="text" name="gu_name" placeholder="이름(한글만가능)" />

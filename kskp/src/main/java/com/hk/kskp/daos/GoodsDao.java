@@ -151,14 +151,51 @@ public class GoodsDao implements IGoodsDao{
 		Map<String,String> map = new HashMap<>();
 		map.put("cate", cate);
 		map.put("kokey", kokey);
-		int gccount = sqlSession.selectOne(nameSpace+"gcount", map);
+		int gccount = sqlSession.selectOne(nameSpace+"gccount", map);
+		return gccount;
+	}
+
+	@Override
+	public int gcount2(String kokey, String date) {
+		Map<String,String> map = new HashMap<>();
+		map.put("kokey", kokey);
+		map.put("date", date);
+		int gcount = sqlSession.selectOne(nameSpace+"gcount2",map);
+		return gcount;
+	}
+
+	@Override
+	public int gccount2(String cate,String kokey, String date) {
+		Map<String,String> map = new HashMap<>();
+		map.put("cate", cate);
+		map.put("kokey", kokey);
+		map.put("date", date);
+		int gccount = sqlSession.selectOne(nameSpace+"gccount2", map);
 		return gccount;
 	}
 
 	
-	
+	@Override//상품 등록날짜 순으로 전체 조회
+	public List<GoodsDto> getAllGoods2(String pnum,String kokey, String date) {
+		Map<String,String> map = new HashMap<>();
+		map.put("kokey", kokey);
+		map.put("pnum", pnum);
+		map.put("date", date);
+		System.out.println("all:"+map);
+		return sqlSession.selectList(nameSpace+"getallgoods2",map);
+	}
 
-	
+
+	@Override //카테고리별 상품 찾기
+	public List<GoodsDto> searchcategory2(String cate, String pnum,String kokey, String date ) {
+		Map<String,String> map = new HashMap<>();
+		map.put("cate", cate);
+		map.put("pnum", pnum);
+		map.put("kokey", kokey);
+		map.put("date", date);
+		System.out.println("cate:"+map);
+		return sqlSession.selectList(nameSpace+"searchcategory2", map);
+	}
 
 
 }
