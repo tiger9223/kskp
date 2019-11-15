@@ -12,13 +12,15 @@ public class SalaryDto {
 	private String s_bank;
 	private String s_acc;
 	private int s_flag;
+	private int getsal;
 	
 	public SalaryDto() {
 		super();
 	}
 
+
 	public SalaryDto(int s_seq, int gu_seq, int s_cost, Date s_regdate, Date s_aregdate, String s_bank, String s_acc,
-			int s_flag) {
+			int s_flag, int getsal) {
 		super();
 		this.s_seq = s_seq;
 		this.gu_seq = gu_seq;
@@ -28,7 +30,10 @@ public class SalaryDto {
 		this.s_bank = s_bank;
 		this.s_acc = s_acc;
 		this.s_flag = s_flag;
+		this.getsal = getsal;
 	}
+
+
 
 	public int getS_seq() {
 		return s_seq;
@@ -93,14 +98,25 @@ public class SalaryDto {
 	public void setS_flag(int s_flag) {
 		this.s_flag = s_flag;
 	}
+	
+
+	public int getGetsal() {
+		return getsal;
+	}
+
+
+	public void setGetsal(int getsal) {
+		this.getsal = getsal;
+	}
+
 
 	@Override
 	public String toString() {
 		return "SalaryDto [s_seq=" + s_seq + ", gu_seq=" + gu_seq + ", s_cost=" + s_cost + ", s_regdate=" + s_regdate
-				+ ", s_aregdate=" + s_aregdate + ", s_bank=" + s_bank + ", s_acc=" + s_acc + ", s_flag=" + s_flag + "]";
+				+ ", s_aregdate=" + s_aregdate + ", s_bank=" + s_bank + ", s_acc=" + s_acc + ", s_flag=" + s_flag
+				+ ", getsal=" + getsal + "]";
 	}
 
-	
-	
+
 
 }

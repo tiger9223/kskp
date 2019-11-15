@@ -31,8 +31,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	UPDATE SALARY SET S_FLAG=1, S_AREGDATE=SYSDATE WHERE S_SEQ=#{s_seq}
 	</update>
 
-	
-
-	
+	<!-- 현재 정산받은 금액 -->
+	<select id="getsal" parameterType="int" resultType="SalaryDto">
+	<![CDATA[ 
+	SELECT SUM(S_COST) as getsal FROM SALARY s,GUIDE gu WHERE gu.GU_SEQ=#{gu_seq} AND gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=1
+	 ]]>
+	</select>
 
 </mapper>

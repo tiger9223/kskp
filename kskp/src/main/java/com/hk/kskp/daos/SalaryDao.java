@@ -43,4 +43,9 @@ public class SalaryDao implements ISalaryDao{
 		return count>0?true:false;
 	}
 
+	@Override
+	public SalaryDto getSal(int gu_seq) {
+		return sqlSession.selectOne(nameSpace+"getsal", gu_seq);
+	}
+
 }
