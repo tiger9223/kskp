@@ -222,10 +222,10 @@
 <div class='panel-title'>
 등록된 상품
 <!-- 상품 갯수 -->
-<span class='badge badge-success'>카운트</span>
+<span class='badge badge-success'>${goodscount}</span>
 <div class='panel-btn-container clearfix hidden-xs'>
 <div class='col-xs-12'>
-<a class='btn btn-default btn-info pull-right offer-register-btn' data-disable-with='로딩중..' href='insertgoodsform.do'>
+<a class='btn btn-default btn-info pull-right offer-register-btn' data-disable-with='로딩중..' href='insertgoodsform.do?gu_seq=${ldto1.gu_seq}'>
 <i aria-hidden='true' class='icon wb-plus'></i>
 가이드 투어 등록
 </a>
