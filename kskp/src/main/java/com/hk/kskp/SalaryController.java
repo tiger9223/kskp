@@ -22,10 +22,10 @@ public class SalaryController {
 	@RequestMapping(value="/appsalform.do",method = RequestMethod.GET)
 	public String appsalform(Model model,SalaryDto dto)  {
 		logger.info("가이드 송금신청 폼으로 이동 이동");
-		
 		return "sendsalary";
-	
 	}
+	
+
 	
 	
 	

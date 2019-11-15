@@ -38,5 +38,10 @@ public class SalaryService implements ISalaryService {
 	public boolean okaysal(int s_seq) {
 		return SalaryDao.okaysal(s_seq);
 	}
+
+	@Override
+	public int nowcost(int gu_seq) {
+		return SalaryDao.nowcost(gu_seq);
+	}
 	
 }

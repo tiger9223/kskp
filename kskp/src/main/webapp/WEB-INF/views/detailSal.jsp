@@ -20,7 +20,7 @@
    </tr>
    <c:forEach items="${list}" var="dto">
    <tr>
-   	<td>${dto.p_name}<td>
+   	<td>${dto.p_name}</td>
    	<td>${dto.p_date}</td>
    <td>${dto.p_cost }</td>
    <td>${dto.p_num}</td>

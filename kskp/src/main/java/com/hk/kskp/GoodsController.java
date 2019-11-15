@@ -36,6 +36,8 @@ import com.hk.kskp.service.ICashService;
 import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.IReviewService;
+import com.hk.kskp.service.ISalaryService;
+import com.hk.kskp.service.SalaryService;
 import com.hk.kskp.utils.UploadFileUtil;
 
 @Controller
@@ -54,6 +56,9 @@ public class GoodsController {
 	
 	@Autowired
 	private IReviewService ReviewService;
+	
+	@Autowired
+	private ISalaryService SalaryService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -229,20 +234,26 @@ public class GoodsController {
 	@RequestMapping(value = "/salary.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String salary(Locale locale, Model model, int gu_seq) {
 		logger.info("수익내역 보기", locale);
+	
 		List<PayDto> list = CashService.getPays(gu_seq);
 		int SalSum = CashService.SalSum(gu_seq);
 		int SalPeople = CashService.SalPeople(gu_seq);
+		int nowcost=SalaryService.nowcost(gu_seq);
+		System.out.println(nowcost);
 		System.out.println(list);
 		model.addAttribute("list",list);
 		model.addAttribute("SalSum",SalSum);
 		model.addAttribute("SalPeople",SalPeople);
+		model.addAttribute("nowcost",nowcost);
 		return "guidesalary";
 	}
 
 	@RequestMapping(value = "/detailsal.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String detailsal(Locale locale, Model model, PayDto dto) {
 		logger.info("상품당 수익내역 보기", locale);
+		System.out.println(dto);
 		List<PayDto> list = CashService.detailSal(dto);
+		System.out.println(list);
 		model.addAttribute("list",list);
 		return "detailSal";
 	}
