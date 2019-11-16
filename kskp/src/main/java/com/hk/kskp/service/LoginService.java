@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hk.kskp.daos.ILoginDao;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.dtos.SalaryDto;
 import com.sun.org.apache.xml.internal.utils.NameSpace;
 
 
@@ -109,6 +110,10 @@ public class LoginService implements ILoginService{
 	public List<GuideDto> getGuserapplist(String pnum) {
 		return loginDao.getGuserapplist(pnum);
 
+	}
+	@Override
+	public boolean guideSal(SalaryDto dto) {
+		return loginDao.guideSal(dto);
 	}
 
 	

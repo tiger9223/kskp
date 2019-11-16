@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 가이드 회원가입 -->
 	<insert id="ginsertUser" parameterType="GuideDto">
 		INSERT INTO GUIDE(GU_SEQ,GU_PW,GU_NAME,GU_PHONE,GU_EMAIL,GU_REGDATE,GU_APPFLAG,GU_IMG,GU_INTRO,GU_CAREER,GU_BANK,GU_ACC,GU_SALARY) VALUES 
-		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',#{gu_img},NULL,NULL,#{gu_bank},#{gu_acc})
+		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',#{gu_img},NULL,NULL,#{gu_bank},#{gu_acc},NULL)
 	</insert>
 	<!-- 로그인 -->
 	<select id="mLogin" parameterType="MembersDto" resultType="MembersDto">
@@ -115,8 +115,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!--가이드 수익금액 정산-->
-	<update id="guidesalary" parameterType="GuideDto">
-		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_SEQ=#{gu_seq}
+	<update id="guidesalary" parameterType="SalaryDto">
+		UPDATE GUIDE SET GU_SALARY=#{s_gcost} WHERE GU_SEQ=#{gu_seq}
 	</update>
 	
 

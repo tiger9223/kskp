@@ -75,9 +75,12 @@ public class SalaryController {
 	@RequestMapping(value="/appguidesal.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String appGuideSal(Model model, SalaryDto dto)  {
 		logger.info("가이드 정산 하기 ");
+		System.out.println(dto);
+		boolean isS = SalaryService.okaysal(dto.getS_seq());
 		
-		SalaryService.okaysal(dto.getS_seq());
-		
+		if(isS) {
+			LoginService.guideSal(dto);	
+		}
 	
 		return "guidesalarylist";
 		
@@ -88,7 +91,8 @@ public class SalaryController {
       logger.info("가이드 정산내역 확인하기");
       List<SalaryDto> list= SalaryService.getsallist(gu_seq);
       model.addAttribute("list", list);
-      return "";
+      return "getgsalList";
       }
+   
    
 }
