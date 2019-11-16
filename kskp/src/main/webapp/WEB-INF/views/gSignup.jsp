@@ -214,7 +214,24 @@
 	var pwcheck;
 	var pwchkcheck;
 	var imgcheck;
-		
+	var introcheck;	
+	
+	function introcheckfun(){
+    	var gu_intro = $("#wrap").val();
+    	if(gu_intro == ""){
+    		$('#intro_check').text('자기소개를 입력해주세요.');
+			$('#intro_check').css('color', 'red');		
+			$("#reg_submit").attr("disabled", true);
+			introcheck = false;
+    	}else{
+    		$("#intro_check").text("감사합니다");
+			$("#intro_check").css("color", "green");
+			$("#reg_submit").attr("disabled", false);
+			introcheck = true;
+    	} 
+    	 
+	}
+	
 	function acccheckfun(){
 	    var getAcc= /[^0-9]/g;
 	  	var gu_acc = $("#gu_acc").val();
@@ -434,9 +451,14 @@
 		   emailcheckfun();
 
 	});	
+	   $("#wrap").blur(function(){
+		   introcheckfun();
+
+	});	
+	  
     	$("form").submit(function(){
     		
-    		if(acccheck && bankcheck && namecheck && emailcheck && phonecheck && pwcheck && pwchkcheck && imgcheck){
+    		if(acccheck && bankcheck && namecheck && emailcheck && phonecheck && pwcheck && pwchkcheck && imgcheck && introcheck){
     			alert("789");
     			return true;
     		}else{
@@ -448,8 +470,9 @@
     			phonecheckfun();
     			bankcheckfun();
     			imgcheckfun();
+    			 introcheckfun();
     			
-    			if(acccheck && bankcheck && namecheck && emailcheck && phonecheck && pwcheck && pwchkcheck && imgcheck){
+    			if(acccheck && bankcheck && namecheck && emailcheck && phonecheck && pwcheck && pwchkcheck && imgcheck && introcheck){
     				return true;
     			}else{
     				return false;
@@ -505,8 +528,8 @@
 <div class="notice" id="img_check"></div>
 
 <p class="title">자기소개</p>
-<textarea id="wrap" onkeyup="this.style.height='50px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
-<div class="notice" id="img_check"></div>
+<textarea id="wrap" onkeyup="this.style.height='50px'; this.style.height = this.scrollHeight + 'px';" type="text" name="gu_intro" ></textarea>
+<div class="notice" id="intro_check"></div>
 
 <input type="submit" id="reg_submit" class="button" value="회원가입">
 </form>
