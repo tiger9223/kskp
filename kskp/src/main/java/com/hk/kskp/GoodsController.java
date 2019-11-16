@@ -79,11 +79,11 @@ public class GoodsController {
 		logger.info("상품관리로 이동", locale);
 		PrintWriter out = response.getWriter();
 		GuideDto gudto= LoginService.gUserInfo(dto.getGu_seq());
-		if(gudto.getGu_intro()==null||gudto.getGu_intro()=="") {
-			out.println("<script>alert('계정관리 자기소개를 등록한 후 상품 등록 가능합니다.'); history.go(-1);</script>");
-            out.flush();
-            return "redirect:goodspage.do?gu_seq"+dto.getGu_seq();
-		}
+//		if(gudto.getGu_intro()==null||gudto.getGu_intro()=="") {
+//			out.println("<script>alert('계정관리 자기소개를 등록한 후 상품 등록 가능합니다.'); history.go(-1);</script>");
+//            out.flush();
+//            return "redirect:goodspage.do?gu_seq"+dto.getGu_seq();
+//		}
 		return "insertgoodsform";
 	}
 	
