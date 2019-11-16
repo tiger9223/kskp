@@ -28,7 +28,6 @@
    }
    .log_wrap{
       width: 600px;
-      height: 1300px;
       margin: 0 auto;
       margin-top: 70px;
    }
@@ -77,6 +76,9 @@
       display: block;
       cursor: pointer;
    }
+   footer {
+ 	  position: relative;
+   }
    footer ul{
       width: 600px;
       height: 30px;
@@ -99,7 +101,7 @@
    footer li:last-child::after{
       content: '';
       padding-right: 0px;   
-  }
+   }
    .copy{
       text-align: center;
       margin-top: 20px;
@@ -111,13 +113,28 @@
       margin-right: 5px;
       margin-bottom: -5px;
    }
-   .wrap {
-		resize:none;
-		line-height:30px;
-		width:470px;
-		overflow-y:hidden;
-		height:30px;
-		border:1px solid #ccc;
+   
+   #wrap {
+/*    		display: block; */
+/*      	margin: 0 auto; */
+/*     	margin-top: 10px; */
+/*     	padding-left: 10px; */
+/* 		resize:none; */
+/* 		line-height:30px; */
+/* 		width:300px; */
+/* 		overflow-y:hidden; */
+/* 		height:50px; */
+/* 		border:1px solid #ccc; */
+/* 		position: relative; */
+      display: block;
+      width: 390px;
+      height: 50px;
+      margin: 0 auto;
+      margin-top: 10px;
+      padding-left: 10px;
+      border: 1px solid #ccc;
+      resize:none;
+      overflow-y:hidden;
 	}
 </style>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
@@ -487,9 +504,8 @@
 <input type="file" name="file" id="gu_img" class="text" onchange="previewImage(this,'img_check')">
 <div class="notice" id="img_check"></div>
 
-
 <p class="title">자기소개</p>
-<textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
+<textarea id="wrap" onkeyup="this.style.height='50px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
 <div class="notice" id="img_check"></div>
 
 <input type="submit" id="reg_submit" class="button" value="회원가입">
@@ -506,7 +522,7 @@
 
       </ul>
       <p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
-   </footer>
+</footer>
 </body>
 
 </html>
