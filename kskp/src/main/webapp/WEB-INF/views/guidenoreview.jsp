@@ -124,7 +124,7 @@
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
+<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
 <span class='site-menu-title'>답글한 후기</span>
 </a>
 </li>

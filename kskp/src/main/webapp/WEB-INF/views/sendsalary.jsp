@@ -125,7 +125,7 @@
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
+<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
 <span class='site-menu-title'>답글한 후기</span>
 </a>
 </li>
@@ -238,7 +238,6 @@
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
 
-<h1>가이드 송금신청서</h1>
 <form action="appsal.do" method="post">
 <table border="1">
 <input type="hidden" name="gu_seq" value="${ldto1.gu_seq}"/>

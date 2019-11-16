@@ -7,7 +7,6 @@
 <html class='no-js css-menubar' lang='en'>
 <head>
 <meta charset='utf-8'>
-
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1.0, user-scalable=0' name='viewport'>
 <meta content='Partner' name='description'>
@@ -71,7 +70,18 @@
 <img alt='logo' class='navbar-brand-logo all-size-logo' height='24px' src='img/logo.png' title='파트너' width='108px'>
 <img alt='logo' class='navbar-brand-logo tablet-logo' height='46px' src='img/logo.png' title='파트너' width='46px'>
 <!--  회원 등급 표시 -->
+<c:choose>
+<c:when test="${ldto.m_status eq 'M'}">
+<span class='navbar-brand-text hidden-xs'>일반회원</span>
+</c:when>
+<c:when test="${ldto.m_status eq 'A'}">
+<span class='navbar-brand-text hidden-xs'>관리자</span>
+</c:when>
+<c:otherwise>
 <span class='navbar-brand-text hidden-xs'>가이드</span>
+</c:otherwise>
+</c:choose>
+
 </a>
 </div>
 <div class='navbar-container container-fluid'>
@@ -84,7 +94,7 @@
 <span class='avatar avatar-online'>
 </span>
 <!--  회원 이름 표시 -->
-<span>${ldto1.gu_name}님 환영합니다</span>
+<span>${ldto.m_name}님 환영합니다</span>
 
 </a>
 </li>
@@ -107,95 +117,34 @@
 <ul class='site-menu'>
 <li class='site-menu-category'></li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='goodspage.do?gu_seq=${ldto1.gu_seq}'>
+<a class='animsition-link' href='memberalllist.do'>
 <i aria-hidden='true' class='site-menu-icon wb-flag'></i>
-<span class='site-menu-title'>상품 관리</span>
+<span class='site-menu-title'>전체회원조회</span>
 </a>
-</li>
-<li class='site-menu-item has-sub'>
-<a href='javascript:void(0)'>
-<i aria-hidden='true' class='site-menu-icon wb-heart'></i>
-<span class='site-menu-title'>후기 관리</span>
-<span class='site-menu-arrow'></span>
-</a>
-<ul class='site-menu-sub'>
-<li class='site-menu-item'>
-<a class='animsition-link' href="guidenoreview.do?gu_seq=${ldto1.gu_seq}">
-<span class='site-menu-title'>답글 달지 않은 후기</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<span class='site-menu-title'>답글한 후기</span>
-</a>
-</li>
-</ul>
 </li>
 <li class='site-menu-item has-sub'>
 <a href='javascript:void(0)'>
 <i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
-<span class='site-menu-title'>메시지</span>
+<span class='site-menu-title'>가이드 관리</span>
 <span class='site-menu-arrow'></span>
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendLetterform.do'>
-<span class='site-menu-title'>메시지 보내기</span>
+<a class='animsition-link' href='guideappform.do?pnum=1'>
+<span class='site-menu-title'>가입승인</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<a class='animsition-link' href='goodsappform.do'>
+<span class='site-menu-title'>여행상품 승인</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<a class='animsition-link' href='guidesalary.do'>
+<span class='site-menu-title'>정산관리</span>
 </a>
 </li>
 </ul>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-calendar'></i>
-<span class='site-menu-title'>일정 관리</span>
-</a>
-</li>
-<li class='site-menu-item has-sub'>
-<a href='javascript:void(0)'>
-<i aria-hidden='true' class='site-menu-icon wb-payment'></i>
-<span class='site-menu-title'>정산 관리</span>
-<span class='site-menu-arrow'></span>
-</a>
-<ul class='site-menu-sub'>
-<li class='site-menu-item'>
-<a class='animsition-link' href='salary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>현재 수익 내역</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='checksalary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>송금 신청 내역</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='getgsalary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>정산 받은 내역</span>
-</a>
-</li>
-</ul>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='guserinfo.do?seq=${ldto1.gu_seq}'>
-<i aria-hidden='true' class='site-menu-icon wb-user'></i>
-<span class='site-menu-title'>계정관리</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
-</a>
 </li>
 </ul>
 </div>
@@ -216,7 +165,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>정산관리</li>
+<li class='active'>가이드관리</li>
 </ol>
 
 </div>
@@ -226,7 +175,7 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-현재수익내역
+가입승인
 <!-- 상품 갯수 -->
 <span class='badge badge-success'></span>
 
@@ -236,49 +185,50 @@
 <div class='row'>
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
+
+
 <thead>
 
-<input type="hidden" name="gu_seq" value="${ldto1.gu_seq}"/>
 
 <table border="1">
-   <col width="188px">
-   <col width="300px">
-   <col width="70px">
-   <col width="110px">
-   <col width="80px">
-   <col width="70px">
-   <tr>
-        <th>은행명</th> 
-      <th>계좌번호</th>
-        <th>정산받을 금액</th>  
-      <th>송금신청날짜</th>
-   </tr>
-      <c:choose>
-         <c:when test="${empty list}">
-            <tr>
-               <td colspan="4" style="text-align: center;">송금신청 내역이 없습니다</td>
-            </tr>   
-         </c:when>
-         <c:otherwise>
-            <c:forEach items="${list}" var="dto">
-           <tr>
-               <td>${dto.s_bank}</td>
-              <td>${dto.s_acc}</td> 
-              <td>${dto.s_gcost}</td>
-              <td>${dto.s_regdate}</td>
-          </tr>
-            </c:forEach>
-         </c:otherwise>
-         </c:choose>
-   
-       
+<tr>
+	<td rowspan="5">사진</td>
+	<td>이름</td>
+	<td>${dto.gu_name}</td>
+</tr>
+<tr>
+	<td>전화번호</td>
+	<td>${dto.gu_phone}</td>
+</tr>
+<tr>
+	<td>이메일</td>
+	<td>${dto.gu_email}</td>
+</tr>
+<tr>
+	<td>은행명</td>
+	<td>${dto.gu_bank}</td>
+</tr>
+<tr>
+	<td>은행계좌</td>
+	<td>${dto.gu_acc}</td>
+</tr>
+<tr>
+<td colspan="3">내용</td>
+<tr>
+<tr>
+	<td><textarea rows="15" cols="25" readonly="readonly">${dto.gu_intro}</textarea></td>
+</tr>
+<tr>
+	<td><button onclick="location.href='guideapp.do?gu_seq=${dto.gu_seq}'">가입승인</button>
+		<button onclick="location.href='noguideapp.do?gu_seq=${dto.gu_seq}'">가입거절</button>
 </table>
+
+
 
 
 
 </tbody>
 </table>
-
 
 
 

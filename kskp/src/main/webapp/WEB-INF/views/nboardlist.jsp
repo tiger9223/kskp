@@ -140,7 +140,7 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
+<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
 <span class='site-menu-title'>답글한 후기</span>
 </a>
 </li>
@@ -294,7 +294,7 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 			</c:choose>
 			<c:choose>
 			<c:when test="${ldto.m_status eq 'A'}">
-			<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
+			<td colspan="5" style="text-align: center;">---작성된 글이 없습니다.---</td>
 			</c:when>
 			<c:otherwise>
 				<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
