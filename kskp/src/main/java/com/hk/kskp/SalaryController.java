@@ -67,6 +67,8 @@ public class SalaryController {
 	public String appGuideSal(Model model, SalaryDto dto)  {
 		logger.info("가이드 정산 하기 ");
 		
+		SalaryService.okaysal(dto.getS_seq());
+		
 	
 		return "guidesalarylist";
 		
