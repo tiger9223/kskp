@@ -65,6 +65,11 @@ public class ReviewService implements IReviewService{
 	}
 
 	@Override
+	public List<ReviewDto> guideYesReview(int gu_seq) {
+		return ReviewDao.guideYesReview(gu_seq);
+	}
+	
+	@Override
 	public ReviewDto getreview(int r_seq) {
 		return ReviewDao.getreview(r_seq);
 	}
@@ -73,6 +78,7 @@ public class ReviewService implements IReviewService{
 	public boolean insertgreview(ReviewDto dto) {
 		return ReviewDao.insertgreview(dto);
 	}
+
 
 	
 

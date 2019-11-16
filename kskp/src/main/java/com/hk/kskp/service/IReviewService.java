@@ -33,11 +33,14 @@ public interface IReviewService {
 	//메인 페이지로 사진빼기
 		public List<ReviewDto> reviewphoto();
 		
-	//가이드 리뷰 
+	//가이드 답글 안 단 리뷰 
 		public List<ReviewDto> guidenoreview(int gu_seq);	
 		
-		//가이드 답글 달 글 찾기
+	//가이드가 답글 단 리뷰 
+		public List<ReviewDto> guideYesReview(int gu_seq);
+		
+	//가이드 답글 달 글 찾기
 		public ReviewDto getreview(int r_seq);
-		//가이드 답글달기
+	//가이드 답글달기
 		public boolean insertgreview(ReviewDto dto);
 }
