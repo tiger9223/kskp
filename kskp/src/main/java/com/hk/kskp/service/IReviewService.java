@@ -33,6 +33,9 @@ public interface IReviewService {
 	//메인 페이지로 사진빼기
 		public List<ReviewDto> reviewphoto();
 		
+	//회원이 남긴 후기글 보기
+		public List<ReviewDto> userReview(int m_seq);
+		
 	//가이드 답글 안 단 리뷰 
 		public List<ReviewDto> guidenoreview(int gu_seq);	
 		

@@ -48,6 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select avg(r_star) from review where g_seq=#{g_seq}
 	</select>
 
+	<!-- 회원이 후기 단 리스트 뽑기 -->
+	<select id="userreview" parameterType="int" resultType="ReviewDto">
+	SELECT * FROM REVIEW R , MEMBERS M, GOODS G, GUIDE GU
+	WHERE R.M_SEQ=M.M_SEQ AND G.G_SEQ=R.G_SEQ AND G.GU_SEQ=GU.GU_SEQ AND M.M_SEQ=#{m_seq}
+	</select>
+	
 	<!-- 가이드 후기 안단 리스트 뽑기 -->
 	<select id="guidenoreview" parameterType="int" resultType="ReviewDto">
 	SELECT * FROM REVIEW R , MEMBERS M, GOODS G, GUIDE GU 

@@ -61,7 +61,7 @@
 			<li>
 				<h2>후기관리</h2>
 				<ul>
-					<li><a href="">내가 쓴 후기</a></li>
+					<li><a href="userreviewlist.do">내가 쓴 후기</a></li>
 					<li><a href="">후기 글 남기기</a></li>
 				</ul>
 			</li>

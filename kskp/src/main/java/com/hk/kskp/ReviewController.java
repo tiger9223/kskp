@@ -161,6 +161,7 @@ public class ReviewController {
 
 	@RequestMapping(value = "/guideyesreview.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guideYesReview(Locale locale,Model model,int gu_seq ) {
+		logger.info("가이드가 단 답글 보기 이동", locale);
 	    List<ReviewDto> list = ReviewService.guideYesReview(gu_seq);
 	    model.addAttribute("list",list);
 		return "guideyesreview";
@@ -184,6 +185,15 @@ public class ReviewController {
 	    }else {
 	    	return "insertguidereview";
 	    }
+	}
+	
+	//여기서 부터 해야함 !
+	@RequestMapping(value = "/userreviewlist.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String userReviewList(Locale locale,Model model,int gu_seq ) {
+		logger.info("가이드가 단 답글 보기 이동", locale);
+	    List<ReviewDto> list = ReviewService.guideYesReview(gu_seq);
+	    model.addAttribute("list",list);
+		return "guideyesreview";
 	}
 	
 	
