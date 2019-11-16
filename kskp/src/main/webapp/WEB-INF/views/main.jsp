@@ -132,7 +132,7 @@
 				<li class="icon">
 					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
 					<ul class="info_box">
-						<li><a href="mypage.do?seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="cartlist.do?m_seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> ${ldto.m_point}p</span></a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>

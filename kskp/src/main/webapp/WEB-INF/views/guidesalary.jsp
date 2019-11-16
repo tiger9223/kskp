@@ -218,12 +218,6 @@ height:160px;
 <span class='site-menu-title'>계정관리</span>
 </a>
 </li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
-</a>
-</li>
 </ul>
 </div>
 </div>

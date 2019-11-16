@@ -200,12 +200,6 @@
 <span class='site-menu-title'>계정관리</span>
 </a>
 </li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='nboardlist.do?pnum=1'>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
-</a>
-</li>
 </ul>
 </div>
 </div>
@@ -246,30 +240,41 @@
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
-<form action="sendletter.do" method="post">		
-<p>보내는 사람 : 
-	<c:choose>
-	<c:when test="${ldto.m_status eq 'M'}">
-	<input type="hidden" name="seq" value="${ldto.m_seq}" />
-		<input type="hidden" name="l_sender" value="${ldto.m_email}">
-		${ldto.m_email}
-	</c:when>
-	<c:when test="${ldto.m_status eq 'A'}">
-		<input type="hidden" name="l_sender" value="${ldto.m_email}">
-		${ldto.m_email}
-	</c:when>
-	<c:otherwise>	
-		<input type="hidden" name="seq" value="${ldto1.gu_seq}" />
+
+<form action="sendletter.do" method="post">	
+<input type="hidden" name="seq" value="${ldto1.gu_seq}" />
 		<input type="hidden" name="l_sender" value="${ldto1.gu_email}">
-		${ldto1.gu_email}
-	</c:otherwise>
-	</c:choose></p>
-<p>받는 사람 : <input type="text" name="l_receiver" id="l_receiver" placeholder="상대방이메일을 입력하세요">
-<div class="notice" id="id_check"></div>
-<p>제목 : <input type="text" name="l_title" placeholder="제목을 입력하세요"></p>
-<p>내용 : <textarea cols="30" rows="3" name="l_conts" placeholder="내용을 입력하세요"></textarea></p>
-<input type="submit" id="sub" value="보내기"><input type="button" value="취소" onclick="history.back(-1);"> 
+<table border="1">
+<tr>
+	<td>보내는 사람</td>
+	<td>${ldto1.gu_email}</td>
+</tr>
+<tr>
+	<td>받는 사람</td>
+	<td>
+		<input type="text" name="l_receiver" id="l_receiver" placeholder="이메일 입력하세요">
+		<div class="notice" id="id_check"></div>
+	</td>
+</tr>
+<tr>
+<td>제목</td>
+<td><input type="text" name="l_title" placeholder="제목을 입력하세요"></td>
+</tr>
+<tr>
+<td>내용</td>
+<td><textarea cols="20" rows="10" name="l_conts" placeholder="내용을 입력하세요"></textarea></td>
+</tr>
+<tr>
+	<td colspan="2" align="right"><input type="submit" id="sub" value="보내기"><input type="button" value="취소" onclick="history.back(-1);"> </td>
+</tr>
+</table>
 </form>
+
+
+
+
+
+
 </tbody>
 </table>
 

@@ -44,15 +44,19 @@ public class LetterController {
 
 	@RequestMapping(value="/sendLetterform.do",method = RequestMethod.GET)
 	public String sendLetterform(Model model)  {
-		logger.info("쪽지쓰기폼으로 이동");
-		
-		
-		
-		
+		logger.info("가이드 쪽지쓰기폼으로 이동");
 //		model.addAttribute("msg", "쪽지쓰기");
 		return "sendLetter";
 	}
 
+	@RequestMapping(value="/sendMLetterform.do",method = RequestMethod.GET)
+	public String sendMLetterform(Model model)  {
+		logger.info("일반회원 쪽지쓰기폼으로 이동");
+//		model.addAttribute("msg", "쪽지쓰기");
+		return "sendMletter";
+	}
+	
+	
 	
 
 	@RequestMapping(value="sendletter.do",method = {RequestMethod.POST,RequestMethod.GET})
@@ -68,10 +72,9 @@ public class LetterController {
 		boolean isS = LetterService.sendLetter(dto);
 		if(isS) {
 			if(dto1!=null) {
-				
-				return "redirect:mypage.do?seq="+dto1.getM_seq();
+				return "redirect:mletterlist.do?l_receiver="+dto1.getM_email()+"&pnum=1";
 			}else if(gdto != null) {
-				return "redirect:mypage.do?seq="+gdto.getGu_seq();
+				return "redirect:letterlist.do?l_receiver="+gdto.getGu_email()+"&pnum=1";
 			}
 			}else{
 		model.addAttribute("msg", "쪽지보내기 실패ㅠㅠ");
@@ -82,7 +85,7 @@ public class LetterController {
 
 	@RequestMapping(value="/letterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String letterlist(HttpServletRequest request ,Model model,LetterDto dto, String pnum) {
-		logger.info("받은쪽지보기");
+		logger.info("가이드 받은쪽지보기");
 
 		if(pnum == null) {
 			pnum = (String)request.getSession().getAttribute("pnum");
@@ -108,9 +111,40 @@ public class LetterController {
 		return "letterlist";
 	}
 
+	@RequestMapping(value="/mletterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String mletterlist(HttpServletRequest request ,Model model,LetterDto dto, String pnum) {
+		logger.info("일반회원 받은쪽지보기");
+
+		if(pnum == null) {
+			pnum = (String)request.getSession().getAttribute("pnum");
+		}else {
+			request.getSession().setAttribute("pnum", pnum);
+		}		
+
+		List<LetterDto>list = LetterService.letterList(dto.getL_receiver(),pnum);
+
+		int p = Integer.parseInt(pnum);
+
+		if(p > 1) {
+			if(list.size() == 0) {
+				list = LetterService.letterList(dto.getL_receiver(),String.valueOf(p-1));
+			}
+		}
+
+		model.addAttribute("list",list);
+		int pcount=LetterService.getPcount(dto);
+
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+		model.addAttribute("map", map);
+		return "mletterlist";
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/sendletterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String sendletterList(HttpServletRequest request ,Model model,LetterDto dto, String pnum) {
-		logger.info("보낸쪽지보기");
+		logger.info("가이드 보낸쪽지보기");
 
 		if(pnum == null) {
 			pnum = (String)request.getSession().getAttribute("pnum");
@@ -136,23 +170,78 @@ public class LetterController {
 		return "sendLetterlist";
 
 	}
+	
+	
+	@RequestMapping(value="/sendmletterlist.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String sendmletterList(HttpServletRequest request ,Model model,LetterDto dto, String pnum) {
+		logger.info("일반회원 보낸쪽지보기");
+
+		if(pnum == null) {
+			pnum = (String)request.getSession().getAttribute("pnum");
+		}else {
+			request.getSession().setAttribute("pnum", pnum);
+		}		
+
+		List<LetterDto>list = LetterService.sendletterList(dto.getL_sender(), pnum);
+
+		int p = Integer.parseInt(pnum);
+
+		if(p > 1) {
+			if(list.size() == 0) {
+				list = LetterService.sendletterList(dto.getL_sender(),String.valueOf(p-1));
+			}
+		}
+
+		model.addAttribute("list",list);
+		int pcount=LetterService.getPcount1(dto);
+
+		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+		model.addAttribute("map", map);
+		return "sendmletterlist";
+
+	}
+	
+	
 	@RequestMapping(value="/letterdetail.do",method= {RequestMethod.POST,RequestMethod.GET})
 	public String letterDetail(Model model,int l_seq) {
-		logger.info("받은쪽지 상세보기");
+		logger.info("가이드 받은쪽지 상세보기");
 		LetterDto dto=LetterService.letterDetail(l_seq);
 		model.addAttribute("dto", dto);
 		return "letterdetail"; 
 	}
 
+	
+	@RequestMapping(value="/mletterdetail.do",method= {RequestMethod.POST,RequestMethod.GET})
+	public String mletterDetail(Model model,int l_seq) {
+		logger.info("일반회원 받은쪽지 상세보기");
+		LetterDto dto=LetterService.letterDetail(l_seq);
+		model.addAttribute("dto", dto);
+		return "mletterdetail"; 
+	}
+
+	
+	
+	
+	
+	
 	@RequestMapping(value="/sendletterdetail.do",method= {RequestMethod.POST,RequestMethod.GET})
 	public String sendletterDetail(Model model,int l_seq) {
-		logger.info("보낸쪽지 상세보기");
+		logger.info("가이드 보낸쪽지 상세보기");
 		LetterDto dto=LetterService.sendletterDetail(l_seq);
 		model.addAttribute("dto", dto);
 		return "sendletterdetail"; 
 	}
 
+	@RequestMapping(value="/sendmletterdetail.do",method= {RequestMethod.POST,RequestMethod.GET})
+	public String sendmletterDetail(Model model,int l_seq) {
+		logger.info("일반회원 보낸쪽지 상세보기");
+		LetterDto dto=LetterService.sendletterDetail(l_seq);
+		model.addAttribute("dto", dto);
+		return "sendmletterdetail"; 
+	}
 
+	
+	
 	@RequestMapping(value="/senddel.do",method= {RequestMethod.POST,RequestMethod.GET})
 	public String senddelflag(HttpServletRequest request, HttpServletResponse response,Model model,LetterDto dto,String pnum) { 
 		logger.info("보낸사람 글삭제하기");

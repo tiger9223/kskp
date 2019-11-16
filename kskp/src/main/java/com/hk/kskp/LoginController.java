@@ -337,7 +337,7 @@ public class LoginController {
 		logger.info("일반회원 정보보기");
 		MembersDto dto1=LoginService.mUserInfo(seq);
 		model.addAttribute("dto1",dto1);
-		return"mUserInfo";
+		return"memuserinfo";
 	}
 	
 	
@@ -352,7 +352,7 @@ public class LoginController {
 	@RequestMapping(value = "/muserinfoform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String userInfoform(Model model) {
 		logger.info("일반회원 정보수정 폼으로 이동");
-		return"updateUserInfo";
+		return"updateminfo";
 	}
 	
 	@RequestMapping(value = "/starReview.do", method = {RequestMethod.GET,RequestMethod.POST})

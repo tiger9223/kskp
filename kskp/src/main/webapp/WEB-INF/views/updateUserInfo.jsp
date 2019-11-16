@@ -200,12 +200,6 @@
 <span class='site-menu-title'>계정관리</span>
 </a>
 </li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='nboardlist.do?pnum=1'>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
-</a>
-</li>
 </ul>
 </div>
 </div>
@@ -247,20 +241,7 @@
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
 
-<c:choose>
-	<c:when test="${ldto.m_status eq 'M'}">
-		<form action="mupdate.do" method="post">
-		<input type="hidden" name="m_seq" value="${ldto.m_seq}">
-			<p>이메일 : <input type="text" name="m_email" readonly="readonly" value="${ldto.m_email}"></p>
-			<p>이름 : ${ldto.m_name}</p>
-			<p>비밀번호 변경 : <input type="password" name="m_pw" value="${ldto.m_pw}"/></p>
-			<input type="submit" value="정보수정"/>
-		</form>
-	</c:when>
-	<c:when test="${ldto.m_status eq 'A'}">
-		<a href="auserinfo.do">내 정보보기</a>
-	</c:when>
-	<c:otherwise>
+
 			<form action="gupdate.do" method="post">
 				<input type="hidden" name="gu_seq" value="${ldto1.gu_seq}">
 			<p>이메일 : <input type="text" name="gu_email" readonly="readonly" value="${ldto1.gu_email}"></p>
@@ -270,8 +251,6 @@
 			<p>계좌번호 : <input type="text" name="gu_acc" value="${ldto1.gu_acc}"></p>
 			<input type="submit" value="정보수정"/>
 		</form>
-	</c:otherwise>
-</c:choose>
 
 
 </tbody>
