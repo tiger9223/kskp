@@ -243,72 +243,7 @@
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
-<c:choose>
-<c:when test="${!empty list}">
-<tr>
-<th>상태</th>
-<th class='hidden-xs'>지역</th>
-<th class='hidden-xs'>등록 날짜</th>
-<th class='width-33'>여행 제목</th>
-<th class='hidden-xs'>총 판매 수</th>
-</tr>
-</c:when>
-</c:choose>
-</thead>
-<tbody>
-<c:choose>
-<c:when test="${empty list}">
-	<div class='col-xs-12'>
-<div class='widget widget-shadow widget-border'>
-<div class='widget-body widget-border-bottom'>
-<p>아직 만들어진 여행이 없습니다.
-<br />멋진 여행을 만들어보세요.
-</p>
-</div>
-</div>
-</div>
-</c:when>
-<c:otherwise>
-<c:forEach items="${list}" var="dto">
-<tr>
-<td>
-<!--  승인 여부  -->
- <c:choose>
- <c:when test="${dto.g_flag eq '1'}">
-               <span class='label write' style="background-color: green; ">승인 완료</span>
-             </c:when>
-             <c:otherwise>
-              <span class='label write'>승인 대기</span>
-           </c:otherwise>
-   </c:choose>
-</td>
-<td class='hidden-xs'>
-<!--  지역 -->
-<span>${dto.g_area}</span>
-</td>
-<td class='hidden-xs'>
-<!--  등록 날짜 -->
-<span><fmt:formatDate value="${dto.g_regdate}" pattern="yyyy년MM월dd일"/></span>
-</td>
-<td class='width-33'>
-<!--  상품 제목 -->
-${dto.g_name}
-</td>
-<td class='p-team hidden-xs'>
-<!--  총 판매 수 -->
-${dto.g_res}
-</td>
-<td>
-<a class='btn btn-primary btn-sm' href="goodsdetail.do?g_seq=${dto.g_seq}" role='button' >
-보기
-</a>
-<form class="offer-delete-form" method="post" action="/partner/offers/68745"><input type="hidden" name="_method" value="delete" /><button data-confirm="정말 삭제하시겠습니까?" class="btn btn-danger btn-sm hidden-xs" type="submit">삭제
-</button><input type="hidden" name="authenticity_token" value="yzM1D/nnSxI5WhzWsHKW6DjVl6At8Zw/OD+4Qyp3KQokDMLiu7XatJTFDW8gybfXfIaLS4vDyj0M1uYS+JY8+w==" /></form>
-</td>
-</tr>
-</c:forEach>
-</c:otherwise>
-</c:choose>
+
 </tbody>
 </table>
 
