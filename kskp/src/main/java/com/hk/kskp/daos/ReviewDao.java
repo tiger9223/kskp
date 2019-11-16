@@ -72,6 +72,11 @@ public class ReviewDao implements IReviewDao {
 	}
 
 	@Override
+	public List<ReviewDto> guideYesReview(int gu_seq) {
+		return sqlSession.selectList(nameSpace+"guideyesreview",gu_seq);
+	}
+	
+	@Override
 	public ReviewDto getreview(int r_seq) {
 		return sqlSession.selectOne(nameSpace+"getreview", r_seq);
 	}
@@ -81,6 +86,7 @@ public class ReviewDao implements IReviewDao {
 		int count = sqlSession.update(nameSpace+"insertgreview", dto);
 		return count>0?true:false;
 	}
+
 
 	
 

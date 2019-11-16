@@ -124,7 +124,7 @@
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
+<a class='animsition-link' href=''>
 <span class='site-menu-title'>답글한 후기</span>
 </a>
 </li>
@@ -215,7 +215,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>계정관리</li>
+<li class='active'>답글한 후기</li>
 </ol>
 
 </div>
@@ -225,7 +225,7 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-계정관리
+답글 한 후기
 <!-- 상품 갯수 -->
 <span class='badge badge-success'></span>
 
@@ -238,68 +238,48 @@
 <thead>
 
 <c:choose>
-	<c:when test="${ldto.m_status eq 'M'}">
-		<h1>${dto1.m_name} 님정보보기</h1>	
-		<table border="1">
+		<c:when test="${empty list}">
+			답글 한 후기가 없습니다.
+		</c:when>
+		<c:otherwise>
+		<c:forEach items="${list}" var="dto">
+		<table>
 		<tr>
-			<td>이름</td>
-			<td colspan="2">${dto1.m_name}</td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td>${dto1.m_email}</td>
-			<td><button onclick="">인증하기</button></td>
-		</tr>
-		<tr>
-			<td>가입일</td>
-			<td colspan="2"><f:formatDate value="${dto1.m_regdate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td>${dto1.m_phone}</td>
-			<td><button onclick="">인증하기</button></td>
-		</tr>
-		<tr>
-			<td colspan="3"><button onclick="location.href='muserinfoform.do'">회원수정</button></td>
-		</tr>
-			</table>
-	</c:when>
-	<c:when test="${ldto.m_status eq 'A'}">
-	</c:when>
-	<c:otherwise>
-	<h1>${dto2.gu_name}님 정보입니다.</h1>
-	<table border="1">
-		<tr>
-			<td>이메일</td>
-			<td>${dto2.gu_email}</td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td>${dto2.gu_name}</td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td>${dto2.gu_phone}</td>
-			<td><button onclick="">인증하기</button></td>
-		</tr>
-		<tr>
-			<td>은행</td>
-			<td>${dto2.gu_bank}</td>
-		</tr>
-		<tr>
-			<td>계좌번호</td>
-			<td>${dto2.gu_acc}</td>
-		</tr>
-		<tr>
-			<td>가입일 </td>
-			<td><f:formatDate value="${dto2.gu_regdate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
-		<tr>
-			<td><button onclick="location.href='guserinfoform.do'">회원수정</button></td>
-		</tr>
-	</table>
-	</c:otherwise>
-</c:choose>
+		<td>${dto.g_name}<td>
+			<tr>
+				<th><c:choose>
+				<c:when test="${dto.r_star eq 1}">
+				★ &nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 2}">
+				★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 3}">
+				★★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 4}">
+				★★★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 5}">
+				★★★★★&nbsp;
+				</c:when>
+				</c:choose>
+				</th>
+				<th>${dto.m_name}</th>
+				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>
+			</tr>
+			<tr>
+				<td colspan="3">${dto.r_conts}</td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="location.href='getreviewform.do?r_seq=${dto.r_seq}'" value="답글달기" /></td>
+			</tr>
+			<hr/>
+		</table>
+		</c:forEach>
+		</c:otherwise>
+	</c:choose>
+
 
 
 
