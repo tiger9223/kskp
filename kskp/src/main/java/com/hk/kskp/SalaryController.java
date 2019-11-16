@@ -63,6 +63,15 @@ public class SalaryController {
 		
 	}
 	
+   @RequestMapping(value="/checksalary.do", method = {RequestMethod.GET,RequestMethod.POST})
+   public String checksalary(Model model,SalaryDto dto,int gu_seq)  {
+      logger.info("가이드 송금내역 확인하기");
+      List<SalaryDto> list= SalaryService.salList(gu_seq);
+      model.addAttribute("list", list);
+      return "checksalary";
+      }
+
+	
 	@RequestMapping(value="/appguidesal.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String appGuideSal(Model model, SalaryDto dto)  {
 		logger.info("가이드 정산 하기 ");
@@ -73,7 +82,13 @@ public class SalaryController {
 		return "guidesalarylist";
 		
 	}
-		
-		
 	
+   @RequestMapping(value="/getgsalary.do", method = {RequestMethod.GET,RequestMethod.POST})
+   public String getgsalary(Model model,SalaryDto dto,int gu_seq)  {
+      logger.info("가이드 정산내역 확인하기");
+      List<SalaryDto> list= SalaryService.getsallist(gu_seq);
+      model.addAttribute("list", list);
+      return "";
+      }
+   
 }

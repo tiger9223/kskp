@@ -13,12 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 송금 내역 -->
 	<select id="sallist" resultType="SalaryDto" parameterType="int">
-	SELECT gu.GU_NAME,s.S_BANK,s.S_ACC,s.S_COST,s.S_REGDATE FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND S_FLAG=0
+	SELECT gu.GU_NAME,s.S_BANK,s.S_ACC,s.S_GCOST,s.S_REGDATE FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND S_FLAG=0
 	</select>
 	
 	<!-- 가이드 정산 내역 -->
 	<select id="getsallist" resultType="SalaryDto" parameterType="int">
-	SELECT gu.GU_NAME,s.S_BANK,s.S_ACC,s.S_COST,s.S_AREGDATE FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND S_FLAG=1
+	SELECT gu.GU_NAME,s.S_BANK,s.S_ACC,s.S_GCOST,s.S_AREGDATE FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND gu.GU_SEQ=#{gu_seq} AND S_FLAG=1
 	</select>
 	
 	<!-- 관리자 송금신청확인 리스트  -->

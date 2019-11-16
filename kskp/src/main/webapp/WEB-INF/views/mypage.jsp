@@ -167,7 +167,8 @@
 				<h2>정산관리</h2>
 				<ul>
 					<li><a href="salary.do?gu_seq=${ldto1.gu_seq}">현재 수익 내역</a></li>
-					<li><a href="">송금 신청 내역</a></li>
+	               <li><a href="checksalary.do?gu_seq=${ldto1.gu_seq}">송금 신청 내역</a></li>
+	               <li><a href="getgsalary.do?gu_seq=${ldto1.gu_seq}">정산 받은 내역</a></li>
 				</ul>
 			</li>
 			<li>
