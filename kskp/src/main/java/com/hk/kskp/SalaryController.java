@@ -1,5 +1,7 @@
 package com.hk.kskp;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.kskp.dtos.SalaryDto;
 import com.hk.kskp.service.ICashService;
+import com.hk.kskp.service.ILoginService;
 import com.hk.kskp.service.ISalaryService;
 
 @Controller
@@ -22,6 +25,9 @@ public class SalaryController {
 	
 	@Autowired
 	private ICashService CashService;
+	
+	@Autowired
+	private ILoginService LoginService;
 	
 	@RequestMapping(value="/appsalform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String appsalform(Model model,SalaryDto dto,int gu_seq , int sal)  {
@@ -46,8 +52,43 @@ public class SalaryController {
 		
 	}
 	
+	@RequestMapping(value="/guidesalary.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String guideSalary(Model model)  {
+		logger.info("가이드 정산 리스트보기 ");
+		
+		List<SalaryDto> list = SalaryService.adminsallist();
+		model.addAttribute("list",list);
 
+		return "guidesalarylist";
+		
+	}
+	
+   @RequestMapping(value="/checksalary.do", method = {RequestMethod.GET,RequestMethod.POST})
+   public String checksalary(Model model,SalaryDto dto,int gu_seq)  {
+      logger.info("가이드 송금내역 확인하기");
+      List<SalaryDto> list= SalaryService.salList(gu_seq);
+      model.addAttribute("list", list);
+      return "checksalary";
+      }
+
+	
+	@RequestMapping(value="/appguidesal.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String appGuideSal(Model model, SalaryDto dto)  {
+		logger.info("가이드 정산 하기 ");
+		
+		SalaryService.okaysal(dto.getS_seq());
 		
 	
+		return "guidesalarylist";
+		
+	}
 	
+   @RequestMapping(value="/getgsalary.do", method = {RequestMethod.GET,RequestMethod.POST})
+   public String getgsalary(Model model,SalaryDto dto,int gu_seq)  {
+      logger.info("가이드 정산내역 확인하기");
+      List<SalaryDto> list= SalaryService.getsallist(gu_seq);
+      model.addAttribute("list", list);
+      return "";
+      }
+   
 }

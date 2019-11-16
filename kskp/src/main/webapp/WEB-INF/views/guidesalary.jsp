@@ -36,7 +36,7 @@ width:240px;
 height:160px;
 }
 </style>
-<title>guidesalary</title>
+<title>SWAG | GuideSalary</title>
 </head>
 <body>
 <h1>수익내역</h1>
