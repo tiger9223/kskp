@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.dtos.SalaryDto;
 
 
 public interface ILoginService {
@@ -66,7 +67,8 @@ public interface ILoginService {
 		//가이드 승인인원리스트
 		public List<GuideDto> getGuserapplist(String pnum);
 		
-		
+		//가이드 정산된 수익 금액 업데이트
+		public boolean guideSal(SalaryDto dto);
 		
 		
 		

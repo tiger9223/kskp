@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.LetterDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.dtos.SalaryDto;
 
 
 
@@ -134,6 +135,11 @@ public class LoginDao implements ILoginDao {
 		map.put("pnum",pnum);
 		return sqlSession.selectList(nameSpace+"getapplist",map);
 
+	}
+	@Override
+	public boolean guideSal(SalaryDto dto) {
+		int count = sqlSession.update(nameSpace+"guidesalary", dto);
+		return count>0?true:false;
 	}
 	
 }

@@ -23,4 +23,5 @@ public interface ISalaryDao {
 	//가이드 수수료 뺀 정산금액
 	public SalaryDto getgsal(int gu_seq);
 	
+	
 }

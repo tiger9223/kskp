@@ -5,6 +5,7 @@ import java.util.List;
 import com.hk.kskp.dtos.GuideDto;
 import com.hk.kskp.dtos.LetterDto;
 import com.hk.kskp.dtos.MembersDto;
+import com.hk.kskp.dtos.SalaryDto;
 
 public interface ILoginDao {
 
@@ -53,13 +54,12 @@ public interface ILoginDao {
 	public List<GuideDto>getGuserapplist(String pnum);
 	
 	//가이드 승인 페이지 개수 구하기
-		public int getPcount(GuideDto dto);
-	//	//사용자 상세조회
-
+	public int getPcount(GuideDto dto);
+		
+	//가이드 정산된 수익 금액 업데이트
+	public boolean guideSal(SalaryDto dto);
 	
-	//사용자 상세조회
 
-//	public LoginDto getUser(String rid);
 
 	
 	
