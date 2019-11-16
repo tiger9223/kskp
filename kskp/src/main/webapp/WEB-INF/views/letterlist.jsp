@@ -124,7 +124,7 @@
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
+<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
 <span class='site-menu-title'>답글한 후기</span>
 </a>
 </li>
@@ -190,12 +190,6 @@
 <span class='site-menu-title'>계정관리</span>
 </a>
 </li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
-</a>
-</li>
 </ul>
 </div>
 </div>
@@ -254,51 +248,6 @@
 			<th>보낸시간</th>
 		</tr>
 		
-<c:choose>
-	<c:when test="${ldto.m_email eq dto.l_receiver}">
-		<c:choose>
-				<c:when test="${empty list}">
-					<tr>
-						<td colspan="5" style="text-align : center;">---쪽지가 없습니다.---</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${list}" var="dto">
-								<tr>
-									<td><input type="checkbox" name="chk" value="${dto.l_seq}" /></td>
-									<td>${dto.l_seq}</td>
-									<td>${dto.l_sender}</td>
-									<td><a href="letterdetail.do?l_seq=${dto.l_seq}">${dto.l_title}</a></td>
-									<td><f:formatDate value="${dto.l_regdate}" pattern="yyyy-MM-dd"/></td>
-								</tr>
-					</c:forEach>
-				</c:otherwise>	
-		</c:choose>
-			<tr>
-               <td colspan="7" align="center">
-                  <a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=${map.prePageNum}">◀</a>
-                  <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
-                     <c:choose>
-                        <c:when test="${pnum eq i}">
-                           ${i}
-                        </c:when>
-                        <c:otherwise>
-                           <a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=${i}">${i}</a>
-                        </c:otherwise>
-                     </c:choose>   
-                  </c:forEach>
-                  <a href="letterlist.do?l_receiver=${ldto.m_email}&pnum=${map.nextPageNum}">▶</a>
-               </td>
-            </tr>
-
-	<tr>
-		<td colspan="5">
-			<input type="submit" value="삭제" />
-		</td>
-	</tr>
-	</c:when>
-	
-	<c:otherwise>
 	<c:choose>
 	<c:when test="${empty list}">
 					<tr>
@@ -339,8 +288,7 @@
 			<input type="submit" value="삭제" />
 		</td>
 	</tr>
-	</c:otherwise>
-	</c:choose>
+	
 </table>
 </form>
 

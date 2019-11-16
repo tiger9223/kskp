@@ -2,7 +2,7 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html class='no-js css-menubar' lang='en'>
 <head>
@@ -11,7 +11,7 @@
 <meta content='width=device-width, initial-scale=1.0, user-scalable=0' name='viewport'>
 <meta content='Partner' name='description'>
 <meta content='' name='author'>
-<title>GUIDE | SWAG</title>
+<title>Member | SWAG</title>
 <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="T9a1SD5LHk3qqbwC5gYYbKp0EotINZ1SzivykFhnkjug6UKlfBmP60c2rbt2vTlT7icOYO4Hy1D6wqzBioaHyg==" />
 <link href='https://d2yoing0loi5gh.cloudfront.net/assets/favicon-e7fc64f202376533d86106e6f712ed41eee1e843dbc5de3b2765938656f8eb93.ico' rel='shortcut icon'>
@@ -52,6 +52,31 @@
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
+<style>
+.image {
+ overflow: hidden; 
+ }
+
+.image  img {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+}
+.image:hover img {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+}
+</style>
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -70,7 +95,7 @@
 <img alt='logo' class='navbar-brand-logo all-size-logo' height='24px' src='img/logo.png' title='파트너' width='108px'>
 <img alt='logo' class='navbar-brand-logo tablet-logo' height='46px' src='img/logo.png' title='파트너' width='46px'>
 <!--  회원 등급 표시 -->
-<span class='navbar-brand-text hidden-xs'>가이드</span>
+<span class='navbar-brand-text hidden-xs'>일반 회원</span>
 </a>
 </div>
 <div class='navbar-container container-fluid'>
@@ -83,7 +108,7 @@
 <span class='avatar avatar-online'>
 </span>
 <!--  회원 이름 표시 -->
-<span>${ldto1.gu_name}님 환영합니다</span>
+<span>${ldto.m_name}님 환영합니다</span>
 
 </a>
 </li>
@@ -106,9 +131,15 @@
 <ul class='site-menu'>
 <li class='site-menu-category'></li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='goodspage.do?gu_seq=${ldto1.gu_seq}'>
+<a class='animsition-link' href='cartlist.do?m_seq=${ldto.m_seq}'>
 <i aria-hidden='true' class='site-menu-icon wb-flag'></i>
-<span class='site-menu-title'>상품 관리</span>
+<span class='site-menu-title'>장바구니</span>
+</a>
+</li>
+<li class='site-menu-item'>
+<a class='animsition-link' href='paylist.do?m_seq=${ldto.m_seq}'>
+<i aria-hidden='true' class='site-menu-icon wb-payment'></i>
+<span class='site-menu-title'>결제내역</span>
 </a>
 </li>
 <li class='site-menu-item has-sub'>
@@ -119,13 +150,13 @@
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href="guidenoreview.do?gu_seq=${ldto1.gu_seq}">
-<span class='site-menu-title'>답글 달지 않은 후기</span>
+<a class='animsition-link' href="">
+<span class='site-menu-title'>내가 쓴 후기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>답글한 후기</span>
+<a class='animsition-link' href=''>
+<span class='site-menu-title'>후기 글 남기기</span>
 </a>
 </li>
 </ul>
@@ -138,54 +169,24 @@
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendLetterform.do'>
+<a class='animsition-link' href='sendMLetterform.do'>
 <span class='site-menu-title'>메시지 보내기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
+<a class='animsition-link' href='mletterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
 <span class='site-menu-title'>받은 메시지 - ${count}개</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
+<a class='animsition-link' href='sendmletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
 <span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
 </a>
 </li>
 </ul>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-calendar'></i>
-<span class='site-menu-title'>일정 관리</span>
-</a>
-</li>
-<li class='site-menu-item has-sub'>
-<a href='javascript:void(0)'>
-<i aria-hidden='true' class='site-menu-icon wb-payment'></i>
-<span class='site-menu-title'>정산 관리</span>
-<span class='site-menu-arrow'></span>
-</a>
-<ul class='site-menu-sub'>
-<li class='site-menu-item'>
-<a class='animsition-link' href='salary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>현재 수익 내역</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='checksalary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>송금 신청 내역</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='getgsalary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>정산 받은 내역</span>
-</a>
-</li>
-</ul>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='guserinfo.do?seq=${ldto1.gu_seq}'>
+<a class='animsition-link' href='muserinfo.do?seq=${ldto.m_seq}'>
 <i aria-hidden='true' class='site-menu-icon wb-user'></i>
 <span class='site-menu-title'>계정관리</span>
 </a>
@@ -209,7 +210,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>상품 관리</li>
+<li class='active'>메세지보내기</li>
 </ol>
 
 </div>
@@ -219,17 +220,9 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-등록된 상품
+메세지보내기
 <!-- 상품 갯수 -->
-<span class='badge badge-success'>${goodscount}</span>
-<div class='panel-btn-container clearfix hidden-xs'>
-<div class='col-xs-12'>
-<a class='btn btn-default btn-info pull-right offer-register-btn' data-disable-with='로딩중..' href='insertgoodsform.do?gu_seq=${ldto1.gu_seq}'>
-<i aria-hidden='true' class='icon wb-plus'></i>
-가이드 투어 등록
-</a>
-</div>
-</div>
+<span class='badge badge-success'></span>
 </div>
 </div>
 <div class='panel-body'>
@@ -237,72 +230,37 @@
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
-<c:choose>
-<c:when test="${!empty list}">
+
+
+<form action="sendletter.do" method="post">	
+<input type="hidden" name="seq" value="${ldto.m_seq}" />
+<input type="hidden" name="l_sender" value="${ldto.m_email}">	
+<table border="1">
 <tr>
-<th>상태</th>
-<th class='hidden-xs'>지역</th>
-<th class='hidden-xs'>등록 날짜</th>
-<th class='width-33'>여행 제목</th>
-<th class='hidden-xs'>총 판매 수</th>
+	<td>보내는 사람</td>
+	<td>${ldto.m_email}</td>
 </tr>
-</c:when>
-</c:choose>
-</thead>
-<tbody>
-<c:choose>
-<c:when test="${empty list}">
-	<div class='col-xs-12'>
-<div class='widget widget-shadow widget-border'>
-<div class='widget-body widget-border-bottom'>
-<p>아직 만들어진 여행이 없습니다.
-<br />멋진 여행을 만들어보세요.
-</p>
-</div>
-</div>
-</div>
-</c:when>
-<c:otherwise>
-<c:forEach items="${list}" var="dto">
 <tr>
-<td>
-<!--  승인 여부  -->
- <c:choose>
- <c:when test="${dto.g_flag eq '1'}">
-               <span class='label write' style="background-color: green; ">승인 완료</span>
-             </c:when>
-             <c:otherwise>
-              <span class='label write'>승인 대기</span>
-           </c:otherwise>
-   </c:choose>
-</td>
-<td class='hidden-xs'>
-<!--  지역 -->
-<span>${dto.g_area}</span>
-</td>
-<td class='hidden-xs'>
-<!--  등록 날짜 -->
-<span><fmt:formatDate value="${dto.g_regdate}" pattern="yyyy년MM월dd일"/></span>
-</td>
-<td class='width-33'>
-<!--  상품 제목 -->
-${dto.g_name}
-</td>
-<td class='p-team hidden-xs'>
-<!--  총 판매 수 -->
-${dto.g_res}
-</td>
-<td>
-<a class='btn btn-primary btn-sm' href="goodsdetail.do?g_seq=${dto.g_seq}" role='button' >
-보기
-</a>
-<form class="offer-delete-form" method="post" action="/partner/offers/68745"><input type="hidden" name="_method" value="delete" /><button data-confirm="정말 삭제하시겠습니까?" class="btn btn-danger btn-sm hidden-xs" type="submit">삭제
-</button><input type="hidden" name="authenticity_token" value="yzM1D/nnSxI5WhzWsHKW6DjVl6At8Zw/OD+4Qyp3KQokDMLiu7XatJTFDW8gybfXfIaLS4vDyj0M1uYS+JY8+w==" /></form>
-</td>
+	<td>받는 사람</td>
+	<td>
+		<input type="text" name="l_receiver" id="l_receiver" placeholder="이메일 입력하세요">
+		<div class="notice" id="id_check"></div>
+	</td>
 </tr>
-</c:forEach>
-</c:otherwise>
-</c:choose>
+<tr>
+<td>제목</td>
+<td><input type="text" name="l_title" placeholder="제목을 입력하세요"></td>
+</tr>
+<tr>
+<td>내용</td>
+<td><textarea cols="20" rows="10" name="l_conts" placeholder="내용을 입력하세요"></textarea></td>
+</tr>
+<tr>
+	<td colspan="2" align="right"><input type="submit" id="sub" value="보내기"><input type="button" value="취소" onclick="history.back(-1);"> </td>
+</tr>
+</table>
+</form>
+
 </tbody>
 </table>
 

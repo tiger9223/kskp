@@ -169,17 +169,17 @@
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendLetterform.do'>
+<a class='animsition-link' href='sendMLetterform.do'>
 <span class='site-menu-title'>메시지 보내기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='letterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
+<a class='animsition-link' href='mletterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
 <span class='site-menu-title'>받은 메시지 - ${count}개</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
+<a class='animsition-link' href='sendmletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
 <span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
 </a>
 </li>
@@ -189,12 +189,6 @@
 <a class='animsition-link' href='muserinfo.do?seq=${ldto.m_seq}'>
 <i aria-hidden='true' class='site-menu-icon wb-user'></i>
 <span class='site-menu-title'>계정관리</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
 </a>
 </li>
 </ul>
