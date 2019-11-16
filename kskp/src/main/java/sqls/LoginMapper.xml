@@ -23,8 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 가이드 회원가입 -->
 	<insert id="ginsertUser" parameterType="GuideDto">
 		INSERT INTO GUIDE(GU_SEQ,GU_PW,GU_NAME,GU_PHONE,GU_EMAIL,GU_REGDATE,GU_APPFLAG,GU_IMG,GU_INTRO,GU_CAREER,GU_BANK,GU_ACC,GU_SALARY) VALUES 
-		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',#{gu_img},NULL,NULL,#{gu_bank},#{gu_acc},NULL)
+		(GUIDE_SEQ.NEXTVAL,#{gu_pw},#{gu_name},#{gu_phone},#{gu_email},SYSDATE,'0',#{gu_img},#{gu_intro},NULL,#{gu_bank},#{gu_acc},NULL)
 	</insert>
+	
 	<!-- 로그인 -->
 	<select id="mLogin" parameterType="MembersDto" resultType="MembersDto">
  		select * from MEMBERS Where M_EMAIL=#{m_email} AND M_PW=#{m_pw}
@@ -101,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM MEMBERS WHERE M_EMAIL=#{email}
 	</select>
 	
-		<select id="gemailCheck" resultType="int" parameterType="GuideDto">
+	<select id="gemailCheck" resultType="int" parameterType="GuideDto">
 		SELECT COUNT(*) FROM GUIDE WHERE GU_EMAIL=#{email}
 	</select>
 	
