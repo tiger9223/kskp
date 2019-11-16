@@ -59,10 +59,11 @@ var availableDates = gdate.split(', ');
 var date = new Date();
 $('#mdp-demo').multiDatesPicker({
 // 	dateFormat: "mm-dd-yyyy",
+    minDate:0,
 	maxPicks: 1,
 	beforeShowDay: function available(date){			
 		var thismonth = date.getMonth()+1;
-		var thisday = date.getDate();			
+		var thisday = date.getDate();
 		if(thismonth<10){
 			thismonth = "0"+thismonth;
 		}
@@ -73,9 +74,10 @@ $('#mdp-demo').multiDatesPicker({
 		mdy = thismonth + "/" + thisday + "/" + date.getFullYear();
 	    if ($.inArray(mdy, availableDates) >= 0) {
 	        return [true,"",""];
-	    } else {
+	    } else  {
 	        return [false,"",""];
 	    }
+		
 	},
 	altField: '#altField'
 });

@@ -29,11 +29,7 @@
 <link href='https://d2yoing0loi5gh.cloudfront.net/assets/logo/ic-mobile-152-cc369a832b7a69d0c0b63c3914168b58e732a26729d72e976e7f729b923ee302.png' rel='apple-touch-icon' sizes='152x152'>
  
  
- <script
-    type="text/javascript"
-    src="//code.jquery.com/jquery-2.2.4.js"
-    
-  ></script>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
     <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
       
@@ -49,6 +45,8 @@
 </script>
 <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDfW8RFpx4thvW5Rr8Euvnzo2y-TXzq4Cw&amp;libraries=places' type='text/javascript'></script>
 <script src='//cdn.ravenjs.com/3.24.2/raven.min.js'></script>
+
+<script src="js/insertjs.js"></script>
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
@@ -117,7 +115,7 @@ $('#mdp-demo').multiDatesPicker({
  width : 400px;
 }
 
-#sub{
+#reg_submit{
 margin: 5px 2px 100px 4px
 }
 .wrap {
@@ -158,7 +156,7 @@ function previewImage(targetObj, View_area) {
 			}
 		}
   //ie가 아닐때(크롬, 사파리, FF)
-	} else {
+	} else {	
 		var files = targetObj.files;
 		for ( var i = 0; i < files.length; i++) {
 			var file = files[i];
@@ -413,14 +411,16 @@ function previewImage(targetObj, View_area) {
 </p>
 </p>
 <hr>
-<p>*여행제목<input class="goods" type="text" name="g_name"/></p>
+<p>*여행제목<input id="g_name" class="goods" type="text" name="g_name"/></p>
+<div class="notice" id="g_namechk"></div>
 <P class='help-block'>
 • 여행 주제를 정확하고 간결하게 표현해주세요.<br/>
 • 맞춤법이 맞지 않거나 이모티콘 혹은 특수문자를 사용하실 경우 상품 검수 절차로 인해 판매가 늦어질 수 있습니다.<br/>
 • 지역명이 포함된 제목은 상품 노출에 더 효과적입니다. (경복궁, 산책하는 여행 / 샌프란시스코! 경복궁 당일치기 등)<br/>
 </P>
 <hr>
-<p>*한줄요약<input class="goods" type="text" name="g_oneline"  />
+<p>*한줄요약<input id="g_oneline" class="goods" type="text" name="g_oneline"  />
+<div class="notice" id="g_onelinechk"></div>
 </p>
 <P class='help-block'>
 • 제목과 연결되는 매력 포인트를 작성해 주세요.<br/>
@@ -429,7 +429,8 @@ function previewImage(targetObj, View_area) {
 <hr>
 <p>*여행소개</p>
 <p>
-<textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
+<textarea class="wrap" id="g_conts"  onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
+<div class="notice" id="g_contschk"></div>
 </p>
 <p class='help-block'> 
 • 상품 작성 예시 <br/>
@@ -464,10 +465,12 @@ ex)<br/>
 <input type="file" name="file" id="profile_pt" onchange="previewImage(this,'View_area')">
 <div id='View_area' style='position:relative; width: 400px; height: 300px; color: black; border: 0px solid black; dispaly: inline; '>
 </div>
+<div class="notice" id="profile_ptchk"></div>
 </p>
 <hr>
 <p>
-*1인당 가격 <input type="text" name="g_price" placeholder="ex)20000" />
+*1인당 가격 <input type="text" name="g_price" id="g_price"  placeholder="ex)20000" />
+<div class="notice" id="g_pricechk"></div>
 </p>
 <hr>
 <p>*1인당 예약 가능 인원수 <select name="g_people">
@@ -484,7 +487,8 @@ ex)<br/>
 	</select></p>
 <hr>
 <p>
-*필수 안내사항<textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_info" ></textarea><br/>
+*필수 안내사항<textarea id="g_info" class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_info" ></textarea><br/>
+<div class="notice" id="g_infochk"></div>
 </p>
 <p class='help-block'>
  <br/>
@@ -531,7 +535,8 @@ ex)<br/>
 	<span>*</span>
 	</label>
 	<div class='col-xs-12'>
-	<input class='form-control' name="g_address" id='offerMeetingPoint'  type='text'>
+	<input class='form-control' name="g_address" id="g_address"  type='text'>
+	<div class="notice" id="g_addresschk"></div>
 	</div>
 	</div>
 	<div class='form-group clearfix'>
@@ -555,6 +560,7 @@ ex)<br/>
 	<i aria-hidden='true' class='icon wb-search'></i>
 	</button>
 	<input class='form-control' id='inputSearchMap' value="" placeholder='만나는 장소의 주소 혹은 랜드마크 검색' type='text'>
+	<div class="notice" id="latchk"></div>
 	<input name='g_lat' id="lat" type='hidden' value='0.0'>
 	<input name='g_lng' id="lng" type='hidden' value='0.0'>
 			</div>
@@ -572,8 +578,9 @@ ex)<br/>
 <p>*투어 가능 날짜 </p>
  <div id="mdp-demo"></div>
 <input type="hidden"  name="g_date" id="altField" >
+<div class="notice" id="altFieldchk"></div>
 <hr>
-<input id="sub" type="submit" value="상품등록">
+<input id="reg_submit" type="submit" value="상품등록">
 </form>
 </thead>
 <tbody>

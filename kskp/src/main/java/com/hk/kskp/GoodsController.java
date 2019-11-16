@@ -75,16 +75,19 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/insertgoodsform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertGoodsForm(HttpServletResponse response,Locale locale, GuideDto dto) throws IOException {
+	public String insertGoodsForm( Model model,HttpServletResponse response,Locale locale, GuideDto dto) throws IOException {
 		logger.info("상품관리로 이동", locale);
 		PrintWriter out = response.getWriter();
 		GuideDto gudto= LoginService.gUserInfo(dto.getGu_seq());
 
-		if(gudto.getGu_intro()==null||gudto.getGu_intro()=="") {
+//		if(gudto.getGu_intro()==null||gudto.getGu_intro()=="") {
 //			out.println("<script>alert('계정관리 자기소개를 등록한 후 상품 등록 가능합니다.'); history.go(-1);</script>");
-  //          out.flush();
-  //          return "redirect:goodspage.do?gu_seq"+dto.getGu_seq();
-		}
+//            out.flush();
+//        	List<GoodsDto> list = GoodsService.guideGoods(dto.getGu_seq());
+//    		model.addAttribute("list", list);
+//    		model.addAttribute("goodscount", list.size());
+//    		return "goodspage";
+//		}
 
 		return "insertgoodsform";
 	}
@@ -230,6 +233,7 @@ public class GoodsController {
 		List<PayDto> list = CashService.getAllPay(m_seq);
 		System.out.println(m_seq);
 		model.addAttribute("list",list);
+		model.addAttribute("paycount", list.size());
 		return "paylist";
 	}
 	
@@ -239,6 +243,7 @@ public class GoodsController {
 		List<PayDto> list = CashService.cartList(m_seq);
 		System.out.println(list);
 		model.addAttribute("list",list);
+		model.addAttribute("cartcount", list.size());
 		return "cart";
 	}
 	

@@ -52,29 +52,7 @@
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
-<style>
-.image { overflow: hidden; }
 
-.image  img {
-    -webkit-transform:scale(1);
-    -moz-transform:scale(1);
-    -ms-transform:scale(1); 
-    -o-transform:scale(1);  
-    transform:scale(1);
-    -webkit-transition:.3s;
-    -moz-transition:.3s;
-    -ms-transition:.3s;
-    -o-transition:.3s;
-    transition:.3s;
-}
-.image:hover img {
-    -webkit-transform:scale(1.2);
-    -moz-transform:scale(1.2);
-    -ms-transform:scale(1.2);   
-    -o-transform:scale(1.2);
-    transform:scale(1.2);
-}
-</style>
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -235,67 +213,9 @@
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
 
-      <c:choose>
-         <c:when test="${empty list}">
-            	<div class='col-xs-12'>
-	<div class='widget widget-shadow widget-border'>
-	<div class='widget-body widget-border-bottom'>
-	<p>결제 내역이 없습니다.
-	<br />
-	</p>
-	</div>
-	</div>
-	</div>  
-         </c:when>
-         <c:otherwise>
-         <table border="1">
-
-   <col width="188px">
-   <col width="300px">
-   <col width="70px">
-   <col width="110px">
-   <col width="80px">
-   <col width="120px">
-   <tr>
-   	  <th></th> 
-      <th>상품명</th>
-      <th>투어날짜</th>
-   	  <th>가격</th>  
-      <th>인원수</th>
-      <th>후기</th>
-   </tr>
-            <c:forEach items="${list}" var="dto">
-            <tr>
-               <td><div class="image"><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></div></td>
-	           <td>${dto.p_name}</td>
-	           <td>${dto.p_date}</td>
-	           <td>${dto.p_cost}</td>
-	           <td>${dto.p_num}</td>
-	           <c:choose>
-	           	<c:when test="${dto.p_rflag eq 0}">
-	           	<td align="center">
-	           		<input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성">			
-	           	</td>
-	           	</c:when>
-	           		<c:when test="${dto.p_rflag eq 1}">
-	           		<td>
-	           		후기작성완료
-	           		</td>
-	           		</c:when>
-	           </c:choose>
-            </tr>   
-            </c:forEach>
-            </table>
-         </c:otherwise>
-         </c:choose>
-</table>
 </tbody>
+</table>
 
-<script type="text/javascript">
-function goods(g_seq){
-	location.href="detailsal.do?g_seq="+g_seq;
-}
-</script>
 
 </div>
 </div>
