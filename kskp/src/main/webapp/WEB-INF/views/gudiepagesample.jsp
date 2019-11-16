@@ -2,11 +2,12 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html class='no-js css-menubar' lang='en'>
 <head>
 <meta charset='utf-8'>
+
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1.0, user-scalable=0' name='viewport'>
 <meta content='Partner' name='description'>
@@ -215,7 +216,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>상품 관리</li>
+<li class='active'>정산관리</li>
 </ol>
 
 </div>
@@ -225,17 +226,10 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-등록된 상품
+현재수익내역
 <!-- 상품 갯수 -->
-<span class='badge badge-success'>${goodscount}</span>
-<div class='panel-btn-container clearfix hidden-xs'>
-<div class='col-xs-12'>
-<a class='btn btn-default btn-info pull-right offer-register-btn' data-disable-with='로딩중..' href='insertgoodsform.do?gu_seq=${ldto1.gu_seq}'>
-<i aria-hidden='true' class='icon wb-plus'></i>
-가이드 투어 등록
-</a>
-</div>
-</div>
+<span class='badge badge-success'></span>
+
 </div>
 </div>
 <div class='panel-body'>
@@ -244,8 +238,48 @@
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
 
+<input type="hidden" name="gu_seq" value="${ldto1.gu_seq}"/>
+
+<table border="1">
+   <col width="188px">
+   <col width="300px">
+   <col width="70px">
+   <col width="110px">
+   <col width="80px">
+   <col width="70px">
+   <tr>
+        <th>은행명</th> 
+      <th>계좌번호</th>
+        <th>정산받을 금액</th>  
+      <th>송금신청날짜</th>
+   </tr>
+      <c:choose>
+         <c:when test="${empty list}">
+            <tr>
+               <td colspan="4" style="text-align: center;">송금신청 내역이 없습니다</td>
+            </tr>   
+         </c:when>
+         <c:otherwise>
+            <c:forEach items="${list}" var="dto">
+           <tr>
+               <td>${dto.s_bank}</td>
+              <td>${dto.s_acc}</td> 
+              <td>${dto.s_gcost}</td>
+              <td>${dto.s_regdate}</td>
+          </tr>
+            </c:forEach>
+         </c:otherwise>
+         </c:choose>
+   
+       
+</table>
+
+
+
 </tbody>
 </table>
+
+
 
 
 </div>

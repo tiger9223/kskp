@@ -31,7 +31,7 @@
 	<td><input type="text" name="gcost" value="<f:formatNumber type="number" maxFractionDigits="0" value="${sal*0.8}"/>" readonly="readonly" /></td>
 </tr>
 <tr>
-	<td colspan="2"><input type="submit"/> </td>
+	<td colspan="2"><input type="submit" ${sal eq 0  ? 'disabled' : ''}/> </td>
 </tr>
 </table>
 </form>
