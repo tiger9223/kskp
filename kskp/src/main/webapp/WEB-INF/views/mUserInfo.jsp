@@ -70,7 +70,17 @@
 <img alt='logo' class='navbar-brand-logo all-size-logo' height='24px' src='img/logo.png' title='파트너' width='108px'>
 <img alt='logo' class='navbar-brand-logo tablet-logo' height='46px' src='img/logo.png' title='파트너' width='46px'>
 <!--  회원 등급 표시 -->
+<c:choose>
+<c:when test="${ldto.m_status eq 'M'}">
+<span class='navbar-brand-text hidden-xs'>일반회원</span>
+</c:when>
+<c:when test="${ldto.m_status eq 'A'}">
+<span class='navbar-brand-text hidden-xs'>관리자</span>
+</c:when>
+<c:otherwise>
 <span class='navbar-brand-text hidden-xs'>가이드</span>
+</c:otherwise>
+</c:choose>
 </a>
 </div>
 <div class='navbar-container container-fluid'>
@@ -191,7 +201,7 @@
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
+<a class='animsition-link' href='nboardlist.do?pnum=1'>
 <i aria-hidden='true' class='site-menu-icon wb-bell'></i>
 <span class='site-menu-title'>공지사항</span>
 </a>
