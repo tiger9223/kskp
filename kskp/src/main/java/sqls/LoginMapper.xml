@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--가이드 수익금액 정산-->
 	<update id="guidesalary" parameterType="SalaryDto">
-		UPDATE GUIDE SET GU_SALARY=#{s_gcost} WHERE GU_SEQ=#{gu_seq}
+		UPDATE GUIDE SET GU_SALARY= NVL(GU_SALARY, 0)+#{s_gcost} WHERE GU_SEQ=#{gu_seq}
 	</update>
 	
 

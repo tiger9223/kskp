@@ -111,6 +111,14 @@
       margin-right: 5px;
       margin-bottom: -5px;
    }
+   .wrap {
+		resize:none;
+		line-height:30px;
+		width:470px;
+		overflow-y:hidden;
+		height:30px;
+		border:1px solid #ccc;
+	}
 </style>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script type="text/javascript">	
@@ -477,6 +485,11 @@
 
 <p class="title">사진</p>
 <input type="file" name="file" id="gu_img" class="text" onchange="previewImage(this,'img_check')">
+<div class="notice" id="img_check"></div>
+
+
+<p class="title">자기소개</p>
+<textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="g_conts" ></textarea>
 <div class="notice" id="img_check"></div>
 
 <input type="submit" id="reg_submit" class="button" value="회원가입">

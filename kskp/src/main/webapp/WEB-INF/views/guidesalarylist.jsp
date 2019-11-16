@@ -37,7 +37,7 @@
          <c:otherwise>
             <c:forEach items="${list}" var="dto">
             <input type="hidden" name="gu_seq" value="${dto.gu_seq}"/>
-			<input type="hidden" name="s_cost" value="${dto.s_cost}"/>
+			<input type="hidden" name="s_gcost" value="${dto.s_gcost}"/>
 			<input type="hidden" name="s_seq" value="${dto.s_seq}"/>
   			<tr>
                <td>${dto.gu_name}</td>

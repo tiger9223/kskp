@@ -35,7 +35,7 @@
                <td>${dto.s_bank}</td>
               <td>${dto.s_acc}</td> 
               <td>${dto.s_gcost}</td>
-              <td>${dto.s_aregdate}</td>
+              <td><f:formatDate value="${dto.s_aregdate}" pattern="yyyy년MM월dd일"/></td>
           </tr>
             </c:forEach>
          </c:otherwise>
