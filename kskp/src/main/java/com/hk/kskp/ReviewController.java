@@ -158,6 +158,14 @@ public class ReviewController {
 		return "guidenoreview";
 	}
 	
+
+	@RequestMapping(value = "/guideyesreview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String guideYesReview(Locale locale,Model model,int gu_seq ) {
+	    List<ReviewDto> list = ReviewService.guideYesReview(gu_seq);
+	    model.addAttribute("list",list);
+		return "guideyesreview";
+	}
+	
 	@RequestMapping(value = "/getreviewform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getrivewform(Locale locale,Model model ,int r_seq ) {
 		logger.info("가이드 답글 달기 폼으 로 이동", locale);

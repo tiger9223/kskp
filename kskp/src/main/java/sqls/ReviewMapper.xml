@@ -15,9 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{r_star},NULL,0)  
 	</insert>
 	
-	
-	
-	
 	<select id="reviewlist" parameterType="int" resultType="ReviewDto">
 	select r.r_star,m.m_name,r.r_regdate,r.r_conts,r.r_img,r.r_ans from review r,Members m where r.g_seq=#{g_seq} and r.m_seq = m.m_seq
 	</select>
@@ -51,10 +48,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select avg(r_star) from review where g_seq=#{g_seq}
 	</select>
 
-	<!-- 가이드 후기 않단 리스트 뽑기 -->
+	<!-- 가이드 후기 안단 리스트 뽑기 -->
 	<select id="guidenoreview" parameterType="int" resultType="ReviewDto">
 	SELECT * FROM REVIEW R , MEMBERS M, GOODS G, GUIDE GU 
 	WHERE R.M_SEQ=M.M_SEQ AND R.G_SEQ=G.G_SEQ AND R.R_GUFLAG = 0 AND G.GU_SEQ=GU.GU_SEQ AND G.GU_SEQ=#{gu_seq}
+	</select>
+
+	<!-- 가이드 후기 단 리스트 뽑기 -->
+	<select id="guideyesreview" parameterType="int" resultType="ReviewDto">
+	SELECT * FROM REVIEW R , MEMBERS M, GOODS G, GUIDE GU 
+	WHERE R.M_SEQ=M.M_SEQ AND R.G_SEQ=G.G_SEQ AND R.R_GUFLAG = 1 AND G.GU_SEQ=GU.GU_SEQ AND G.GU_SEQ=#{gu_seq}
 	</select>
 
 	<!-- 답글 달 후기 -->
