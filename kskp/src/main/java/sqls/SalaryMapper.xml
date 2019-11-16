@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 송금신청확인 리스트  -->
 	<select id="adminsallist" resultType="SalaryDto" >
-	SELECT gu.GU_NAME,s.S_BANK,s.S_ACC,s.S_COST,s.S_REGDATE FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=0
+	SELECT gu.GU_SEQ, gu.GU_NAME, s.S_BANK,s.S_ACC,s.S_GCOST,s.S_REGDATE,s.S_SEQ FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=0
 	</select>
 
 	<!-- 관리자 정산확인 -->

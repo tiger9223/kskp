@@ -15,13 +15,14 @@ public class SalaryDto {
 	private int s_gcost;
 	private int getsal;
 	private int getgsal;
+	private String gu_name;
 	
 	public SalaryDto() {
 		super();
 	}
 
 	public SalaryDto(int s_seq, int gu_seq, int s_cost, Date s_regdate, Date s_aregdate, String s_bank, String s_acc,
-			int s_flag, int s_gcost, int getsal, int getgsal) {
+			int s_flag, int s_gcost, int getsal, int getgsal, String gu_name) {
 		super();
 		this.s_seq = s_seq;
 		this.gu_seq = gu_seq;
@@ -34,6 +35,7 @@ public class SalaryDto {
 		this.s_gcost = s_gcost;
 		this.getsal = getsal;
 		this.getgsal = getgsal;
+		this.gu_name = gu_name;
 	}
 
 	public int getS_seq() {
@@ -124,14 +126,20 @@ public class SalaryDto {
 		this.getgsal = getgsal;
 	}
 
+	public String getGu_name() {
+		return gu_name;
+	}
+
+	public void setGu_name(String gu_name) {
+		this.gu_name = gu_name;
+	}
+
 	@Override
 	public String toString() {
 		return "SalaryDto [s_seq=" + s_seq + ", gu_seq=" + gu_seq + ", s_cost=" + s_cost + ", s_regdate=" + s_regdate
 				+ ", s_aregdate=" + s_aregdate + ", s_bank=" + s_bank + ", s_acc=" + s_acc + ", s_flag=" + s_flag
-				+ ", s_gcost=" + s_gcost + ", getsal=" + getsal + ", getgsal=" + getgsal + "]";
+				+ ", s_gcost=" + s_gcost + ", getsal=" + getsal + ", getgsal=" + getgsal + ", gu_name=" + gu_name + "]";
 	}
-	
-	
 
 
 

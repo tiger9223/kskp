@@ -99,17 +99,22 @@
 			</li>
 			<li>
 				<ul>
-				<a href="qboardlist.do?pnum=1"><h2>Q&A 전체글</h2></a>
+				<a href="qboardlist.do?pnum=1"><h2>Q&A 전체 글</h2></a>
 				</ul>
 			</li>
 			<li>
 				<ul>
-				<a href="unanswered.do?pnum=1"><h2>미답변 글</h2></a>
+				<a href="unanswered.do?pnum=1"><h2>Q&A 미답변 글</h2></a>
 				</ul>
 			</li>
 			<li>
 				<ul>
 				<a href="nboardlist.do?pnum=1"><h2>공지사항</h2></a>
+				</ul>
+			</li>
+			<li>
+				<ul>
+				<a href="guidesalary.do"><h2>가이드 정산관리</h2></a>
 				</ul>
 			</li>
 			<li>
