@@ -208,6 +208,7 @@ public class GoodsController {
 		    return "redirect:goodsdetail.do?g_seq="+dto.getG_seq();
 		}
 	}
+	
 	@RequestMapping(value = "/cartpay.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String cartPay(Locale locale, Model model, PayDto dto, HttpServletRequest request) {
 		logger.info("장바구니 결제완료", locale);
@@ -225,8 +226,6 @@ public class GoodsController {
 		}
 	}
 	
-	
-
 	@RequestMapping(value = "/paylist.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String payList(Locale locale, Model model, int m_seq) {
 		logger.info("결제 내역보기", locale);

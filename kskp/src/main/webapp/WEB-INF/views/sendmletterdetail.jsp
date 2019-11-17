@@ -150,12 +150,12 @@
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href="">
+<a class='animsition-link' href="useryesreview.do?m_seq=${ldto.m_seq}">
 <span class='site-menu-title'>내가 쓴 후기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href=''>
+<a class='animsition-link' href='usernoreview.do?m_seq=${ldto.m_seq}'>
 <span class='site-menu-title'>후기 글 남기기</span>
 </a>
 </li>

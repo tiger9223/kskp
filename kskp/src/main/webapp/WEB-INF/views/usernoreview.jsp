@@ -208,7 +208,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>결제 내역</li>
+<li class='active'>후기 글 남기기</li>
 </ol>
 
 </div>
@@ -218,9 +218,9 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-결제 내역
+후기 글 남기기
 <!-- 상품 갯수 -->
-<span class='badge badge-success'>${paycount}</span>
+<span class='badge badge-success'>${userrecount}</span>
 </div>
 </div>
 <div class='panel-body'>
@@ -234,8 +234,9 @@
             	<div class='col-xs-12'>
 	<div class='widget widget-shadow widget-border'>
 	<div class='widget-body widget-border-bottom'>
-	<p>결제 내역이 없습니다.
+	<p>후기를 작성할 
 	<br />
+	상품이 없습니다.
 	</p>
 	</div>
 	</div>
@@ -249,12 +250,14 @@
    <col width="70px">
    <col width="110px">
    <col width="80px">
+   <col width="120px">
    <tr>
    	  <th></th> 
       <th>상품명</th>
       <th>투어날짜</th>
    	  <th>가격</th>  
       <th>인원수</th>
+      <th>후기</th>
    </tr>
             <c:forEach items="${list}" var="dto">
             <tr>
@@ -263,6 +266,18 @@
 	           <td>${dto.p_date}</td>
 	           <td>${dto.p_cost}</td>
 	           <td>${dto.p_num}</td>
+	           <c:choose>
+	           	<c:when test="${dto.p_rflag eq 0}">
+	           	<td align="center">
+	           		<input type="button" onclick='location.href="writereviewform.do?p_seq=${dto.p_seq}"' value="후기작성">			
+	           	</td>
+	           	</c:when>
+	           		<c:when test="${dto.p_rflag eq 1}">
+	           		<td>
+	           		후기작성완료
+	           		</td>
+	           		</c:when>
+	           </c:choose>
             </tr>   
             </c:forEach>
             </table>

@@ -62,10 +62,6 @@ public class ReviewController {
 	
 
 
-	
-	
-
-
 	@RequestMapping(value = "/writereviewform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String wirtereviewform(Locale locale,Model model ,int p_seq) {
 		logger.info("후기작성폼 이동", locale);
@@ -187,17 +183,25 @@ public class ReviewController {
 	    }
 	}
 	
-	//여기서 부터 해야함 !
-	@RequestMapping(value = "/userreviewlist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String userReviewList(Locale locale,Model model,int gu_seq ) {
-		logger.info("가이드가 단 답글 보기 이동", locale);
-	    List<ReviewDto> list = ReviewService.guideYesReview(gu_seq);
+	@RequestMapping(value = "/useryesreview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String userReviewList(Locale locale, Model model, int m_seq) {
+		logger.info("회원이 작성한 후기 리스트 보기", locale);
+	    List<ReviewDto> list = ReviewService.userReview(m_seq);
+	    System.out.println(list);
 	    model.addAttribute("list",list);
-		return "guideyesreview";
+	    model.addAttribute("userrecount", list.size());
+		return "useryesreview";
 	}
 	
-	
-	
+	@RequestMapping(value = "/usernoreview.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String payList(Locale locale, Model model, int m_seq) {
+		logger.info("회원이 결제한 상품 가져다 후기 남기게 하기", locale);
+		List<PayDto> list = CashService.getAllPay(m_seq);
+		System.out.println(m_seq);
+		model.addAttribute("list",list);
+		model.addAttribute("userrecount", list.size());
+		return "usernoreview";
+	}
 	
 	public static String createUUId() {
 	      return UUID.randomUUID().toString().replaceAll("-", "");

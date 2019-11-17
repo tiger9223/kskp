@@ -53,7 +53,9 @@
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
 <style>
-.image { overflow: hidden; }
+.image {
+ overflow: hidden; 
+ }
 
 .image  img {
     -webkit-transform:scale(1);
@@ -208,7 +210,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>결제 내역</li>
+<li class='active'>내가 단 후기</li>
 </ol>
 
 </div>
@@ -218,9 +220,9 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-결제 내역
+후기
 <!-- 상품 갯수 -->
-<span class='badge badge-success'>${paycount}</span>
+<span class='badge badge-success'>${userrecount}</span>
 </div>
 </div>
 <div class='panel-body'>
@@ -228,49 +230,47 @@
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
-
-      <c:choose>
-         <c:when test="${empty list}">
-            	<div class='col-xs-12'>
-	<div class='widget widget-shadow widget-border'>
-	<div class='widget-body widget-border-bottom'>
-	<p>결제 내역이 없습니다.
-	<br />
-	</p>
-	</div>
-	</div>
-	</div>  
-         </c:when>
-         <c:otherwise>
-         <table border="1">
-
-   <col width="188px">
-   <col width="300px">
-   <col width="70px">
-   <col width="110px">
-   <col width="80px">
-   <tr>
-   	  <th></th> 
-      <th>상품명</th>
-      <th>투어날짜</th>
-   	  <th>가격</th>  
-      <th>인원수</th>
-   </tr>
-            <c:forEach items="${list}" var="dto">
-            <tr>
-               <td><div class="image"><img id="img" src="${dto.g_thumbimg}" onclick="goods(${dto.g_seq})"/></div></td>
-	           <td>${dto.p_name}</td>
-	           <td>${dto.p_date}</td>
-	           <td>${dto.p_cost}</td>
-	           <td>${dto.p_num}</td>
-            </tr>   
-            </c:forEach>
-            </table>
-         </c:otherwise>
-         </c:choose>
-</table>
+<c:choose>
+		<c:when test="${empty list}">
+			후기가 없습니다.
+		</c:when>
+		<c:otherwise>
+		<c:forEach items="${list}" var="dto">
+		<table>
+		<tr>
+		<td>${dto.g_name}<td>
+			<tr>
+				<th><c:choose>
+				<c:when test="${dto.r_star eq 1}">
+				★ &nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 2}">
+				★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 3}">
+				★★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 4}">
+				★★★★&nbsp;
+				</c:when>
+				<c:when test="${dto.r_star eq 5}">
+				★★★★★&nbsp;
+				</c:when>
+				</c:choose>
+				</th>
+				<th>${dto.m_name}</th>
+				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>
+			</tr>
+			<tr>
+				<td colspan="3">${dto.r_conts}</td>
+			</tr>
+			<hr/>
+		</table>
+		</c:forEach>
+		</c:otherwise>
+	</c:choose>
 </tbody>
-
+</table>
 <script type="text/javascript">
 function goods(g_seq){
 	location.href="goodsdetail.do?g_seq="+g_seq;
