@@ -87,6 +87,14 @@ height: 30px;
 text-align: left;
 width:690px;
 }
+.wrap {
+resize:none;
+line-height:30px;
+width:690px;
+overflow-y:hidden;
+height:30px;
+border:1px solid #ccc;
+}
 
 </style>
 
@@ -267,7 +275,7 @@ width:690px;
 </tr>
 <tr>
 <td class="mn">내용</td>
-<td class="mn1"><textarea cols="100" name="l_conts" placeholder="내용을 입력하세요"></textarea></td>
+<td class="mn1"><textarea class="wrap" onkeyup="this.style.height='26px'; this.style.height = this.scrollHeight + 'px';" type="text" name="l_conts" placeholder="내용을 입력하세요"></textarea></td>
 </tr>
 <tr>
 	<td colspan="2" align="right"><input type="submit" id="sub" value="보내기"><input type="button" value="취소" onclick="history.back(-1);"> </td>
