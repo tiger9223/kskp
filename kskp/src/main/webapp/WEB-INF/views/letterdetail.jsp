@@ -52,6 +52,20 @@
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
+
+<style type ="text/css">
+th{
+text-align:center;
+width: 100px;
+height: 40px;
+}
+
+tr{
+text-align:center;
+width: 250px;
+}
+
+</style>
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -256,10 +270,10 @@
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea rows="3" cols="30" readonly="readonly" >${dto.l_conts}</textarea></td>
+		<td><textarea  cols="100" readonly="readonly" >${dto.l_conts}</textarea></td>
 	</tr>
 		<tr>
-		<td colspan="3">
+		<td colspan="3" align="right">
 			<input type="submit" value="삭제" />
 			<input type="button" value="목록" onClick="location.href='letterlist.do?l_receiver=${dto.l_receiver}&pnum=${pnum}'" />
 		</td>

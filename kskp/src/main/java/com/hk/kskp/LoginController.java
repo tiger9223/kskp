@@ -525,7 +525,15 @@ public class LoginController {
 	      logger.info("고객센터");
 	      return"serivecenter";
 	}
+	  
+	
+	@RequestMapping(value = "/centeradd.do", method = {RequestMethod.GET,RequestMethod.POST})
+	   public String centeraddform(Model model) {
+	      logger.info("찾아오시는길");
+	      return"centeradd";
+	}
 	   
+	
 	@RequestMapping(value = "/cancel.do", method = {RequestMethod.GET,RequestMethod.POST})
 	   public String cancelForm(Model model) {
 	      logger.info("환불정책");

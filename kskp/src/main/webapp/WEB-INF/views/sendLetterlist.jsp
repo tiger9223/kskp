@@ -52,6 +52,16 @@
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
+<style type ="text/css">
+th{
+text-align:center;
+}
+
+tr{
+text-align:center;
+}
+
+</style>
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -274,23 +284,23 @@
 	</c:choose>
 <tr>
               <td colspan="7" align="center">
-                  <a href="letterlist.do?l_sender=${ldto1.gu_email}&pnum=${map.prePageNum}">◀</a>
+                  <a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=${map.prePageNum}">◀</a>
                   <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
                      <c:choose>
                         <c:when test="${pnum eq i}">
                            ${i}
                         </c:when>
                         <c:otherwise>
-                           <a href="letterlist.do?l_sender=${ldto1.gu_email}&pnum=${i}">${i}</a>
+                           <a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=${i}">${i}</a>
                         </c:otherwise>
                      </c:choose>   
                   </c:forEach>
-                  <a href="letterlist.do?l_sender=${ldto1.gu_email}&pnum=${map.nextPageNum}">▶</a>
+                  <a href="sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=${map.nextPageNum}">▶</a>
               </td>
          </tr>
 	<tr>
 	<tr>
-		<td colspan="5">
+		<td colspan="5" align="right">
 			<input type="submit" value="삭제"/>
 		</td>
 	</tr>

@@ -76,7 +76,21 @@
     -o-transform:scale(1.2);
     transform:scale(1.2);
 }
+
+
+th{
+text-align:center;
+width: 100px;
+height: 40px;
+}
+
+tr{
+text-align:center;
+width: 250px;
+}
+
 </style>
+
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -210,7 +224,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>받은 메세지</li>
+<li class='active'>보낸 메세지</li>
 </ol>
 
 </div>
@@ -220,7 +234,7 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-받은 메세지
+보낸 메세지
 <!-- 상품 갯수 -->
 <span class='badge badge-success'></span>
 </div>
@@ -250,12 +264,12 @@
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea rows="3" cols="30" readonly="readonly" >${dto.l_conts}</textarea></td>
+		<td><textarea cols="100" readonly="readonly" >${dto.l_conts}</textarea></td>
 	</tr>
 		<tr>
 		<td colspan="3">
 			<input type="submit" value="삭제"/>
-			<input type="button" value="목록" onClick="location.href='sendletterlist.do?l_sender=${dto.l_sender}&pnum=${pnum}'">
+			<input type="button" value="목록" onClick="location.href='sendmletterlist.do?l_sender=${dto.l_sender}&pnum=${pnum}'">
 		</td>
 	</tr>
 </table>

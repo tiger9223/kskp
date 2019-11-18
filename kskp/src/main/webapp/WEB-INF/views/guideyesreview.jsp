@@ -266,9 +266,14 @@
 				<td colspan="3">${dto.r_conts}</td>
 			</tr>
 			<tr>
-				<td><input type="button" onclick="location.href='getreviewform.do?r_seq=${dto.r_seq}'" value="답글달기" /></td>
+			<td><hr/></td>
 			</tr>
-			<hr/>
+			<tr>
+			<td>가이드 답글 내용</td>
+			</tr>
+			<tr>
+			<td>${dto.r_ans}</td>
+			</tr>
 		</table>
 		</c:forEach>
 		</c:otherwise>

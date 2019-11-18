@@ -52,6 +52,18 @@
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
+<style type ="text/css">
+th{
+text-align:center;
+}
+
+tr{
+text-align:center;
+}
+
+</style>
+
+
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -234,20 +246,23 @@
 	<input type="hidden" name="l_sender" value="${dto.l_sender}">
 	<input type="hidden" name="l_receiver" value="${dto.l_receiver}">
 	<input type="hidden" name="pnum" value="${pnum}">
+
 		<table border="1">
 			<col width="50px">
 			<col width="50px">
 			<col width="100px">
 			<col width="300px">
 			<col width="100px">
+			
 		<tr>
 			<th><input type="checkbox" onclick="allSel(this.checked)" /></th>
 			<th>번호</th>
 			<th>보낸사람</th>
 			<th>제목</th>
 			<th>보낸시간</th>
+			
 		</tr>
-		
+
 	<c:choose>
 	<c:when test="${empty list}">
 					<tr>
@@ -284,12 +299,13 @@
             </tr>
 
 	<tr>
-		<td colspan="5">
+		<td colspan="5" align="right">
 			<input type="submit" value="삭제" />
 		</td>
 	</tr>
 	
 </table>
+
 </form>
 
 
@@ -316,10 +332,9 @@ function allSel(ele){
 		}
 	}
 
- 
-   	 
-   	 
 </script>
+
+
 
 <footer class='site-footer main' id='footer'>
 		<div class="footer_wrap">

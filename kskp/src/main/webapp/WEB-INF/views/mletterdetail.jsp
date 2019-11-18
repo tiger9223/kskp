@@ -75,7 +75,22 @@
     -ms-transform:scale(1.2);   
     -o-transform:scale(1.2);
     transform:scale(1.2);
+    
+   }
+th{
+text-align:center;
+width: 100px;
+height: 40px;
 }
+
+tr{
+text-align:center;
+width: 250px;
+}
+
+
+    
+
 </style>
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
@@ -250,12 +265,12 @@
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea rows="3" cols="30" readonly="readonly" >${dto.l_conts}</textarea></td>
+		<td><textarea  cols="100" readonly="readonly" >${dto.l_conts}</textarea></td>
 	</tr>
 		<tr>
-		<td colspan="3">
+		<td colspan="3" align="right">
 			<input type="submit" value="삭제" />
-			<input type="button" value="목록" onClick="location.href='letterlist.do?l_receiver=${dto.l_receiver}&pnum=${pnum}'" />
+			<input type="button" value="목록" onClick="location.href='mletterlist.do?l_receiver=${dto.l_receiver}&pnum=${pnum}'" />
 		</td>
 	</tr>
 </table>

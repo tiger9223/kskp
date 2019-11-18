@@ -76,7 +76,21 @@
     -o-transform:scale(1.2);
     transform:scale(1.2);
 }
+
+.mn{
+text-align: center;
+width: 100px;
+height: 30px;
+}
+
+.mn1{
+text-align: left;
+width:690px;
+}
+
 </style>
+
+
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -237,23 +251,23 @@
 <input type="hidden" name="l_sender" value="${ldto.m_email}">	
 <table border="1">
 <tr>
-	<td>보내는 사람</td>
-	<td>${ldto.m_email}</td>
+	<td class="mn">보내는 사람</td>
+	<td class="mn1">${ldto.m_email}</td>
 </tr>
 <tr>
-	<td>받는 사람</td>
-	<td>
-		<input type="text" name="l_receiver" id="l_receiver" placeholder="이메일 입력하세요">
+	<td class="mn">받는 사람</td>
+	<td class="mn1">
+		<input type="text" name="l_receiver" id="l_receiver" placeholder="이메일 입력하세요"  class="mn1">
 		<div class="notice" id="id_check"></div>
 	</td>
 </tr>
 <tr>
-<td>제목</td>
-<td><input type="text" name="l_title" placeholder="제목을 입력하세요"></td>
+<td class="mn">제목</td>
+<td class="mn1"><input type="text" name="l_title" placeholder="제목을 입력하세요"  class="mn1"></td>
 </tr>
 <tr>
-<td>내용</td>
-<td><textarea cols="20" rows="10" name="l_conts" placeholder="내용을 입력하세요"></textarea></td>
+<td class="mn">내용</td>
+<td class="mn1"><textarea cols="100" name="l_conts" placeholder="내용을 입력하세요"></textarea></td>
 </tr>
 <tr>
 	<td colspan="2" align="right"><input type="submit" id="sub" value="보내기"><input type="button" value="취소" onclick="history.back(-1);"> </td>

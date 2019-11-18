@@ -11,7 +11,7 @@
 <meta content='width=device-width, initial-scale=1.0, user-scalable=0' name='viewport'>
 <meta content='Partner' name='description'>
 <meta content='' name='author'>
-<title>GUIDE | SWAG</title>
+<title>Member | SWAG</title>
 <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="T9a1SD5LHk3qqbwC5gYYbKp0EotINZ1SzivykFhnkjug6UKlfBmP60c2rbt2vTlT7icOYO4Hy1D6wqzBioaHyg==" />
 <link href='https://d2yoing0loi5gh.cloudfront.net/assets/favicon-e7fc64f202376533d86106e6f712ed41eee1e843dbc5de3b2765938656f8eb93.ico' rel='shortcut icon'>
@@ -49,9 +49,48 @@
 </script>
 <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDfW8RFpx4thvW5Rr8Euvnzo2y-TXzq4Cw&amp;libraries=places' type='text/javascript'></script>
 <script src='//cdn.ravenjs.com/3.24.2/raven.min.js'></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".star_rating a").click(function() {
+			$(this).parent().children("a").removeClass("on");
+			$(this).addClass("on").prevAll("a").addClass("on");
+			var star =$(this).attr('value');
+			$("#r_star").val(star);
+			event.preventDefault();
+		});
+	});
+</script>
+
+<style>
+.star_rating {
+	font-size: 0;
+	letter-spacing: -4px;
+}
+
+.star_rating a {
+	font-size: 22px;
+	letter-spacing: 0;
+	display: inline-block;
+	margin-left: 5px;
+	color: #ccc;
+	text-decoration: none;
+}
+
+.star_rating a:first-child {
+	margin-left: 0;
+}
+
+.star_rating a.on {
+	color: #777;
+}
+
+</style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -70,18 +109,7 @@
 <img alt='logo' class='navbar-brand-logo all-size-logo' height='24px' src='img/logo.png' title='파트너' width='108px'>
 <img alt='logo' class='navbar-brand-logo tablet-logo' height='46px' src='img/logo.png' title='파트너' width='46px'>
 <!--  회원 등급 표시 -->
-<c:choose>
-<c:when test="${ldto.m_status eq 'M'}">
-<span class='navbar-brand-text hidden-xs'>일반회원</span>
-</c:when>
-<c:when test="${ldto.m_status eq 'A'}">
-<span class='navbar-brand-text hidden-xs'>관리자</span>
-</c:when>
-<c:otherwise>
-<span class='navbar-brand-text hidden-xs'>가이드</span>
-</c:otherwise>
-</c:choose>
-
+<span class='navbar-brand-text hidden-xs'>일반 회원</span>
 </a>
 </div>
 <div class='navbar-container container-fluid'>
@@ -117,34 +145,65 @@
 <ul class='site-menu'>
 <li class='site-menu-category'></li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='memberalllist.do'>
+<a class='animsition-link' href='cartlist.do?m_seq=${ldto.m_seq}'>
 <i aria-hidden='true' class='site-menu-icon wb-flag'></i>
-<span class='site-menu-title'>전체회원조회</span>
+<span class='site-menu-title'>장바구니</span>
+</a>
+</li>
+<li class='site-menu-item'>
+<a class='animsition-link' href='paylist.do?m_seq=${ldto.m_seq}'>
+<i aria-hidden='true' class='site-menu-icon wb-payment'></i>
+<span class='site-menu-title'>결제내역</span>
 </a>
 </li>
 <li class='site-menu-item has-sub'>
 <a href='javascript:void(0)'>
-<i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
-<span class='site-menu-title'>가이드 관리</span>
+<i aria-hidden='true' class='site-menu-icon wb-heart'></i>
+<span class='site-menu-title'>후기 관리</span>
 <span class='site-menu-arrow'></span>
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href='guideappform.do?pnum=1'>
-<span class='site-menu-title'>가입승인</span>
+<a class='animsition-link' href="">
+<span class='site-menu-title'>내가 쓴 후기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='goodsappform.do'>
-<span class='site-menu-title'>여행상품 승인</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='guidesalary.do'>
-<span class='site-menu-title'>정산관리</span>
+<a class='animsition-link' href=''>
+<span class='site-menu-title'>후기 글 남기기</span>
 </a>
 </li>
 </ul>
+</li>
+<li class='site-menu-item has-sub'>
+<a href='javascript:void(0)'>
+<i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
+<span class='site-menu-title'>메시지</span>
+<span class='site-menu-arrow'></span>
+</a>
+<ul class='site-menu-sub'>
+<li class='site-menu-item'>
+<a class='animsition-link' href='sendMLetterform.do'>
+<span class='site-menu-title'>메시지 보내기</span>
+</a>
+</li>
+<li class='site-menu-item'>
+<a class='animsition-link' href='mletterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
+<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+</a>
+</li>
+<li class='site-menu-item'>
+<a class='animsition-link' href='sendmletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
+<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+</a>
+</li>
+</ul>
+</li>
+<li class='site-menu-item'>
+<a class='animsition-link' href='muserinfo.do?seq=${ldto.m_seq}'>
+<i aria-hidden='true' class='site-menu-icon wb-user'></i>
+<span class='site-menu-title'>계정관리</span>
+</a>
 </li>
 </ul>
 </div>
@@ -165,7 +224,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>가이드관리</li>
+<li class='active'>후기관리</li>
 </ol>
 
 </div>
@@ -175,60 +234,59 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-가입승인
+후기 글 남기기
 <!-- 상품 갯수 -->
 <span class='badge badge-success'></span>
-
 </div>
 </div>
 <div class='panel-body'>
 <div class='row'>
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
-
-
 <thead>
 
-
-<table border="1">
-<tr>
-	<td rowspan="5">사진</td>
-	<td>이름</td>
-	<td>${dto.gu_name}</td>
-</tr>
-<tr>
-	<td>전화번호</td>
-	<td>${dto.gu_phone}</td>
-</tr>
-<tr>
-	<td>이메일</td>
-	<td>${dto.gu_email}</td>
-</tr>
-<tr>
-	<td>은행명</td>
-	<td>${dto.gu_bank}</td>
-</tr>
-<tr>
-	<td>은행계좌</td>
-	<td>${dto.gu_acc}</td>
-</tr>
-<tr>
-<td colspan="3">내용</td>
-<tr>
-<tr>
-	<td><textarea rows="15" cols="25" readonly="readonly">${dto.gu_intro}</textarea></td>
-</tr>
-<tr>
-	<td><button onclick="location.href='guideapp.do?gu_seq=${dto.gu_seq}'">가입승인</button>
-		<button onclick="location.href='noguideapp.do?gu_seq=${dto.gu_seq}'">가입거절</button>
-</table>
-
-
-
-
+<form action="writereview.do" method="post">
+		<input type="hidden" name="m_seq" value="${ldto.m_seq}">
+		<input type="hidden" id="r_star" name="r_star" value="3">
+		<input type="hidden" name="g_seq" value="${dto.g_seq}"/>
+		<input type="hidden" name="p_seq" value="${dto.p_seq}"/>
+		<table border="1">
+			<tr colspan="2">
+				<td colspan="2">
+					<p class="star_rating">
+						<a href="#" class="on" name="r_star" value="1">★</a> 
+						<a href="#" class="on" name="r_star" value="2">★</a> 
+						<a href="#" class="on" name="r_star" value="3">★</a> 
+						<a href="#" name="r_star" value="4">★</a>
+						<a href="#" name="r_star" value="5">★</a>
+					</p>
+				</td>
+			</tr>
+	<tr>
+		<td>상품명</td>
+		<td>${dto.p_name}</td>
+	</tr>
+	<tr>
+		<td colspan="2"><textarea rows="10" cols="40" id="ckeditor" name="r_conts"></textarea></td>
+	</tr>
+	
+	<tr>
+	<td colspan="2" align="right"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
+	</tr>
+		</table>
+	</form>
+<script>
+	//id가 ckeditor인 태그에 ckeditor를 적용시킴
+	CKEDITOR.replace("ckeditor",{
+	    filebrowserUploadUrl : "/kskp"+"/imageUpload.do",         //,width : '800px'
+	    width : '800px' , height : '500px' , enterMode:Number(2)
+	}) //이미지 업로드 기능을 추가하기위한 코드
+</script>
 
 </tbody>
 </table>
+
+
 
 
 
