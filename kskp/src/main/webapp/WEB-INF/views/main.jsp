@@ -72,6 +72,7 @@
 .info_box li:nth-child(2) span{
    font-size: 11px;
 }
+
 .info_box li a{
    display: block;
    color: #666;
@@ -350,23 +351,23 @@
 			<div class="img_box03">
 				<ul>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=wCsCd5jWsK8">
+							<img src="img/pictip.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=cKn77RynWp8">
+							<img src="img/pictip1.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=EtvlAl2cOoI">
+							<img src="img/pictip2.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=UR6AkX8H4jc&list=PLA365cDEkHfx46ZF_hZ9bzKFc9m3KLpwx&index=88">
+							<img src="img/pictip3.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 				</ul>
