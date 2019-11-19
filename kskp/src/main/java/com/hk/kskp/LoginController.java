@@ -76,6 +76,10 @@ public class LoginController {
 	private String uploadPath;
 	
 
+	@Resource(name="uploadPath")
+	private String uploadPath1;
+	
+
 	// id 중복 체크 컨트롤러
 		@RequestMapping(value = "/emailCheck.do", method = RequestMethod.GET)
 		@ResponseBody
@@ -196,6 +200,40 @@ public class LoginController {
 			model.addAttribute("email", email);
 			return "gemailcert";
 			}
+	}
+	@RequestMapping(value = "/gupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String authChange(Model model,HttpServletResponse response, GuideDto dto,MultipartFile file,MultipartFile file1) throws IOException, Exception {
+		logger.info("가이드 정보수정 ");
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		String imgUploadPath1 = uploadPath1 + File.separator + "imgUpload";
+		String ymdPath1 = UploadFileUtil.calcPath(imgUploadPath1);
+		String fileName1 = null;
+			
+		System.out.println(file);
+		System.out.println(file1);
+		if(file != null) {
+			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+			} else {
+			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+
+		if(file1 != null) {
+			 fileName1 =  UploadFileUtil.fileUpload(imgUploadPath1, file1.getOriginalFilename(), file1.getBytes(), ymdPath1); 
+			} else {
+			 fileName1 = uploadPath1 + File.separator + "images" + File.separator + "none.png";
+			}
+		
+		dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+		dto.setGu_backimg("resources"+ File.separator +"imgUpload" + ymdPath1 + File.separator + fileName1);
+		boolean isS = LoginService.guserUpdate(dto);
+		if(isS){
+			return"redirect:guserinfo.do?seq="+dto.getGu_seq();
+		}else {
+			return"error";
+		}
 	}
 	
 	@RequestMapping(value = "/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -346,7 +384,7 @@ public class LoginController {
 		logger.info("가이드 정보보기");
 		GuideDto dto2=LoginService.gUserInfo(seq);
 		model.addAttribute("dto2",dto2);
-		return"mUserInfo";
+		return"gUserInfo";
 	}
 	
 	@RequestMapping(value = "/muserinfoform.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -380,16 +418,7 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value = "/gupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String authChange(Model model, GuideDto dto) {
-		logger.info("가이드 정보수정 ");
-		boolean isS = LoginService.guserUpdate(dto);
-		if(isS){
-			return"redirect:guserinfo.do?seq="+dto.getGu_seq();
-		}else {
-			return"error";
-		}
-	}
+
 
 	@RequestMapping(value = "/sendemail.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String sendphone(Model model, String phone,HttpSession session, String email) throws Exception {

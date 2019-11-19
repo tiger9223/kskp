@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 가이드	정보 수정 -->
 	<update id="guserUpdate" parameterType="GuideDto">
-		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc} WHERE GU_SEQ=#{gu_seq}
+		UPDATE GUIDE SET GU_PW=#{gu_pw},GU_BANK=#{gu_bank},GU_ACC=#{gu_acc}, GU_IMG=#{gu_img}, GU_BACKIMG=#{gu_backimg}, GU_PHONE=#{gu_phone} WHERE GU_SEQ=#{gu_seq}
 	</update>
 	
 	<!-- 일반회원 전체 목록 조회 -->

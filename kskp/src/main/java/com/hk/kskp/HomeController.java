@@ -190,7 +190,6 @@ public class HomeController {
 	@ResponseBody
 	public String profileupload(@RequestParam HashMap<Object, Object> param, MultipartFile file) throws IOException, Exception {
 		logger.info("프로필사진 선택");
-		String file1 = 
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
 		String fileName = null;
@@ -201,6 +200,7 @@ public class HomeController {
 			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 			}
 		String profile= ("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+		System.out.println(profile);
 		return profile;
 	}
 }

@@ -49,38 +49,147 @@
 </script>
 <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDfW8RFpx4thvW5Rr8Euvnzo2y-TXzq4Cw&amp;libraries=places' type='text/javascript'></script>
 <script src='//cdn.ravenjs.com/3.24.2/raven.min.js'></script>
+<script type="text/javascript"  src="js/GU_userinfo.js"></script>
 <script>
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
 </head>
 <script type="text/javascript">
 
-$(function(){
-	$("#guideProfileBtn").change(function(){
-		 var form = $('#FILE_FORM')[0];
-         var formData = new FormData(form);
-         formData.append('file',$('#profileupload')[0].files[0]);
-		$.ajax({
-			url : '/profileupload.do',
-	        type : 'POST',
-	        data : formData,
-	        contentType : false,
-	        processData : false,    
-			success : function(data) {
-				console.log(data);
-					$("#View_area").hide();
-					$("#preview").css({"background":"url("+data+")"});
-				}, 
-				error : function() {
-						console.log("실패");
-				}
-						  });
+// $(function(){
+// 	$("#guideProfileBtn").change(function(){
+//          var formData = new FormData();
+//          formData.append('file',$('#profileupload')[0].files[0]);
+// 		$.ajax({
+// 			url : '${pageContext.request.contextPath}/profileupload.do',
+// 	        type : 'POST',
+// 	        data : formData,
+// 	        contentType : false,
+// 	        processData : false,    
+// 			success : function(data) {
+// 				console.log(data);
+// 					$("#View_area").hide();
+// 					$("#preview").css({"background":"url("+data+")"});
+// 				}, 
+// 				error : function() {
+// 						console.log("실패");
+// 				}
+// 						  });
 		
+// 	})
+	
+	
+	
+// });
+function ajaxFileUpload() {
+        // 업로드 버튼이 클릭되면 파일 찾기 창을 띄운다.
+        jQuery("#ajaxFile").click();
+    }
+
+var sel_file;
+
+$(document).ready(function(){
+	$("#ajaxFile").on("change", handleImgFileSelect1);
+
+});
+
+function handleImgFileSelect1(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		sel_file = f;
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#View_area").attr("src",e.target.result);
+		}
+		reader.readAsDataURL(f);
 	})
 	
-	
-	
+}
+
+//     function ajaxFileChange() {
+//         // 파일이 선택되면 업로드를 진행한다.
+//         ajaxFileTransmit();
+//     }
+
+//     function ajaxFileTransmit() {
+//         var form = jQuery("ajaxFrom")[0];
+//         var formData = new FormData(form);
+//         formData.append("message", "파일 확인 창 숨기기");	
+//         formData.append("file", jQuery("#ajaxFile")[0].files[0]);
+
+//         jQuery.ajax({
+//               url : "${pageContext.request.contextPath}/profileupload.do"
+//             , type : "POST"
+//             , processData : false
+//             , contentType : false
+//             , data : formData
+//             , success:function(data) {
+//             	$("#View_area").hide();
+// 					$("#preview").css({"background":"url("+data+")"});
+//             }
+//         });
+//     }
+
+    function ajaxFileUpload1() {
+        // 업로드 버튼이 클릭되면 파일 찾기 창을 띄운다.
+        jQuery("#ajaxFile1").click();
+    }
+
+//     function ajaxFileChange1() {
+//         // 파일이 선택되면 업로드를 진행한다.
+//         ajaxFileTransmit1();
+//     }
+
+//     function ajaxFileTransmit1() {
+//         var form = jQuery("ajaxFrom")[0];
+//         var formData = new FormData(form);
+//         formData.append("message", "파일 확인 창 숨기기");
+//         formData.append("file", jQuery("#ajaxFile1")[0].files[0]);
+
+//         jQuery.ajax({
+//               url : "${pageContext.request.contextPath}/profileupload.do"
+//             , type : "POST"
+//             , processData : false
+//             , contentType : false
+//             , data : formData
+//             , success:function(data, textStatus, xhr) {
+//             	console.log(data);
+//             	 console.log('success');
+//             },
+//             error : function(request,status,error) {  
+//                 alert("code:"+request.status+"\n"+"error:"+error);
+//              }
+//         });
+//     }
+
+
+</script>
+<script type="text/javascript">
+var sel_file;
+
+$(document).ready(function(){
+	$("#ajaxFile1").on("change", handleImgFileSelect);
+
 });
+
+function handleImgFileSelect(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		sel_file = f;
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#img").attr("src",e.target.result);
+		}
+		reader.readAsDataURL(f);
+	})
+	
+}
 
 
 </script>
@@ -272,13 +381,18 @@ $(function(){
 <div class='panel-body'>
 <div class='col-lg-8 col-lg-offset-2 col-sm-12'>
 <div class='row'>
-<form data-validation="true" enctype='multipart/form-data'  id="FILE_FORM"class="form-horizontal form-account" action="/partner" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="qSsqT1/CMR5DKrBhglSyZ4GLI21PUugoYr2pqBoib2FZIAzfzm9R5waK5iOTW+GaW+tv1avF7fHRmZcnsoGQ0Q==" />
+<form data-validation="true" enctype='multipart/form-data'  id="ajaxFrom"class="form-horizontal form-account" action="gupdate.do" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="qSsqT1/CMR5DKrBhglSyZ4GLI21PUugoYr2pqBoib2FZIAzfzm9R5waK5iOTW+GaW+tv1avF7fHRmZcnsoGQ0Q==" />
 <input name='guide[company]' type='hidden' value='false'>
 <div class='panel panel-bordered panel-border-gray panel-profile'>
-<div class='panel-image bg-blue-grey-300'     id="img_check2" style='background:url(&#39;&#39;) no-repeat center center;background-size:cover;'>
+<div class='panel-image bg-blue-grey-300'  style="   width: 100%;
+   height: 200px;
+   overflow: hidden;"   id="img_check2" >
+<img id="img" src="${dto2.gu_img}" style="width: 100%;
+   height: auto;"  >
 <div class='input-group-file background-file file-upload-btn'>
-<input name='guide[background_image_temp_url]' type='hidden' value='${dto2.gu_backimg}'>
-<input id='guideBgBtn' name='file' type='file'>
+<input type="file" name ="file" id="ajaxFile1"  />
+
+<input type="button" onClick="ajaxFileUpload1();">
 <div class='btn btn-default btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
 <i aria-hidden='true' class='icon wb-upload'></i>
@@ -287,12 +401,21 @@ $(function(){
 </div>
 </div>
 <div class='photo-container'>
-<div class='avatar avatar-lg'>
+<div class='avatar avatar-lg' id="img_check1">
+<c:choose>
+<c:when test="${empty dto2.gu_img}">
 <img alt='guide profile' id='View_area' class='default-img' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
+</c:when>
+<c:otherwise>
+<img alt='guide profile' id='View_area' class='default-img' src='${dto2.gu_img}'>
+</c:otherwise>
+</c:choose>
+
 <div id="preview" class='img-preview'></div>
 </div>
 <div class='avatar-file file-upload-btn'>
-<input id='guideProfileBtn' name='file' type='file' >
+<input type="file" name ="file1" id="ajaxFile" style="display:none;"/>
+<input type="button" onClick="ajaxFileUpload();">
 <div class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
 <i aria-hidden='true' class='icon wb-upload'></i>
@@ -582,8 +705,9 @@ $(function(){
 </label>
 <div class='col-sm-9'>
 <input class='form-control' id="gu_pw" name='gu_pw' type='text' >
-</div>
 <div class="notice" id="pw_check"></div>
+</div>
+
 </div>
 <div class='form-group clearfix' >
 <label class='col-sm-3 control-label font-weight-700'>
@@ -592,8 +716,9 @@ $(function(){
 </label>
 <div class='col-sm-9'>
 <input class='form-control'id="gu_pwchk"  name='gu_pwchk' type='text' >
-</div>
 <div class="notice" id="pwchk_check"></div>
+</div>
+
 </div>
 </div>
 <div class='form-group clearfix'>
@@ -603,8 +728,9 @@ $(function(){
 </label>
 <div class='col-sm-9'>
 <input class='form-control' id="gu_bank" name='gu_bank' type='text' value='${dto2.gu_bank}'>
-</div>
 <div class="notice" id="bank_check"></div>
+</div>
+
 </div>
 
 <div class='form-group clearfix'>
@@ -614,8 +740,9 @@ $(function(){
 </label>
 <div class='col-sm-9'>
 <input class='form-control' id="gu_acc" name='gu_acc' type='text' value='${dto2.gu_acc}'>
-</div>
 <div class="notice" id="acc_check"></div>
+</div>
+
 </div>
 
 <div class='form-group clearfix'>
