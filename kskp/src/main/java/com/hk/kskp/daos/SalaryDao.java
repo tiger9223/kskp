@@ -58,4 +58,9 @@ public class SalaryDao implements ISalaryDao{
 		return sqlSession.selectOne(nameSpace+"getgsal", gu_seq);
 	}
 
+	@Override
+	public List<SalaryDto> adminsal() {
+		return sqlSession.selectList(nameSpace+"adminsal");
+	}
+
 }

@@ -145,12 +145,12 @@
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지 </span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지 </span>
 </a>
 </li>
 </ul>
@@ -222,7 +222,7 @@
 <div class='panel-title'>
 정산 받은 내역
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -235,10 +235,9 @@
 <table border="1">
    <col width="188px">
    <col width="300px">
-   <col width="70px">
+   <col width="150px">
    <col width="110px">
-   <col width="80px">
-   <col width="70px">
+
    <tr>
         <th>은행명</th> 
       <th>계좌번호</th>

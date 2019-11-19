@@ -17,14 +17,23 @@ public class GuideDto {
 	private String gu_career;
 	private String gu_bank;
 	private String gu_acc;
+	private String gu_backimg;
 	
 	public GuideDto() {
 		super();
 	}
 
+	public String getGu_backimg() {
+		return gu_backimg;
+	}
+
+	public void setGu_backimg(String gu_backimg) {
+		this.gu_backimg = gu_backimg;
+	}
+
 	public GuideDto(int gu_seq, String gu_pw, String gu_name, String gu_phone, String gu_email,
 			Date gu_regdate, int gu_appflag, String gu_img, String gu_intro, String gu_career, String gu_bank,
-			String gu_acc) {
+			String gu_acc,String gu_backimg) {
 		super();
 		this.gu_seq = gu_seq;
 		this.gu_pw = gu_pw;
@@ -38,6 +47,7 @@ public class GuideDto {
 		this.gu_career = gu_career;
 		this.gu_bank = gu_bank;
 		this.gu_acc = gu_acc;
+		this.gu_backimg = gu_backimg;
 	}
 
 	

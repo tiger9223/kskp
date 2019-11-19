@@ -158,12 +158,12 @@ width: 250px;
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지</span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지</span>
 </a>
 </li>
 </ul>
@@ -239,9 +239,9 @@ width: 250px;
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-받은메세지 상세보기
+받은메세지 
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>

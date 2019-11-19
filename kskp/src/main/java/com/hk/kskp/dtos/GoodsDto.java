@@ -35,6 +35,7 @@ public class GoodsDto {
 	private String gu_intro;
 	private String gu_bank;
 	private String gu_acc;
+	private int r_star;
 	
 	public GoodsDto() {
 		super();
@@ -44,7 +45,7 @@ public class GoodsDto {
 			String g_img1, int g_price, int g_people, int g_res, String g_oneline, String g_intro, String g_cos,
 			String g_address, String g_category, String g_time, String g_info, String g_date, Date g_regdate,
 			String g_thumbimg, String g_mtime, String g_lat, String g_lng, String gu_email, String gu_name,
-			String gu_phone, String gu_img, String gu_intro, String gu_bank, String gu_acc) {
+			String gu_phone, String gu_img, String gu_intro, String gu_bank, String gu_acc, int r_star) {
 		super();
 		this.g_seq = g_seq;
 		this.gu_seq = gu_seq;
@@ -77,6 +78,7 @@ public class GoodsDto {
 		this.gu_intro = gu_intro;
 		this.gu_bank = gu_bank;
 		this.gu_acc = gu_acc;
+		this.r_star = r_star;
 	}
 
 	public int getG_seq() {
@@ -327,6 +329,14 @@ public class GoodsDto {
 		this.gu_acc = gu_acc;
 	}
 
+	public int getR_star() {
+		return r_star;
+	}
+
+	public void setR_star(int r_star) {
+		this.r_star = r_star;
+	}
+
 	@Override
 	public String toString() {
 		return "GoodsDto [g_seq=" + g_seq + ", gu_seq=" + gu_seq + ", g_area=" + g_area + ", g_lan=" + g_lan
@@ -336,8 +346,10 @@ public class GoodsDto {
 				+ g_category + ", g_time=" + g_time + ", g_info=" + g_info + ", g_date=" + g_date + ", g_regdate="
 				+ g_regdate + ", g_thumbimg=" + g_thumbimg + ", g_mtime=" + g_mtime + ", g_lat=" + g_lat + ", g_lng="
 				+ g_lng + ", gu_email=" + gu_email + ", gu_name=" + gu_name + ", gu_phone=" + gu_phone + ", gu_img="
-				+ gu_img + ", gu_intro=" + gu_intro + ", gu_bank=" + gu_bank + ", gu_acc=" + gu_acc + "]";
+				+ gu_img + ", gu_intro=" + gu_intro + ", gu_bank=" + gu_bank + ", gu_acc=" + gu_acc + ", r_star="
+				+ r_star + "]";
 	}
+
 
 	
 

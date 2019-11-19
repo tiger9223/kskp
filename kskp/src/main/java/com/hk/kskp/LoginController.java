@@ -429,17 +429,28 @@ public class LoginController {
 		return "gemailcert";
 	}
 
-	@RequestMapping(value = "/memberalllist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberAllList(Model model) {
+	@RequestMapping(value = "/memberlist.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String memberlist(Model model) {
 		logger.info("일반 회원 전체조회");
-		logger.info("가이드 전체조회");		
 		List<MembersDto> mlist=LoginService.getMuserlist();
-		List<GuideDto> glist = LoginService.getGuserlist();
 		model.addAttribute("mlist",mlist);
-		model.addAttribute("glist",glist);	
-		
-		return"memberalllist";
+		model.addAttribute("listsize", mlist.size());
+		return"memberlist";
 	}
+	
+	
+	@RequestMapping(value = "/guidelist.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String guidelist(Model model) {
+	
+		logger.info("가이드 전체조회");		
+		List<GuideDto> glist = LoginService.getGuserlist();
+		model.addAttribute("glist",glist);	
+		model.addAttribute("listsize", glist.size());
+		return"guidelist";
+	}
+	
+	
+	
 	
 //	@RequestMapping(value = "/guidealllist.do", method = {RequestMethod.GET,RequestMethod.POST})
 //	public String guideAllList(Model model, GuideDto dto) {
@@ -559,6 +570,7 @@ public class LoginController {
 			}
 		}
 		model.addAttribute("list",list);
+		model.addAttribute("listsize", list.size());
 		int pcount=LoginService.getPcount(dto);
 		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 10);
 		model.addAttribute("map", map);

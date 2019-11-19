@@ -72,6 +72,7 @@
 .info_box li:nth-child(2) span{
    font-size: 11px;
 }
+
 .info_box li a{
    display: block;
    color: #666;
@@ -147,7 +148,7 @@
 				<li class="icon">
 					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
 					<ul class="info_box">
-						<li><a href="memberalllist.do"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="memberlist.do"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
 				</li>
@@ -260,11 +261,41 @@
 								<p class="subtitle">${dto.g_area} - ${dto.g_category}</p>
 								<h4>${dto.g_name}</h4>
 								<p class="star"><!--별점 들어갈 자리-->
+								<c:if test="${dto.r_star eq 1}">
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 2}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 3}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 4}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 5}">
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
+								</c:if>
 								</p>
 								<p class="price">${dto.g_price}원 / 1인</p>
 							</div>
@@ -284,11 +315,41 @@
 								<p class="subtitle">${dto.g_area} - ${dto.g_category}</p>
 								<h4>${dto.g_name}</h4>
 								<p class="star"><!--별점 들어갈 자리-->
+								    <c:if test="${dto.r_star eq 1}">
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 2}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 3}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 4}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 5}">
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
+								</c:if>
 								</p>
 								<p class="price">${dto.g_price}원 / 1인</p>
 							</div>
@@ -301,23 +362,23 @@
 			<div class="img_box03">
 				<ul>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=wCsCd5jWsK8">
+							<img src="img/pictip.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=cKn77RynWp8">
+							<img src="img/pictip1.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=EtvlAl2cOoI">
+							<img src="img/pictip2.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=UR6AkX8H4jc&list=PLA365cDEkHfx46ZF_hZ9bzKFc9m3KLpwx&index=88">
+							<img src="img/pictip3.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 				</ul>

@@ -2,11 +2,15 @@ package com.hk.kskp;
 
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -17,6 +21,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.kskp.dtos.GoodsDto;
 import com.hk.kskp.dtos.ReviewDto;
@@ -24,6 +31,7 @@ import com.hk.kskp.service.IGoodsService;
 import com.hk.kskp.service.IReviewService;
 import com.hk.kskp.utils.Paging;
 import com.hk.kskp.utils.SubString;
+import com.hk.kskp.utils.UploadFileUtil;
 
 /**
  * Handles requests for the application home page.
@@ -38,6 +46,9 @@ public class HomeController {
 	
 	@Autowired
 	private IReviewService ReviewService;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(HttpServletRequest request,Model model) {
@@ -174,5 +185,22 @@ public class HomeController {
 		return "areagoods";
 	}
 	
+
+	@RequestMapping(value = "/profileupload.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public String profileupload(@RequestParam HashMap<Object, Object> param, MultipartFile file) throws IOException, Exception {
+		logger.info("프로필사진 선택");
+		String file1 = 
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+		String fileName = null;
 	
+		if(file != null) {
+			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+			} else {
+			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+		String profile= ("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+		return profile;
+	}
 }

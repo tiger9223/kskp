@@ -185,12 +185,12 @@ text-align:center;
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='mletterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지 </span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendmletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지 </span>
 </a>
 </li>
 </ul>
@@ -232,7 +232,7 @@ text-align:center;
 <div class='panel-title'>
 받은 메세지
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 </div>
 </div>
 <div class='panel-body'>
@@ -241,7 +241,7 @@ text-align:center;
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
 
-<form action="recmuldel.do" method="post">
+<form action="recmuldel1.do" method="post">
 	<input type="hidden" name="l_sender" value="${dto.l_sender}">
 	<input type="hidden" name="l_receiver" value="${dto.l_receiver}">
 	<input type="hidden" name="pnum" value="${pnum}">
