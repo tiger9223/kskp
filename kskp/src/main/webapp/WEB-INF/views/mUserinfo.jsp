@@ -374,13 +374,14 @@ function handleImgFileSelect(e){
 <img  id='View_area' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
 </c:when>
 <c:otherwise>
-<img  id='View_area' src='${dto1.m_img}' style="all:unset;" >
+<img  id='View_area' src='${dto1.m_img}' style=" all:unset; " >
 </c:otherwise>
 </c:choose>
 </div>
 <div class='avatar-file file-upload-btn'>
 <input type="file" name ="file" id="ajaxFile" style="display:none;"/>
 <input type="button" onClick="ajaxFileUpload();">
+<input type="hidden" name="imgname" value="${dto1.m_img}">
 <div class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
 <i aria-hidden='true' class='icon wb-upload'></i>

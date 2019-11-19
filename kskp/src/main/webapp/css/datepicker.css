@@ -322,14 +322,15 @@ a.ui-datepicker-prev.ui-corner-all::before{
 }
 .ui-datepicker td {
 	border: 0;
-	padding: 1px;
+		text-indent: 0px;
 }
 .ui-datepicker td span,
 .ui-datepicker td a {
 	display: block;
 	padding: .2em;
-	text-align: right;
+	text-align: center;
 	text-decoration: none;
+	text-indent: 0px;
 }
 .ui-datepicker .ui-datepicker-buttonpane {
 	background-image: none;

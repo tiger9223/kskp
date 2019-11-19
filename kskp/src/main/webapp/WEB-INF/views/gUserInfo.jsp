@@ -399,7 +399,7 @@ function handleImgFileSelect(e){
 
 <div class='input-group-file background-file file-upload-btn'>
 <input type="file" name ="file" id="ajaxFile1"  />
-
+<input type="hidden" name="backname" value="${dto2.gu_backimg}">
 <input type="button" onClick="ajaxFileUpload1();">
 <div class='btn btn-default btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
@@ -409,7 +409,7 @@ function handleImgFileSelect(e){
 </div>
 </div>
 <div class='photo-container'>
-<div class='avatar avatar-lg' id="img_check1" style="Width :80px; Height :80px;  Border-radiuse :40px; Overflow :hidden;">
+<div class='avatar avatar-lg' id="img_check1" style="Width :80px; Height :80px;  Border-radiuse :50%; Overflow :hidden;">
 <c:choose>
 <c:when test="${dto2.gu_img eq 'a'}">
 <img alt='guide profile' id='View_area' class='default-img' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
@@ -421,6 +421,7 @@ function handleImgFileSelect(e){
 </div>
 <div class='avatar-file file-upload-btn'>
 <input type="file" name ="file1" id="ajaxFile" style="display:none;"/>
+<input type="hidden" name="imgname" value="${dto2.gu_img}">
 <input type="button" onClick="ajaxFileUpload();">
 <div class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>

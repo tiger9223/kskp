@@ -9,12 +9,69 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>detail</title>
+   <title>SWAG</title>
    <link rel="stylesheet" href="css/reset.css">
    <link rel="stylesheet" href="css/detail.css">
    <link rel="stylesheet" href="css/jquery.bxslider.css">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-   <script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q&callback=initMap"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+<!--       <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"> -->
+			<link rel="stylesheet" href="css/datepicker.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+         <style type="text/css">
+      .ui-datepicker { width: 300px; display: none; font-size: 1px;}
+      .ui-datepicker-week-end{padding: 0 0 !important;}
+      </style>
+   <script type="text/javascript">//<![CDATA[
+  $.datepicker.setDefaults({
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년'
+  });
+
+  
+$(function(){
+var gdate = "${gdto.g_date}";
+var availableDates = gdate.split(', ');
+var date = new Date();
+$('#mdp-demo').multiDatesPicker({
+// 	dateFormat: "mm-dd-yyyy",
+    minDate:0,
+	maxPicks: 1,
+	beforeShowDay: function available(date){			
+		var thismonth = date.getMonth()+1;
+		var thisday = date.getDate();
+		if(thismonth<10){
+			thismonth = "0"+thismonth;
+		}
+		if(thisday<10){
+
+			thisday = "0"+thisday;
+		}
+		mdy = thismonth + "/" + thisday + "/" + date.getFullYear();
+	    if ($.inArray(mdy, availableDates) >= 0) {
+	        return [true,"",""];
+	    } else  {
+	        return [false,"",""];
+	    }
+	},
+	altField: '#altField'
+});
+    
+});
+
+  //]]></script>
+   
+   
    <script>
       $(document).ready(function(){
          $(".info_box").hide();
@@ -82,7 +139,86 @@
 
 
       });
+//       $(document).ready(function(){
+//     		$("#altField").on("change", datechange);
 
+//     	});
+      
+//       function datechange(){
+//     		var date = $("#altField").val();
+//     		alert(date);
+//   			$.ajax({
+//   				url : '${pageContext.request.contextPath}/datepick.do?date='+date,
+//   				type : 'get',
+//   				success : function(data) {
+//   					console.log(data);		
+//   					$("#datepicker").hide();
+//   					$("#datepick").text(data);
+//   					$("#datepick").css('corlr','#00bcf8');
+  					
+  			
+//   					}, 
+//   					error : function() {
+//   							console.log("실패");
+//   					}
+//   	 					  });
+//       }
+      
+      
+      $(function(){
+    	  $("#btn01").click(function(){
+    		  $("#reser").slideToggle();
+    	  });
+    	  
+    	  
+    	  $("#datepick").click(function(){
+    		   $("#datepicker").toggle();
+    	   });
+
+    	  
+    	  
+    	  
+    	  
+//   		$("#mdp-demo").on("changeDate", function(ev){
+//   			var date = $("#altField").change();
+// 			alert(date);
+//   			$.ajax({
+//   				url : '${pageContext.request.contextPath}/datepick.do?date='+date,
+//   				type : 'get',
+//   				success : function(data) {
+//   					console.log(data);		
+//   					$("#datepicker").hide();
+//   					$("#datepick").text(data);
+//   					$("#datepick").css('corlr','#00bcf8');
+  					
+  			
+//   					}, 
+//   					error : function() {
+//   							console.log("실패");
+//   					}
+//   	 					  });
+// 		});
+
+  
+//   		$("tr > td").click(function(){
+//   			var date = $("#altField").val();
+//   			alert(date);
+// 		$.ajax({
+// 			url : '${pageContext.request.contextPath}/datepick.do?date='+date,
+// 	        type : 'POST',
+// 			success : function(data) {
+// 				console.log(data);
+// 			     	$("#datepicker").hide();
+// 					$("#datepick").text(data);
+// 					$("#datepick").css('corlr','#00bcf8');
+// 				}, 
+// 				error : function() {
+// 						console.log("실패");
+// 				}
+// 						  });
+//       });
+
+       });
    </script>
 </head>
 <body>
@@ -113,7 +249,7 @@
 					<a href="servicecenter.do">고객센터</a>
 				</li>
 				<li class="icon">
-					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+					<div class="icon_box"><img src="${ldto.m_img}" alt=""></div>
 					<ul class="info_box">
 						<li><a href="cartlist.do?m_seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> ${ldto.m_point}p</span></a></li>
@@ -180,20 +316,20 @@
             <div class="date_box">
                <h3>날짜와 인원을 선택하세요</h3>
                <div class="inner_wrap">
-                  <a href="" class="date_button"><i class="far fa-calendar-alt"></i>  날짜를 선택하세요</a>
-                  <select name="" id="">
-                     <option value="">인원을 선택하세요</option>
-                     <option value="">1</option>
-                     <option value="">2</option>
-                     <option value="">3</option>
-                     <option value="">4</option>
-                     <option value="">5</option>
+                  <a id="datepick" style="cursor:pointer;" class="date_button"><i  class="far fa-calendar-alt"></i>
+                    날짜 선택 <input type="text" style='color:#00bcf8; text-align: center; border:none; font-size: 15px' name="g_date" id="altField" >        </a>
+                                
+                 <select name="g_people" id="">
+                   <option value="">인원을 선택하세요</option>
+                  <c:forEach var="i" begin="1" end="${gdto.g_people}">       
+                  <option value="${i}">${i}</option>
+                  </c:forEach>        
                   </select>
-                  <input type="submit" value="금액 조회하기" class="btn">
+                  <input type="button" value="금액 조회하기" id="btn01" class="btn">
                </div>
-               <div class="reser_box">
+               <div class="reser_box" id="reser" style="display: none;">
                   <div class="inner_box">
-                     <span class="type01">2019년 12월 11일</span>
+                     <span class="type01" id="altField1"></span>
                      <div class="inner_price">
                         <span class="type02">5 x \26,000</span>
                         <span class="type03">26,000원</span>
@@ -204,6 +340,10 @@
                   <input type="submit" value="예약하기" class="btn02">
                </div>
             </div>
+            	<div id="datepicker" style="display: none;" >
+					 <div id="mdp-demo" ></div>
+				
+				</div>
             <div class="product">
                <h3>${gdto.g_oneline}</h3>
                <div class="p_wrap">
@@ -227,7 +367,7 @@
                <div class="map_box">
                   <a href="">지도보기∨</a>
                   <div class="inner_img">
-                  <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
+                  <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false"></a>
                      <img src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="">
                      <img src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="">
                   </div>

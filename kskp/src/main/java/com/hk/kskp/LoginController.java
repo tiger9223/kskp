@@ -204,7 +204,7 @@ public class LoginController {
 			}
 	}
 	@RequestMapping(value = "/gupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String authChange(Model model,HttpServletResponse response, GuideDto dto,MultipartFile file,MultipartFile file1, String gu_pw, String gu_pw1) throws IOException, Exception {
+	public String authChange(Model model,String imgname, String backname, GuideDto dto,MultipartFile file,MultipartFile file1, String gu_pw, String gu_pw1) throws IOException, Exception {
 		logger.info("가이드 정보수정 ");
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
@@ -230,16 +230,28 @@ public class LoginController {
 			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 				dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
 			} else {
-			 fileName = "a";
-			 dto.setGu_img(fileName);
+				if(imgname.equals("a")) {
+					 fileName = "a";
+					 dto.setGu_img(fileName);
+				}else {
+					 fileName = imgname;
+					 dto.setGu_img(fileName);
+				}
+			
 			}
 
 		if(!file1.isEmpty()) {
 			 fileName1 =  UploadFileUtil.fileUpload(imgUploadPath1, file1.getOriginalFilename(), file1.getBytes(), ymdPath1); 
 			 dto.setGu_backimg("resources"+ File.separator +"imgUpload" + ymdPath1 + File.separator + fileName1);
 			} else {
-			 fileName1 = "a";
-			 dto.setGu_backimg(fileName1);
+				if(backname.equals("a")) {
+					 fileName1 = "a";
+					 dto.setGu_backimg(fileName1);
+				}else {
+					fileName1 = backname;
+					dto.setGu_backimg(fileName1);
+				}			
+			
 			}
 		
 		
@@ -256,7 +268,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/mupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String authChange(Model model, MembersDto dto,String m_pw, String m_pw1,MultipartFile file) throws IOException, Exception {
+	public String authChange(Model model,String imgname, MembersDto dto,String m_pw, String m_pw1,MultipartFile file) throws IOException, Exception {
 		logger.info("일반회원 정보수정 ");
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
@@ -273,8 +285,14 @@ public class LoginController {
 			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 				dto.setM_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
 			} else {
-			 fileName = "a";
-			 dto.setM_img(fileName);
+				if(imgname.equals("a")) {
+					 fileName = "a";
+					 dto.setM_img(fileName);
+				}else {
+					fileName= imgname;
+					dto.setM_img(fileName);
+				}
+
 			}
 		dto.setM_pw(pw);
 		System.out.println(dto);
