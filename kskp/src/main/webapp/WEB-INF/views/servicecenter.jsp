@@ -77,7 +77,7 @@
       margin-bottom: -5px;
    }
    .button_box{
-    width: 1050px;
+    width: 900px;
     height: 330px;
     margin: 0 auto;
     margin-bottom: 170px;
@@ -126,7 +126,6 @@
      <button type="button" onclick="location.href='qboardlist.do?pnum=1'">
         <img src="img/q&a.jpg" alt="">
      </button>
-     
      <button type="button" onclick="location.href='centeradd.do'">
         <img src="img/mj_map.png" alt="">
      </button>

@@ -62,6 +62,10 @@ overflow-y:hidden;
 height:30px;
 border:1px solid #ccc;
 }
+#guidephoto{
+width: 120px;
+height: 150px;
+}
 </style>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
@@ -202,7 +206,7 @@ border:1px solid #ccc;
 
 <table border="1">
 <tr>
-	<td rowspan="5"><img src="${dto.gu_img}" alt="photo"/></td>
+	<td style="width:120px; height: 150px;" rowspan="5"><img id="guidephoto" src="${dto.gu_img}" alt="photo"/></td>
 	<td>이름</td>
 	<td>${dto.gu_name}</td>
 </tr>

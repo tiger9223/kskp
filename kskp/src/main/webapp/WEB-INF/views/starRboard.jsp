@@ -88,6 +88,14 @@
 .star_rating a.on {
 	color: #777;
 }
+#ckeditor{
+resize:none;
+line-height:30px;
+width:470px;
+overflow-y:hidden;
+height:30px;
+border:1px solid #ccc;
+}
 
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
@@ -267,7 +275,7 @@
 		<td align="center">${dto.p_name}</td>
 	</tr>
 	<tr>
-		<td colspan="2"><textarea rows="10" cols="40" id="ckeditor" name="r_conts"></textarea></td>
+		<td colspan="2"><textarea onkeyup="this.style.height='800px'; this.style.height = this.scrollHeight + 'px';" type="text" id="ckeditor" name="r_conts"></textarea></td>
 	</tr>
 	
 	<tr>

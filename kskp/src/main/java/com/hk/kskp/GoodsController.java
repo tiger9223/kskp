@@ -177,7 +177,8 @@ public class GoodsController {
 		model.addAttribute("star5",star5);
 		model.addAttribute("avg",avg);
 		model.addAttribute("list",list);
-		return "goodsdetail";
+		model.addAttribute("reviewcount",list.size());
+		return "goodsdetail2";
 	}
 	
 	@RequestMapping(value = "/insertcart.do", method = {RequestMethod.GET,RequestMethod.POST})

@@ -110,9 +110,22 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/gemailcerform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String gemailcerform(HttpSession session, GuideDto dto,Model model) {
+	public String gemailcerform(HttpSession session, GuideDto dto,Model model, MultipartFile file) throws IOException, Exception {
 		logger.info("이메일,핸드폰 인증 폼으로 이동");
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file != null) {
+		 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		} else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		System.out.println(uploadPath);
+		dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+		System.out.println(dto);
 		session.setAttribute("dto", dto);
+		
 		return "gemailcert";
 	}
 	
@@ -172,23 +185,12 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/ginsertuser.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String ginsertuser(HttpSession session,Locale locale,Model model, String email, String ecer,MultipartFile file) throws Exception {
+	public String ginsertuser(HttpSession session,Locale locale,Model model, String email, String ecer) throws Exception {
 		logger.info("가이드 회원가입", locale);
 		String a = (String)session.getAttribute("keyCode");
 		GuideDto dto=(GuideDto)session.getAttribute("dto");
 		if(ecer.equals(a)) {
 			session.removeAttribute("keyCode");
-			String imgUploadPath = uploadPath + File.separator + "imgUpload";
-			String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
-			String fileName = null;
-
-			if(file != null) {
-			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
-			} else {
-			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-			}
-			System.out.println(uploadPath);
-			dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
 			System.out.println(dto);
 			boolean isS=LoginService.gInsertUser(dto);
 			if(isS) {
@@ -607,7 +609,8 @@ public class LoginController {
 	@RequestMapping(value = "/guappdetail.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String guappdetail(Model model,int gu_seq) {
 		logger.info("가이드 상세보기");
-		GuideDto dto=LoginService.gUserInfo(gu_seq);
+		GuideDto dto = LoginService.gUserInfo(gu_seq);
+		System.out.println(dto);
 		model.addAttribute("dto",dto);
 		return"guappdetail";
 	}
