@@ -182,8 +182,8 @@
 				img.id = "prev_" + View_area;
 				img.classList.add("obj");
 				img.file = file;
-				img.style.width = '100px';
-				img.style.height = '150px';
+				img.style.width = '30px';
+				img.style.height = '30px';
 				preview.appendChild(img);
 				if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 					var reader = new FileReader();

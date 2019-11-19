@@ -53,6 +53,37 @@
   Raven.config('https://7d40cd233b7b4666b3c2b05e5493fbc4@sentry.io/145992').install()
 </script>
 </head>
+<script type="text/javascript">
+
+$(function(){
+	$("#guideProfileBtn").change(function(){
+		 var form = $('#FILE_FORM')[0];
+         var formData = new FormData(form);
+         formData.append('file',$('#profileupload')[0].files[0]);
+		$.ajax({
+			url : '/profileupload.do',
+	        type : 'POST',
+	        data : formData,
+	        contentType : false,
+	        processData : false,    
+			success : function(data) {
+				console.log(data);
+					$("#View_area").hide();
+					$("#preview").css({"background":"url("+data+")"});
+				}, 
+				error : function() {
+						console.log("실패");
+				}
+						  });
+		
+	})
+	
+	
+	
+});
+
+
+</script>
 <body class='site-menubar-unfold' data-action='index' data-controller-path='partner/dashboard' data-controller='dashboard' data-locale='ko' data-sign-in>
 <!--[if lt ie 8]>
 <p class='browserupgrade'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> to improve your experience.</p>
@@ -232,100 +263,486 @@
 <div class='page-content container-fluid'>
 <div class='row'>
 <div class='col-lg-12'>
-<div class='panel panel-bordered'>
+<div class='panel panel-bordered panel-profile panel-edit-profile panel-form'>
 <div class='panel-heading'>
 <div class='panel-title'>
 계정관리
-<!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
-
 </div>
 </div>
 <div class='panel-body'>
+<div class='col-lg-8 col-lg-offset-2 col-sm-12'>
 <div class='row'>
-<div class='col-md-12'>
-<table class='table table-striped table-hover toggle-circle'>
-<thead>
-
-<c:choose>
-	<c:when test="${ldto.m_status eq 'M'}">
-		<h1>${dto1.m_name} 님정보보기</h1>	
-		<table border="1">
-		<tr>
-			<td>이름</td>
-			<td colspan="2">${dto1.m_name}</td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td>${dto1.m_email}</td>
-			<td><button onclick="">인증하기</button></td>
-		</tr>
-		<tr>
-			<td>가입일</td>
-			<td colspan="2"><f:formatDate value="${dto1.m_regdate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td>${dto1.m_phone}</td>
-			<td><button onclick="">인증하기</button></td>
-		</tr>
-		<tr>
-			<td colspan="3"><button onclick="location.href='muserinfoform.do'">회원수정</button></td>
-		</tr>
-			</table>
-	</c:when>
-	<c:when test="${ldto.m_status eq 'A'}">
-	</c:when>
-	<c:otherwise>
-	<h1>${dto2.gu_name}님 정보입니다.</h1>
-	<table border="1">
-		<tr>
-			<td>이메일</td>
-			<td>${dto2.gu_email}</td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td>${dto2.gu_name}</td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td>${dto2.gu_phone}</td>
-			<td><button onclick="">인증하기</button></td>
-		</tr>
-		<tr>
-			<td>은행</td>
-			<td>${dto2.gu_bank}</td>
-		</tr>
-		<tr>
-			<td>계좌번호</td>
-			<td>${dto2.gu_acc}</td>
-		</tr>
-		<tr>
-			<td>가입일 </td>
-			<td><f:formatDate value="${dto2.gu_regdate}" pattern="yyyy-MM-dd"/></td>
-		</tr>
-		<tr>
-			<td><button onclick="location.href='guserinfoform.do'">회원수정</button></td>
-		</tr>
-	</table>
-	</c:otherwise>
-</c:choose>
-
-
-
-</tbody>
-</table>
-
-
+<form data-validation="true" enctype='multipart/form-data'  id="FILE_FORM"class="form-horizontal form-account" action="/partner" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="qSsqT1/CMR5DKrBhglSyZ4GLI21PUugoYr2pqBoib2FZIAzfzm9R5waK5iOTW+GaW+tv1avF7fHRmZcnsoGQ0Q==" />
+<input name='guide[company]' type='hidden' value='false'>
+<div class='panel panel-bordered panel-border-gray panel-profile'>
+<div class='panel-image bg-blue-grey-300'     id="img_check2" style='background:url(&#39;&#39;) no-repeat center center;background-size:cover;'>
+<div class='input-group-file background-file file-upload-btn'>
+<input name='guide[background_image_temp_url]' type='hidden' value='${dto2.gu_backimg}'>
+<input id='guideBgBtn' name='file' type='file'>
+<div class='btn btn-default btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
+<span class='ladda-label'></span>
+<i aria-hidden='true' class='icon wb-upload'></i>
+배경사진 변경...
 </div>
 </div>
 </div>
+<div class='photo-container'>
+<div class='avatar avatar-lg'>
+<img alt='guide profile' id='View_area' class='default-img' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
+<div id="preview" class='img-preview'></div>
+</div>
+<div class='avatar-file file-upload-btn'>
+<input id='guideProfileBtn' name='file' type='file' >
+<div class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
+<span class='ladda-label'></span>
+<i aria-hidden='true' class='icon wb-upload'></i>
+사진변경...
 </div>
 </div>
 </div>
+<div class='panel-body margin-top-50'>
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+가이드 이름
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+${dto2.gu_name}
 </div>
 </div>
 
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+소개
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+<div class='row'>
+<div class='col-sm-12'>
+<p>거주하게 된 배경, 파트너 활동의 계기, 직업 등 여행자에게 파트너님을 소개해주세요.<br/>한글 기준 최소 100자 이상 작성해주세요.<br/></p>
+<textarea class='form-control' id="gu_intro" name='gu_intro' rows='5' type='text'>${dto2.gu_intro}</textarea>
+</div>
+</div>
+<div class="notice" id="intro_check"></div>
+<small class='help-block'>• 예약 확정 후 서로의 연락처가 공개됩니다.<br/>• 안전 거래를 위해 파트너님의 개인 연락처 및 SNS 페이지를 기재할 경우 수정되거나 삭제될 수 있습니다.<br/></small>
+</div>
+</div>
+
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+가이드 연락처
+<span>*</span>
+</label>
+<div class='col-sm-9 col-xs-12'>
+<div class='row'>
+<div class='col-sm-5'>
+<select class='form-control' name=''>
+<option value=''>국가번호</option>
+<option value='1'>+1 ( 캐나다  미국 )</option>
+<option value='7'>+7 ( 카자흐스탄  러시아 )</option>
+<option value='20'>+20 ( 이집트 )</option>
+<option value='27'>+27 ( 남아프리카 공화국 )</option>
+<option value='30'>+30 ( 그리스 )</option>
+<option value='31'>+31 ( 네덜란드 )</option>
+<option value='32'>+32 ( 벨기에 )</option>
+<option value='33'>+33 ( 프랑스 )</option>
+<option value='34'>+34 ( 스페인 )</option>
+<option value='36'>+36 ( 헝가리 )</option>
+<option value='39'>+39 ( 바티칸  이탈리아 )</option>
+<option value='40'>+40 ( 루마니아 )</option>
+<option value='41'>+41 ( 스위스 )</option>
+<option value='43'>+43 ( 오스트리아 )</option>
+<option value='44'>+44 ( 영국 )</option>
+<option value='45'>+45 ( 덴마크 )</option>
+<option value='46'>+46 ( 스웨덴 )</option>
+<option value='47'>+47 ( 노르웨이 )</option>
+<option value='48'>+48 ( 폴란드 )</option>
+<option value='49'>+49 ( 독일 )</option>
+<option value='51'>+51 ( 페루 )</option>
+<option value='52'>+52 ( 멕시코 )</option>
+<option value='53'>+53 ( 쿠바 )</option>
+<option value='54'>+54 ( 아르헨티나 )</option>
+<option value='55'>+55 ( 브라질 )</option>
+<option value='56'>+56 ( 칠레 )</option>
+<option value='57'>+57 ( 콜롬비아 )</option>
+<option value='58'>+58 ( 베네수엘라 )</option>
+<option value='60'>+60 ( 말레이시아 )</option>
+<option value='61'>+61 ( 크리스마스 섬  코코스킬링 제도  호주 )</option>
+<option value='62'>+62 ( 인도네시아 )</option>
+<option value='63'>+63 ( 필리핀 )</option>
+<option value='64'>+64 ( 뉴질랜드 )</option>
+<option value='65'>+65 ( 싱가포르 )</option>
+<option value='66'>+66 ( 태국 )</option>
+<option value='81'>+81 ( 일본 )</option>
+<option selected value='82'>+82 ( 대한민국 )</option>
+<option value='84'>+84 ( 베트남 )</option>
+<option value='86'>+86 ( 중국 )</option>
+<option value='90'>+90 ( 터키 )</option>
+<option value='91'>+91 ( 인도 )</option>
+<option value='92'>+92 ( 파키스탄 )</option>
+<option value='94'>+94 ( 스리랑카 )</option>
+<option value='95'>+95 ( 미얀마 )</option>
+<option value='98'>+98 ( 이란 )</option>
+<option value='212'>+212 ( 모로코 )</option>
+<option value='213'>+213 ( 알제리 )</option>
+<option value='216'>+216 ( 튀니지 )</option>
+<option value='218'>+218 ( 리비아 )</option>
+<option value='220'>+220 ( 감비아 )</option>
+<option value='221'>+221 ( 세네갈 )</option>
+<option value='222'>+222 ( 모리타니 )</option>
+<option value='223'>+223 ( 말리 )</option>
+<option value='224'>+224 ( 기니 )</option>
+<option value='225'>+225 ( 코트디부와르 )</option>
+<option value='226'>+226 ( 부르키나파소 )</option>
+<option value='227'>+227 ( 니제르 )</option>
+<option value='228'>+228 ( 토고 )</option>
+<option value='229'>+229 ( 베넹 )</option>
+<option value='230'>+230 ( 모리셔스 )</option>
+<option value='231'>+231 ( 리베리아 )</option>
+<option value='232'>+232 ( 시에라리온 )</option>
+<option value='233'>+233 ( 가나 )</option>
+<option value='234'>+234 ( 나이지리아 )</option>
+<option value='235'>+235 ( 차드 )</option>
+<option value='236'>+236 ( 중앙아프리카공화국 )</option>
+<option value='237'>+237 ( 카메룬 )</option>
+<option value='238'>+238 ( 까뽀베르데 )</option>
+<option value='239'>+239 ( 쌍투메 프린시페 )</option>
+<option value='240'>+240 ( 적도 기니 )</option>
+<option value='241'>+241 ( 가봉 )</option>
+<option value='242'>+242 ( 콩고 )</option>
+<option value='243'>+243 ( 콩고민주공화국 )</option>
+<option value='244'>+244 ( 앙골라 )</option>
+<option value='245'>+245 ( 기네비쏘 )</option>
+<option value='248'>+248 ( 세이셸 )</option>
+<option value='249'>+249 ( 수단 )</option>
+<option value='250'>+250 ( 르완다 )</option>
+<option value='251'>+251 ( 이디오피아 )</option>
+<option value='252'>+252 ( 소말리아 )</option>
+<option value='253'>+253 ( 지부티 )</option>
+<option value='254'>+254 ( 케냐 )</option>
+<option value='255'>+255 ( 탄자니아 )</option>
+<option value='256'>+256 ( 우간다 )</option>
+<option value='257'>+257 ( 브룬디 )</option>
+<option value='258'>+258 ( 모잠비크 )</option>
+<option value='260'>+260 ( 잠비아 )</option>
+<option value='261'>+261 ( 마다가스카르 )</option>
+<option value='263'>+263 ( 짐바브웨 )</option>
+<option value='264'>+264 ( 나미비아 )</option>
+<option value='265'>+265 ( 말라위 )</option>
+<option value='266'>+266 ( 레소토 )</option>
+<option value='267'>+267 ( 보츠와나 )</option>
+<option value='268'>+268 ( 스와질랜드 )</option>
+<option value='269'>+269 ( 코모르 )</option>
+<option value='290'>+290 ( 세인트 헬레나 )</option>
+<option value='297'>+297 ( 아루바 )</option>
+<option value='298'>+298 ( 페로 군도 )</option>
+<option value='299'>+299 ( 그린랜드 )</option>
+<option value='350'>+350 ( 영국령 지브롤터 )</option>
+<option value='351'>+351 ( 포르투갈 )</option>
+<option value='352'>+352 ( 룩셈부르크 )</option>
+<option value='353'>+353 ( 아일랜드 )</option>
+<option value='354'>+354 ( 아이슬란드 )</option>
+<option value='355'>+355 ( 알바니아 )</option>
+<option value='356'>+356 ( 몰타 )</option>
+<option value='357'>+357 ( 사이프러스 )</option>
+<option value='358'>+358 ( 핀란드 )</option>
+<option value='359'>+359 ( 불가리아 )</option>
+<option value='370'>+370 ( 리투아니아 )</option>
+<option value='371'>+371 ( 라트비아 )</option>
+<option value='372'>+372 ( 에스토니아 )</option>
+<option value='373'>+373 ( 몰도바 )</option>
+<option value='374'>+374 ( 아르메니아 )</option>
+<option value='375'>+375 ( 벨라루스 )</option>
+<option value='376'>+376 ( 안도라 )</option>
+<option value='377'>+377 ( 모나코 )</option>
+<option value='378'>+378 ( 산마리노 )</option>
+<option value='380'>+380 ( 우크라이나 )</option>
+<option value='381'>+381 ( 세르비아 )</option>
+<option value='382'>+382 ( 몬테네그로 )</option>
+<option value='385'>+385 ( 크로아티아 )</option>
+<option value='386'>+386 ( 슬로베니아 )</option>
+<option value='387'>+387 ( 보스니아 헤르체고비나 )</option>
+<option value='389'>+389 ( 마케도니아 )</option>
+<option value='420'>+420 ( 체코 )</option>
+<option value='421'>+421 ( 슬로바키아 )</option>
+<option value='423'>+423 ( 리히텐슈타인 )</option>
+<option value='500'>+500 ( 포클랜드 )</option>
+<option value='501'>+501 ( 벨리즈 )</option>
+<option value='502'>+502 ( 과테말라 )</option>
+<option value='503'>+503 ( 엘살바도르 )</option>
+<option value='504'>+504 ( 온두라스 )</option>
+<option value='505'>+505 ( 니카라과 )</option>
+<option value='506'>+506 ( 코스타리카 )</option>
+<option value='507'>+507 ( 파나마 )</option>
+<option value='508'>+508 ( 세인트 피에르 미퀠론 )</option>
+<option value='509'>+509 ( 아이티 )</option>
+<option value='591'>+591 ( 볼리비아 )</option>
+<option value='592'>+592 ( 가이아나 )</option>
+<option value='593'>+593 ( 에쿠아도르 )</option>
+<option value='595'>+595 ( 파라과이 )</option>
+<option value='597'>+597 ( 수리남 )</option>
+<option value='598'>+598 ( 우루과이 )</option>
+<option value='672'>+672 ( 남극 )</option>
+<option value='673'>+673 ( 브루나이 )</option>
+<option value='674'>+674 ( 나우루 )</option>
+<option value='675'>+675 ( 파푸아뉴기니 )</option>
+<option value='676'>+676 ( 통가 )</option>
+<option value='677'>+677 ( 솔로몬 군도 )</option>
+<option value='678'>+678 ( 바누아투 )</option>
+<option value='679'>+679 ( 피지 )</option>
+<option value='680'>+680 ( 팔라우 )</option>
+<option value='681'>+681 ( 월리스 후트나 )</option>
+<option value='682'>+682 ( 쿠크 군도 )</option>
+<option value='683'>+683 ( 니우에 )</option>
+<option value='685'>+685 ( 사모아 )</option>
+<option value='686'>+686 ( 키리바시 )</option>
+<option value='687'>+687 ( 뉴 칼레도니아 )</option>
+<option value='688'>+688 ( 투발루 )</option>
+<option value='689'>+689 ( 프랑스령 폴리네시아 )</option>
+<option value='690'>+690 ( 토켈라우 )</option>
+<option value='691'>+691 ( 마이크로네시아 )</option>
+<option value='692'>+692 ( 마샬 군도 )</option>
+<option value='850'>+850 ( 북한 )</option>
+<option value='852'>+852 ( 홍콩 )</option>
+<option value='853'>+853 ( 마카오 )</option>
+<option value='855'>+855 ( 캄보디아 )</option>
+<option value='856'>+856 ( 라오스 )</option>
+<option value='870'>+870 ( 핏케언 군도 )</option>
+<option value='880'>+880 ( 방글라데시 )</option>
+<option value='886'>+886 ( 대만 )</option>
+<option value='960'>+960 ( 몰디브 )</option>
+<option value='961'>+961 ( 레바논 )</option>
+<option value='962'>+962 ( 요르단 )</option>
+<option value='963'>+963 ( 시리아 )</option>
+<option value='964'>+964 ( 이라크 )</option>
+<option value='965'>+965 ( 쿠웨이트 )</option>
+<option value='966'>+966 ( 사우디아라비아 )</option>
+<option value='967'>+967 ( 예멘 )</option>
+<option value='968'>+968 ( 오만 )</option>
+<option value='971'>+971 ( 아랍에미리트 )</option>
+<option value='972'>+972 ( 이스라엘 )</option>
+<option value='973'>+973 ( 바레인 )</option>
+<option value='974'>+974 ( 카타르 )</option>
+<option value='975'>+975 ( 부탄 )</option>
+<option value='976'>+976 ( 몽골 )</option>
+<option value='977'>+977 ( 네팔 )</option>
+<option value='992'>+992 ( 타지키스탄 )</option>
+<option value='993'>+993 ( 투르크메니스탄 )</option>
+<option value='994'>+994 ( 아제르바이잔 )</option>
+<option value='995'>+995 ( 조지아 )</option>
+<option value='996'>+996 ( 키르기스스탄 )</option>
+<option value='998'>+998 ( 우즈베키스탄 )</option>
+</select>
+</div>
+<div class='col-sm-7'>
+<input class='form-control'  id="gu_phone" name='gu_phone' type='tel' value='${dto2.gu_phone}'>
+</div>
+</div>
+<div class="notice" id="phone_check"></div>
+<small class='help-block'>• 상시 연락할 수 있는 전화번호를 알려주시면 여행자에게 큰 도움이 됩니다.<br/></small>
+</div>
+</div>
+
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+가이드 이메일
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+${dto2.gu_email}
+</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#pwchange").click(function(){
+		   $("#pw").slideToggle();
+});
+
+});
+</script>
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+비밀번호
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+**********               
+<div id="pwchange" class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
+<span class='ladda-label'></span>
+<i aria-hidden='true' class='icon wb-upload'></i>
+비밀번호 변경
+</div>
+</div>
+</div>
+<div id="pw"  style="display: none;">
+<div class='form-group clearfix' >
+<label class='col-sm-3 control-label font-weight-700'>
+변경할 비밀번호
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+<input class='form-control' id="gu_pw" name='gu_pw' type='text' >
+</div>
+<div class="notice" id="pw_check"></div>
+</div>
+<div class='form-group clearfix' >
+<label class='col-sm-3 control-label font-weight-700'>
+변경할 비밀번호 확인
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+<input class='form-control'id="gu_pwchk"  name='gu_pwchk' type='text' >
+</div>
+<div class="notice" id="pwchk_check"></div>
+</div>
+</div>
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+가이드 은행명
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+<input class='form-control' id="gu_bank" name='gu_bank' type='text' value='${dto2.gu_bank}'>
+</div>
+<div class="notice" id="bank_check"></div>
+</div>
+
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+가이드 계좌번호
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+<input class='form-control' id="gu_acc" name='gu_acc' type='text' value='${dto2.gu_acc}'>
+</div>
+<div class="notice" id="acc_check"></div>
+</div>
+
+<div class='form-group clearfix'>
+<label class='col-sm-3 control-label font-weight-700'>
+가이드 가입일
+<span>*</span>
+</label>
+<div class='col-sm-9'>
+<f:formatDate value="${dto2.gu_regdate}" pattern="yyyy-MM-dd"/>
+</div>
+</div>
+
+
+<div class='margin-bottom-10 margin-top-40 clearfix'>
+<div class='row'>
+<div class='col-sm-3'></div>
+<div class='col-sm-9'>
+<div class='row'>
+<div class='center-block clearfix'>
+<div class='col-xs-6 padding-right-5'>
+<a class="btn btn-block btn-default" href="https://www.myrealtrip.com/partner/edit">취소하기</a>
+</div>
+<div class='col-xs-6 padding-left-5'>
+<button class='btn btn-block btn-primary' type='submit'>저장하기</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+
+<script>
+  window.App = App || {};
+  App.directUpload = {
+    option: {"key":"uploads/a17d55ff-767f-4644-996b-b4b3b9f997f0/${filename}","success_action_status":"201","acl":"public-read","policy":"eyJleHBpcmF0aW9uIjoiMjAxOS0xMS0xOFQxOTo0NzoyMVoiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJteXJlYWx0cmlwLXVwbG9hZC11cy10ZW1wIn0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCJ1cGxvYWRzL2ExN2Q1NWZmLTc2N2YtNDY0NC05OTZiLWI0YjNiOWY5OTdmMC8iXSx7InN1Y2Nlc3NfYWN0aW9uX3N0YXR1cyI6IjIwMSJ9LHsiYWNsIjoicHVibGljLXJlYWQifSx7IngtYW16LWNyZWRlbnRpYWwiOiJBS0lBSVhONkNZNERFNjZTS0RIUS8yMDE5MTExOC91cy1lYXN0LTEvczMvYXdzNF9yZXF1ZXN0In0seyJ4LWFtei1hbGdvcml0aG0iOiJBV1M0LUhNQUMtU0hBMjU2In0seyJ4LWFtei1kYXRlIjoiMjAxOTExMThUMDUyMjQ4WiJ9XX0=","x-amz-credential":"AKIAIXN6CY4DE66SKDHQ/20191118/us-east-1/s3/aws4_request","x-amz-algorithm":"AWS4-HMAC-SHA256","x-amz-date":"20191118T052248Z","x-amz-signature":"26552be2012eba1b70933484ec077220f212f9502b9f9895aab26da16bcecd90"},
+    url: "https://myrealtrip-upload-us-temp.s3.amazonaws.com"
+  }
+</script>
+
+</div>
+</div>
+</div>
+</div>
+<div aria-hidden='true' aria-labelledby='otherModal' class='modal fade' id='otherModal' role='dialog' tabindex='-1'>
+<div class='modal-dialog modal-center'>
+<form class="modal-content" data-validation="true" action="/partner/documents" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="SRRloHgMuq0nX13Tvjt3e7OMH/UZ2vN2CkcFWpB5yVa5H0Mw6aHaVGL/C5GvNCSGaexTTf1N9q+5YzvVONo25g==" />
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title'>기타 서류</h4>
+</div>
+<div class='modal-body font-size-14'>
+<div class='clearfix'>
+<div class='form-group row'>
+<div class='col-xs-12'>
+<label class='control-label'>기타 서류 종류</label>
+</div>
+<div class='col-xs-12'>
+<div class='form-group'>
+<select class='form-control' name='document[other_types]'>
+<option disabled selected value='default'>선택하세요.</option>
+<option value='drivers_license'>운전면허증</option>
+<option value='related_license'>관련 허가</option>
+<option value='car_insurance'>차량/상해 보험</option>
+<option value='other'>기타</option>
+[:drivers_license, :related_license, :car_insurance, :other]</select>
+</div>
+</div>
+</div>
+<div class='form-group hidden row' data-expiry-form>
+<div class='col-xs-12'>
+<label class='control-label'>만료 날짜</label>
+</div>
+<div class='col-xs-12'>
+<div class='form-group'>
+<div class='row'>
+<div class='col-xs-4'>
+<input class='form-control' name='document[expiry][yyyy]' placeholder='년(YYYY)' type='text'>
+</div>
+<div class='col-xs-4'>
+<input class='form-control' name='document[expiry][mm]' placeholder='월(MM)' type='text'>
+</div>
+<div class='col-xs-4'>
+<input class='form-control' name='document[expiry][dd]' placeholder='일(DD)' type='text'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='form-group row'>
+<div class='col-xs-12'>
+<label class='control-label'>서류 업로드</label>
+</div>
+<div class='col-xs-12'>
+<div class='file-upload-btn inline-block' data-display-file-name data-document-button-container data-url='/partner/documents?type=other'>
+<input name='document[document_file_temp_url]' type='hidden' value=''>
+<input name='document[type]' type='hidden' value='other'>
+<input name='file' type='file'>
+<button class='btn btn-default btn-info offer-register-btn margin-top-10 btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
+<span class='ladda-label'></span>
+<i aria-hidden='true' class='icon wb-upload'></i>
+기타 서류 업로드
+</button>
+</div>
+<input class='input-file-name' data-file-name name='document[file_name]' readonly type='text'>
+</div>
+</div>
+</div>
+</div>
+<div class='modal-footer'>
+<div class='pull-right'>
+<button class='btn btn-primary ladda-button' data-style='expand-left' type='submit'>완료</button>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
 
 <footer class='site-footer main' id='footer'>
 		<div class="footer_wrap">
