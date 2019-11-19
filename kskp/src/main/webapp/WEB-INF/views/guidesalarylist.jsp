@@ -178,7 +178,7 @@
 <div class='panel-title'>
 정산관리
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -220,6 +220,7 @@
             <input type="hidden" name="gu_seq" value="${dto.gu_seq}"/>
 			<input type="hidden" name="s_gcost" value="${dto.s_gcost}"/>
 			<input type="hidden" name="s_seq" value="${dto.s_seq}"/>
+			<input type="hidden" name="s_cost" value="${dto.s_cost}"/>
   			<tr>
                <td>${dto.gu_name}</td>
 	           <td>${dto.s_bank}</td> 

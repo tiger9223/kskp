@@ -6,11 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getallgoods"  resultType="GoodsDto">
-	SELECT g.G_SEQ, g.G_THUMBIMG,g.G_CATEGORY,g.G_AREA,g.G_PRICE,g.G_NAME ,AVG(r.r_star) AS r_star
+	SELECT g.G_SEQ, g.G_THUMBIMG,g.G_CATEGORY,g.G_AREA,g.G_PRICE,g.G_NAME,g.G_REGDATE ,ROUND(AVG(r.r_star)) AS r_star
     FROM GOODS g, GUIDE gu,REVIEW r 
     WHERE G_FLAG=1 AND g.GU_SEQ = gu.GU_SEQ AND g.G_SEQ = r.G_SEQ 
-    GROUP BY g.g_seq, g.G_THUMBIMG, g.G_CATEGORY, g.G_AREA, g.G_PRICE, g.G_NAME
-    ORDER BY avg(r.r_star) DESC
+    GROUP BY g.g_seq, g.G_THUMBIMG, g.G_CATEGORY, g.G_AREA, g.G_PRICE, g.G_NAME, g.G_REGDATE
+    ORDER BY g.G_REGDATE DESC
 	</select>
 	
 	
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  SELECT CEIL(COUNT(G_SEQ)/10) FROM GOODS WHERE G_CATEGORY = #{cate} AND G_AREA=#{kokey}　AND　G_FLAG=1
 	</select>
 	<!-- 날짜 선택 4ㅐ -->
-		<select id="getallgoods2" parameterType="map" resultType="GoodsDto">
+	<select id="getallgoods2" parameterType="map" resultType="GoodsDto">
 	SELECT * FROM(SELECT ROW_NUMBER() OVER (ORDER BY g.G_REGDATE DESC) AS RN, g.G_SEQ,g.GU_SEQ,g.G_AREA,g.G_LAN,
 	g.G_NAME,g.G_CONTS,g.G_FLAG,g.G_IMG1, g.G_PRICE,g.G_PEOPLE,g.G_RES,g.G_ONELINE,
 	g.G_ADDRESS,g.G_TIME,g.G_DATE,g.G_REGDATE, g.G_THUMBIMG,g.G_MTIME,g.G_LAT,g.G_LNG,
@@ -69,8 +69,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getbestgoods" resultType="GoodsDto">
-		SELECT g.G_AREA, g.G_NAME, g.G_IMG1, g.G_PRICE, g.G_PEOPLE, g.G_RES, g.G_ONELINE
-		FROM GOODS g, REVIEW r WHERE g.G_SEQ=r.G_SEQ AND g.G_FLAG=1 ORDER BY (SELECT COUNT(R_SEQ) FROM REVIEW) DESC
+		SELECT g.G_SEQ, g.G_THUMBIMG,g.G_CATEGORY,g.G_AREA,g.G_PRICE,g.G_NAME ,ROUND(AVG(r.r_star)) AS r_star
+    FROM GOODS g, GUIDE gu,REVIEW r 
+    WHERE G_FLAG=1 AND g.GU_SEQ = gu.GU_SEQ AND g.G_SEQ = r.G_SEQ 
+    GROUP BY g.g_seq, g.G_THUMBIMG, g.G_CATEGORY, g.G_AREA, g.G_PRICE, g.G_NAME
+    ORDER BY avg(r.r_star) DESC
 	</select>
 	
 	<!--  WHERE절에 AND G_FLAG='1' 넣어줘야함-->

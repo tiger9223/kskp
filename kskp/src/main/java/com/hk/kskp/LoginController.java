@@ -557,6 +557,7 @@ public class LoginController {
 			}
 		}
 		model.addAttribute("list",list);
+		model.addAttribute("listsize", list.size());
 		int pcount=LoginService.getPcount(dto);
 		Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 10);
 		model.addAttribute("map", map);

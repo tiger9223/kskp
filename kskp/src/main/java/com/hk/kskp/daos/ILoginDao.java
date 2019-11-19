@@ -59,7 +59,8 @@ public interface ILoginDao {
 	//가이드 정산된 수익 금액 업데이트
 	public boolean guideSal(SalaryDto dto);
 	
-
+	//관리자 정산 금액 업데이트
+	public boolean adminSal(int m_salary);
 
 	
 	

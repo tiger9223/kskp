@@ -240,6 +240,7 @@
 
 <form action="appsal.do" method="post">
 <table border="1">
+<input type="hidden" name="acost" value="<f:formatNumber type="number" maxFractionDigits="0" value="${sal*0.2}"/>" />
 <input type="hidden" name="gu_seq" value="${ldto1.gu_seq}"/>
 <tr>
 	<td>은행</td>

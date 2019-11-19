@@ -178,7 +178,7 @@
 <div class='panel-title'>
 가입승인
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>

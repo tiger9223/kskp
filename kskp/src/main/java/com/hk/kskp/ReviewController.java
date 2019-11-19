@@ -151,6 +151,7 @@ public class ReviewController {
 	public String guidenoreview(Locale locale,Model model,int gu_seq ) {
 	    List<ReviewDto> list = ReviewService.guidenoreview(gu_seq);
 	    model.addAttribute("list",list);
+	    model.addAttribute("listsize", list.size());
 		return "guidenoreview";
 	}
 	
@@ -160,6 +161,7 @@ public class ReviewController {
 		logger.info("가이드가 단 답글 보기 이동", locale);
 	    List<ReviewDto> list = ReviewService.guideYesReview(gu_seq);
 	    model.addAttribute("list",list);
+	    model.addAttribute("listsize",list.size());
 		return "guideyesreview";
 	}
 	

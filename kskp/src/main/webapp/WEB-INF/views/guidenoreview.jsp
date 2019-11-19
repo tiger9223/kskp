@@ -3,6 +3,7 @@
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html class='no-js css-menubar' lang='en'>
 <head>
@@ -144,12 +145,12 @@
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지</span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지</span>
 </a>
 </li>
 </ul>
@@ -221,7 +222,7 @@
 <div class='panel-title'>
 답글 달지 않은 후기
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -241,25 +242,26 @@
 		<tr>
 		<td>${dto.g_name}<td>
 			<tr>
-				<th><c:choose>
-				<c:when test="${dto.r_star eq 1}">
-				★ &nbsp;
-				</c:when>
-				<c:when test="${dto.r_star eq 2}">
-				★★&nbsp;
-				</c:when>
-				<c:when test="${dto.r_star eq 3}">
-				★★★&nbsp;
-				</c:when>
-				<c:when test="${dto.r_star eq 4}">
-				★★★★&nbsp;
-				</c:when>
-				<c:when test="${dto.r_star eq 5}">
-				★★★★★&nbsp;
-				</c:when>
-				</c:choose>
+				<th>
+				<c:if test="${dto.r_star eq 1}">
+				★
+				</c:if>
+				<c:if test="${dto.r_star eq 2}">
+				★★
+				</c:if>
+				<c:if test="${dto.r_star eq 3}">
+				★★★
+				</c:if>
+				<c:if test="${dto.r_star eq 4}">
+				★★★★
+				</c:if>
+				<c:if test="${dto.r_star eq 5}">
+				★★★★★
+				</c:if>
 				</th>
+					<th>&nbsp;</th>
 				<th>${dto.m_name}</th>
+				<th>&nbsp;</th>
 				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>
 			</tr>
 			<tr>

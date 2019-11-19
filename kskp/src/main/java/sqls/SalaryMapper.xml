@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 송금신청확인 리스트  -->
 	<select id="adminsallist" resultType="SalaryDto" >
-	SELECT gu.GU_SEQ, gu.GU_NAME, s.S_BANK,s.S_ACC,s.S_GCOST,s.S_REGDATE,s.S_SEQ FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=0
+	SELECT gu.GU_SEQ, gu.GU_NAME, s.S_BANK,s.S_ACC,s.S_GCOST,s.S_REGDATE,s.S_SEQ, s.S_COST FROM GUIDE gu,SALARY s WHERE gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=0
 	</select>
 
 	<!-- 관리자 정산확인 -->
@@ -49,9 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 SELECT * FROM SALARY WHERE GU_SEQ=#{gu_seq} AND s_flag=0
 	</select>
 
-	  
-
-
-
+	<!-- 관리자 수익 -->
+	<select id="adminsal" resultType="SalaryDto">
+	 SELECT gu.GU_SEQ, gu.GU_NAME, s.S_BANK,s.S_ACC,s.S_GCOST,s.S_AREGDATE,s.S_SEQ, s.S_COST,m.M_SALARY FROM GUIDE gu,SALARY s,MEMBERS m WHERE gu.GU_SEQ=s.GU_SEQ AND s.S_FLAG=1 and m.M_STATUS='A' 
+	</select>
 
 </mapper>

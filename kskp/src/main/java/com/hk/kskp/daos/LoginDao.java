@@ -141,6 +141,11 @@ public class LoginDao implements ILoginDao {
 		int count = sqlSession.update(nameSpace+"guidesalary", dto);
 		return count>0?true:false;
 	}
+	@Override
+	public boolean adminSal(int m_salary) {
+		int count = sqlSession.insert(nameSpace+"adminsalary", m_salary);
+		return count > 0 ? true:false;
+	}
 	
 }
 

@@ -284,11 +284,11 @@
 								<h4>[투어] ${gdto.g_name}</h4>
 								<p class="name">${gdto.gu_name}</p>
 								<span class="star">
-									<span>별</span>
-									<span>별</span>
-									<span>별</span>
-									<span>별</span>
-									<span>별</span>
+									<span>★</span>
+									<span>★</span>
+									<span>★</span>
+									<span>★</span>
+									<span>★</span>
 								</span>
 								<span class="time">${gdto.g_time}시간 소요</span>
 								<span class="price">${gdto.g_price}원 / 1인</span>

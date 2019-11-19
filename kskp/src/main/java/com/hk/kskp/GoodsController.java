@@ -97,6 +97,7 @@ public class GoodsController {
 		logger.info("상품승인 페이지로 이동", locale);
 		List<GoodsDto> list = GoodsService.appGoodsList();
 		model.addAttribute("list", list);
+		model.addAttribute("listsize", list.size());
 		System.out.println(list);
 		return "goodsapp";
 	}

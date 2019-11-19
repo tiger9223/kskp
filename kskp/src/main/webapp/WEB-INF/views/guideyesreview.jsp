@@ -144,12 +144,12 @@
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지</span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지</span>
 </a>
 </li>
 </ul>
@@ -221,7 +221,7 @@
 <div class='panel-title'>
 답글 한 후기
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -243,23 +243,25 @@
 			<tr>
 				<th><c:choose>
 				<c:when test="${dto.r_star eq 1}">
-				★ &nbsp;
+				★ 
 				</c:when>
 				<c:when test="${dto.r_star eq 2}">
-				★★&nbsp;
+				★★
 				</c:when>
 				<c:when test="${dto.r_star eq 3}">
-				★★★&nbsp;
+				★★★
 				</c:when>
 				<c:when test="${dto.r_star eq 4}">
-				★★★★&nbsp;
+				★★★★
 				</c:when>
 				<c:when test="${dto.r_star eq 5}">
-				★★★★★&nbsp;
+				★★★★★
 				</c:when>
 				</c:choose>
 				</th>
+				<th>&nbsp;</th>
 				<th>${dto.m_name}</th>
+				<th>&nbsp;</th>
 				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>
 			</tr>
 			<tr>

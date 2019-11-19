@@ -243,7 +243,7 @@
 <div class='panel-title'>
 여행상품승인
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
