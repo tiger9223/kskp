@@ -175,12 +175,12 @@
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='mletterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지</span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendmletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지</span>
 </a>
 </li>
 </ul>

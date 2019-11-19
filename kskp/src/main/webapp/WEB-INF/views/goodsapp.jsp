@@ -7,8 +7,6 @@
 <html class='no-js css-menubar' lang='en'>
 <head>
 <meta charset='utf-8'>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title>상품관리페이지</title>
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -182,18 +180,36 @@
 <div>
 <ul class='site-menu'>
 <li class='site-menu-category'></li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='memberalllist.do'>
-<i aria-hidden='true' class='site-menu-icon wb-flag'></i>
+
+<li class='site-menu-item has-sub'>
+<a href='javascript:void(0)'>
+<i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
 <span class='site-menu-title'>전체회원조회</span>
+<span class='site-menu-arrow'></span>
+</a>
+
+<ul class='site-menu-sub'>
+<li class='site-menu-item'>
+<a class='animsition-link' href='memberlist.do'>
+<span class='site-menu-title'>일반회원</span>
 </a>
 </li>
+
+<li class='site-menu-item'>
+<a class='animsition-link' href='guidelist.do'>
+<span class='site-menu-title'>가이드회원</span>
+</a>
+</li>
+</ul>
+
+
 <li class='site-menu-item has-sub'>
 <a href='javascript:void(0)'>
 <i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
 <span class='site-menu-title'>가이드 관리</span>
 <span class='site-menu-arrow'></span>
 </a>
+
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
 <a class='animsition-link' href='guideappform.do?pnum=1'>
@@ -211,6 +227,12 @@
 </a>
 </li>
 </ul>
+<li class='site-menu-item'>
+<a class='animsition-link' href='adminsal.do'>
+<i aria-hidden='true' class='site-menu-icon wb-flag'></i>
+<span class='site-menu-title'>관리자수익</span>
+</a>
+</li>
 </li>
 </ul>
 </div>
@@ -241,9 +263,9 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-여행상품승인
+여행상품
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -254,9 +276,7 @@
 
 
 <thead>
-
-
-<table border="1">
+   <table border="1">
    <col width="188px">
    <col width="50px">
    <col width="90px">
@@ -328,11 +348,10 @@ function appNo(g_seq){
 </script>
 
 
-</tbody>
-</table>
+	</thead>
+	</table>
 
-
-
+	
 </div>
 </div>
 </div>
@@ -341,8 +360,6 @@ function appNo(g_seq){
 </div>
 </div>
 </div>
-
-
 <footer class='site-footer main' id='footer'>
 		<div class="footer_wrap">
 			<div class="left_box">
@@ -356,7 +373,6 @@ function appNo(g_seq){
 			</div>
 		</div>
 </footer>
-
 <div class='global-alert-box'>
 </div>
 

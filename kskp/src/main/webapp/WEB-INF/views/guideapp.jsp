@@ -117,12 +117,26 @@
 <div>
 <ul class='site-menu'>
 <li class='site-menu-category'></li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='memberalllist.do'>
-<i aria-hidden='true' class='site-menu-icon wb-flag'></i>
+
+<li class='site-menu-item has-sub'>
+<a href='javascript:void(0)'>
+<i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
 <span class='site-menu-title'>전체회원조회</span>
+<span class='site-menu-arrow'></span>
+</a>
+<ul class='site-menu-sub'>
+<li class='site-menu-item'>
+<a class='animsition-link' href='memberlist.do'>
+<span class='site-menu-title'>일반회원</span>
 </a>
 </li>
+
+<li class='site-menu-item'>
+<a class='animsition-link' href='guidelist.do'>
+<span class='site-menu-title'>가이드회원</span>
+</a>
+</li>
+</ul>
 <li class='site-menu-item has-sub'>
 <a href='javascript:void(0)'>
 <i aria-hidden='true' class='site-menu-icon wb-chat-text'></i>
@@ -146,6 +160,12 @@
 </a>
 </li>
 </ul>
+<li class='site-menu-item'>
+<a class='animsition-link' href='adminsal.do'>
+<i aria-hidden='true' class='site-menu-icon wb-flag'></i>
+<span class='site-menu-title'>관리자수익</span>
+</a>
+</li>
 </li>
 </ul>
 </div>
@@ -178,7 +198,7 @@
 <div class='panel-title'>
 가입승인
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -189,9 +209,7 @@
 
 
 <thead>
-
-
- <table border="1" align="center">
+   <table border="1" align="center">
        		<col width="80px">
 			<col width="80px">
 			<col width="200px">
@@ -235,12 +253,10 @@
 			
 	</table>
 
+	</thead>
+	</table>
 
-</tbody>
-</table>
-
-
-
+	
 </div>
 </div>
 </div>
@@ -249,8 +265,6 @@
 </div>
 </div>
 </div>
-
-
 <footer class='site-footer main' id='footer'>
 		<div class="footer_wrap">
 			<div class="left_box">
@@ -264,7 +278,6 @@
 			</div>
 		</div>
 </footer>
-
 <div class='global-alert-box'>
 </div>
 

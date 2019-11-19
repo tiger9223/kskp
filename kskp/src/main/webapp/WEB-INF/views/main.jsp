@@ -72,6 +72,7 @@
 .info_box li:nth-child(2) span{
    font-size: 11px;
 }
+
 .info_box li a{
    display: block;
    color: #666;
@@ -147,7 +148,7 @@
 				<li class="icon">
 					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
 					<ul class="info_box">
-						<li><a href="memberalllist.do"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="memberlist.do"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
 				</li>
@@ -260,11 +261,41 @@
 								<p class="subtitle">${dto.g_area} - ${dto.g_category}</p>
 								<h4>${dto.g_name}</h4>
 								<p class="star"><!--별점 들어갈 자리-->
+								<c:if test="${dto.r_star eq 1}">
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 2}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 3}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 4}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 5}">
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
+								</c:if>
 								</p>
 								<p class="price">${dto.g_price}원 / 1인</p>
 							</div>
@@ -276,97 +307,78 @@
 			<h3 class="color01"><i class="fas fa-star"></i> 인기 많은 순 <i class="fas fa-star"></i></h3>
 			<div class="img_box02">
 				<ul>
+				<c:forEach var="dto" items="${blist}" begin="0" end="3" step="1" >
 					<li>
-						<a href="">
-							<img src="img/main_img01.jpg" alt="">
+						<a href="goodsdetail.do?g_seq=${dto.g_seq}">
+							<img src="${dto.g_thumbimg}" alt="image">
 							<div class="text_box">
-								<p class="subtitle">서울 - 국립박물관</p>
-								<h4>서울 : 박물관 투어</h4>
+								<p class="subtitle">${dto.g_area} - ${dto.g_category}</p>
+								<h4>${dto.g_name}</h4>
 								<p class="star"><!--별점 들어갈 자리-->
+								    <c:if test="${dto.r_star eq 1}">
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 2}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 3}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 4}">
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>★</span>
+								    <span>☆</span>
+								</c:if>
+								<c:if test="${dto.r_star eq 5}">
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
 								    <span>★</span>
+								</c:if>
 								</p>
-								<p class="price">20000원 / 1인</p>
+								<p class="price">${dto.g_price}원 / 1인</p>
 							</div>
 						</a>
 					</li>
-					<li>
-						<a href="">
-							<img src="img/main_img02.jpg" alt="">
-							<div class="text_box">
-								<p class="subtitle">서울 - 국립박물관</p>
-								<h4>서울 : 박물관 투어</h4>
-								<p class="star"><!--별점 들어갈 자리-->
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								</p>
-								<p class="price">20000원 / 1인</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<img src="img/main_img03.jpg" alt="">
-							<div class="text_box">
-								<p class="subtitle">서울 - 국립박물관</p>
-								<h4>서울 : 박물관 투어</h4>
-								<p class="star"><!--별점 들어갈 자리-->
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								</p>
-								<p class="price">20000원 / 1인</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<img src="img/main_img04.jpg" alt="">
-							<div class="text_box">
-								<p class="subtitle">서울 - 국립박물관</p>
-								<h4>서울 : 박물관 투어</h4>
-								<p class="star"><!--별점 들어갈 자리-->
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								    <span>★</span>
-								</p>
-								<p class="price">20000원 / 1인</p>
-							</div>
-						</a>
-					</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<h3 class="color02"><i class="fab fa-gratipay"></i> <i class="far fa-laugh-wink"></i> 여행 꿀팁</h3>
 			<div class="img_box03">
 				<ul>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=wCsCd5jWsK8">
+							<img src="img/pictip.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=cKn77RynWp8">
+							<img src="img/pictip1.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=EtvlAl2cOoI">
+							<img src="img/pictip2.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 					<li>
-						<a href="">
-							<img src="" alt="">
+						<a href="https://www.youtube.com/watch?v=UR6AkX8H4jc&list=PLA365cDEkHfx46ZF_hZ9bzKFc9m3KLpwx&index=88">
+							<img src="img/pictip3.png" alt="" width="250px" height="300px">
 						</a>
 					</li>
 				</ul>

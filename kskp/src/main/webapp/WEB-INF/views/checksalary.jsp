@@ -145,12 +145,12 @@
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>받은 메시지 - ${count}개</span>
+<span class='site-menu-title'>받은 메시지</span>
 </a>
 </li>
 <li class='site-menu-item'>
 <a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
-<span class='site-menu-title'>보낸 메시지 - ${count1}개</span>
+<span class='site-menu-title'>보낸 메시지</span>
 </a>
 </li>
 </ul>
@@ -222,7 +222,7 @@
 <div class='panel-title'>
 송금신청내역
 <!-- 상품 갯수 -->
-<span class='badge badge-success'></span>
+<span class='badge badge-success'>${listsize}</span>
 
 </div>
 </div>
@@ -237,14 +237,12 @@
 <table border="1">
    <col width="188px">
    <col width="300px">
-   <col width="70px">
+   <col width="150px">
    <col width="110px">
-   <col width="80px">
-   <col width="70px">
    <tr>
-        <th>은행명</th> 
+      <th>은행명</th> 
       <th>계좌번호</th>
-        <th>정산받을 금액</th>  
+      <th>정산받을 금액</th>  
       <th>송금신청날짜</th>
    </tr>
       <c:choose>
@@ -259,7 +257,7 @@
                <td>${dto.s_bank}</td>
               <td>${dto.s_acc}</td> 
               <td>${dto.s_gcost}</td>
-              <td>${dto.s_regdate}</td>
+              <td><f:formatDate value="${dto.s_regdate}" pattern="yyyy-MM-dd"/> </td>
           </tr>
             </c:forEach>
          </c:otherwise>

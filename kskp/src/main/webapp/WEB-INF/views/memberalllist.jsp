@@ -245,9 +245,8 @@
 			    <td><f:formatDate value="${mDto.gu_regdate}" pattern="yyyy년MM월dd일"/></td>				
 			</tr>
 			</c:forEach>
-		
+		<input type="button" onclick="location.href='adminsal.do'"/>
 	</table>
-
 
 </tbody>
 </table>

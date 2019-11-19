@@ -21,7 +21,7 @@ public class GoodsDao implements IGoodsDao{
 
 	@Override//상품 등록날짜 순으로 전체 조회
 	public List<GoodsDto> getAllGoods() {
-		return sqlSession.selectList(nameSpace+"getallgoods" );
+		return sqlSession.selectList(nameSpace+"getallgoods");
 	}
 	@Override//상품 등록날짜 순으로 전체 조회
 	public List<GoodsDto> getAllGoods1(String pnum,String kokey) {

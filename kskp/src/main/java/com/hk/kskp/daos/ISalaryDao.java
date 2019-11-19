@@ -22,6 +22,7 @@ public interface ISalaryDao {
 	public SalaryDto waitsal(int gu_seq);
 	//가이드 수수료 뺀 정산금액
 	public SalaryDto getgsal(int gu_seq);
-	
+	//관리자 수익금액
+	public List<SalaryDto> adminsal();
 	
 }

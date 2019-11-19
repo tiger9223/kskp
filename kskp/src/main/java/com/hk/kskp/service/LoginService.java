@@ -115,6 +115,10 @@ public class LoginService implements ILoginService{
 	public boolean guideSal(SalaryDto dto) {
 		return loginDao.guideSal(dto);
 	}
+	@Override
+	public boolean adminSal(int m_salary) {
+		return loginDao.adminSal(m_salary);
+	}
 
 	
 
