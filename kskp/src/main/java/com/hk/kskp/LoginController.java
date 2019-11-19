@@ -204,7 +204,7 @@ public class LoginController {
 			}
 	}
 	@RequestMapping(value = "/gupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String authChange(Model model,HttpServletResponse response, GuideDto dto,MultipartFile file,MultipartFile file1) throws IOException, Exception {
+	public String authChange(Model model,HttpServletResponse response, GuideDto dto,MultipartFile file,MultipartFile file1, String gu_pw, String gu_pw1) throws IOException, Exception {
 		logger.info("가이드 정보수정 ");
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
@@ -213,30 +213,79 @@ public class LoginController {
 		String imgUploadPath1 = uploadPath1 + File.separator + "imgUpload";
 		String ymdPath1 = UploadFileUtil.calcPath(imgUploadPath1);
 		String fileName1 = null;
-			
+		System.out.println("변경전"+gu_pw);
+		System.out.println("변경후"+gu_pw1);
+		String pw;
+		if(gu_pw == null) {
+			pw = gu_pw1;
+		}else {
+			pw = gu_pw;
+		}
+		System.out.println(pw);
+		
+		
 		System.out.println("file"+ file);
 		System.out.println("file1"+file1);
 		if(!file.isEmpty()) {
 			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+				dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
 			} else {
-			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			 fileName = "a";
+			 dto.setGu_img(fileName);
 			}
 
 		if(!file1.isEmpty()) {
 			 fileName1 =  UploadFileUtil.fileUpload(imgUploadPath1, file1.getOriginalFilename(), file1.getBytes(), ymdPath1); 
+			 dto.setGu_backimg("resources"+ File.separator +"imgUpload" + ymdPath1 + File.separator + fileName1);
 			} else {
-			 fileName1 = uploadPath1 + File.separator + "images" + File.separator + "none.png";
+			 fileName1 = "a";
+			 dto.setGu_backimg(fileName1);
 			}
 		
-		dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
-		dto.setGu_backimg("resources"+ File.separator +"imgUpload" + ymdPath1 + File.separator + fileName1);
+		
+		dto.setGu_pw(pw);
+		System.out.println(dto);
 		boolean isS = LoginService.guserUpdate(dto);
+
+		System.out.println(isS);
 		if(isS){
 			return"redirect:guserinfo.do?seq="+dto.getGu_seq();
 		}else {
 			return"error";
 		}
 	}
+	
+	@RequestMapping(value = "/mupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String authChange(Model model, MembersDto dto,String m_pw, String m_pw1,MultipartFile file) throws IOException, Exception {
+		logger.info("일반회원 정보수정 ");
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		String pw;
+		if(m_pw == null) {
+			pw = m_pw1;
+		}else {
+			pw = m_pw;
+		}
+		System.out.println(pw);
+		if(!file.isEmpty()) {
+			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+				dto.setM_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
+			} else {
+			 fileName = "a";
+			 dto.setM_img(fileName);
+			}
+		dto.setM_pw(pw);
+		System.out.println(dto);
+		boolean isS = LoginService.userUpdate(dto);
+		if(isS){
+			return"redirect:muserinfo.do?seq="+dto.getM_seq();
+		}else {
+			return"error";
+		}
+	}
+	
 	
 	@RequestMapping(value = "/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String idChk(Locale locale, Model model, String m_email) {
@@ -377,7 +426,7 @@ public class LoginController {
 		logger.info("일반회원 정보보기");
 		MembersDto dto1=LoginService.mUserInfo(seq);
 		model.addAttribute("dto1",dto1);
-		return"memuserinfo";
+		return"mUserinfo";
 	}
 	
 	
@@ -386,6 +435,7 @@ public class LoginController {
 		logger.info("가이드 정보보기");
 		GuideDto dto2=LoginService.gUserInfo(seq);
 		model.addAttribute("dto2",dto2);
+		System.out.println(dto2);
 		return"gUserInfo";
 	}
 	
@@ -408,17 +458,7 @@ public class LoginController {
 		return"updateUserInfo";
 	}
 	
-	
-	@RequestMapping(value = "/mupdate.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String authChange(Model model, MembersDto dto) {
-		logger.info("일반회원 정보수정 ");
-		boolean isS = LoginService.userUpdate(dto);
-		if(isS){
-			return"redirect:muserinfo.do?seq="+dto.getM_seq();
-		}else {
-			return"error";
-		}
-	}
+
 	
 
 

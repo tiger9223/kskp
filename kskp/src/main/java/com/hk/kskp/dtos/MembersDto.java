@@ -13,6 +13,7 @@ public class MembersDto {
 	private String m_acc;
 	private int m_point;
 	private int m_salary;
+	private String m_img;
 	
 	public MembersDto() {
 		super();
@@ -40,7 +41,7 @@ public class MembersDto {
 	}
 
 	public MembersDto(int m_seq, String m_email, String m_pw, String m_status, String m_name, String m_phone,
-			Date m_regdate, String m_acc, int m_point, int m_salary) {
+			Date m_regdate, String m_acc, int m_point, int m_salary,String m_img) {
 		super();
 		this.m_seq = m_seq;
 		this.m_email = m_email;
@@ -52,6 +53,7 @@ public class MembersDto {
 		this.m_acc = m_acc;
 		this.m_point = m_point;
 		this.m_salary = m_salary;
+		this.setM_img(m_img);
 	}
 
 	public int getM_seq() {
@@ -139,6 +141,14 @@ public class MembersDto {
 		return "MembersDto [m_seq=" + m_seq + ", m_email=" + m_email + ", m_pw=" + m_pw + ", m_status=" + m_status
 				+ ", m_name=" + m_name + ", m_phone=" + m_phone + ", m_regdate=" + m_regdate + ", m_acc=" + m_acc
 				+ ", m_point=" + m_point + ", m_salary=" + m_salary + "]";
+	}
+
+	public String getM_img() {
+		return m_img;
+	}
+
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
 	}
 
 
