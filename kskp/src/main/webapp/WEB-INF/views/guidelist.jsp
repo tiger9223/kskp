@@ -7,6 +7,11 @@
 <html class='no-js css-menubar' lang='en'>
 <head>
 <meta charset='utf-8'>
+<style type="text/css">
+*{
+ align:center;
+}
+</style>
 
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1.0, user-scalable=0' name='viewport'>
@@ -186,7 +191,7 @@
 <li>
 <a href='/partner'>HOME</a>
 </li>
-<li class='active'>가이드관리</li>
+<li class='active'>전체회원조회</li>
 </ol>
 
 </div>
@@ -196,7 +201,7 @@
 <div class='panel panel-bordered'>
 <div class='panel-heading'>
 <div class='panel-title'>
-가입승인
+가이드
 <!-- 상품 갯수 -->
 <span class='badge badge-success'>${listsize}</span>
 
@@ -209,50 +214,29 @@
 
 
 <thead>
-   <table border="1" align="center">
-       		<col width="80px">
+    <table border="1">
+			<col width="100px">
 			<col width="80px">
-			<col width="200px">
-			<col width="120px">
-			<col width="200px">	
 			<col width="150px">
-			<tr align="center">
-				
-				<th>회원번호</th>
+			<tr>
+				<th>아이디</th>
 				<th>이름</th>
 				<th>회원가입일자</th>
-				<th>상세보기</th>
 			</tr>
-
-			<c:forEach items="${list}" var="gDto">
-				<c:if test="${gDto.gu_appflag eq 0}">
-			<tr align="center">
-				<td>${gDto.gu_seq}</td>
-				<td>${gDto.gu_name}</td>
-			    <td><f:formatDate value="${gDto.gu_regdate}" pattern="yyyy년MM월dd일"/></td>
-			    <td><button onclick="location.href='guappdetail.do?gu_seq=${gDto.gu_seq}'">상세보기</button></td>				
-			</tr>
-			</c:if>
-			</c:forEach>
+				<c:choose>
+					<c:when test="${empty glist}">			
+						<td colspan="4" style="text-align: center;">---가이드 목록이 없습니다.---</td>					
+					</c:when>
+			</c:choose>	
+			<c:forEach items="${glist}" var="mDto">
 			<tr>
-               <td colspan="7" align="center">
-                  <a href="guideappform.do?&pnum=${map.prePageNum}">◀</a>
-                  <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
-                     <c:choose>
-                        <c:when test="${pnum eq i}">
-                           ${i}
-                        </c:when>
-                        <c:otherwise>
-                           <a href="guideappform.do?&pnum=${i}">${i}</a>
-                        </c:otherwise>
-                     </c:choose>   
-                  </c:forEach>
-                  <a href="guideappform.do?&pnum=${map.nextPageNum}">▶</a>
-               </td>
-            </tr>
-			
+				<td>${mDto.gu_email}</td>
+				<td>${mDto.gu_name}</td>
+			    <td><f:formatDate value="${mDto.gu_regdate}" pattern="yyyy년MM월dd일"/></td>				
+			</tr>
+			</c:forEach>
+	
 	</table>
-
 	</thead>
 	</table>
 
