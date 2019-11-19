@@ -17,6 +17,8 @@ public class ReviewDto {
 	private int r_mflag;
 	private String m_name;
 	private String g_name;
+	private String gu_name;
+	private String gu_email;
 	
 	
 	public ReviewDto() {
@@ -25,7 +27,7 @@ public class ReviewDto {
 
 
 	public ReviewDto(int r_seq, int m_seq, int g_seq, String r_conts, Date r_regdate, String r_img, int r_star,
-			String r_ans, int r_guflag, int r_mflag, String m_name, String g_name) {
+			String r_ans, int r_guflag, int r_mflag, String m_name, String g_name, String gu_name, String gu_email) {
 		super();
 		this.r_seq = r_seq;
 		this.m_seq = m_seq;
@@ -39,6 +41,8 @@ public class ReviewDto {
 		this.r_mflag = r_mflag;
 		this.m_name = m_name;
 		this.g_name = g_name;
+		this.gu_name = gu_name;
+		this.gu_email = gu_email;
 	}
 
 
@@ -162,13 +166,36 @@ public class ReviewDto {
 	}
 
 
+	public String getGu_name() {
+		return gu_name;
+	}
+
+
+	public void setGu_name(String gu_name) {
+		this.gu_name = gu_name;
+	}
+
+
+	public String getGu_email() {
+		return gu_email;
+	}
+
+
+	public void setGu_email(String gu_email) {
+		this.gu_email = gu_email;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ReviewDto [r_seq=" + r_seq + ", m_seq=" + m_seq + ", g_seq=" + g_seq + ", r_conts=" + r_conts
 				+ ", r_regdate=" + r_regdate + ", r_img=" + r_img + ", r_star=" + r_star + ", r_ans=" + r_ans
-				+ ", r_guflag=" + r_guflag + ", r_mflag=" + r_mflag + ", m_name=" + m_name + ", g_name=" + g_name + "]";
+				+ ", r_guflag=" + r_guflag + ", r_mflag=" + r_mflag + ", m_name=" + m_name + ", g_name=" + g_name
+				+ ", gu_name=" + gu_name + ", gu_email=" + gu_email + "]";
 	}
 
+
+	
 
 	
 	

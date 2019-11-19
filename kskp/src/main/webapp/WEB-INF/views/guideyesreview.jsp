@@ -239,9 +239,11 @@
 		<c:forEach items="${list}" var="dto">
 		<table>
 		<tr>
-		<td>${dto.g_name}<td>
+		<td>${dto.g_name}</td>
+		</tr>
 			<tr>
-				<th><c:choose>
+			<th>${dto.m_name}
+				<c:choose>
 				<c:when test="${dto.r_star eq 1}">
 				★ &nbsp;
 				</c:when>
@@ -258,9 +260,12 @@
 				★★★★★&nbsp;
 				</c:when>
 				</c:choose>
+				<f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/>
 				</th>
-				<th>${dto.m_name}</th>
-				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>
+			</tr>
+			<tr>
+			<td> <br/>
+			</td>
 			</tr>
 			<tr>
 				<td colspan="3">${dto.r_conts}</td>
@@ -269,7 +274,7 @@
 			<td><hr/></td>
 			</tr>
 			<tr>
-			<td>가이드 답글 내용</td>
+			<td>ㄴ${dto.gu_name} [가이드] 답글</td>
 			</tr>
 			<tr>
 			<td>${dto.r_ans}</td>

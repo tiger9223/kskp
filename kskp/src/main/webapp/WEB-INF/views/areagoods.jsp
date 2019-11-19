@@ -75,57 +75,57 @@
 		var key = "${kokey}";
 			if(key=="서울"){
 				$('.under').stop(true).animate({
-					left:'351px'
+					left:'157px'
 				});
 			}else if(key=="인천"){
 				$('.under').stop(true).animate({
-					left:'436px'
+					left:'240px'
 				});
 			}else if(key=="대전"){
 				$('.under').stop(true).animate({
-					left:'519px'
+					left:'323px'
 				});
 			}else if(key=="대구"){
 				$('.under').stop(true).animate({
-					left:'603px'
+					left:'406px'
 				});
 			}else if(key=="부산"){
 				$('.under').stop(true).animate({
-					left:'686px'
+					left:'489px'
 				});
 			}else if(key=="제주"){
 				$('.under').stop(true).animate({
-					left:'771px'
+					left:'572px'
 				});
 			}
 		$('.nav li:first-child').on('mouseover',function(){
 			$('.under').stop(true).animate({
-				left:'351px'
+				left:'157px'
 			},400);
 		});
 		$('.nav li:nth-child(2)').on('mouseover',function(){
 			$('.under').stop(true).animate({
-				left:'436px'
+				left:'240px'
 			},400);
 		});
 		$('.nav li:nth-child(3)').on('mouseover',function(){
 			$('.under').stop(true).animate({
-				left:'519px'
+				left:'323px'
 			},400);
 		});
 		$('.nav li:nth-child(4)').on('mouseover',function(){
 			$('.under').stop(true).animate({
-				left:'603px'
+				left:'406px'
 			},400);
 		});
 		$('.nav li:nth-child(5)').on('mouseover',function(){
 			$('.under').stop(true).animate({
-				left:'686px'
+				left:'489px'
 			},400);
 		});
 		$('.nav li:nth-child(6)').on('mouseover',function(){
 			$('.under').stop(true).animate({
-				left:'771px'
+				left:'572px'
 			},400);
 		});
 
