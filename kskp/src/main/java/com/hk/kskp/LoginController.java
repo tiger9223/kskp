@@ -214,15 +214,15 @@ public class LoginController {
 		String ymdPath1 = UploadFileUtil.calcPath(imgUploadPath1);
 		String fileName1 = null;
 			
-		System.out.println(file);
-		System.out.println(file1);
-		if(file != null) {
+		System.out.println("file"+ file);
+		System.out.println("file1"+file1);
+		if(!file.isEmpty()) {
 			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			} else {
 			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 			}
 
-		if(file1 != null) {
+		if(!file1.isEmpty()) {
 			 fileName1 =  UploadFileUtil.fileUpload(imgUploadPath1, file1.getOriginalFilename(), file1.getBytes(), ymdPath1); 
 			} else {
 			 fileName1 = uploadPath1 + File.separator + "images" + File.separator + "none.png";

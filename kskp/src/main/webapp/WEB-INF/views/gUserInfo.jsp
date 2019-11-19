@@ -387,7 +387,7 @@ function handleImgFileSelect(e){
 <div class='panel-image bg-blue-grey-300'  style="   width: 100%;
    height: 200px;
    overflow: hidden;"   id="img_check2" >
-<img id="img" src="${dto2.gu_img}" style="width: 100%;
+<img id="img" src="${dto2.gu_backimg}" style="width: 100%;
    height: auto;"  >
 <div class='input-group-file background-file file-upload-btn'>
 <input type="file" name ="file" id="ajaxFile1"  />
@@ -401,7 +401,7 @@ function handleImgFileSelect(e){
 </div>
 </div>
 <div class='photo-container'>
-<div class='avatar avatar-lg' id="img_check1">
+<div class='avatar avatar-lg' id="img_check1" style="Width :80px; Height :80px;  Border-radiuse :40px; Overflow :hidden;">
 <c:choose>
 <c:when test="${empty dto2.gu_img}">
 <img alt='guide profile' id='View_area' class='default-img' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
@@ -410,8 +410,6 @@ function handleImgFileSelect(e){
 <img alt='guide profile' id='View_area' class='default-img' src='${dto2.gu_img}'>
 </c:otherwise>
 </c:choose>
-
-<div id="preview" class='img-preview'></div>
 </div>
 <div class='avatar-file file-upload-btn'>
 <input type="file" name ="file1" id="ajaxFile" style="display:none;"/>
@@ -777,94 +775,11 @@ $(function(){
 </div>
 </form>
 
-<script>
-  window.App = App || {};
-  App.directUpload = {
-    option: {"key":"uploads/a17d55ff-767f-4644-996b-b4b3b9f997f0/${filename}","success_action_status":"201","acl":"public-read","policy":"eyJleHBpcmF0aW9uIjoiMjAxOS0xMS0xOFQxOTo0NzoyMVoiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJteXJlYWx0cmlwLXVwbG9hZC11cy10ZW1wIn0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCJ1cGxvYWRzL2ExN2Q1NWZmLTc2N2YtNDY0NC05OTZiLWI0YjNiOWY5OTdmMC8iXSx7InN1Y2Nlc3NfYWN0aW9uX3N0YXR1cyI6IjIwMSJ9LHsiYWNsIjoicHVibGljLXJlYWQifSx7IngtYW16LWNyZWRlbnRpYWwiOiJBS0lBSVhONkNZNERFNjZTS0RIUS8yMDE5MTExOC91cy1lYXN0LTEvczMvYXdzNF9yZXF1ZXN0In0seyJ4LWFtei1hbGdvcml0aG0iOiJBV1M0LUhNQUMtU0hBMjU2In0seyJ4LWFtei1kYXRlIjoiMjAxOTExMThUMDUyMjQ4WiJ9XX0=","x-amz-credential":"AKIAIXN6CY4DE66SKDHQ/20191118/us-east-1/s3/aws4_request","x-amz-algorithm":"AWS4-HMAC-SHA256","x-amz-date":"20191118T052248Z","x-amz-signature":"26552be2012eba1b70933484ec077220f212f9502b9f9895aab26da16bcecd90"},
-    url: "https://myrealtrip-upload-us-temp.s3.amazonaws.com"
-  }
-</script>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</div>
-<div aria-hidden='true' aria-labelledby='otherModal' class='modal fade' id='otherModal' role='dialog' tabindex='-1'>
-<div class='modal-dialog modal-center'>
-<form class="modal-content" data-validation="true" action="/partner/documents" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="SRRloHgMuq0nX13Tvjt3e7OMH/UZ2vN2CkcFWpB5yVa5H0Mw6aHaVGL/C5GvNCSGaexTTf1N9q+5YzvVONo25g==" />
-<div class='modal-header'>
-<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
-<span aria-hidden='true'>×</span>
-</button>
-<h4 class='modal-title'>기타 서류</h4>
-</div>
-<div class='modal-body font-size-14'>
-<div class='clearfix'>
-<div class='form-group row'>
-<div class='col-xs-12'>
-<label class='control-label'>기타 서류 종류</label>
-</div>
-<div class='col-xs-12'>
-<div class='form-group'>
-<select class='form-control' name='document[other_types]'>
-<option disabled selected value='default'>선택하세요.</option>
-<option value='drivers_license'>운전면허증</option>
-<option value='related_license'>관련 허가</option>
-<option value='car_insurance'>차량/상해 보험</option>
-<option value='other'>기타</option>
-[:drivers_license, :related_license, :car_insurance, :other]</select>
-</div>
-</div>
-</div>
-<div class='form-group hidden row' data-expiry-form>
-<div class='col-xs-12'>
-<label class='control-label'>만료 날짜</label>
-</div>
-<div class='col-xs-12'>
-<div class='form-group'>
-<div class='row'>
-<div class='col-xs-4'>
-<input class='form-control' name='document[expiry][yyyy]' placeholder='년(YYYY)' type='text'>
-</div>
-<div class='col-xs-4'>
-<input class='form-control' name='document[expiry][mm]' placeholder='월(MM)' type='text'>
-</div>
-<div class='col-xs-4'>
-<input class='form-control' name='document[expiry][dd]' placeholder='일(DD)' type='text'>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class='form-group row'>
-<div class='col-xs-12'>
-<label class='control-label'>서류 업로드</label>
-</div>
-<div class='col-xs-12'>
-<div class='file-upload-btn inline-block' data-display-file-name data-document-button-container data-url='/partner/documents?type=other'>
-<input name='document[document_file_temp_url]' type='hidden' value=''>
-<input name='document[type]' type='hidden' value='other'>
-<input name='file' type='file'>
-<button class='btn btn-default btn-info offer-register-btn margin-top-10 btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
-<span class='ladda-label'></span>
-<i aria-hidden='true' class='icon wb-upload'></i>
-기타 서류 업로드
-</button>
-</div>
-<input class='input-file-name' data-file-name name='document[file_name]' readonly type='text'>
-</div>
-</div>
-</div>
-</div>
-<div class='modal-footer'>
-<div class='pull-right'>
-<button class='btn btn-primary ladda-button' data-style='expand-left' type='submit'>완료</button>
-</div>
-</div>
-</form>
-
-</div>
-</div>
 
 </div>
 </div>
