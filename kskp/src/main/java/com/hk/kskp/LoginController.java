@@ -214,8 +214,8 @@ public class LoginController {
 		String ymdPath1 = UploadFileUtil.calcPath(imgUploadPath1);
 		String fileName1 = null;
 			
-		System.out.println(file);
-		System.out.println(file1);
+		System.out.println("file : "+file);
+		System.out.println("file1 : "+file1);
 		if(file != null) {
 			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			} else {
