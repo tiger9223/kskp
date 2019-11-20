@@ -75,60 +75,59 @@
 		var key = "${kokey}";
 			if(key=="서울"){
 				$('.under').stop(true).animate({
-					left:'157px'
+					left:'351px'
 				});
 			}else if(key=="인천"){
 				$('.under').stop(true).animate({
-					left:'240px'
+					left:'436px'
 				});
 			}else if(key=="대전"){
 				$('.under').stop(true).animate({
-					left:'323px'
+					left:'519px'
 				});
 			}else if(key=="대구"){
 				$('.under').stop(true).animate({
-					left:'406px'
+					left:'603px'
 				});
 			}else if(key=="부산"){
 				$('.under').stop(true).animate({
-					left:'489px'
+					left:'686px'
 				});
 			}else if(key=="제주"){
 				$('.under').stop(true).animate({
-					left:'572px'
+					left:'771px'
 				});
 			}
-		$('.nav li:first-child').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'157px'
-			},400);
-		});
-		$('.nav li:nth-child(2)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'240px'
-			},400);
-		});
-		$('.nav li:nth-child(3)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'323px'
-			},400);
-		});
-		$('.nav li:nth-child(4)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'406px'
-			},400);
-		});
-		$('.nav li:nth-child(5)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'489px'
-			},400);
-		});
-		$('.nav li:nth-child(6)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'572px'
-			},400);
-		});
-
+			$('.nav li:first-child').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'351px'
+				},400);
+			});
+			$('.nav li:nth-child(2)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'436px'
+				},400);
+			});
+			$('.nav li:nth-child(3)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'519px'
+				},400);
+			});
+			$('.nav li:nth-child(4)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'603px'
+				},400);
+			});
+			$('.nav li:nth-child(5)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'686px'
+				},400);
+			});
+			$('.nav li:nth-child(6)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'771px'
+				},400);
+			});
 		var $win = $(window);
 	    var top = $(window).scrollTop();
 	    var speed = 'past';

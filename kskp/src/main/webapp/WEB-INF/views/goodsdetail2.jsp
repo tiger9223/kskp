@@ -25,6 +25,26 @@
       .ui-datepicker { width: 300px; display: none; font-size: 1px;}
       .ui-datepicker-week-end{padding: 0 0 !important;}
       </style>
+      
+      <script type="text/javascript">
+      function btn_click(str){
+  		var date = document.getElementById("altField");
+  		var price = document.getElementById("p_cost");
+  		if(str == "res"){
+  			if(date.value==""){
+  				alert("원하는 날짜를 클릭해주세요.");
+  				date.focus();
+  				return false;
+  			}else if(price.value==""){	
+  				alert("금액 조회 버튼을 클릭해주세요.");
+  				price.focus();
+  				return false;
+  			}else{
+  				form.action="insertcart.do";
+  			}
+  		}
+  	}
+      </script>
    <script type="text/javascript">//<![CDATA[
   $.datepicker.setDefaults({
       prevText: '이전 달',
@@ -83,35 +103,35 @@ $('#mdp-demo').multiDatesPicker({
             }
          });
 
-      $('.nav li:first-child').on('mouseover',function(){
-         $('.under').stop(true).animate({
-            left:'150px'
-         },400);
-      });
-      $('.nav li:nth-child(2)').on('mouseover',function(){
-         $('.under').stop(true).animate({
-            left:'240px'
-         },400);
-      });
-      $('.nav li:nth-child(3)').on('mouseover',function(){
-         $('.under').stop(true).animate({
-            left:'323px'
-         },400);
-      });
-      $('.nav li:nth-child(4)').on('mouseover',function(){
-         $('.under').stop(true).animate({
-            left:'406px'
-         },400);
-      });
-      $('.nav li:nth-child(5)').on('mouseover',function(){
-         $('.under').stop(true).animate({
-            left:'489px'
-         },400);
-      });
-      $('.nav li:nth-child(6)').on('mouseover',function(){
-         $('.under').stop(true).animate({
-            left:'572px'
-         },400);
+         $('.nav li:first-child').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'351px'
+				},400);
+			});
+			$('.nav li:nth-child(2)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'436px'
+				},400);
+			});
+			$('.nav li:nth-child(3)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'519px'
+				},400);
+			});
+			$('.nav li:nth-child(4)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'603px'
+				},400);
+			});
+			$('.nav li:nth-child(5)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'686px'
+				},400);
+			});
+			$('.nav li:nth-child(6)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'771px'
+				},400);
       });
 
       var $win = $(window);
@@ -139,30 +159,7 @@ $('#mdp-demo').multiDatesPicker({
 
 
       });
-//       $(document).ready(function(){
-//     		$("#altField").on("change", datechange);
 
-//     	});
-      
-//       function datechange(){
-//     		var date = $("#altField").val();
-//     		alert(date);
-//   			$.ajax({
-//   				url : '${pageContext.request.contextPath}/datepick.do?date='+date,
-//   				type : 'get',
-//   				success : function(data) {
-//   					console.log(data);		
-//   					$("#datepicker").hide();
-//   					$("#datepick").text(data);
-//   					$("#datepick").css('corlr','#00bcf8');
-  					
-  			
-//   					}, 
-//   					error : function() {
-//   							console.log("실패");
-//   					}
-//   	 					  });
-//       }
       
       
       $(function(){
@@ -178,48 +175,56 @@ $('#mdp-demo').multiDatesPicker({
     	  
     	  
     	  
-    	  
-//   		$("#mdp-demo").on("changeDate", function(ev){
-//   			var date = $("#altField").change();
-// 			alert(date);
-//   			$.ajax({
-//   				url : '${pageContext.request.contextPath}/datepick.do?date='+date,
-//   				type : 'get',
-//   				success : function(data) {
-//   					console.log(data);		
-//   					$("#datepicker").hide();
-//   					$("#datepick").text(data);
-//   					$("#datepick").css('corlr','#00bcf8');
-  					
-  			
-//   					}, 
-//   					error : function() {
-//   							console.log("실패");
-//   					}
-//   	 					  });
-// 		});
-
   
-//   		$("tr > td").click(function(){
-//   			var date = $("#altField").val();
-//   			alert(date);
-// 		$.ajax({
-// 			url : '${pageContext.request.contextPath}/datepick.do?date='+date,
-// 	        type : 'POST',
-// 			success : function(data) {
-// 				console.log(data);
-// 			     	$("#datepicker").hide();
-// 					$("#datepick").text(data);
-// 					$("#datepick").css('corlr','#00bcf8');
-// 				}, 
-// 				error : function() {
-// 						console.log("실패");
-// 				}
-// 						  });
-//       });
+	$("#p_num").change(function(){
+		if($(this).val()==0){
+			$("#btn01").attr("disabled", true);
+			$("#btn01").attr("title", "인원을 선택해주세요");
+		}else{
+			$("#btn01").attr("disabled", false);
+		}
+		var select = $(this).val();
+		var price = Number("${gdto.g_price}");
+		var sum = select*Number(price);
+		$("#p_cost").val(sum);
+		$(".type02").text(select+"x ${gdto.g_price}원")
+		$(".type03").text(sum+"원")
+		$(".type04").text(sum+"원")
+		
+	});
+	
+	$("#p_num").click(function(){
+		  $("#datepicker").hide();
+	});
 
-       });
-   </script>
+	$("form").submit(function(){
+		if($("#altField").val() == ""){
+			alert("달력 날짜를 선택해주세요.");
+			$("#mdp-demo").focus();
+			return false;
+		}else if($("#people").val()==0){
+			alert("인원을 선택해주세요.");
+			$("#p_num").focus();
+			return false;
+		}else{
+			 if (confirm("확인버튼을 누르면 결제화면으로 이동합니다.") == true){    //확인
+			     document.removefrm.submit();
+			 }else{   //취소
+			     return false;
+			 }
+		}
+	});
+
+	
+	$("#reg").click(function(){
+		$("#altField").focus();
+	})
+	
+	
+      });
+      
+    
+</script>
 </head>
 <body>
    <header>
@@ -313,37 +318,53 @@ $('#mdp-demo').multiDatesPicker({
             <a href="" class="main_img">
                <img src="${gdto.g_img1}" alt="">
             </a>
+                <form action="kakaoPay.do" method="post"> 
+                <input type="hidden" name="p_name" value="${gdto.g_name}"/>
+				<input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
+				<input type="hidden" name="p_meet" value="${gdto.g_address}"/>
+				<input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
+				<input type="hidden" name="g_thumbimg" value="${gdto.g_thumbimg}"/>  
+                  <input type="hidden" name="p_cost" id="p_cost">
             <div class="date_box">
                <h3>날짜와 인원을 선택하세요</h3>
                <div class="inner_wrap">
                   <a id="datepick" style="cursor:pointer;" class="date_button"><i  class="far fa-calendar-alt"></i>
                     날짜 선택 <input type="text" style='color:#00bcf8; text-align: center; border:none; font-size: 15px' name="g_date" id="altField" >        </a>
-                                
-                 <select name="g_people" id="">
-                   <option value="">인원을 선택하세요</option>
+                           
+           
+                
+                 <select name="p_num" id="p_num">
+                 
+                   <option value="0">인원을 선택하세요</option>
+     
                   <c:forEach var="i" begin="1" end="${gdto.g_people}">       
-                  <option value="${i}">${i}</option>
-                  </c:forEach>        
+                 <option value="${i}">${i}</option>
+ 
+                  </c:forEach>
                   </select>
-                  <input type="button" value="금액 조회하기" id="btn01" class="btn">
-               </div>
+                  <input type="button" value="금액 조회하기" disabled="disabled" id="btn01" class="btn">
+                  <div id="btn01chk"></div>
+              		 </div>
+                               	<div id="datepicker" style="display: none; " >
+					 <div id="mdp-demo" style="display: block; position: absolute; z-index: 100;"  ></div>
+				
+				</div>   
                <div class="reser_box" id="reser" style="display: none;">
                   <div class="inner_box">
                      <span class="type01" id="altField1"></span>
                      <div class="inner_price">
-                        <span class="type02">5 x \26,000</span>
-                        <span class="type03">26,000원</span>
+                        <span class="type02">5 x \${gdto.g.price}</span>
+                        <span class="type03"></span>
                      </div>
                      <div class="line"></div>
-                     <p>총 여행경비<span class="type04">26,000원</span></p>
+                     <p>총 여행경비<span class="type04"></span></p>
                   </div>
-                  <input type="submit" value="예약하기" class="btn02">
+                  <input type="submit" value="예약하기" id="reg_submit"  class="btn02"> 
+            
                </div>
             </div>
-            	<div id="datepicker" style="display: none;" >
-					 <div id="mdp-demo" ></div>
-				
-				</div>
+            </form>
+    
             <div class="product">
                <h3>${gdto.g_oneline}</h3>
                <div class="p_wrap">
@@ -365,8 +386,8 @@ $('#mdp-demo').multiDatesPicker({
                <img src="img/map_icon.png" alt="" class="map_icon">
                <h4 class="img_title">${gdto.g_address}</h4>
                <div class="map_box">
-                  <a href="">지도보기∨</a>
-                  <div class="inner_img">
+                  <a id="mapimg" style="cursor:pointer;" >지도보기v</a>
+                  <div class="inner_img" >
                   <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false"></a>
                      <img src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="">
                      <img src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="">
@@ -468,12 +489,12 @@ $('#mdp-demo').multiDatesPicker({
             </div>
             <table>
                <tr>
-                  <th>1~5인</th>
-                  <td>26,000원</td>
+                  <th>1~${gdto.g_people}인</th>
+                  <td>${gdto.g_price}원</td>
                </tr>
             </table>
-            <input type="submit" value="예약하기" class="reservation">
-            <input type="submit" value="장바구니에 담기" class="wish">
+            <input type="button" id="reg" value="예약하기" class="reservation">
+            <input type="button" value="장바구니에 담기" class="wish" onclick='return btn_click("res");'>
             <div class="info">
                <div class="img_box">
                   <img src="${gdto.gu_img}" alt="">
