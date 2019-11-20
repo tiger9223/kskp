@@ -388,11 +388,11 @@ function handleImgFileSelect(e){
    height: 200px;
    overflow: hidden;"   id="img_check2" >
   <c:choose>
-  <c:when test="${dto2.gu_backimg eq 'a'}">
+  <c:when test="${dto2.gu_img eq 'a'}">
   <img id="img" style="background:url('') no-repeat center center;background-size:cover;">
   </c:when>
   <c:otherwise>
-  <img id="img" src="${dto2.gu_backimg}" style="width: 100%;
+  <img id="img" src="${dto2.gu_img}" style="width: 100%;
    height: auto;"  >
   </c:otherwise>
   </c:choose> 
@@ -411,11 +411,11 @@ function handleImgFileSelect(e){
 <div class='photo-container'>
 <div class='avatar avatar-lg' id="img_check1" style="Width :80px; Height :80px;  Border-radiuse :50%; Overflow :hidden;">
 <c:choose>
-<c:when test="${dto2.gu_img eq 'a'}">
+<c:when test="${dto2.gu_backimg eq 'a'}">
 <img alt='guide profile' id='View_area' class='default-img' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
 </c:when>
 <c:otherwise>
-<img alt='guide profile' id='View_area' class='default-img'  style="all:unset;" src='${dto2.gu_img}'>
+<img alt='guide profile' id='View_area' class='default-img'  style="all:unset;" src='${dto2.gu_backimg}'>
 </c:otherwise>
 </c:choose>
 </div>
@@ -450,7 +450,7 @@ ${dto2.gu_name}
 <div class='row'>
 <div class='col-sm-12'>
 <p>거주하게 된 배경, 파트너 활동의 계기, 직업 등 여행자에게 파트너님을 소개해주세요.<br/>한글 기준 최소 100자 이상 작성해주세요.<br/></p>
-<textarea class='form-control' id="gu_intro" name='gu_intro' rows='5' type='text'>${dto2.gu_intro}</textarea>
+<textarea class='form-control' id="gu_intro" name="gu_intro" rows='5' type='text'>${dto2.gu_intro}</textarea>
 </div>
 </div>
 <div class="notice" id="intro_check"></div>

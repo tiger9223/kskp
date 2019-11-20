@@ -403,7 +403,7 @@ $('#mdp-demo').multiDatesPicker({
             <div class="guide_info">
                <div class="top_box">
                   <img src="${gdto.gu_img}" alt="">
-                  <span><a href="">${gdto.gu_name}</a></span>
+                  <span><a href="guideintro.do?gu_seq=${gdto.gu_seq}">${gdto.gu_name}</a></span>
                   <input type="submit" value="쪽지보내기" class="btn03">
                </div>
                <p id="guideintro"><c:out value="${gdto.gu_intro}" /></p>
@@ -505,7 +505,7 @@ $('#mdp-demo').multiDatesPicker({
                <div class="img_box">
                   <img src="${gdto.gu_img}" alt="">
                </div>
-               <span><a href="">${gdto.gu_name}</a></span>
+               <span><a href="guideintro.do?gu_seq=${gdto.gu_seq}">${gdto.gu_name}</a></span>
                <a href="" class="mail"><i class="far fa-envelope"></i> 문의하기</a>
             </div>
          </div>

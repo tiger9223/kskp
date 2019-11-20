@@ -181,6 +181,16 @@ public class GoodsController {
 		model.addAttribute("reviewcount",list.size());
 		return "goodsdetail2";
 	}
+	@RequestMapping(value = "/guideintro.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String guideintro(Locale locale, Model model, int gu_seq) {
+		logger.info("가이드 자기소개", locale);
+		GuideDto dto = LoginService.gUserInfo(gu_seq);
+		List<GoodsDto> list = GoodsService.guideGoods(gu_seq);
+		model.addAttribute("dto",dto);
+		model.addAttribute("list",list);
+		return "guideintro";
+	}
+	
 	
 	@RequestMapping(value = "/insertcart.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertCart(Locale locale, Model model, PayDto dto) {
