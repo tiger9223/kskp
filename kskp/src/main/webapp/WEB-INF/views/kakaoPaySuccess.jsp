@@ -211,7 +211,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" style="border:none;" class='form-control' readonly="readonly" value="${info.approved_at}">
+<input type="text" style="border:none; color: black;" class='form-control' readonly="readonly" value="${info.approved_at}">
 </div>
 </div>
 </div>
@@ -225,7 +225,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" style="border:none;" class='form-control'  readonly="readonly" value="${info.partner_order_id}">
+<input type="text" style="border:none; color: black;" class='form-control'  readonly="readonly" value="${info.partner_order_id}">
 </div>
 </div>
 </div>
@@ -239,7 +239,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" style="border:none;" class='form-control' readonly="readonly" value="${info.item_name}">
+<input type="text" style="border:none; color: black;" class='form-control' readonly="readonly" value="${info.item_name}">
 </div>
 </div>
 </div>
@@ -253,7 +253,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" style="border:none;"class='form-control'  readonly="readonly" value="${info.quantity}">
+<input type="text" style="border:none; color: black;"class='form-control'  readonly="readonly" value="${info.quantity}">
 </div>
 </div>
 </div>
@@ -267,7 +267,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" style="border:none;" class='form-control'  readonly="readonly" value="${info.amount.total}">
+<input type="text" style="border:none; color: black;" class='form-control'  readonly="readonly" value="${info.amount.total}">
 </div>
 </div>
 </div>
@@ -281,7 +281,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" style="border:none;" class='form-control' readonly="readonly" value="${info.payment_method_type}">
+<input type="text" style="border:none; color: black;" class='form-control' readonly="readonly" value="${info.payment_method_type}">
 </div>
 </div>
 </div>

@@ -268,52 +268,55 @@ ${gdto.g_mtime} 시</p></div>
 			</p>
 			<hr/>
 		</div>
+	
 	<c:choose>
+		
 		<c:when test="${empty list}">
 			처음으로 후기를 남겨주세요~
 		</c:when>
 		<c:otherwise>
+		<ul class="review_box">
 		<c:forEach items="${list}" var="dto">
-		<table>
-			<tr>
-				<td><c:choose>
+				<li>
+				<a href="">
+				<div class="star_box">
+				<c:choose>
 				<c:when test="${dto.r_star eq 1}">
-				★ &nbsp;
+				<span>★</span>
 				</c:when>
 				<c:when test="${dto.r_star eq 2}">
-				★★&nbsp;
+				<span>★★</span>
 				</c:when>
 				<c:when test="${dto.r_star eq 3}">
-				★★★&nbsp;
+				<span>★★★</span>
 				</c:when>
 				<c:when test="${dto.r_star eq 4}">
-				★★★★&nbsp;
+				<span>★★★★</span>
 				</c:when>
 				<c:when test="${dto.r_star eq 5}">
-				★★★★★&nbsp;
+				<span>★★★★★</span>
 				</c:when>
-				</c:choose>
-				</td>
-				<td>${dto.m_name}</td>
-				<td><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </td>
-			</tr>
-			<tr>
-				<td colspan="3">${dto.r_conts}</td>
-			</tr>
-			<c:if test="${dto.r_ans != null}">
-			<br/>
-			<br/>
-			<tr>
-				<td>
-				&nbsp;<img id="reply" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj4KICAgIDxwYXRoIGZpbGw9IiNDRUQ0REEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIgOGg4djJIMFYwaDJ2OHoiLz4KPC9zdmc+Cg==" alt="reply"/>${gdto.gu_name}
-				&nbsp;<br/>${dto.r_ans}</td>
-			</tr>
-			</c:if>
-		
-			<hr>
-		</table>
+				</c:choose>															
+					</div>
+					<span class="id">${dto.m_name}</span>
+					<a href=""><img src="${dto.r_img}" alt="사진"></a>
+					<p>${dto.r_conts}</p>
+				
+	         	<c:if test="${dto.r_ans != null}">
+					<p style="Text-indent:20px; font-weight: bold;">ㄴ${dto.gu_name}</p>
+					<p style="Text-indent:20px;">${dto.r_ans}</p>
+		      	</c:if>
+						</a>
+					</li>	
+	
+
+			
+
+
 		</c:forEach>
+				</ul>
 		</c:otherwise>
+
 	</c:choose>
 
 

@@ -59,6 +59,8 @@ public class ReviewController {
 	
 	@Autowired
 	private ICashService CashService;
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 
 
@@ -115,24 +117,20 @@ public class ReviewController {
 	
 	
 	@RequestMapping(value = "/writereview.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String wirtereview(Locale locale,Model model ,ReviewDto dto, PayDto dto2, int p_seq, HttpServletRequest request) {
+	public String wirtereview(Locale locale,Model model ,ReviewDto dto, PayDto dto2, int p_seq, HttpServletRequest request,MultipartFile file) throws IOException, Exception {
 		logger.info("후기작성", locale);
-		String r_conts=dto.getR_conts();
-		//Jsoup 라이브러리(html파서)를 이용해서 html모양의 문자열을 정말 html객체로 만들어서 사용----> text로 반환
-		Document doc=Jsoup.parseBodyFragment(r_conts);
-		Elements docs=doc.body().getElementsByTag("img");
-		String imgUrl="";
-		for (int i = 0; i < docs.size(); i++) {
-			if(i==docs.size()-1) {
-				imgUrl+=docs.eq(i).attr("src");
-			}else {
-				imgUrl+=docs.eq(i).attr("src")+",";				
-			}
-		}
-		dto.setR_img(imgUrl);
-		System.out.println("imgUrl:"+imgUrl);
-		/////Jsoup 사용 끝
 		
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtil.calcPath(imgUploadPath);
+		String fileName = null;
+		System.out.println(file);
+		if(!file.isEmpty()) {
+			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+			} else {
+			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+
+		dto.setR_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
 		HttpSession session = request.getSession();
 		MembersDto ldto =  (MembersDto)session.getAttribute("ldto");
 		PayDto dto1 = CashService.review(p_seq);

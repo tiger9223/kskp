@@ -64,6 +64,37 @@
 			event.preventDefault();
 		});
 	});
+	
+	
+	function ajaxFileUpload() {
+        // 업로드 버튼이 클릭되면 파일 찾기 창을 띄운다.
+        jQuery("#ajaxFile").click();
+    }
+	
+	var sel_file;
+
+	$(document).ready(function(){
+		$("#ajaxFile").on("change", handleImgFileSelect1);
+
+	});
+
+	function handleImgFileSelect1(e){
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		filesArr.forEach(function(f){
+			sel_file = f;
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$("#View_area").attr("src",e.target.result);
+			}
+			reader.readAsDataURL(f);
+		})
+		
+	}
+	
+	
 </script>
 
 <style>
@@ -252,12 +283,12 @@ border:1px solid #ccc;
 <div class='col-md-12'>
 <table class='table table-striped table-hover toggle-circle'>
 <thead>
-
-<form action="writereview.do" method="post">
+<form action="writereview.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="m_seq" value="${ldto.m_seq}">
 		<input type="hidden" id="r_star" name="r_star" value="3">
 		<input type="hidden" name="g_seq" value="${dto.g_seq}"/>
 		<input type="hidden" name="p_seq" value="${dto.p_seq}"/>
+		<input type="file" name ="file" id="ajaxFile" style="display:none;"/>
 		<table border="1">
 			<tr colspan="2">
 				<td colspan="2">
@@ -277,11 +308,25 @@ border:1px solid #ccc;
 	<tr>
 		<td colspan="2"><textarea onkeyup="this.style.height='800px'; this.style.height = this.scrollHeight + 'px';" type="text" id="ckeditor" name="r_conts"></textarea></td>
 	</tr>
-	
 	<tr>
 	<td colspan="2" align="right"><input type="submit" value="후기작성"><input type="button" value="뒤로가기" onclick="history.back(-1);"></td>
 	</tr>
 		</table>
+		
+		<div class='photo-container'>
+			<div class='avatar avatar-lg'  id="img_check1" style="Overflow :hidden; width: 300px;">
+					<img alt='guide profile' id='View_area' class='default-img'  style="all:unset;">				
+					</div>
+					<div class='avatar-file file-upload-btn'>
+					
+					<input type="button" onClick="ajaxFileUpload();">
+					<div class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
+					<span class='ladda-label'></span>
+					<i aria-hidden='true' class='icon wb-upload'></i>
+					사진변경...
+					</div>
+				</div>
+			</div>
 	</form>
 <script>
 	//id가 ckeditor인 태그에 ckeditor를 적용시킴
