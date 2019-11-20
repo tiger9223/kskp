@@ -242,16 +242,16 @@
 			<tr>
 				<th><c:choose>
 				<c:when test="${dto.r_star eq 1}">
-				★ &nbsp;
+				★☆☆☆☆&nbsp;
 				</c:when>
 				<c:when test="${dto.r_star eq 2}">
-				★★&nbsp;
+				★★☆☆☆&nbsp;
 				</c:when>
 				<c:when test="${dto.r_star eq 3}">
-				★★★&nbsp;
+				★★★☆☆&nbsp;
 				</c:when>
 				<c:when test="${dto.r_star eq 4}">
-				★★★★&nbsp;
+				★★★★☆&nbsp;
 				</c:when>
 				<c:when test="${dto.r_star eq 5}">
 				★★★★★&nbsp;
