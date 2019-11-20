@@ -477,6 +477,7 @@ $('#mdp-demo').multiDatesPicker({
 				</c:choose>
                 </div>
                   <span class="id">${dto.m_name}</span><br/><p>&nbsp;&nbsp;<f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd HH:MM"/> </p>
+                  <a href=""><img src="${dto.r_img}" alt="사진"></a>
                    <p>${dto.r_conts}</p>
                    <c:if test="${dto.r_ans != null}"><br/>
                    <span style="font: bold;">&nbsp;&nbsp;&nbsp;ㄴ${gdto.gu_name} [가이드]</span> 

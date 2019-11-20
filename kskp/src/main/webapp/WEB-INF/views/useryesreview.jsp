@@ -263,6 +263,7 @@
 			</tr>
 			<tr>
 				<td colspan="3">${dto.r_conts}</td>
+				 <a href=""><img src="${dto.r_img}" alt="사진"></a>
 			</tr>
 			<hr/>
 		</table>
