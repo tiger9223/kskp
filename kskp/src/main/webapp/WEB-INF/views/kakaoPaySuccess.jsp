@@ -192,7 +192,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" readonly="readonly" value="${info.approved_at">
+<input type="text" readonly="readonly" value="${info.approved_at}">
 </div>
 </div>
 </div>
@@ -248,7 +248,7 @@
 </div>
 <div class='row'>
 <div class='col-xs-12'>
-<input type="text" readonly="readonly" value="${info.amount.total">
+<input type="text" readonly="readonly" value="${info.amount.total}">
 </div>
 </div>
 </div>

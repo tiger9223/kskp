@@ -26,25 +26,7 @@
       .ui-datepicker-week-end{padding: 0 0 !important;}
       </style>
       
-      <script type="text/javascript">
-      function btn_click(str){
-  		var date = document.getElementById("altField");
-  		var price = document.getElementById("p_cost");
-  		if(str == "res"){
-  			if(date.value==""){
-  				alert("원하는 날짜를 클릭해주세요.");
-  				date.focus();
-  				return false;
-  			}else if(price.value==""){	
-  				alert("금액 조회 버튼을 클릭해주세요.");
-  				price.focus();
-  				return false;
-  			}else{
-  				form.action="insertcart.do";
-  			}
-  		}
-  	}
-      </script>
+
    <script type="text/javascript">//<![CDATA[
   $.datepicker.setDefaults({
       prevText: '이전 달',
@@ -220,6 +202,21 @@ $('#mdp-demo').multiDatesPicker({
 		$("#altField").focus();
 	})
 	
+	$("#cartbtn").click(function(){
+		if($("#altField").val() == ""){
+			alert("달력 날짜를 선택해주세요.");
+			$("#mdp-demo").focus();
+			return false;
+		}else if($("#people").val()==0){
+			alert("인원을 선택해주세요.");
+			$("#p_num").focus();
+			return false;
+		}else{
+			var form =document.userinput;
+			form.action = "insertcart.do"
+			form.submit();
+		}
+	});
 	
       });
       
@@ -318,7 +315,7 @@ $('#mdp-demo').multiDatesPicker({
             <a href="" class="main_img">
                <img src="${gdto.g_img1}" alt="">
             </a>
-                <form action="kakaoPay.do" method="post"> 
+                <form action="kakaoPay.do" method="post" name="userinput"> 
                 <input type="hidden" name="p_name" value="${gdto.g_name}"/>
 				<input type="hidden" name="p_conts" value="${gdto.g_conts}"/>
 				<input type="hidden" name="p_meet" value="${gdto.g_address}"/>
@@ -360,6 +357,7 @@ $('#mdp-demo').multiDatesPicker({
                      <div class="line"></div>
                      <p>총 여행경비<span class="type04"></span></p>
                   </div>
+                
                   <input type="submit" value="예약하기" id="reg_submit"  class="btn02"> 
             
                </div>
@@ -495,7 +493,7 @@ $('#mdp-demo').multiDatesPicker({
                </tr>
             </table>
             <input type="button" id="reg" value="예약하기" class="reservation">
-            <input type="button" value="장바구니에 담기" class="wish" onclick='return btn_click("res");'>
+              <input type="button" id="cartbtn"value="장바구니에 담기" class="wish" >
             <div class="info">
                <div class="img_box">
                   <img src="${gdto.gu_img}" alt="">
