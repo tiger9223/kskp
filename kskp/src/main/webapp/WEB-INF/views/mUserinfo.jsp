@@ -651,7 +651,7 @@ $(function(){
 <span>*</span>
 </label>
 <div class='col-sm-9'>
-<f:formatDate value="${dto2.gu_regdate}" pattern="yyyy-MM-dd"/>
+<f:formatDate value="${dto1.m_regdate}" pattern="yyyy-MM-dd"/>
 </div>
 </div>
 

@@ -14,7 +14,7 @@ $(function(){
 	var g_address = $('#g_address').val();
 	
 	$("#g_name").blur(function(){
-		if(g_name==null){
+		if($('#g_name').val() =="" ){
     		$('#g_namechk').text('여행제목을 입력해주세요 :)');
 			$('#g_namechk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
@@ -27,11 +27,11 @@ $(function(){
 	    });
 	$("#g_price").blur(function(){
 		var getAcc= /[^0-9]/g;
-		if(g_price == null){
+		if($('#g_price').val() ==""){
     		$('#g_pricechk').text('가격을 설정해주세요');
 			$('#g_pricechk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
-		}else if(!getAcc.test(g_price)){
+		}else if(getAcc.test($('#g_price').val())){
 			$('#g_pricechk').text('숫자만 입력해주세요.');
 			$('#g_pricechk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
@@ -43,7 +43,7 @@ $(function(){
 			
 	    });
 	$("#g_info").blur(function(){
-		if(g_info == null){
+		if($('#g_info').val() == ""){
     		$('#g_infochk').text('안내사항을 입력해주세요');
 			$('#g_infochk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
@@ -57,7 +57,7 @@ $(function(){
 
 
 	$("#g_conts").blur(function(){
-		if(g_conts == null){
+		if($('#g_conts').val() == null){
     		$('#g_contschk').text('여행 소개를 입력해주세요.');
 			$('#g_contschk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
@@ -69,7 +69,7 @@ $(function(){
 			
 	    });
 	$("#g_oneline").blur(function(){
-		if(g_oneline == null){
+		if($('#g_oneline').val() ==""){
     		$('#g_onelinechk').text('한줄소개를 입려해주세요.');
 			$('#g_onelinechk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
@@ -81,7 +81,7 @@ $(function(){
 			
 	    });
 	$("#g_address").blur(function(){
-		if(g_address == null){
+		if($('#g_address').val() ==""){
     		$('#g_addresschk').text('만나는 장소 이름을 입력해주세요.');
 			$('#g_addresschk').css('color', 'red');		
 			$("#reg_submit").attr("disabled", true);
