@@ -132,13 +132,17 @@
       margin-bottom: -5px;
    }
    #center{
-   width:500px;
-   margin: 0 auto;
+	   width:500px;
+	   margin: 0 auto;
+   }
+    #hh{
+	   margin-top: 30px;
+	   margin-bottom: 50px;
+	   width:270px;
    }
 </style>
 <title>게시글 상세보기</title>
 </head>
-
 <body>
 <div class="log_wrap">
       <h1>
@@ -146,9 +150,10 @@
             <img src="img/logo.png" alt="">
          </a>
       </h1>
-<h1>게시글 상세보기</h1>
+<h1 id="hh" >게시글 상세보기</h1>
 <div id="center">
 <table border="1">
+	<col width="1000px">
 	<tr>
 		<th>번호</th>
 		<td>${dto1.n_seq}</td>
@@ -189,12 +194,10 @@ function nupdateBoard(n_seq){
 </script>
 <footer>
       <ul>
-
          <li><a href="conditions.do">이용약관</a></li>
          <li><a href="privacy.do">개인정보처리방침</a></li>
          <li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
          <li><a href="">고객센터</a></li>
-
       </ul>
       <p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>
 </footer>

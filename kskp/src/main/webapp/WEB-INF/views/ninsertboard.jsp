@@ -41,7 +41,7 @@
 	resize:none;
 	white-space:pre;
    }
-   input{
+   #input{
    width:430px;
    background-color: #ededed;
    }
@@ -136,6 +136,9 @@
    width:500px;
    margin: 0 auto;
    }
+   th{
+   text-align: center;
+   }
 </style>
 <title>글 추가하기폼</title>
 </head>
@@ -152,7 +155,7 @@
 	<table border="1">
 		<col width="100px"><col width="300px">
 			<th>제목</th>
-			<td><input type="text" name="n_title" required="required"/></td>
+			<td><input id="input" type="text" name="n_title" required="required"/></td>
 		</tr>
 		<tr>
 			<th>내용</th>
@@ -170,7 +173,7 @@
          <li><a href="conditions.do">이용약관</a></li>
          <li><a href="privacy.do">개인정보처리방침</a></li>
          <li><a href="responsibility.do">책임의 한계와 법적고지</a></li>
-         <li><a href="">고객센터</a></li>
+         <li><a href="servicecenter.do">고객센터</a></li>
 
       </ul>
       <p class="copy"><img src="img/logo.png" alt=""> copyright ⓒ <strong>SWAG.</strong> All Rights Reserved.</p>

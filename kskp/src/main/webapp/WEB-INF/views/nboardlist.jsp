@@ -4,7 +4,9 @@
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
+<head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" media="screen" href="https://d2yoing0loi5gh.cloudfront.net/webpack/0.b280c48150e7b9ec4a16.css" />
 <link rel="stylesheet" media="screen" href="https://d2yoing0loi5gh.cloudfront.net/webpack/application.b280c48150e7b9ec4a16.css" />
@@ -12,21 +14,17 @@
 <link rel="stylesheet" media="all" href="https://d2yoing0loi5gh.cloudfront.net/assets/partner/application_template_2-f4aa669c5b0bb95eeab45e16d2191196766ade801ea426d4378844f33223711e.css" />
 <link rel="stylesheet" media="all" href="https://d2yoing0loi5gh.cloudfront.net/assets/partner/application-a9128fc1a122430f544993e6d4fc160ef0da94eb6bdc0b7c4881ca2d32dae94a.css" />
 <link href='//fonts.googleapis.com/css?family=Roboto:300,400,500,300italic' rel='stylesheet'>
-<title></title>
 <style>
    @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
 	*{
       margin: 0;
       padding: 0;
       font-family: 'Nanum Gothic', sans-serif;
-      text-align: center;
    }
-   form{
-   	margin: 0;
-  	 align:center;
-   }
-   th{
+   table{
+   	 margin: 0;
    	 text-align: center;
+  	 align:center;
    }
    li{
       list-style: none;
@@ -41,13 +39,19 @@
    body{
       background-color: #ededed;
    }
+   textarea{
+    background-color: #ededed;
+	resize:none;
+	white-space:pre;
+   }
    .log_wrap{
+      height:400px;
       width: 600px;
       margin: 0 auto;
-      margin-top: 70px;
+      margin-top: 50px;
    }
    h1{
-      width: 150px;
+      width: 270px;
       height: auto;
       margin: 0 auto;
       margin-bottom: 10px;
@@ -128,13 +132,19 @@
       margin-right: 5px;
       margin-bottom: -5px;
    }
-/*    #center{ */
-/*    width:740px; */
-/*    margin: 0 auto; */
-/*    } */
+   #center{
+   width:500px;
+   margin: 0 auto;
+   }
+   #hh{
+   margin-top: 30px;
+   margin-bottom: 50px;
+   width:145px;
+   }
+   th{
+      text-align: center;
+   }
 </style>
-<head>
-<meta charset='utf-8'>
 </head>
 <%
 Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
@@ -146,19 +156,26 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
             <img src="img/logo.png" alt="">
          </a>
       </h1>
-<h1>공지사항</h1>
+<h1 id="hh">공지사항</h1>
 <form action="nmuldel.do" method="post">
 <table border="1">
+<c:choose>
+	<c:when test="${ldto.m_status eq 'A'}">
 	<col width="50px">
 	<col width="300px">
-	<col width="200px">
 	<col width="150px">
 	<col width="80px">
+	</c:when>
+	<c:otherwise>
+	<col width="300px">
+	<col width="150px">
+	<col width="80px">
+	</c:otherwise>
+	</c:choose>
 	<c:choose>
 	<c:when test="${ldto.m_status eq 'A'}">
-		<tr>
+	<tr>
 		<th><input type="checkbox" onclick="allSel(this.checked)" /></th>
-		<th>번호</th>	
 		<th>제 목</th>
 		<th>작성날짜</th>
 		<th>조회수</th>
@@ -166,7 +183,6 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 	</c:when>
 	<c:otherwise>
 		<tr>
-		<th>번호</th>	
 		<th>제 목</th>
 		<th>작성날짜</th>
 		<th>조회수</th>
@@ -178,13 +194,13 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 			<c:when test="${empty list}">
 			<c:choose>
 			<c:when test="${ldto.m_status eq 'M'}">
-			<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
+			<td colspan="3" style="text-align: center;">---작성된 글이 없습니다.---</td>
 			</c:when>
 			<c:when test="${ldto.m_status eq 'A'}">
-			<td colspan="5" style="text-align: center;">---작성된 글이 없습니다.---</td>
+			<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
 			</c:when>
 			<c:otherwise>
-				<td colspan="4" style="text-align: center;">---작성된 글이 없습니다.---</td>
+				<td colspan="3" style="text-align: center;">---작성된 글이 없습니다.---</td>
 			</c:otherwise>
 			</c:choose>
 			</c:when>
@@ -193,13 +209,11 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 				<tr><c:choose>
 					<c:when test="${ldto.m_status eq 'A'}">
 					<td><input type="checkbox" name="chk" value="${dto.n_seq}"/></td>
-					<td>${dto.n_seq}</td>
 					<td><a href="ngetboard.do?n_seq=${dto.n_seq}">${dto.n_title}</a></td>
 					<td><f:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 
 					<td>${dto.n_count}</td>
 					</c:when>
 					<c:otherwise>	
-					<td>${dto.n_seq}</td>
 					<td><a href="ngetboard.do?n_seq=${dto.n_seq}">${dto.n_title}</a></td>
 					<td><f:formatDate value="${dto.n_regdate}" pattern="yyyy년MM월dd일"/></td> 
 					<td>${dto.n_count}</td>
@@ -226,19 +240,16 @@ Map<String,Integer>map=(Map<String,Integer>)request.getAttribute("pmap");
 		<c:choose>
 				<c:when test="${ldto.m_status eq 'A'}">
 					<tr>
-						<td colspan="5">
+						<td colspan="4">
 							<a href="ninsertform.do">글추가</a>
 						<input type="submit" value="삭제"/>
 						</td>
 					</tr>
 				</c:when>
 		</c:choose>
-	
-		
 </table>
 </form>
 </div>
-
 
 <script type="text/javascript">
 	function allSel(ele){// ele는 전체 선택 체크박스의 체크여부(true/false)	

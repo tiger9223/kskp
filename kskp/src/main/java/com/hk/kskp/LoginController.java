@@ -258,6 +258,7 @@ public class LoginController {
 		dto.setGu_pw(pw);
 		System.out.println(dto);
 		boolean isS = LoginService.guserUpdate(dto);
+		System.out.println("dto : "+dto);
 
 		System.out.println(isS);
 		if(isS){
