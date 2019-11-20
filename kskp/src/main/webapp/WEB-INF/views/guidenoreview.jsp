@@ -259,7 +259,7 @@
 				★★★★★
 				</c:if>
 				</th>
-					<th>&nbsp;</th>
+				<th>&nbsp;</th>
 				<th>${dto.m_name}</th>
 				<th>&nbsp;</th>
 				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>

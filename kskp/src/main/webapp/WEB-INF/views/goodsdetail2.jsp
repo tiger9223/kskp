@@ -180,6 +180,12 @@ $('#mdp-demo').multiDatesPicker({
 	});
 
 	$("form").submit(function(){
+		var login = "${ldto.m_seq}";
+		if(login==""){
+			alert("로그인 창으로 이동합니다.");
+			location.href="loginform.do";
+			return false;
+		}
 		if($("#altField").val() == ""){
 			alert("달력 날짜를 선택해주세요.");
 			$("#mdp-demo").focus();
@@ -189,7 +195,7 @@ $('#mdp-demo').multiDatesPicker({
 			$("#p_num").focus();
 			return false;
 		}else{
-			 if (confirm("확인버튼을 누르면 결제화면으로 이동합니다.") == true){    //확인
+			if (confirm("확인버튼을 누르면 결제화면으로 이동합니다.") == true){    //확인
 			     document.removefrm.submit();
 			 }else{   //취소
 			     return false;
@@ -387,9 +393,10 @@ $('#mdp-demo').multiDatesPicker({
                <div class="map_box">
                   <a id="mapimg" style="cursor:pointer;" >지도보기v</a>
                   <div class="inner_img" >
-                  <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false"></a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=${gdto.g_lat},${gdto.g_lng}" target="_blank" data-turbolinks="false">
                      <img src="https://maps.googleapis.com/maps/api/staticmap?center=${gdto.g_lat},${gdto.g_lng}&markers=size:mid%7Ccolor:red%7Clabel:E%7C37.5643374782433,126.976625457912&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="">
                      <img src="https://maps.googleapis.com/maps/api/streetview?location=${gdto.g_lat},${gdto.g_lng}&zoom=18&scale=4&size=344x218&key=AIzaSyDhggmQMw_dzIAkkG9vIF6mTO9ZwU81z6Q" alt="">
+                  </a>
                   </div>
                </div>
             </div>
@@ -399,7 +406,7 @@ $('#mdp-demo').multiDatesPicker({
                   <span><a href="">${gdto.gu_name}</a></span>
                   <input type="submit" value="쪽지보내기" class="btn03">
                </div>
-               <p id="guideintro"><c:out value="${gdto.g_info}" /></p>
+               <p id="guideintro"><c:out value="${gdto.gu_intro}" /></p>
             </div>
             <h3>여행자 후기사진</h3>
             <div class="pho_box">
@@ -470,9 +477,9 @@ $('#mdp-demo').multiDatesPicker({
 				</c:choose>
                 </div>
                   <span class="id">${dto.m_name}</span><br/><p>&nbsp;&nbsp;<f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd HH:MM"/> </p>
-                   <p><c:out value="${dto.r_conts}" /></p>
+                   <p>${dto.r_conts}</p>
                    <c:if test="${dto.r_ans != null}"><br/>
-                   <span>&nbsp;&nbsp;&nbsp;ㄴ${gdto.gu_name} [가이드]</span> 
+                   <span style="font: bold;">&nbsp;&nbsp;&nbsp;ㄴ${gdto.gu_name} [가이드]</span> 
                     <br/>&nbsp;&nbsp;&nbsp;&nbsp;<p><c:out value="${dto.r_ans}" /></p>
 			</c:if>
                     

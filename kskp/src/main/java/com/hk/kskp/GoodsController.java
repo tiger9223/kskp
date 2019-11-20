@@ -166,7 +166,8 @@ public class GoodsController {
 		int star3 = ReviewService.star3(g_seq);
 		int star4 = ReviewService.star4(g_seq);
 		int star5 = ReviewService.star5(g_seq);
-		double avg = ReviewService.staravg(g_seq);
+		double avg1 = ReviewService.staravg(g_seq);
+		double avg = Double.parseDouble(String.format("%.1f", avg1));
 		System.out.println("avg:"+avg);
 		System.out.println("디티오"+gdto);
 		model.addAttribute("gdto",gdto);

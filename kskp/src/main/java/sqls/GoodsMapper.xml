@@ -6,10 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- WHERE절에 AND G_FLAG='1' 넣어줘야함 -->
 	<select id="getallgoods"  resultType="GoodsDto">
-	SELECT g.G_SEQ, g.G_THUMBIMG,g.G_CATEGORY,g.G_AREA,g.G_PRICE,g.G_NAME,g.G_REGDATE ,ROUND(AVG(r.r_star)) AS r_star
-    FROM GOODS g, GUIDE gu,REVIEW r 
-    WHERE G_FLAG=1 AND g.GU_SEQ = gu.GU_SEQ AND g.G_SEQ = r.G_SEQ 
-    GROUP BY g.g_seq, g.G_THUMBIMG, g.G_CATEGORY, g.G_AREA, g.G_PRICE, g.G_NAME, g.G_REGDATE
+	SELECT g.G_SEQ, g.G_THUMBIMG,g.G_CATEGORY,g.G_AREA,g.G_PRICE,g.G_NAME,g.G_REGDATE
+    FROM GOODS g, GUIDE gu
+    WHERE g.G_FLAG=1 AND g.GU_SEQ = gu.GU_SEQ
     ORDER BY g.G_REGDATE DESC
 	</select>
 	

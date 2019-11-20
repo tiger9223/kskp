@@ -263,14 +263,16 @@
 				<f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/>
 				</th>
 			</tr>
-			<tr>
-			<td> <br/>
-			</td>
-				<th>&nbsp;</th>
-				<th>${dto.m_name}</th>
-				<th>&nbsp;</th>
-				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th>
-			</tr>
+			<br/>
+			<br/>
+<!-- 			<tr> -->
+<!-- 			<td> <br/> -->
+<!-- 			</td> -->
+<!-- 				<th>&nbsp;</th> -->
+<%-- 				<th>${dto.m_name}</th> --%>
+<!-- 				<th>&nbsp;</th> -->
+<%-- 				<th><f:formatDate value="${dto.r_regdate}" pattern="yyyy-MM-dd"/> </th> --%>
+<!-- 			</tr> -->
 			<tr>
 				<td colspan="3">${dto.r_conts}</td>
 			</tr>

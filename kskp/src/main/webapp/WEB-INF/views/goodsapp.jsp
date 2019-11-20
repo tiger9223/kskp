@@ -68,6 +68,8 @@
     transform:scale(1.2);
 }
 
+th{
+text-align: center;
 }
 </style>
 
@@ -279,14 +281,14 @@
    <table border="1">
    <col width="188px">
    <col width="50px">
-   <col width="90px">
-   <col width="60px">
+   <col width="120px">
+   <col width="100px">
    <col width="80px">
-   <col width="110px">
+   <col width="130px">
    <col width="300px">
    <col width="80px">
-   <col width="80px">
-   <col width="50px">
+   <col width="90px">
+   <col width="70px">
    <tr>
    	  <th>여행 대표사진</th>  
    	  <th>가이드 이메일</th>
@@ -317,7 +319,7 @@
                <td>${dto.gu_name}</td>
                <td>${dto.gu_phone}</td>
                <td>${dto.g_area}</td>
-               <td><fmt:formatDate value="${dto.g_regdate}" pattern="yyyy년MM월dd일"/></td>
+               <td><f:formatDate value="${dto.g_regdate}" pattern="yyyy년MM월dd일"/></td>
                <td>${dto.g_name}</td>
                <td>${dto.g_res}</td>
                <c:choose>
