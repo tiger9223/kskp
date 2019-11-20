@@ -216,13 +216,13 @@ public class LoginController {
 			
 		System.out.println("file : "+file);
 		System.out.println("file1 : "+file1);
-		if(file != null) {
+		if(!file.isEmpty()) {
 			 fileName =  UploadFileUtil.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			} else {
 			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 			}
 
-		if(file1 != null) {
+		if(!file1.isEmpty()) {
 			 fileName1 =  UploadFileUtil.fileUpload(imgUploadPath1, file1.getOriginalFilename(), file1.getBytes(), ymdPath1); 
 			} else {
 			 fileName1 = uploadPath1 + File.separator + "images" + File.separator + "none.png";
@@ -231,6 +231,7 @@ public class LoginController {
 		dto.setGu_img("resources"+ File.separator +"imgUpload" + ymdPath + File.separator + fileName);
 		dto.setGu_backimg("resources"+ File.separator +"imgUpload" + ymdPath1 + File.separator + fileName1);
 		boolean isS = LoginService.guserUpdate(dto);
+		System.out.println("dto : "+dto);
 		if(isS){
 			return"redirect:guserinfo.do?seq="+dto.getGu_seq();
 		}else {
