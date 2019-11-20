@@ -232,9 +232,15 @@ function handleImgFileSelect(e){
 <ul class='site-menu'>
 <li class='site-menu-category'></li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='goodspage.do?gu_seq=${ldto1.gu_seq}'>
+<a class='animsition-link' href='cartlist.do?m_seq=${ldto.m_seq}'>
 <i aria-hidden='true' class='site-menu-icon wb-flag'></i>
 <span class='site-menu-title'>장바구니</span>
+</a>
+</li>
+<li class='site-menu-item'>
+<a class='animsition-link' href='paylist.do?m_seq=${ldto.m_seq}'>
+<i aria-hidden='true' class='site-menu-icon wb-payment'></i>
+<span class='site-menu-title'>결제내역</span>
 </a>
 </li>
 <li class='site-menu-item has-sub'>
@@ -245,13 +251,13 @@ function handleImgFileSelect(e){
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href="guidenoreview.do?gu_seq=${ldto1.gu_seq}">
-<span class='site-menu-title'>답글 달지 않은 후기</span>
+<a class='animsition-link' href="useryesreview.do?m_seq=${ldto.m_seq}">
+<span class='site-menu-title'>내가 쓴 후기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='guideyesreview.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>답글한 후기</span>
+<a class='animsition-link' href='usernoreview.do?m_seq=${ldto.m_seq}'>
+<span class='site-menu-title'>후기 글 남기기</span>
 </a>
 </li>
 </ul>
@@ -264,48 +270,18 @@ function handleImgFileSelect(e){
 </a>
 <ul class='site-menu-sub'>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendLetterform.do'>
+<a class='animsition-link' href='sendMLetterform.do'>
 <span class='site-menu-title'>메시지 보내기</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='letterlist.do?l_receiver=${ldto1.gu_email}&pnum=1'>
+<a class='animsition-link' href='mletterlist.do?l_receiver=${ldto.m_email}&pnum=1'>
 <span class='site-menu-title'>받은 메시지</span>
 </a>
 </li>
 <li class='site-menu-item'>
-<a class='animsition-link' href='sendletterlist.do?l_sender=${ldto1.gu_email}&pnum=1'>
+<a class='animsition-link' href='sendmletterlist.do?l_sender=${ldto.m_email}&pnum=1'>
 <span class='site-menu-title'>보낸 메시지</span>
-</a>
-</li>
-</ul>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href=''>
-<i aria-hidden='true' class='site-menu-icon wb-calendar'></i>
-<span class='site-menu-title'>일정 관리</span>
-</a>
-</li>
-<li class='site-menu-item has-sub'>
-<a href='javascript:void(0)'>
-<i aria-hidden='true' class='site-menu-icon wb-payment'></i>
-<span class='site-menu-title'>정산 관리</span>
-<span class='site-menu-arrow'></span>
-</a>
-<ul class='site-menu-sub'>
-<li class='site-menu-item'>
-<a class='animsition-link' href='salary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>현재 수익 내역</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='checksalary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>송금 신청 내역</span>
-</a>
-</li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='getgsalary.do?gu_seq=${ldto1.gu_seq}'>
-<span class='site-menu-title'>정산 받은 내역</span>
 </a>
 </li>
 </ul>
@@ -316,16 +292,11 @@ function handleImgFileSelect(e){
 <span class='site-menu-title'>계정관리</span>
 </a>
 </li>
-<li class='site-menu-item'>
-<a class='animsition-link' href='nboardlist.do?pnum=1'>
-<i aria-hidden='true' class='site-menu-icon wb-bell'></i>
-<span class='site-menu-title'>공지사항</span>
-</a>
-</li>
 </ul>
 </div>
 </div>
 </div>
+
 <div class='language-selector'>
 <script type="application/json" id="js-react-on-rails-context">{"railsEnv":"production","inMailer":false,"i18nLocale":"ko","i18nDefaultLocale":"ko","rorVersion":"11.0.9","rorPro":false,"href":"https://www.myrealtrip.com/partner?guide_id=13301","location":"/partner?guide_id=13301","scheme":"https","host":"www.myrealtrip.com","port":null,"pathname":"/partner","search":"guide_id=13301","httpAcceptLanguage":"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7","serverSide":false}</script>
 <div id="LanguageSelector-react-component-6dcb380a-ef45-4f7d-bb29-bb945688defc"></div>

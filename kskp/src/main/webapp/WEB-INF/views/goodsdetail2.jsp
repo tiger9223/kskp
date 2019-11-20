@@ -325,11 +325,12 @@ $('#mdp-demo').multiDatesPicker({
 				<input type="hidden" name="g_seq" value="${gdto.g_seq}"/>
 				<input type="hidden" name="g_thumbimg" value="${gdto.g_thumbimg}"/>  
                   <input type="hidden" name="p_cost" id="p_cost">
+                  <input type="hidden" name="m_seq" value="${ldto.m_seq}"/>
             <div class="date_box">
                <h3>날짜와 인원을 선택하세요</h3>
                <div class="inner_wrap">
                   <a id="datepick" style="cursor:pointer;" class="date_button"><i  class="far fa-calendar-alt"></i>
-                    날짜 선택 <input type="text" style='color:#00bcf8; text-align: center; border:none; font-size: 15px' name="g_date" id="altField" >        </a>
+                    날짜 선택 <input type="text" style='color:#00bcf8; text-align: center; border:none; font-size: 15px' name="p_date" id="altField" >        </a>
                            
            
                 
