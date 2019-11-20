@@ -203,4 +203,12 @@ public class HomeController {
 		System.out.println(profile);
 		return profile;
 	}
+	@RequestMapping(value = "/datepick.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public String datepick(@RequestParam("date") String date) {
+		System.out.println("date="+date);
+		String subdate = SubString.sub(date);
+		System.out.println("subdate="+subdate);
+		return subdate;
+	}
 }

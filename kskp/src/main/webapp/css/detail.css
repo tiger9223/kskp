@@ -649,12 +649,12 @@ footer{
 	border-top: 1px solid #f6f6f6;
 }
 .footer_wrap{
-	width: 1200px;
-	height: 150px;
-	margin: 0 auto;
-	padding-top: 70px;
-	padding-bottom: 30px;
-	background-color: #fbfbfb;
+   width: 1200px;
+   height: 150px;
+   margin: 0 auto;
+   padding-top: 40px;
+   padding-bottom: 30px;
+   background-color: #fbfbfb;
 }
 .left_box{
 	width: 400px;

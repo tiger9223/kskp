@@ -94,7 +94,7 @@ public class GoodsController {
 	
 	@RequestMapping(value = "/goodsappform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String goodsAppForm(Locale locale, Model model) {
-		logger.info("상품승인 페이지로 이동", locale);
+		logger.info("상품승인 페이지로 이동111", locale);
 		List<GoodsDto> list = GoodsService.appGoodsList();
 		model.addAttribute("list", list);
 		model.addAttribute("listsize", list.size());

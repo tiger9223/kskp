@@ -45,7 +45,5 @@ function btn_click(str){
 }
 </script>
 </form>
-<h1>[[${dto}]]</h1>
-<h2>[[${info}]]</h2>
 </body>
 </html>

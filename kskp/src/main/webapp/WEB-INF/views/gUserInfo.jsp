@@ -382,16 +382,24 @@ function handleImgFileSelect(e){
 <div class='col-lg-8 col-lg-offset-2 col-sm-12'>
 <div class='row'>
 <form data-validation="true" enctype='multipart/form-data'  id="ajaxFrom"class="form-horizontal form-account" action="gupdate.do" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="qSsqT1/CMR5DKrBhglSyZ4GLI21PUugoYr2pqBoib2FZIAzfzm9R5waK5iOTW+GaW+tv1avF7fHRmZcnsoGQ0Q==" />
-<input name='guide[company]' type='hidden' value='false'>
+<input name='gu_seq' type='hidden' value='${dto2.gu_seq}'>
 <div class='panel panel-bordered panel-border-gray panel-profile'>
 <div class='panel-image bg-blue-grey-300'  style="   width: 100%;
    height: 200px;
    overflow: hidden;"   id="img_check2" >
-<img id="img" src="${dto2.gu_backimg}" style="width: 100%;
+  <c:choose>
+  <c:when test="${dto2.gu_backimg eq 'a'}">
+  <img id="img" style="background:url('') no-repeat center center;background-size:cover;">
+  </c:when>
+  <c:otherwise>
+  <img id="img" src="${dto2.gu_backimg}" style="width: 100%;
    height: auto;"  >
+  </c:otherwise>
+  </c:choose> 
+
 <div class='input-group-file background-file file-upload-btn'>
 <input type="file" name ="file" id="ajaxFile1"  />
-
+<input type="hidden" name="backname" value="${dto2.gu_backimg}">
 <input type="button" onClick="ajaxFileUpload1();">
 <div class='btn btn-default btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
@@ -401,18 +409,19 @@ function handleImgFileSelect(e){
 </div>
 </div>
 <div class='photo-container'>
-<div class='avatar avatar-lg' id="img_check1" style="Width :80px; Height :80px;  Border-radiuse :40px; Overflow :hidden;">
+<div class='avatar avatar-lg' id="img_check1" style="Width :80px; Height :80px;  Border-radiuse :50%; Overflow :hidden;">
 <c:choose>
-<c:when test="${empty dto2.gu_img}">
+<c:when test="${dto2.gu_img eq 'a'}">
 <img alt='guide profile' id='View_area' class='default-img' src='//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png'>
 </c:when>
 <c:otherwise>
-<img alt='guide profile' id='View_area' class='default-img' src='${dto2.gu_img}'>
+<img alt='guide profile' id='View_area' class='default-img'  style="all:unset;" src='${dto2.gu_img}'>
 </c:otherwise>
 </c:choose>
 </div>
 <div class='avatar-file file-upload-btn'>
 <input type="file" name ="file1" id="ajaxFile" style="display:none;"/>
+<input type="hidden" name="imgname" value="${dto2.gu_img}">
 <input type="button" onClick="ajaxFileUpload();">
 <div class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
@@ -691,6 +700,7 @@ $(function(){
 <div id="pwchange" class='btn btn-success btn-file ladda-button' data-spinner-color='DarkGrey' data-style='zoom-out'>
 <span class='ladda-label'></span>
 <i aria-hidden='true' class='icon wb-upload'></i>
+<input type = "hidden" name="gu_pw" value="${dto2.gu_pw}">
 비밀번호 변경
 </div>
 </div>
@@ -702,7 +712,7 @@ $(function(){
 <span>*</span>
 </label>
 <div class='col-sm-9'>
-<input class='form-control' id="gu_pw" name='gu_pw' type='text' >
+<input class='form-control' id="gu_pw" name='gu_pw1' type='text' >
 <div class="notice" id="pw_check"></div>
 </div>
 
@@ -761,10 +771,10 @@ $(function(){
 <div class='row'>
 <div class='center-block clearfix'>
 <div class='col-xs-6 padding-right-5'>
-<a class="btn btn-block btn-default" href="https://www.myrealtrip.com/partner/edit">취소하기</a>
+<a class="btn btn-block btn-default" href="goodspage.do">취소하기</a>
 </div>
 <div class='col-xs-6 padding-left-5'>
-<button class='btn btn-block btn-primary' type='submit'>저장하기</button>
+<button class='btn btn-block btn-primary' id="reg_submit" type='submit'>저장하기</button>
 </div>
 </div>
 </div>

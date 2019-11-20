@@ -75,60 +75,59 @@
 		var key = "${kokey}";
 			if(key=="서울"){
 				$('.under').stop(true).animate({
-					left:'157px'
+					left:'351px'
 				});
 			}else if(key=="인천"){
 				$('.under').stop(true).animate({
-					left:'240px'
+					left:'436px'
 				});
 			}else if(key=="대전"){
 				$('.under').stop(true).animate({
-					left:'323px'
+					left:'519px'
 				});
 			}else if(key=="대구"){
 				$('.under').stop(true).animate({
-					left:'406px'
+					left:'603px'
 				});
 			}else if(key=="부산"){
 				$('.under').stop(true).animate({
-					left:'489px'
+					left:'686px'
 				});
 			}else if(key=="제주"){
 				$('.under').stop(true).animate({
-					left:'572px'
+					left:'771px'
 				});
 			}
-		$('.nav li:first-child').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'157px'
-			},400);
-		});
-		$('.nav li:nth-child(2)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'240px'
-			},400);
-		});
-		$('.nav li:nth-child(3)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'323px'
-			},400);
-		});
-		$('.nav li:nth-child(4)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'406px'
-			},400);
-		});
-		$('.nav li:nth-child(5)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'489px'
-			},400);
-		});
-		$('.nav li:nth-child(6)').on('mouseover',function(){
-			$('.under').stop(true).animate({
-				left:'572px'
-			},400);
-		});
-
+			$('.nav li:first-child').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'351px'
+				},400);
+			});
+			$('.nav li:nth-child(2)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'436px'
+				},400);
+			});
+			$('.nav li:nth-child(3)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'519px'
+				},400);
+			});
+			$('.nav li:nth-child(4)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'603px'
+				},400);
+			});
+			$('.nav li:nth-child(5)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'686px'
+				},400);
+			});
+			$('.nav li:nth-child(6)').on('mouseover',function(){
+				$('.under').stop(true).animate({
+					left:'771px'
+				},400);
+			});
 		var $win = $(window);
 	    var top = $(window).scrollTop();
 	    var speed = 'past';
@@ -190,9 +189,16 @@
 					<a href="servicecenter.do">고객센터</a>
 				</li>
 				<li class="icon">
-					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+						<c:choose>
+				<c:when test="${ldto.m_img eq 'a'}">
+				<div class="icon_box"><img src="//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png" alt=""></div>
+				</c:when>
+				<c:otherwise>
+				<div class="icon_box"><img src="${ldto.m_img}" alt=""></div>
+				</c:otherwise>
+				</c:choose>
 					<ul class="info_box">
-						<li><a href="mypage.do?seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="cartlist.do?m_seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> ${ldto.m_point}p</span></a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
@@ -220,9 +226,16 @@
 					<a href="servicecenter.do">고객센터</a>
 				</li>
 				<li class="icon">
-					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+				<c:choose>
+				<c:when test="${ldto1.gu_img eq 'a'}">
+				<div class="icon_box"><img src="//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png" alt=""></div>
+				</c:when>
+				<c:otherwise>
+				<div class="icon_box"><img src="${ldto1.gu_img}" alt=""></div>
+				</c:otherwise>
+				</c:choose>
 					<ul class="info_box">
-						<li><a href="mypage.do?seq=${ldto1.gu_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
+						<li><a href="goodspage.do?gu_seq=${ldto1.gu_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
 					</ul>
 				</li>

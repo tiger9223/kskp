@@ -131,7 +131,14 @@
 					<a href="servicecenter.do">고객센터</a>
 				</li>
 				<li class="icon">
-					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+				<c:choose>
+				<c:when test="${ldto.m_img eq 'a'}">
+				<div class="icon_box"><img src="//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png" alt=""></div>
+				</c:when>
+				<c:otherwise>
+				<div class="icon_box"><img src="${ldto.m_img}" alt=""></div>
+				</c:otherwise>
+				</c:choose>
 					<ul class="info_box">
 						<li><a href="cartlist.do?m_seq=${ldto.m_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href=""><i class="fas fa-coins"></i>　내포인트　 <span> ${ldto.m_point}p</span></a></li>
@@ -160,7 +167,14 @@
 					<a href="servicecenter.do">고객센터</a>
 				</li>
 				<li class="icon">
-					<div class="icon_box"><img src="img/info_icon.png" alt=""></div>
+				<c:choose>
+				<c:when test="${ldto1.gu_img eq 'a'}">
+				<div class="icon_box"><img src="//d2yoing0loi5gh.cloudfront.net/assets/default/user_profile_image-414acc60b27f0a258bec14c82b70dc361fc6768da9289f924f887bec1fc33849.png" alt=""></div>
+				</c:when>
+				<c:otherwise>
+				<div class="icon_box"><img src="${ldto1.gu_img}" alt=""></div>
+				</c:otherwise>
+				</c:choose>
 					<ul class="info_box">
 						<li><a href="goodspage.do?gu_seq=${ldto1.gu_seq}"><i class="fas fa-user-alt"></i>　마이페이지</a></li>
 						<li><a href="logout.do"><i class="fas fa-power-off"></i>　로그아웃</a></li>
